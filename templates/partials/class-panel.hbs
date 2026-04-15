@@ -1,0 +1,8 @@
+<article class="panel" {{#if group}} data-group="{{group}}" data-key="{{key}}" {{/if}}{{#if isHidden}} hidden{{/if}}>
+    <header>
+        <h3>{{label}}</h3>
+    </header>
+    {{#each classes}}
+    {{> class-block}}
+    {{/each}}
+</article>

@@ -1,0 +1,252 @@
+:root {
+  --pico-font-family: "Macondo", serif;
+
+  --space-scale: 0.85;
+  --control-height: 2rem;
+
+  --font-size-xl: 1.4rem;
+  --font-size-lg: 1rem;
+  --font-size-md: 0.8rem;
+  --font-size-sm: 0.7rem;
+
+  --font-select: 0.86rem;
+
+  --space-md: 0.5rem;
+  --space-sm: 0.3rem;
+  --space-xs: 0.2rem;
+
+  --color-brown: #310500;
+  --color-tan: #f0d9a5;
+  --color-light-tan: #f7e8c3;
+  --color-blue: #213057;
+}
+
+body {
+  line-height: 1.4;
+}
+
+main.container {
+  max-width: 1240px;
+}
+
+.page-header h1 {
+  font-size: var(--font-size-xl);
+  margin: var(--space-md) 0;
+}
+
+.breadcrumb {
+  background-color: var(--color-tan);
+  border: 2px solid var(--color-brown);
+  border-radius: 0.4rem;
+  display: inline-block;
+  /* margin: 1rem 0; */
+  padding: 0.3rem 0.6rem;
+  --pico-nav-breadcrumb-divider: '/';
+}
+
+.breadcrumb li {
+  color: var(--color-brown);
+  font-size: var(--font-size-sm);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.breadcrumb li a {
+  color: var(--color-blue);
+  text-decoration-color: var(--color-blue);
+}
+
+.section-title {
+  font-size: var(--font-size-lg);
+  margin: var(--space-md) 0;
+}
+
+.character-index {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.character-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+
+.character-card {
+  display: block;
+  border: 2px solid var(--color-brown);
+  background-color: var(--color-tan);
+  border-radius: 0.4rem;
+  text-decoration: none;
+}
+
+.character-card img {
+  border-bottom: 2px solid var(--color-brown);
+}
+
+.character-card h3 {
+  background-color: var(--color-brown);
+  color: var(--color-tan);
+  margin: 0;
+  padding: 0.1rem 0;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.character-card:hover,
+.character-card:focus-visible {
+  background-color: var(--color-light-tan);
+}
+
+.character-card:hover h3,
+.character-card:focus-visible h3 {
+  color: var(--color-light-tan);
+}
+
+.control-stack,
+.selector-group {
+  display: grid;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.control-stack label,
+.selector-group label {
+  font-size: var(--font-size-md);
+  font-weight: 800;
+  margin: 0;
+}
+
+select {
+  border: 2px solid var(--color-brown);
+  color: var(--color-brown);
+  background-color: var(--color-tan);
+  font-size: var(--font-size-md);
+  margin: 0;
+  min-height: var(--control-height);
+  padding: var(--space-xs) var(--space-md);
+}
+
+.three-column-grid,
+.two-column-grid {
+  display: grid;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.three-column-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.two-column-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.two-column-grid>*,
+.three-column-grid>* {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel {
+  flex: 1 1 auto;
+  border: 2px solid var(--color-brown);
+  background-color: var(--color-tan);
+  color: var(--color-brown);
+  border-radius: 0.4rem;
+  margin-block-end: 0.5rem;
+  padding-bottom: 0.2rem;
+}
+
+.panel>header {
+  background-color: var(--color-brown);
+  margin-block-end: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.panel>header h3 {
+  color: var(--color-tan);
+  font-size: var(--font-size-md);
+  margin: 0;
+}
+
+.class-block {
+  margin-block-end: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.class-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.class-heading h4 {
+  color: var(--color-brown);
+  margin: 0;
+  font-size: var(--font-size-md);
+}
+
+.weapon-icon {
+  width: 16px;
+  height: auto;
+}
+
+.skill-list {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 0.35rem;
+}
+
+.skill-icon {
+  width: 24px;
+  height: auto;
+}
+
+.skill-copy {
+  display: grid;
+}
+
+.skill-copy span {
+  line-height: 1.2;
+  font-size: var(--font-size-sm);
+}
+
+.class-block {
+  font-size: var(--font-size-md);
+  margin: 0 -1rem;
+  padding: 0.25rem var(--pico-block-spacing-vertical);
+}
+
+.class-block:not(:last-child) {
+  border-bottom: 1px solid var(--color-brown);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 1080px) {
+  .three-column-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 740px) {
+
+  .three-column-grid,
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel>header h3 {
+    font-size: 0.95rem;
+  }
+}

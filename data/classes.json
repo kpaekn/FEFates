@@ -1,0 +1,378 @@
+{
+    "nohr_prince_ss": {
+        "name": "Nohr Prince(ss)",
+        "weapons": "sword, dragon_stone",
+        "promotion": "hoshido_noble, nohr_noble",
+        "unique": true,
+        "skills": "nobility, dragon_fang"
+    },
+    "hoshido_noble": {
+        "name": "Hoshido Noble",
+        "weapons": "sword, dragon_stone, staff",
+        "skills": "dragon_ward, hoshidan_unity"
+    },
+    "nohr_noble": {
+        "name": "Nohr Noble",
+        "weapons": "sword, dragon_stone, tome",
+        "skills": "draconic_hex, nohrian_trust"
+    },
+    "songstress": {
+        "name": "Songstress",
+        "weapons": "lance",
+        "parallel": "troubadour_m, troubadour_f",
+        "skills": "luck_4, inspiring_song, voice_of_peace, foreign_princess",
+        "unique": true
+    },
+    "samurai": {
+        "name": "Samurai",
+        "weapons": "sword",
+        "parallel": "mercenary",
+        "promotion": "swordmaster, master_of_arms",
+        "skills": "duelists_blow, vantage"
+    },
+    "swordmaster": {
+        "name": "Swordmaster",
+        "weapons": "sword",
+        "skills": "astra, swordfaire"
+    },
+    "master_of_arms": {
+        "name": "Master of Arms",
+        "weapons": "sword, lance, axe",
+        "skills": "seal_strength, life_and_death"
+    },
+    "villager": {
+        "name": "Villager",
+        "weapons": "lance",
+        "parallel": "apothecary",
+        "skills": "aptitude, underdog",
+        "unique": true
+    },
+    "apothecary": {
+        "name": "Apothecary",
+        "weapons": "bow",
+        "promotion": "merchant, mechanist",
+        "skills": "potent_potion, quick_salve"
+    },
+    "merchant": {
+        "name": "Merchant",
+        "weapons": "lance, bow",
+        "skills": "profiteer, spendthrift"
+    },
+    "mechanist": {
+        "name": "Mechanist",
+        "weapons": "dagger, bow",
+        "skills": "golembane, replicate"
+    },
+    "ninja": {
+        "name": "Ninja",
+        "weapons": "dagger",
+        "parallel": "cavalier",
+        "promotion": "master_ninja, mechanist",
+        "skills": "locktouch, poison_strike"
+    },
+    "master_ninja": {
+        "name": "Master Ninja",
+        "weapons": "sword, dagger",
+        "skills": "lethality, shurikenfaire"
+    },
+    "oni_savage": {
+        "name": "Oni Savage",
+        "weapons": "axe",
+        "parallel": "fighter",
+        "promotion": "oni_chieftain, blacksmith",
+        "skills": "seal_resistance, shove"
+    },
+    "oni_chieftain": {
+        "name": "Oni Chieftain",
+        "weapons": "axe, tome",
+        "skills": "death_blow, counter"
+    },
+    "blacksmith": {
+        "name": "Blacksmith",
+        "weapons": "sword, axe",
+        "skills": "salvage_blow, lancebreaker"
+    },
+    "spear_fighter": {
+        "name": "Spear Fighter",
+        "weapons": "lance",
+        "parallel": "knight",
+        "promotion": "spear_master, basara",
+        "skills": "seal_defence, swap"
+    },
+    "spear_master": {
+        "name": "Spear Master",
+        "weapons": "lance",
+        "skills": "seal_speed, lancefaire"
+    },
+    "basara": {
+        "name": "Basara",
+        "weapons": "lance, tome",
+        "skills": "rend_heaven, quixotic"
+    },
+    "diviner": {
+        "name": "Diviner",
+        "weapons": "tome",
+        "parallel": "dark_mage",
+        "promotion": "onmyoji, basara",
+        "skills": "magic_2, future_sight"
+    },
+    "onmyoji": {
+        "name": "Onmyoji",
+        "weapons": "tome, staff",
+        "skills": "rally_magic, tomefaire"
+    },
+    "monk": {
+        "name": "Monk",
+        "weapons": "staff",
+        "promotion": "great_master, onmyoji",
+        "skills": "miracle, rally_luck",
+        "growth": "monk_shrine_maiden"
+    },
+    "great_master": {
+        "name": "Great Master",
+        "weapons": "lance, staff",
+        "skills": "renewal, countermagic"
+    },
+    "shrine_maiden": {
+        "name": "Shrine Maiden",
+        "weapons": "staff",
+        "promotion": "priestess, onmyoji",
+        "skills": "miracle, rally_luck",
+        "growth": "monk_shrine_maiden"
+    },
+    "priestess": {
+        "name": "Priestess",
+        "weapons": "bow, staff",
+        "skills": "renewal, countermagic"
+    },
+    "sky_knight": {
+        "name": "Sky Knight",
+        "weapons": "lance",
+        "parallel": "wyvern_rider",
+        "promotion": "falcon_knight, kinshi_knight",
+        "skills": "darting_blow, camaraderie"
+    },
+    "falcon_knight": {
+        "name": "Falcon Knight",
+        "weapons": "lance, staff",
+        "skills": "rally_speed, warding_blow"
+    },
+    "kinshi_knight": {
+        "name": "Kinshi Knight",
+        "weapons": "lance, bow",
+        "skills": "air_superiority, amaterasu"
+    },
+    "archer": {
+        "name": "Archer",
+        "weapons": "bow",
+        "parallel": "outlaw",
+        "promotion": "sniper, kinshi_knight",
+        "skills": "skill_2, quick_draw"
+    },
+    "sniper": {
+        "name": "Sniper",
+        "weapons": "bow",
+        "skills": "certain_blow, bowfaire"
+    },
+    "kitsune": {
+        "name": "Kitsune",
+        "weapons": "beaststone",
+        "parallel": "apothecary",
+        "promotion": "nine_tails",
+        "skills": "evenhanded, beastbane",
+        "unique": true
+    },
+    "nine_tails": {
+        "name": "Nine-Tails",
+        "weapons": "beaststone",
+        "skills": "even_better, grisly_wound"
+    },
+    "cavalier": {
+        "name": "Cavalier",
+        "weapons": "sword, lance",
+        "parallel": "ninja",
+        "promotion": "paladin, great_knight",
+        "skills": "elbow_room, shelter"
+    },
+    "paladin": {
+        "name": "Paladin",
+        "weapons": "sword, lance",
+        "skills": "defender, aegis"
+    },
+    "great_knight": {
+        "name": "Great Knight",
+        "weapons": "sword, lance, axe",
+        "skills": "luna, armored_blow"
+    },
+    "knight": {
+        "name": "Knight",
+        "weapons": "lance",
+        "parallel": "spear_fighter",
+        "promotion": "general, great_knight",
+        "skills": "defence_2, natural_cover"
+    },
+    "general": {
+        "name": "General",
+        "weapons": "lance, axe",
+        "skills": "wary_fighter, pavise"
+    },
+    "fighter": {
+        "name": "Fighter",
+        "weapons": "axe",
+        "parallel": "oni_savage",
+        "promotion": "berserker, hero",
+        "skills": "hp_5, gamble"
+    },
+    "berserker": {
+        "name": "Berserker",
+        "weapons": "axe",
+        "skills": "rally_strength, axefaire"
+    },
+    "hero": {
+        "name": "Hero",
+        "weapons": "sword, axe",
+        "skills": "sol, axebreaker"
+    },
+    "mercenary": {
+        "name": "Mercenary",
+        "weapons": "sword",
+        "parallel": "samurai",
+        "promotion": "hero, bow_knight",
+        "skills": "good_fortune, strong_riposte"
+    },
+    "bow_knight": {
+        "name": "Bow Knight",
+        "weapons": "sword, bow",
+        "skills": "rally_skill, shurikenbreaker"
+    },
+    "outlaw": {
+        "name": "Outlaw",
+        "weapons": "bow",
+        "parallel": "archer",
+        "promotion": "adventurer, bow_knight",
+        "skills": "movement_1"
+    },
+    "adventurer": {
+        "name": "Adventurer",
+        "weapons": "bow, staff",
+        "skills": "lucky_seven, pass"
+    },
+    "wyvern_rider": {
+        "name": "Wyvern Rider",
+        "weapons": "axe",
+        "parallel": "sky_knight",
+        "promotion": "wyvern_lord, malig_knight",
+        "skills": "strength_2, lunge"
+    },
+    "wyvern_lord": {
+        "name": "Wyvern Lord",
+        "weapons": "lance, axe",
+        "skills": "rally_defence, swordbreaker"
+    },
+    "malig_knight": {
+        "name": "Malig Knight",
+        "weapons": "axe, tome",
+        "skills": "savage_blow, trample"
+    },
+    "dark_mage": {
+        "name": "Dark Mage",
+        "weapons": "tome",
+        "parallel": "diviner",
+        "promotion": "sorcerer, dark_knight",
+        "skills": "heartseeker, malefic_aura"
+    },
+    "sorcerer": {
+        "name": "Sorcerer",
+        "weapons": "tome",
+        "skills": "vengeance, bowbreaker"
+    },
+    "dark_knight": {
+        "name": "Dark Knight",
+        "weapons": "sword, tome",
+        "skills": "seal_magic, lifetaker"
+    },
+    "troubadour_m": {
+        "name": "Troubadour",
+        "weapons": "staff",
+        "promotion": "strategist, butler",
+        "skills": "resistance_2, gentilhomme",
+        "growth": "troubadour"
+    },
+    "troubadour_f": {
+        "name": "Troubadour",
+        "weapons": "staff",
+        "promotion": "strategist, maid",
+        "skills": "resistance_2, demoiselle",
+        "growth": "troubadour"
+    },
+    "strategist": {
+        "name": "Strategist",
+        "weapons": "tome, staff",
+        "skills": "rally_resistance, inspiration"
+    },
+    "butler": {
+        "name": "Butler",
+        "weapons": "dagger, staff",
+        "skills": "live_to_serve, tomebreaker",
+        "growth": "maid_butler"
+    },
+    "maid": {
+        "name": "Maid",
+        "weapons": "dagger, staff",
+        "skills": "live_to_serve, tomebreaker",
+        "growth": "maid_butler"
+    },
+    "wolfskin": {
+        "name": "Wolfskin",
+        "weapons": "beaststone",
+        "parallel": "outlaw",
+        "promotion": "wolfssegner",
+        "skills": "odd_shaped, beastbane",
+        "unique": true
+    },
+    "wolfssegner": {
+        "name": "Wolfssegner",
+        "weapons": "beaststone",
+        "skills": "better_odds, grisly_wound"
+    },
+    "dread_fighter": {
+        "name": "Dread Fighter",
+        "weapons": "sword, axe, dagger",
+        "skills": "even_keel, iron_will, clarity, aggressor"
+    },
+    "ballistician": {
+        "name": "Ballistician",
+        "weapons": "bow",
+        "skills": "survey, opportunity_shot, rifled_barrel, surefooted"
+    },
+    "dark_falcon": {
+        "name": "Dark Falcon",
+        "weapons": "lance, tome",
+        "skills": "speed_2, relief, rally_movement, galeforce"
+    },
+    "witch": {
+        "name": "Witch",
+        "weapons": "tome",
+        "skills": "shadowgift, witchs_brew, warp, toxic_brew"
+    },
+    "lodestar": {
+        "name": "Lodestar",
+        "weapons": "sword",
+        "skills": "dancing_blade, charm, dual_guarder, speedtaker"
+    },
+    "great_lord": {
+        "name": "Great Lord",
+        "weapons": "sword, lance",
+        "skills": "dual_striker, charm, aether, awakening"
+    },
+    "vanguard": {
+        "name": "Vanguard",
+        "weapons": "sword, axe",
+        "skills": "heavy_blade, veteran_intuition, aether, strengthtaker"
+    },
+    "grandmaster": {
+        "name": "Grandmaster",
+        "weapons": "sword, tome",
+        "skills": "tactical_advice, solidarity, ignis, rally_spectrum"
+    }
+}

@@ -1,0 +1,5 @@
+exclude:
+  - data/
+  - templates/
+  - .gitignore
+  - build-character-guide-pages.js

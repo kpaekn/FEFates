@@ -1,0 +1,958 @@
+{
+    "supportive": {
+        "name": "Supportive",
+        "description": "When user is the support unit, if the lead unit has a C Support or higher, the lead unit’s Hit Rate +10, damage +2 and damage received -2"
+    },
+    "devoted_partner": {
+        "name": "Devoted Partner",
+        "description": "If the Avatar is the lead unit, Avatar’s damage +2, damage received -2"
+    },
+    "evasive_partner": {
+        "name": "Evasive Partner",
+        "description": "If the Avatar is the lead unit, Avatar’s Avoid +15, damage received -3"
+    },
+    "miraculous_save": {
+        "name": "Miraculous Save",
+        "description": "When user is the support unit, the lead unit has a Luck% chance of surviving a fatal attack with 1 HP"
+    },
+    "healing_descant": {
+        "name": "Healing Descant",
+        "description": "Allies within a 2 tile radius recover 10% HP at the start of the user’s Turn"
+    },
+    "vow_of_friendship": {
+        "name": "Vow of Friendship",
+        "description": "If the Avatar is an ally, when the Avatar is under half HP, user’s damage +3 and damage received -3"
+    },
+    "highwayman": {
+        "name": "Highwayman",
+        "description": "When user triggers the battle, if the enemy cannot counter-attack, enemy’s Strength and Speed -3 after the battle (stats recover by 1 each Turn)"
+    },
+    "peacebringer": {
+        "name": "Peacebringer",
+        "description": "Allies and enemies within a 2 tile radius deal 2 less damage"
+    },
+    "forager": {
+        "name": "Forager",
+        "description": "When standing on Mountain, Woods, Waste or Field terrain, the user recovers 20% HP at the start of the Turn"
+    },
+    "fiery_blood": {
+        "name": "Fiery Blood",
+        "description": "When user’s HP is not full, damage +4"
+    },
+    "quiet_strength": {
+        "name": "Quiet Strength",
+        "description": "Allies within a 2 tile radius receive 2 less damage"
+    },
+    "fearsome_blow": {
+        "name": "Fearsome Blow",
+        "description": "When user triggers the battle and defeats an enemy, enemies adjacent to the user have their HP reduced by 20%"
+    },
+    "perfectionist": {
+        "name": "Perfectionist",
+        "description": "When user’s HP is at maximum, Hit rate and Avoid +15"
+    },
+    "pyrotechnics": {
+        "name": "Pyrotechnics",
+        "description": "When user triggers the battle at under half HP, the user and enemies within a 2 tile radius have their HP reduced by 20%"
+    },
+    "capture": {
+        "name": "Capture",
+        "description": "When there is a Prison in My Castle, the user can select the “Capture” command. If a generic enemy is defeated, they will be sent to the Prison"
+    },
+    "rallying_cry": {
+        "name": "Rallying Cry",
+        "description": "Allies within a 2 tile radius deal 2 extra damage"
+    },
+    "divine_retribution": {
+        "name": "Divine Retribution",
+        "description": "When user doesn’t have a weapon equipped and they sustain damage from an adjacent enemy, the enemy receives half the same damage."
+    },
+    "optimist": {
+        "name": "Optimist",
+        "description": "When user is healed by a staff, they recover 1.5 times the normal HP"
+    },
+    "pride": {
+        "name": "Pride",
+        "description": "When user’s Level is lower than the enemy’s (promoted units count as Level +20), damage +3"
+    },
+    "nohr_enmity": {
+        "name": "Nohr Enmity",
+        "description": "When engaging a Nohr-related enemy, damage +3"
+    },
+    "triple_threat": {
+        "name": "Triple Threat",
+        "description": "When user is under half HP, half the damage received by Swords, Lances or Axes is also dealt to the enemy"
+    },
+    "competitive": {
+        "name": "Competitive",
+        "description": "When user is the lead unit and their Level is lower than their support unit’s Level, Critical rate +10, damage +3 and damage received -1"
+    },
+    "shuriken_mastery": {
+        "name": "Shuriken Mastery",
+        "description": "When user receives damage from a Dagger attack, the enemy receives half the same damage and the Dagger’s stat reduction effect"
+    },
+    "morbid_celebration": {
+        "name": "Morbid Celebration",
+        "description": "When user triggers the battle, recover 20% HP after defeating the enemy"
+    },
+    "reciprocity": {
+        "name": "Reciprocity",
+        "description": "When a unit uses a healing staff on the user, that unit has their HP recovered by half the same amount"
+    },
+    "bushido": {
+        "name": "Bushido",
+        "description": "When user is the lead unit, if their Level is higher than their support unit’s Level, Critical rate +10, damage +2 and damage received -2"
+    },
+    "in_extremis": {
+        "name": "In Extremis",
+        "description": "When user’s HP is under a quarter, Critical rate +30"
+    },
+    "perspicacious": {
+        "name": "Perspicacious",
+        "description": "Hit rate +5 for all allies"
+    },
+    "forceful_partner": {
+        "name": "Forceful Partner",
+        "description": "If the Avatar is the lead unit, Avatar’s Hit rate +15, damage +3"
+    },
+    "lily_s_poise": {
+        "name": "Lily’s Poise",
+        "description": "Adjacent allies deal 1 extra damage and received 3 less damage"
+    },
+    "misfortunate": {
+        "name": "Misfortunate",
+        "description": "Enemies within a 2 tile radius have their Critical Evade reduced by 15, while the user’s Critical Evade is reduced by 5"
+    },
+    "puissance": {
+        "name": "Puissance",
+        "description": "When user’s Strength is 5 or more points higher than the enemy’s Strength, damage +3 during battle"
+    },
+    "aching_blood": {
+        "name": "Aching Blood",
+        "description": "When equipped with a forged weapon whose name is at least 12 characters, Critical rate +10"
+    },
+    "kidnap": {
+        "name": "Kidnap",
+        "description": "When there is a Prison in My Castle, the user can select the “Capture” command. If a generic enemy is defeated, they will be sent to the Prison"
+    },
+    "countercurse": {
+        "name": "Countercurse",
+        "description": "When enemy triggers the battle and inflicts magical damage, the enemy receives half the same damage"
+    },
+    "rose_s_thorn": {
+        "name": "Rose’s Thorn",
+        "description": "Adjacent allies deal 3 extra damage and receive 1 less damage"
+    },
+    "fierce_rival": {
+        "name": "Fierce Rival",
+        "description": "When user is the support unit, if the lead unit triggers a critical hit, the user is guaranteed a critical hit (if their attack connects)"
+    },
+    "opportunist": {
+        "name": "Opportunist",
+        "description": "When user triggers the battle, if the enemy cannot counter-attack, damage +4"
+    },
+    "fancy_footwork": {
+        "name": "Fancy Footwork",
+        "description": "Strength and Speed +1 to all allies within a 2 tile radius for one Turn when the “Rally” command is used"
+    },
+    "bloodthirst": {
+        "name": "Bloodthirst",
+        "description": "When user triggers the battle and defeats the enemy, Strength, Magic, Skill and Speed +4 for one turn"
+    },
+    "fierce_mien": {
+        "name": "Fierce Mien",
+        "description": "Enemies within a 2 tile radius have their Avoid reduced by 10"
+    },
+    "unmask": {
+        "name": "Unmask",
+        "description": "When engaging a female enemy, Damage +4 and Critical rate +20"
+    },
+    "pragmatic": {
+        "name": "Pragmatic",
+        "description": "When enemy’s HP is not full, damage +3 and damage received -1 during the battle"
+    },
+    "collector": {
+        "name": "Collector",
+        "description": "Luck% chance of obtaining 3 Minerals or Foodstuffs after moving up to the 7th Turn"
+    },
+    "chivalry": {
+        "name": "Chivalry",
+        "description": "When enemy’s HP is at maximum, damage +2 and damage received -2 during the battle"
+    },
+    "icy_blood": {
+        "name": "Icy Blood",
+        "description": "When user’s HP is not full and they sustain damage, the enemy receives the same damage and the enemy’s Skill and Speed is reduced by 3"
+    },
+    "draconic_heir": {
+        "name": "Draconic Heir",
+        "description": "When user is equipped with a Dragonstone, they recover 15% HP at the start of their Turn"
+    },
+    "born_steward": {
+        "name": "Born Steward",
+        "description": "When fighting in My Castle, Hit rate and Avoid +20, damage +2 and damage received -2"
+    },
+    "perfect_pitch": {
+        "name": "Perfect Pitch",
+        "description": "Allies within a 2 tile radius who have lower HP than the user recover 10% HP when the “Rally” command is used"
+    },
+    "mischievous": {
+        "name": "Mischievous",
+        "description": "When user triggers the battle and their attack connects with the enemy, enemy’s Defence -3 and enemy is stripped"
+    },
+    "lucky_charm": {
+        "name": "Lucky Charm",
+        "description": "Skills with an activation rate dependent on the Luck stat have their rate increased by 20%"
+    },
+    "noble_cause": {
+        "name": "Noble Cause",
+        "description": "When user is the lead unit, if their support unit doesn’t have full HP, damage +3 and damage received +1"
+    },
+    "optimistic": {
+        "name": "Optimistic",
+        "description": "After choosing to Wait, Speed +4 and Luck +8 for one Turn"
+    },
+    "sweet_tooth": {
+        "name": "Sweet Tooth",
+        "description": "After choosing to Wait, user recovers 4 HP by eating hidden treats"
+    },
+    "playthings": {
+        "name": "Playthings",
+        "description": "After the start of the user’s Turn, all enemies that are adjacent to the user have their HP reduced by 5"
+    },
+    "calm": {
+        "name": "Calm",
+        "description": "After choosing to Wait, Skill and Resistance +4 for one Turn"
+    },
+    "haiku": {
+        "name": "Haiku",
+        "description": "At the start of the Turn, when two allies are directly above and below Mitama, Mitama recovers 7 HP, while the the two allies recover 5 HP"
+    },
+    "prodigy": {
+        "name": "Prodigy",
+        "description": "At the start of the battle, if the enemy’s Strength or Magic (whichever is highest) is higher than Caeldori’s corresponding stat, damage +4"
+    },
+    "vendetta": {
+        "name": "Vendetta",
+        "description": "When user triggers the battle, if they’ve already fought the enemy in the same map, damage +4"
+    },
+    "gallant": {
+        "name": "Gallant",
+        "description": "When user is the support unit, if the lead unit is female, the lead unit’s damage +2"
+    },
+    "fierce_counter": {
+        "name": "Fierce Counter",
+        "description": "When a male enemy triggers the battle, damage +2"
+    },
+    "guarded_bravery": {
+        "name": "Guarded Bravery",
+        "description": "When user is the lead unit, damage received -2. If no support unit available, damage received +2"
+    },
+    "goody_basket": {
+        "name": "Goody Basket",
+        "description": "At the start of the Turn, Luck% chance of recovering 10% HP"
+    },
+    "fortunate_son": {
+        "name": "Fortunate Son",
+        "description": "Allies within a 2 tile radius have their Critical Evade increased by 15, while the user’s Critical Evade is increased by 5"
+    },
+    "bibliophile": {
+        "name": "Bibliophile",
+        "description": "When user is carrying 3 or more Tomes, Critical rate +10"
+    },
+    "sisterhood": {
+        "name": "Sisterhood",
+        "description": "When user is the lead unit, if their support unit is female, damage +2 and damage received -2"
+    },
+    "daydream": {
+        "name": "Daydream",
+        "description": "When user is adjacent to two male units paired up, damage +2 and damage received -2"
+    },
+    "wind_disciple": {
+        "name": "Wind Disciple",
+        "description": "When user’s HP is not full, Hit rate and Avoid +10"
+    },
+    "make_a_killing": {
+        "name": "Make a Killing",
+        "description": "Luck% chance of obtaining Gold after defeating an enemy"
+    },
+    "aegis": {
+        "name": "Aegis",
+        "description": "Skill% chance of halving damage from Bow, Magic, Dagger, Dragonstone, Breath or Stone attacks",
+        "level": 15
+    },
+    "aether": {
+        "name": "Aether",
+        "description": "Skill x 0.5% chance of triggering a Sol hit followed by a Luna hit",
+        "level": 25
+    },
+    "aggressor": {
+        "name": "Aggressor",
+        "description": "When user triggers the battle, Damage +7",
+        "level": 35
+    },
+    "air_superiority": {
+        "name": "Air Superiority",
+        "description": "Hit rate and Avoid +30 when facing Flying enemies",
+        "level": 5
+    },
+    "amaterasu": {
+        "name": "Amaterasu",
+        "description": "Allies within a 2 tile radius recover 20% HP at the start of the user's Turn",
+        "level": 15
+    },
+    "aptitude": {
+        "name": "Aptitude",
+        "description": "Adds 10% to all growth rates during Level Ups",
+        "level": 1
+    },
+    "armored_blow": {
+        "name": "Armored Blow",
+        "description": "When user triggers the battle, physical damage received -10",
+        "level": 15
+    },
+    "astra": {
+        "name": "Astra",
+        "description": "Skill x 0.5% chance of triggering 5 consecutive hits with half damage",
+        "level": 5
+    },
+    "awakening": {
+        "name": "Awakening",
+        "description": "When HP is under half, Hit rate, Avoid, Critical rate and Critical Evade +30",
+        "level": 35
+    },
+    "axebreaker": {
+        "name": "Axebreaker",
+        "description": "Hit rate and Avoid +50 when the enemy is equipped with an Axe",
+        "level": 15
+    },
+    "axefaire": {
+        "name": "Axefaire",
+        "description": "When user is equipped with an Axe, damage +5 during battle",
+        "level": 15
+    },
+    "beastbane": {
+        "name": "Beastbane",
+        "description": "When user is a Wolfskin or Kitsune, their attacks are effective against Beast units",
+        "level": 10
+    },
+    "better_odds": {
+        "name": "Better Odds",
+        "description": "Recover 40% HP at the start of odd-numbered Turns",
+        "level": 5
+    },
+    "bowbreaker": {
+        "name": "Bowbreaker",
+        "description": "Hit rate and Avoid +50 when the enemy is equipped with a Bow",
+        "level": 15
+    },
+    "bowfaire": {
+        "name": "Bowfaire",
+        "description": "When user is equipped with a Bow, damage +5 during battle",
+        "level": 15
+    },
+    "camaraderie": {
+        "name": "Camaraderie",
+        "description": "Recover 10% HP at the start of the user's Turn if there are allies within a 2 tile radius",
+        "level": 10
+    },
+    "certain_blow": {
+        "name": "Certain Blow",
+        "description": "When user triggers the battle, Hit rate +40",
+        "level": 5
+    },
+    "charm": {
+        "name": "Charm",
+        "description": "Allies within a 2 tile radius deal 2 extra damage during battles",
+        "level": 10
+    },
+    "clarity": {
+        "name": "Clarity",
+        "description": "User recovers from status reduction effects twice as fast",
+        "level": 25
+    },
+    "counter": {
+        "name": "Counter",
+        "description": "When an adjacent enemy triggers the battle and inflicts damage, the enemy receives the same damage",
+        "level": 15
+    },
+    "countermagic": {
+        "name": "Countermagic",
+        "description": "When the enemy triggers the battle and inflicts magical damage, the enemy receives the same damage",
+        "level": 15
+    },
+    "dancing_blade": {
+        "name": "Dancing Blade",
+        "description": "Speed +3, Defence -1",
+        "level": 1
+    },
+    "darting_blow": {
+        "name": "Darting Blow",
+        "description": "When user triggers the battle, follow up attack speed +5",
+        "level": 1
+    },
+    "death_blow": {
+        "name": "Death Blow",
+        "description": "When user triggers the battle, Critical rate +20",
+        "level": 5
+    },
+    "defence_2": {
+        "name": "Defence +2",
+        "description": "Defence +2",
+        "level": 1
+    },
+    "defender": {
+        "name": "Defender",
+        "description": "When user is the lead unit while paired up, all stats +1",
+        "level": 5
+    },
+    "demoiselle": {
+        "name": "Demoiselle",
+        "description": "Male allies within a 2 tile radius receive 2 less damage during battles",
+        "level": 10
+    },
+    "draconic_hex": {
+        "name": "Draconic Hex",
+        "description": "After battle, enemy's stats -4",
+        "level": 5
+    },
+    "dragon_fang": {
+        "name": "Dragon Fang",
+        "description": "Skill x.0.75% chance of adding 50% of the user's Attack Power as damage",
+        "level": 10
+    },
+    "dragon_ward": {
+        "name": "Dragon Ward",
+        "description": "Allies adjacent to the user have a Luck x 0.5% chance of receiving half damage from enemy attacks",
+        "level": 5
+    },
+    "dual_guarder": {
+        "name": "Dual Guarder",
+        "description": "When user is the support unit while paired up, shield gauge gain +1",
+        "level": 25
+    },
+    "dual_striker": {
+        "name": "Dual Striker",
+        "description": "When user is the support unit during Tag Team, Dual Strike damage +3",
+        "level": 1
+    },
+    "duelists_blow": {
+        "name": "Duelist's Blow",
+        "description": "When user triggers the battle, Avoid +30",
+        "level": 1
+    },
+    "elbow_room": {
+        "name": "Elbow Room",
+        "description": "When user fights in terrain with no terrain effects, damage +3 during battles",
+        "level": 1
+    },
+    "even_better": {
+        "name": "Even Better",
+        "description": "Recover 40% HP at the start of even-numbered Turns",
+        "level": 5
+    },
+    "even_keel": {
+        "name": "Even Keel",
+        "description": "During even-numbered Turns, magical damage received -4",
+        "level": 1
+    },
+    "evenhanded": {
+        "name": "Evenhanded",
+        "description": "During even-numbered Turns, damage +4",
+        "level": 1
+    },
+    "foreign_princess": {
+        "name": "Foreign Princess",
+        "description": "“Foreign Army” enemies within a 2 tile radius deal 2 less damage and receive 2 extra damage",
+        "level": 35
+    },
+    "future_sight": {
+        "name": "Future Sight",
+        "description": "When user triggers the battle, Luck% chance of gaining double experience when user defeats the enemy",
+        "level": 10
+    },
+    "galeforce": {
+        "name": "Galeforce",
+        "description": "When user triggers the battle, allows a full action if the user defeats the enemy (once per Turn and no help from a support unit)",
+        "level": 35
+    },
+    "gamble": {
+        "name": "Gamble",
+        "description": "Hit rate -10, Critical rate +10",
+        "level": 10
+    },
+    "gentilhomme": {
+        "name": "Gentilhomme",
+        "description": "Female allies within a 2 tile radius receive 2 less damage during battles",
+        "level": 10
+    },
+    "golembane": {
+        "name": "Golembane",
+        "description": "Attacks are effective against Mechanists, Automatons and Stoneborn",
+        "level": 5
+    },
+    "good_fortune": {
+        "name": "Good Fortune",
+        "description": "Luck% chance of recovering 20% HP at the start of the user's Turn",
+        "level": 1
+    },
+    "grisly_wound": {
+        "name": "Grisly Wound",
+        "description": "The enemy's HP is reduced by 20% after the battle",
+        "level": 15
+    },
+    "heartseeker": {
+        "name": "Heartseeker",
+        "description": "When fighting adjacent to an enemy, enemy's Avoid -20",
+        "level": 1
+    },
+    "heavy_blade": {
+        "name": "Heavy Blade",
+        "description": "Strength +3, Speed -1",
+        "level": 1
+    },
+    "hoshidan_unity": {
+        "name": "Hoshidan Unity",
+        "description": "Adds 10% to skill activation rates",
+        "level": 15
+    },
+    "hp_5": {
+        "name": "HP +5",
+        "description": "Maximum HP +5",
+        "level": 1
+    },
+    "ignis": {
+        "name": "Ignis",
+        "description": "Skill% chance of adding half the user's Strength (if user has a physical weapon) or Magic (if user has a magical weapon) as damage",
+        "level": 25
+    },
+    "inspiration": {
+        "name": "Inspiration",
+        "description": "Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles",
+        "level": 15
+    },
+    "inspiring_song": {
+        "name": "Inspiring Song",
+        "description": "Skill, Speed and Luck +3 for one Turn for the unit who receives the user's song",
+        "level": 10
+    },
+    "iron_will": {
+        "name": "Iron Will",
+        "description": "When enemy triggers the battle, magical damage received -4",
+        "level": 10
+    },
+    "lancebreaker": {
+        "name": "Lancebreaker",
+        "description": "Hit rate and Avoid +50 when the enemy is equipped with a Lance",
+        "level": 15
+    },
+    "lancefaire": {
+        "name": "Lancefaire",
+        "description": "When user is equipped with a Lance, damage +5 during battle",
+        "level": 15
+    },
+    "lethality": {
+        "name": "Lethality",
+        "description": "Skill x 0.25% chance of instantly defeating the enemy when dealing 1 or more damage",
+        "level": 5
+    },
+    "life_and_death": {
+        "name": "Life and Death",
+        "description": "During battles, damage +10, damage received +10",
+        "level": 15
+    },
+    "lifetaker": {
+        "name": "Lifetaker",
+        "description": "When user triggers the battle, recover 50% HP after defeating the enemy",
+        "level": 15
+    },
+    "live_to_serve": {
+        "name": "Live to Serve",
+        "description": "When healing an ally, the user recovers the same amount of HP",
+        "level": 5
+    },
+    "locktouch": {
+        "name": "Locktouch",
+        "description": "User can open doors and chests without requiring keys",
+        "level": 1
+    },
+    "luck_4": {
+        "name": "Luck +4",
+        "description": "Luck +4",
+        "level": 1
+    },
+    "lucky_seven": {
+        "name": "Lucky Seven",
+        "description": "Hit rate and Avoid +20 for the first seven Turns",
+        "level": 5
+    },
+    "luna": {
+        "name": "Luna",
+        "description": "Skill% chance of ignoring half the enemy's Defence (if user has a physical weapon) or Resistance (if user has a magical weapon)",
+        "level": 5
+    },
+    "lunge": {
+        "name": "Lunge",
+        "description": "Select the “Lunge” command to swap places with an enemy after an attack",
+        "level": 10
+    },
+    "magic_2": {
+        "name": "Magic +2",
+        "description": "Magic +2",
+        "level": 1
+    },
+    "malefic_aura": {
+        "name": "Malefic Aura",
+        "description": "Enemies within a 2 tile radius receive 2 extra damage from magical attacks",
+        "level": 10
+    },
+    "miracle": {
+        "name": "Miracle",
+        "description": "Luck% chance of leaving the user with 1 HP when they have 2 or more HP",
+        "level": 1
+    },
+    "movement_1": {
+        "name": "Movement +1",
+        "description": "Movement +1",
+        "level": 10
+    },
+    "natural_cover": {
+        "name": "Natural Cover",
+        "description": "When user fights in terrain with terrain effects, damage received -3 during battles",
+        "level": 10
+    },
+    "nobility": {
+        "name": "Nobility",
+        "description": "Experience gained x 1.2",
+        "level": 1
+    },
+    "nohrian_trust": {
+        "name": "Nohrian Trust",
+        "description": "User shares their support unit's battle skills",
+        "level": 15
+    },
+    "odd_shaped": {
+        "name": "Odd Shaped",
+        "description": "During odd-numbered Turns, damage +4",
+        "level": 1
+    },
+    "opportunity_shot": {
+        "name": "Opportunity Shot",
+        "description": "When user is a Ballistician, Skill% chance of attacking an enemy within range at the start of the users Turn",
+        "level": 10
+    },
+    "pass": {
+        "name": "Pass",
+        "description": "User can pass through tiles occupied by enemy units",
+        "level": 15
+    },
+    "pavise": {
+        "name": "Pavise",
+        "description": "Skill% chance of halving damage from Sword, Lance, Axe, Beaststone, Claw or Puppet attacks",
+        "level": 15
+    },
+    "poison_strike": {
+        "name": "Poison Strike",
+        "description": "When user triggers the battle, the enemy's HP is reduced by 20% after the battle",
+        "level": 10
+    },
+    "potent_potion": {
+        "name": "Potent Potion",
+        "description": "The effect of HP recovery and stat-boosting potions is increased by 50%",
+        "level": 1
+    },
+    "profiteer": {
+        "name": "Profiteer",
+        "description": "Luck% chance of obtaining a Gold Bar after moving during the first seven Turns",
+        "level": 5
+    },
+    "quick_draw": {
+        "name": "Quick Draw",
+        "description": "When user triggers the battle, damage +4",
+        "level": 10
+    },
+    "quick_salve": {
+        "name": "Quick Salve",
+        "description": "After consuming a HP recovery or stat-boosting potion, the user can perform another action",
+        "level": 10
+    },
+    "quixotic": {
+        "name": "Quixotic",
+        "description": "User and enemy's Hit rate +30 and skill activation rate +15% during battle",
+        "level": 15
+    },
+    "rally_defence": {
+        "name": "Rally Defence",
+        "description": "Defence +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 5
+    },
+    "rally_luck": {
+        "name": "Rally Luck",
+        "description": "Luck +8 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 10
+    },
+    "rally_magic": {
+        "name": "Rally Magic",
+        "description": "Magic +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 5
+    },
+    "rally_movement": {
+        "name": "Rally Movement",
+        "description": "Movement +1 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 25
+    },
+    "rally_resistance": {
+        "name": "Rally Resistance",
+        "description": "Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 5
+    },
+    "rally_skill": {
+        "name": "Rally Skill",
+        "description": "Skill +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 5
+    },
+    "rally_spectrum": {
+        "name": "Rally Spectrum",
+        "description": "All Stats +2 to all allies within a 4 tile radius for one Turn when the Rally command is used",
+        "level": 35
+    },
+    "rally_speed": {
+        "name": "Rally Speed",
+        "description": "Speed +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 5
+    },
+    "rally_strength": {
+        "name": "Rally Strength",
+        "description": "Strength +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used",
+        "level": 5
+    },
+    "relief": {
+        "name": "Relief",
+        "description": "Recover 20% HP at the start of the user's Turn if no units are within a 2 tile radius",
+        "level": 10
+    },
+    "rend_heaven": {
+        "name": "Rend Heaven",
+        "description": "Skill x 1.5% chance of adding half the enemy's Strength (if user has a physical weapon) or Magic (if user has a magical weapon) as damage",
+        "level": 5
+    },
+    "renewal": {
+        "name": "Renewal",
+        "description": "Recover 30% HP at the start of the user's Turn",
+        "level": 5
+    },
+    "replicate": {
+        "name": "Replicate",
+        "description": "Select the “Replicate” command once per map to create a replica with the same appearance, stats, inventory and HP as the user (Anything that happens to the replica happens to the user and vice versa–even death)",
+        "level": 15
+    },
+    "resistance_2": {
+        "name": "Resistance +2",
+        "description": "Resistance +2",
+        "level": 1
+    },
+    "rifled_barrel": {
+        "name": "Rifled Barrel",
+        "description": "When using the “Cannon” command, range +1 and inner/outer range -1",
+        "level": 25
+    },
+    "salvage_blow": {
+        "name": "Salvage Blow",
+        "description": "When user triggers the battle, Luck% chance of receiving a Katana, Naginata, Club, Yumi or Shuriken if the user defeats the enemy",
+        "level": 5
+    },
+    "savage_blow": {
+        "name": "Savage Blow",
+        "description": "When user triggers the battle, enemies within a 2 tile radius have their HP reduced by 20% after the battle",
+        "level": 5
+    },
+    "seal_defence": {
+        "name": "Seal Defence",
+        "description": "After battle, enemy's Defence -6",
+        "level": 1
+    },
+    "seal_magic": {
+        "name": "Seal Magic",
+        "description": "After battle, enemy's Magic -6",
+        "level": 5
+    },
+    "seal_resistance": {
+        "name": "Seal Resistance",
+        "description": "After battle, enemy's Resistance -6",
+        "level": 1
+    },
+    "seal_speed": {
+        "name": "Seal Speed",
+        "description": "After battle, enemy's Speed -6",
+        "level": 5
+    },
+    "seal_strength": {
+        "name": "Seal Strength",
+        "description": "After battle, enemy's Strength -6",
+        "level": 5
+    },
+    "shadowgift": {
+        "name": "Shadowgift",
+        "description": "User can equip Dark Mage exclusive Tomes (only Nosferatu so far)",
+        "level": 1
+    },
+    "shelter": {
+        "name": "Shelter",
+        "description": "Select the “Shelter” command to make an adjacent ally the user's support unit",
+        "level": 10
+    },
+    "shove": {
+        "name": "Shove",
+        "description": "Select the “Shove” command to push an adjacent ally 1 tile",
+        "level": 10
+    },
+    "shurikenbreaker": {
+        "name": "Shurikenbreaker",
+        "description": "Hit rate and Avoid +50 when the enemy is equipped with a Dagger",
+        "level": 15
+    },
+    "shurikenfaire": {
+        "name": "Shurikenfaire",
+        "description": "When user is equipped with a Dagger, damage +5 during battle",
+        "level": 15
+    },
+    "skill_2": {
+        "name": "Skill +2",
+        "description": "Skill +2",
+        "level": 1
+    },
+    "sol": {
+        "name": "Sol",
+        "description": "Skill% chance of restoring half the damage dealt to the enemy",
+        "level": 5
+    },
+    "solidarity": {
+        "name": "Solidarity",
+        "description": "Adjacent allies receive Avoid +10 and Critical Evade +10",
+        "level": 10
+    },
+    "speed_2": {
+        "name": "Speed +2",
+        "description": "Speed +2",
+        "level": 1
+    },
+    "speedtaker": {
+        "name": "Speedtaker",
+        "description": "When user defeats the enemy, Speed +2 (up to 10) (does not overlap with other Taker skills and expires after the chapter)",
+        "level": 35
+    },
+    "spendthrift": {
+        "name": "Spendthrift",
+        "description": "During battles, user spends a Gold Bar for damage +10 and damage received -10",
+        "level": 15
+    },
+    "strength_2": {
+        "name": "Strength +2",
+        "description": "Strength +2",
+        "level": 1
+    },
+    "strengthtaker": {
+        "name": "Strengthtaker",
+        "description": "When user defeats the enemy, Strength +2 (up to 10) (does not overlap with other Taker skills and expires after the chapter)",
+        "level": 35
+    },
+    "strong_riposte": {
+        "name": "Strong Riposte",
+        "description": "When enemy triggers the battle, damage +3",
+        "level": 10
+    },
+    "surefooted": {
+        "name": "Surefooted",
+        "description": "When user is a Ballistician, Movement +1 and all traversable terrain costs 1 movement point to cross",
+        "level": 35
+    },
+    "survey": {
+        "name": "Survey",
+        "description": "When using the “Cannon” command, Hit rate +10",
+        "level": 1
+    },
+    "swap": {
+        "name": "Swap",
+        "description": "Select the “Swap” command to swap places with an adjacent ally on the map",
+        "level": 10
+    },
+    "swordbreaker": {
+        "name": "Swordbreaker",
+        "description": "Hit rate and Avoid +50 when the enemy is equipped with a Sword",
+        "level": 15
+    },
+    "swordfaire": {
+        "name": "Swordfaire",
+        "description": "When user is equipped with a Sword, damage +5 during battle",
+        "level": 15
+    },
+    "tactical_advice": {
+        "name": "Tactical Advice",
+        "description": "When user is the support unit while paired up, lead unit's Hit rate +10",
+        "level": 1
+    },
+    "tomebreaker": {
+        "name": "Tomebreaker",
+        "description": "Hit rate and Avoid +50 when the enemy is equipped with a Tome",
+        "level": 15
+    },
+    "tomefaire": {
+        "name": "Tomefaire",
+        "description": "When user is equipped with a Tome, damage +5 during battle",
+        "level": 15
+    },
+    "toxic_brew": {
+        "name": "Toxic Brew",
+        "description": "When user triggers the battle, Skill x 1.5% chance of reducing the enemy's Movement to 0 and Avoid by 20 after the battle (until the next Turn)",
+        "level": 35
+    },
+    "trample": {
+        "name": "Trample",
+        "description": "Unless enemy is on a mount, damage +5",
+        "level": 15
+    },
+    "underdog": {
+        "name": "Underdog",
+        "description": "Hit rate and Avoid +15 when user's Level is lower than the enemy (promoted units count as Level +20)",
+        "level": 10
+    },
+    "vantage": {
+        "name": "Vantage",
+        "description": "At the start of battle, when the user has under half HP, they attack first",
+        "level": 10
+    },
+    "vengeance": {
+        "name": "Vengeance",
+        "description": "Skill x 1.5% chance of adding half the user's (Max HP – Current HP) as damage",
+        "level": 5
+    },
+    "veteran_intuition": {
+        "name": "Veteran Intuition",
+        "description": "Critical Evade +15 during battles",
+        "level": 10
+    },
+    "voice_of_peace": {
+        "name": "Voice of Peace",
+        "description": "Enemies within a 2 tile radius deal 2 less physical damage",
+        "level": 25
+    },
+    "warding_blow": {
+        "name": "Warding Blow",
+        "description": "When user triggers the battle, magical damage received -20",
+        "level": 15
+    },
+    "warp": {
+        "name": "Warp",
+        "description": "Select the “Warp” command to instantly move adjacent to an ally and perform another action",
+        "level": 25
+    },
+    "wary_fighter": {
+        "name": "Wary Fighter",
+        "description": "During battles, neither the user or enemy can perform follow up attacks",
+        "level": 5
+    },
+    "witchs_brew": {
+        "name": "Witch's Brew",
+        "description": "Luck% chance of obtaining a potion item (eg. Vulnerary) after moving during the first seven Turns",
+        "level": 10
+    }
+}
