@@ -94,11 +94,13 @@ for (const cls of Object.values(classes)) {
 }
 
 // ─── Unique-first-class keys that trigger Case B seal resolution ──────────────
-//     These are the classes the user described as "unique": the partner lends
-//     their SECOND class instead when their first is one of these.
-const UNIQUE_FIRST_KEYS = new Set([
-    'nohr_prince_ss', 'songstress', 'kitsune', 'wolfskin', 'villager',
-]);
+//     Derive these from the class data so the seal logic follows the source of
+//     truth instead of a hand-maintained list.
+const UNIQUE_CLASS_KEYS = new Set(
+    Object.entries(classes)
+        .filter(([, cls]) => cls.unique)
+        .map(([key]) => key)
+);
 
 // ─── Corrin / Kana character keys ─────────────────────────────────────────────
 const CORRIN_KANA_KEYS = new Set(['corrin_m', 'corrin_f', 'kana_m', 'kana_f']);
@@ -121,8 +123,7 @@ function resolveClassKey(key, gender) {
 function resolveParallel(classKey, recipientGender) {
     const cls = classes[classKey];
     if (!cls?.parallel) {
-        console.warn(`[warn] No parallel defined for class: ${classKey}`);
-        return classKey; // graceful fallback
+        return classKey;
     }
     const parts = cls.parallel.split(',').map(s => s.trim());
     if (parts.length === 1) return parts[0];
@@ -256,7 +257,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
     }
 
     // ── Case B: partner's first class is a unique-first class ────────────────
-    if (UNIQUE_FIRST_KEYS.has(partnerFirstKey)) {
+    if (UNIQUE_CLASS_KEYS.has(partnerFirstKey)) {
         let lentKey = partnerSecondKey;
 
         // ── Case B+A compound: the fallback second class is also char's first ─
@@ -297,7 +298,7 @@ function resolveParentContribution(childFirstKey, donorClassKeys, donorGender, c
     const donorSecondKey = resolveClassKey(donorClassKeys[1], donorGender);
 
     // Case B: donor's first class is unique
-    if (UNIQUE_FIRST_KEYS.has(donorFirstKey)) {
+    if (UNIQUE_CLASS_KEYS.has(donorFirstKey)) {
         let lentKey = donorSecondKey;
         // Case B+A: the fallback second is also the child's first
         if (lentKey === childFirstKey) {
