@@ -377,10 +377,7 @@ function buildChildParentSection(char) {
         const varParent = characters[varParentKey];
         if (!varParent) { console.warn(`[warn] Unknown variable parent: ${varParentKey}`); continue; }
 
-        const isCorrinKana = CORRIN_KANA_KEYS.has(varParentKey);
-        const displayName = isCorrinKana ? getCorrinKanaDisplayName(varParentKey) : varParent.name;
-
-        parentOptions.push({ key: varParentKey, displayName });
+        parentOptions.push({ key: varParentKey, displayName: varParent.name });
 
         const inheritedKey = resolveChildInheritedClassKey(char, varParentKey);
         if (!inheritedKey) continue;
@@ -388,7 +385,7 @@ function buildChildParentSection(char) {
         parentPanels.push({
             group: 'parent-panel',
             key: varParentKey,
-            label: `Inherited Class - ${displayName}`,
+            label: `Inherited Class - ${varParent.name}`,
             classes: resolveClassTree(inheritedKey, char.gender),
             isHidden: true,
         });
@@ -398,11 +395,6 @@ function buildChildParentSection(char) {
 }
 
 // ─── Context helpers ──────────────────────────────────────────────────────────
-function getCorrinKanaDisplayName(charKey) {
-    const c = characters[charKey];
-    return c ? `${c.name} (${c.gender === 'm' ? 'M' : 'F'})` : charKey;
-}
-
 function parseSupportList(csv) {
     if (!csv) return [];
     return csv.split(',').map(s => s.trim()).filter(Boolean);
@@ -423,16 +415,15 @@ function buildSealSection(char, sealType, supportKeys) {
         if (!partner) { console.warn(`[warn] Unknown support character: ${partnerKey}`); continue; }
 
         const isCorrinKana = CORRIN_KANA_KEYS.has(partnerKey);
-        const displayName = isCorrinKana ? getCorrinKanaDisplayName(partnerKey) : partner.name;
 
-        options.push({ key: partnerKey, displayName });
+        options.push({ key: partnerKey, displayName: partner.name });
 
         if (isCorrinKana) {
             const talentOptions = getTalentOptions(partner.gender);
             const talentSubGroup = `${sealType}-talent-${partnerKey}`;
             const talentPanels = talentOptions.map(opt => ({
                 key: opt.key,
-                label: `${sealLabel} - ${displayName}`,
+                label: `${sealLabel} - ${partner.name}`,
                 group: talentSubGroup,
                 classes: buildSealClasses(char, partnerKey, opt.key),
                 isHidden: true,
@@ -441,7 +432,6 @@ function buildSealSection(char, sealType, supportKeys) {
                 panelKey: partnerKey,
                 isCorrinKana: true,
                 group: panelGroup,
-                corrinKanaDisplayName: displayName,
                 talentOptions,
                 talentSubGroup,
                 talentPanels,
