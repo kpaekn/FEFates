@@ -531,7 +531,7 @@ function buildCharacterContext(charKey, char) {
     return {
         pageTitle,
         characterName: char.name,
-        indexHref: `/${DIST_DIR}`,
+        indexHref: `./`,
         characterKey: charKey,
         isCorrinKana,
         isChild,
