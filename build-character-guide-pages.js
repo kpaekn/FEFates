@@ -456,7 +456,7 @@ function buildSealSection(char, sealType, supportKeys) {
 // ─── Per-character template context ──────────────────────────────────────────
 function buildCharacterContext(charKey, char) {
     const isCorrinKana = CORRIN_KANA_KEYS.has(charKey);
-    const pageTitle = `Fire Emblem Fates - Character Guide - ${char.name}`;
+    const pageTitle = `Fire Emblem Fates - Character Guides - ${char.name}`;
 
     // Talent options (only meaningful for Corrin/Kana pages, but built here)
     const talentOptions = isCorrinKana ? getTalentOptions(char.gender) : [];
