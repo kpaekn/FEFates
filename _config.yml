@@ -3,3 +3,5 @@ exclude:
   - templates/
   - .gitignore
   - build-character-guide-pages.js
+  - package.json
+  - package-lock.json
