@@ -25,37 +25,11 @@
             </nav>
         </header>
 
-        <section class="select-group-container">
-            <section class="select-group" aria-label="Corrin Talent selector">
-                <label for="class-talent">Corrin Talent</label>
-                <select id="class-talent" name="class-talent">
-                    <option value="apothecary" >Apothecary</option>
-                    <option value="archer" >Archer</option>
-                    <option value="cavalier" >Cavalier</option>
-                    <option value="dark_mage" >Dark Mage</option>
-                    <option value="diviner" >Diviner</option>
-                    <option value="fighter" >Fighter</option>
-                    <option value="knight" >Knight</option>
-                    <option value="mercenary" >Mercenary</option>
-                    <option value="monk" >Monk</option>
-                    <option value="ninja" >Ninja</option>
-                    <option value="oni_savage" >Oni Savage</option>
-                    <option value="outlaw" >Outlaw</option>
-                    <option value="samurai"  selected>Samurai</option>
-                    <option value="shrine_maiden" >Shrine Maiden</option>
-                    <option value="sky_knight" >Sky Knight</option>
-                    <option value="spear_fighter" >Spear Fighter</option>
-                    <option value="troubadour_m" >Troubadour</option>
-                    <option value="wyvern_rider" >Wyvern Rider</option>
-                </select>
-            </section>
-
-        </section>
-
-        <section>
-            <h2 class="section-title">Default Classes and Skills</h2>
+         <section>
             <div class="three-column-grid">
-                <article class="panel" >
+              <div>
+                <h2 class="section-title">Default Classes and Skills</h2>
+                <article class="panel class-panel" >
                     <h3>Default Class Set</h3>
                     <section class="class-block">
                         <div class="class-heading">
@@ -125,7 +99,32 @@
                                 </div>
                             </div>
                         </div>
-                    </section></article>                  <article class="panel"  data-group="heart-seal" data-key="apothecary"  hidden>
+                    </section></article>              </div>
+                <div>
+                  <section class="select-group" aria-label="Corrin Talent selector">
+                    <label for="class-talent">Corrin Talent</label>
+                    <select id="class-talent" name="class-talent">
+                        <option value="apothecary" >Apothecary</option>
+                        <option value="archer" >Archer</option>
+                        <option value="cavalier" >Cavalier</option>
+                        <option value="dark_mage" >Dark Mage</option>
+                        <option value="diviner" >Diviner</option>
+                        <option value="fighter" >Fighter</option>
+                        <option value="knight" >Knight</option>
+                        <option value="mercenary" >Mercenary</option>
+                        <option value="monk" >Monk</option>
+                        <option value="ninja" >Ninja</option>
+                        <option value="oni_savage" >Oni Savage</option>
+                        <option value="outlaw" >Outlaw</option>
+                        <option value="samurai"  selected>Samurai</option>
+                        <option value="shrine_maiden" >Shrine Maiden</option>
+                        <option value="sky_knight" >Sky Knight</option>
+                        <option value="spear_fighter" >Spear Fighter</option>
+                        <option value="troubadour_m" >Troubadour</option>
+                        <option value="wyvern_rider" >Wyvern Rider</option>
+                    </select>
+                  </section>
+                  <article class="panel class-panel"  data-group="heart-seal" data-key="apothecary"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -192,7 +191,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="archer"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="archer"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -258,7 +257,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="cavalier"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="cavalier"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -327,7 +326,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="dark_mage"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="dark_mage"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -393,7 +392,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="diviner"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="diviner"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -460,7 +459,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="fighter"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="fighter"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -526,7 +525,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="knight"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="knight"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -594,7 +593,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="mercenary"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="mercenary"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -661,7 +660,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="monk"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="monk"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -728,7 +727,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="ninja"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="ninja"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -795,7 +794,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="oni_savage"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="oni_savage"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -862,7 +861,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="outlaw"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="outlaw"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -922,7 +921,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="samurai"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="samurai"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -989,7 +988,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="shrine_maiden"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="shrine_maiden"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -1056,7 +1055,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="sky_knight"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="sky_knight"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -1123,7 +1122,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="spear_fighter"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="spear_fighter"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -1189,7 +1188,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="troubadour_m"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="troubadour_m"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -1256,7 +1255,7 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>                  <article class="panel"  data-group="heart-seal" data-key="wyvern_rider"  hidden>
+                      </section></article>                  <article class="panel class-panel"  data-group="heart-seal" data-key="wyvern_rider"  hidden>
                       <h3>Heart Seal</h3>
                       <section class="class-block">
                           <div class="class-heading">
@@ -1323,7 +1322,8 @@
                                   </div>
                               </div>
                           </div>
-                      </section></article>            </div>
+                      </section></article>                </div>
+            </div>
         </section>
 
         <section class="cards-grid">
@@ -1376,7 +1376,7 @@
                             <div>(Select an A+ rank support partner)</div>
                         </section>
                     </article>
-                    <article class="panel"  data-group="friendship-panel" data-key="jakob"  hidden>
+                    <article class="panel class-panel"  data-group="friendship-panel" data-key="jakob"  hidden>
                         <h3>Friendship Seal - Jakob</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1443,7 +1443,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="kaze"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="kaze"  hidden>
                         <h3>Friendship Seal - Kaze</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1510,7 +1510,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="silas"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="silas"  hidden>
                         <h3>Friendship Seal - Silas</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1579,7 +1579,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="shura"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="shura"  hidden>
                         <h3>Friendship Seal - Shura</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1639,7 +1639,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="izana"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="izana"  hidden>
                         <h3>Friendship Seal - Izana</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1706,7 +1706,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="subaki"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="subaki"  hidden>
                         <h3>Friendship Seal - Subaki</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1773,7 +1773,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="saizo"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="saizo"  hidden>
                         <h3>Friendship Seal - Saizo</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1840,7 +1840,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="azama"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="azama"  hidden>
                         <h3>Friendship Seal - Azama</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1907,7 +1907,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="hayato"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="hayato"  hidden>
                         <h3>Friendship Seal - Hayato</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1974,7 +1974,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="hinata"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="hinata"  hidden>
                         <h3>Friendship Seal - Hinata</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2041,7 +2041,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="takumi"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="takumi"  hidden>
                         <h3>Friendship Seal - Takumi</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2107,7 +2107,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="kaden"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="kaden"  hidden>
                         <h3>Friendship Seal - Kaden</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2174,7 +2174,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="ryoma"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="ryoma"  hidden>
                         <h3>Friendship Seal - Ryoma</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2241,7 +2241,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="yukimura"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="yukimura"  hidden>
                         <h3>Friendship Seal - Yukimura</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2308,7 +2308,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="gunter"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="gunter"  hidden>
                         <h3>Friendship Seal - Gunter</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2377,7 +2377,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="arthur"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="arthur"  hidden>
                         <h3>Friendship Seal - Arthur</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2443,7 +2443,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="odin"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="odin"  hidden>
                         <h3>Friendship Seal - Odin</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2509,7 +2509,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="niles"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="niles"  hidden>
                         <h3>Friendship Seal - Niles</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2569,7 +2569,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="laslow"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="laslow"  hidden>
                         <h3>Friendship Seal - Laslow</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2636,7 +2636,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="benny"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="benny"  hidden>
                         <h3>Friendship Seal - Benny</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2704,7 +2704,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="leo"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="leo"  hidden>
                         <h3>Friendship Seal - Leo</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2770,7 +2770,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="keaton"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="keaton"  hidden>
                         <h3>Friendship Seal - Keaton</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2836,7 +2836,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="xander"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="xander"  hidden>
                         <h3>Friendship Seal - Xander</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2905,7 +2905,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="shigure"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="shigure"  hidden>
                         <h3>Friendship Seal - Shigure</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2972,7 +2972,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="dwyer"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="dwyer"  hidden>
                         <h3>Friendship Seal - Dwyer</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3039,7 +3039,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="shiro"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="shiro"  hidden>
                         <h3>Friendship Seal - Shiro</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3105,7 +3105,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="kiragi"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="kiragi"  hidden>
                         <h3>Friendship Seal - Kiragi</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3171,7 +3171,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="asugi"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="asugi"  hidden>
                         <h3>Friendship Seal - Asugi</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3238,7 +3238,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="hisame"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="hisame"  hidden>
                         <h3>Friendship Seal - Hisame</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3305,7 +3305,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="siegbert"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="siegbert"  hidden>
                         <h3>Friendship Seal - Siegbert</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3374,7 +3374,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="forrest"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="forrest"  hidden>
                         <h3>Friendship Seal - Forrest</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3441,7 +3441,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="ignatius"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="ignatius"  hidden>
                         <h3>Friendship Seal - Ignatius</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3509,7 +3509,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="percy"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="percy"  hidden>
                         <h3>Friendship Seal - Percy</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3576,7 +3576,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="fuga"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="fuga"  hidden>
                         <h3>Friendship Seal - Fuga</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3693,7 +3693,7 @@
                             <div>(Select an S rank support partner)</div>
                         </section>
                     </article>
-                    <article class="panel"  data-group="partner-panel" data-key="azura"  hidden>
+                    <article class="panel class-panel"  data-group="partner-panel" data-key="azura"  hidden>
                         <h3>Partner Seal - Azura</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3760,7 +3760,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="felicia"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="felicia"  hidden>
                         <h3>Partner Seal - Felicia</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3827,7 +3827,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="mozu"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="mozu"  hidden>
                         <h3>Partner Seal - Mozu</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3893,7 +3893,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="rinkah"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="rinkah"  hidden>
                         <h3>Partner Seal - Rinkah</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -3960,7 +3960,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="sakura"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="sakura"  hidden>
                         <h3>Partner Seal - Sakura</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4027,7 +4027,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="hana"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="hana"  hidden>
                         <h3>Partner Seal - Hana</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4094,7 +4094,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="orochi"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="orochi"  hidden>
                         <h3>Partner Seal - Orochi</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4161,7 +4161,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="hinoka"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="hinoka"  hidden>
                         <h3>Partner Seal - Hinoka</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4228,7 +4228,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="setsuna"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="setsuna"  hidden>
                         <h3>Partner Seal - Setsuna</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4294,7 +4294,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="oboro"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="oboro"  hidden>
                         <h3>Partner Seal - Oboro</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4360,7 +4360,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="kagero"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="kagero"  hidden>
                         <h3>Partner Seal - Kagero</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4427,7 +4427,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="reina"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="reina"  hidden>
                         <h3>Partner Seal - Reina</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4494,7 +4494,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="scarlet"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="scarlet"  hidden>
                         <h3>Partner Seal - Scarlet</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4561,7 +4561,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="elise"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="elise"  hidden>
                         <h3>Partner Seal - Elise</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4628,7 +4628,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="effie"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="effie"  hidden>
                         <h3>Partner Seal - Effie</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4696,7 +4696,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="niles"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="niles"  hidden>
                         <h3>Partner Seal - Niles</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4756,7 +4756,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="nyx"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="nyx"  hidden>
                         <h3>Partner Seal - Nyx</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4822,7 +4822,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="camilla"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="camilla"  hidden>
                         <h3>Partner Seal - Camilla</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4889,7 +4889,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="selena"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="selena"  hidden>
                         <h3>Partner Seal - Selena</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -4956,7 +4956,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="beruka"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="beruka"  hidden>
                         <h3>Partner Seal - Beruka</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5023,7 +5023,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="peri"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="peri"  hidden>
                         <h3>Partner Seal - Peri</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5092,7 +5092,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="charlotte"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="charlotte"  hidden>
                         <h3>Partner Seal - Charlotte</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5158,7 +5158,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="flora"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="flora"  hidden>
                         <h3>Partner Seal - Flora</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5225,7 +5225,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="sophie"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="sophie"  hidden>
                         <h3>Partner Seal - Sophie</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5294,7 +5294,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="midori"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="midori"  hidden>
                         <h3>Partner Seal - Midori</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5361,7 +5361,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="selkie"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="selkie"  hidden>
                         <h3>Partner Seal - Selkie</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5428,7 +5428,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="mitama"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="mitama"  hidden>
                         <h3>Partner Seal - Mitama</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5495,7 +5495,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="caeldori"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="caeldori"  hidden>
                         <h3>Partner Seal - Caeldori</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5562,7 +5562,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="rhajat"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="rhajat"  hidden>
                         <h3>Partner Seal - Rhajat</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5629,7 +5629,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="velouria"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="velouria"  hidden>
                         <h3>Partner Seal - Velouria</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5695,7 +5695,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="ophelia"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="ophelia"  hidden>
                         <h3>Partner Seal - Ophelia</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5761,7 +5761,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="soleil"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="soleil"  hidden>
                         <h3>Partner Seal - Soleil</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5828,7 +5828,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="nina"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="nina"  hidden>
                         <h3>Partner Seal - Nina</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5888,7 +5888,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="anna"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="anna"  hidden>
                         <h3>Partner Seal - Anna</h3>
                         <section class="class-block">
                             <div class="class-heading">

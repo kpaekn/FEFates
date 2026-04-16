@@ -25,11 +25,11 @@
             </nav>
         </header>
 
-
-        <section>
-            <h2 class="section-title">Default Classes and Skills</h2>
+         <section>
             <div class="three-column-grid">
-                <article class="panel" >
+              <div>
+                <h2 class="section-title">Default Classes and Skills</h2>
+                <article class="panel class-panel" >
                     <h3>Default Class Set</h3>
                     <section class="class-block">
                         <div class="class-heading">
@@ -96,7 +96,10 @@
                                 </div>
                             </div>
                         </div>
-                    </section></article>                <article class="panel" >
+                    </section></article>              </div>
+              <div>
+                <h2 class="section-title"></h2>
+                <article class="panel class-panel" >
                     <h3>Heart Seal</h3>
                     <section class="class-block">
                         <div class="class-heading">
@@ -163,7 +166,8 @@
                                 </div>
                             </div>
                         </div>
-                    </section></article>            </div>
+                    </section></article>              </div>
+            </div>
         </section>
 
         <section class="cards-grid">
@@ -176,6 +180,7 @@
                             <option value="-none-">- None -</option>
                             <option value="azama">Azama</option>
                             <option value="kaden">Kaden</option>
+                            <option value="fuga">Fuga</option>
                         </select>
                     </div>
                     <article class="panel"  data-group="friendship-panel" data-key="-none-" >
@@ -184,7 +189,7 @@
                             <div>(Select an A+ rank support partner)</div>
                         </section>
                     </article>
-                    <article class="panel"  data-group="friendship-panel" data-key="azama"  hidden>
+                    <article class="panel class-panel"  data-group="friendship-panel" data-key="azama"  hidden>
                         <h3>Friendship Seal - Azama</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -251,7 +256,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="kaden"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="kaden"  hidden>
                         <h3>Friendship Seal - Kaden</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -318,6 +323,73 @@
                                     </div>
                                 </div>
                             </div>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="fuga"  hidden>
+                        <h3>Friendship Seal - Fuga</h3>
+                        <section class="class-block">
+                            <div class="class-heading">
+                                <h3>Samurai</h3>
+                                <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            </div>
+                            <div class="skill-list">
+                                <div class="skill-row">
+                                    <img class="skill-icon" src="../images/icon/skills/duelist_s_blow.png" alt="Duelist&#x27;s Blow">
+                                    <div class="skill-copy">
+                                        <strong>Duelist&#x27;s Blow</strong>
+                                        <span>When user triggers the battle, Avoid +30</span>
+                                    </div>
+                                </div>
+                                <div class="skill-row">
+                                    <img class="skill-icon" src="../images/icon/skills/vantage.png" alt="Vantage">
+                                    <div class="skill-copy">
+                                        <strong>Vantage</strong>
+                                        <span>At the start of battle, when the user has under half HP, they attack first</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>    <section class="class-block">
+                            <div class="class-heading">
+                                <h3>Swordmaster</h3>
+                                <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            </div>
+                            <div class="skill-list">
+                                <div class="skill-row">
+                                    <img class="skill-icon" src="../images/icon/skills/astra.png" alt="Astra">
+                                    <div class="skill-copy">
+                                        <strong>Astra</strong>
+                                        <span>Skill x 0.5% chance of triggering 5 consecutive hits with half damage</span>
+                                    </div>
+                                </div>
+                                <div class="skill-row">
+                                    <img class="skill-icon" src="../images/icon/skills/swordfaire.png" alt="Swordfaire">
+                                    <div class="skill-copy">
+                                        <strong>Swordfaire</strong>
+                                        <span>When user is equipped with a Sword, damage +5 during battle</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>    <section class="class-block">
+                            <div class="class-heading">
+                                <h3>Master of Arms</h3>
+                                <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                                <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                                <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                            </div>
+                            <div class="skill-list">
+                                <div class="skill-row">
+                                    <img class="skill-icon" src="../images/icon/skills/seal_strength.png" alt="Seal Strength">
+                                    <div class="skill-copy">
+                                        <strong>Seal Strength</strong>
+                                        <span>After battle, enemy&#x27;s Strength -6</span>
+                                    </div>
+                                </div>
+                                <div class="skill-row">
+                                    <img class="skill-icon" src="../images/icon/skills/life_and_death.png" alt="Life and Death">
+                                    <div class="skill-copy">
+                                        <strong>Life and Death</strong>
+                                        <span>During battles, damage +10, damage received +10</span>
+                                    </div>
+                                </div>
+                            </div>
                         </section></article>                </div>
                 <div>
                     <div class="select-group-container">
@@ -372,7 +444,7 @@
                         </section>
                     </article>
                     <div data-group="partner-panel" data-key="corrin_f" hidden>
-                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="apothecary"  hidden>
+                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="apothecary"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -439,7 +511,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="archer"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="archer"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -505,7 +577,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="cavalier"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="cavalier"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -574,7 +646,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="dark_mage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="dark_mage"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -640,7 +712,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="diviner"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="diviner"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -706,7 +778,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="fighter"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -772,7 +844,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="knight"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -840,7 +912,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="mercenary"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="mercenary"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -907,7 +979,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="monk"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="monk"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -974,7 +1046,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="ninja"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="ninja"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1041,7 +1113,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="oni_savage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="oni_savage"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1108,7 +1180,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="outlaw"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="outlaw"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1168,7 +1240,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="samurai"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="samurai"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1235,7 +1307,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="shrine_maiden"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="shrine_maiden"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1302,7 +1374,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="sky_knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="sky_knight"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1369,7 +1441,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="spear_fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="spear_fighter"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1435,7 +1507,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="troubadour_f"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="troubadour_f"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1502,7 +1574,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="wyvern_rider"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="wyvern_rider"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1570,7 +1642,7 @@
                                     </div>
                                 </div>
                             </section></article>                    </div>
-                    <article class="panel"  data-group="partner-panel" data-key="azura"  hidden>
+                    <article class="panel class-panel"  data-group="partner-panel" data-key="azura"  hidden>
                         <h3>Partner Seal - Azura</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1637,7 +1709,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="felicia"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="felicia"  hidden>
                         <h3>Partner Seal - Felicia</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1704,7 +1776,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="mozu"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="mozu"  hidden>
                         <h3>Partner Seal - Mozu</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1770,7 +1842,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="rinkah"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="rinkah"  hidden>
                         <h3>Partner Seal - Rinkah</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1837,7 +1909,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="sakura"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="sakura"  hidden>
                         <h3>Partner Seal - Sakura</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1904,7 +1976,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="hana"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="hana"  hidden>
                         <h3>Partner Seal - Hana</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -1971,7 +2043,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="orochi"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="orochi"  hidden>
                         <h3>Partner Seal - Orochi</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2038,7 +2110,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="hinoka"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="hinoka"  hidden>
                         <h3>Partner Seal - Hinoka</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2105,7 +2177,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="setsuna"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="setsuna"  hidden>
                         <h3>Partner Seal - Setsuna</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2171,7 +2243,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="oboro"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="oboro"  hidden>
                         <h3>Partner Seal - Oboro</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2237,7 +2309,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="kagero"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="kagero"  hidden>
                         <h3>Partner Seal - Kagero</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2304,7 +2376,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="effie"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="effie"  hidden>
                         <h3>Partner Seal - Effie</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2372,7 +2444,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="nyx"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="nyx"  hidden>
                         <h3>Partner Seal - Nyx</h3>
                         <section class="class-block">
                             <div class="class-heading">

@@ -25,34 +25,11 @@
             </nav>
         </header>
 
-        <section class="select-group-container">
-
-            <section class="select-group" aria-label="Parent selector">
-                <label for="parent-select">Parent</label>
-                <select id="parent-select" name="parent-select">
-                    <option value="-none-">- None -</option>
-                    <option value="azura">Azura</option>
-                    <option value="beruka">Beruka</option>
-                    <option value="camilla">Camilla</option>
-                    <option value="charlotte">Charlotte</option>
-                    <option value="corrin_f">Corrin (F)</option>
-                    <option value="effie">Effie</option>
-                    <option value="elise">Elise</option>
-                    <option value="felicia">Felicia</option>
-                    <option value="kagero">Kagero</option>
-                    <option value="mozu">Mozu</option>
-                    <option value="nyx">Nyx</option>
-                    <option value="peri">Peri</option>
-                    <option value="selena">Selena</option>
-                    <option value="setsuna">Setsuna</option>
-                </select>
-            </section>
-        </section>
-
-        <section>
-            <h2 class="section-title">Default Classes and Skills</h2>
+         <section>
             <div class="three-column-grid">
-                <article class="panel" >
+              <div>
+                <h2 class="section-title">Default Classes and Skills</h2>
+                <article class="panel class-panel" >
                     <h3>Default Class Set</h3>
                     <section class="class-block">
                         <div class="class-heading">
@@ -119,7 +96,10 @@
                                 </div>
                             </div>
                         </div>
-                    </section></article>                <article class="panel" >
+                    </section></article>              </div>
+              <div>
+                <h2 class="section-title"></h2>
+                <article class="panel class-panel" >
                     <h3>Heart Seal</h3>
                     <section class="class-block">
                         <div class="class-heading">
@@ -185,952 +165,975 @@
                                 </div>
                             </div>
                         </div>
-                    </section></article>                  <article class="panel"  data-group="parent-panel" data-key="-none-" >
-                      <h3>Heart Seal - Variable Parent</h3>
-                      <section class="class-block">
-                          <div>(Select a parent)</div>
-                      </section>
-                  </article>
-                  <article class="panel"  data-group="parent-panel" data-key="azura"  hidden>
-                      <h3>Inherited Class - Azura</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Sky Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/darting_blow.png" alt="Darting Blow">
-                                  <div class="skill-copy">
-                                      <strong>Darting Blow</strong>
-                                      <span>When user triggers the battle, follow up attack speed +5</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/camaraderie.png" alt="Camaraderie">
-                                  <div class="skill-copy">
-                                      <strong>Camaraderie</strong>
-                                      <span>Recover 10% HP at the start of the user&#x27;s Turn if there are allies within a 2 tile radius</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Falcon Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/rally_speed.png" alt="Rally Speed">
-                                  <div class="skill-copy">
-                                      <strong>Rally Speed</strong>
-                                      <span>Speed +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/warding_blow.png" alt="Warding Blow">
-                                  <div class="skill-copy">
-                                      <strong>Warding Blow</strong>
-                                      <span>When user triggers the battle, magical damage received -20</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Kinshi Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/air_superiority.png" alt="Air Superiority">
-                                  <div class="skill-copy">
-                                      <strong>Air Superiority</strong>
-                                      <span>Hit rate and Avoid +30 when facing Flying enemies</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/amaterasu.png" alt="Amaterasu">
-                                  <div class="skill-copy">
-                                      <strong>Amaterasu</strong>
-                                      <span>Allies within a 2 tile radius recover 20% HP at the start of the user&#x27;s Turn</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="beruka"  hidden>
-                      <h3>Inherited Class - Beruka</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Fighter</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/hp_5.png" alt="HP +5">
-                                  <div class="skill-copy">
-                                      <strong>HP +5</strong>
-                                      <span>Maximum HP +5</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/gamble.png" alt="Gamble">
-                                  <div class="skill-copy">
-                                      <strong>Gamble</strong>
-                                      <span>Hit rate -10, Critical rate +10</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Berserker</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/rally_strength.png" alt="Rally Strength">
-                                  <div class="skill-copy">
-                                      <strong>Rally Strength</strong>
-                                      <span>Strength +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/axefaire.png" alt="Axefaire">
-                                  <div class="skill-copy">
-                                      <strong>Axefaire</strong>
-                                      <span>When user is equipped with an Axe, damage +5 during battle</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Hero</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/sol.png" alt="Sol">
-                                  <div class="skill-copy">
-                                      <strong>Sol</strong>
-                                      <span>Skill% chance of restoring half the damage dealt to the enemy</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/axebreaker.png" alt="Axebreaker">
-                                  <div class="skill-copy">
-                                      <strong>Axebreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with an Axe</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="camilla"  hidden>
-                      <h3>Inherited Class - Camilla</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Dark Mage</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/heartseeker.png" alt="Heartseeker">
-                                  <div class="skill-copy">
-                                      <strong>Heartseeker</strong>
-                                      <span>When fighting adjacent to an enemy, enemy&#x27;s Avoid -20</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/malefic_aura.png" alt="Malefic Aura">
-                                  <div class="skill-copy">
-                                      <strong>Malefic Aura</strong>
-                                      <span>Enemies within a 2 tile radius receive 2 extra damage from magical attacks</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Sorcerer</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/vengeance.png" alt="Vengeance">
-                                  <div class="skill-copy">
-                                      <strong>Vengeance</strong>
-                                      <span>Skill x 1.5% chance of adding half the user&#x27;s (Max HP – Current HP) as damage</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/bowbreaker.png" alt="Bowbreaker">
-                                  <div class="skill-copy">
-                                      <strong>Bowbreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with a Bow</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Dark Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/seal_magic.png" alt="Seal Magic">
-                                  <div class="skill-copy">
-                                      <strong>Seal Magic</strong>
-                                      <span>After battle, enemy&#x27;s Magic -6</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/lifetaker.png" alt="Lifetaker">
-                                  <div class="skill-copy">
-                                      <strong>Lifetaker</strong>
-                                      <span>When user triggers the battle, recover 50% HP after defeating the enemy</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="charlotte"  hidden>
-                      <h3>Inherited Class - Charlotte</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Troubadour</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/resistance_2.png" alt="Resistance +2">
-                                  <div class="skill-copy">
-                                      <strong>Resistance +2</strong>
-                                      <span>Resistance +2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/demoiselle.png" alt="Demoiselle">
-                                  <div class="skill-copy">
-                                      <strong>Demoiselle</strong>
-                                      <span>Male allies within a 2 tile radius receive 2 less damage during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Strategist</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/rally_resistance.png" alt="Rally Resistance">
-                                  <div class="skill-copy">
-                                      <strong>Rally Resistance</strong>
-                                      <span>Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/inspiration.png" alt="Inspiration">
-                                  <div class="skill-copy">
-                                      <strong>Inspiration</strong>
-                                      <span>Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Maid</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/live_to_serve.png" alt="Live to Serve">
-                                  <div class="skill-copy">
-                                      <strong>Live to Serve</strong>
-                                      <span>When healing an ally, the user recovers the same amount of HP</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/tomebreaker.png" alt="Tomebreaker">
-                                  <div class="skill-copy">
-                                      <strong>Tomebreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with a Tome</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="corrin_f"  hidden>
-                      <h3>Inherited Class - Corrin (F)</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Nohr Prince</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/dragon_stone.png" alt="Dragon Stone">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/nobility.png" alt="Nobility">
-                                  <div class="skill-copy">
-                                      <strong>Nobility</strong>
-                                      <span>Experience gained x 1.2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/dragon_fang.png" alt="Dragon Fang">
-                                  <div class="skill-copy">
-                                      <strong>Dragon Fang</strong>
-                                      <span>Skill x.0.75% chance of adding 50% of the user&#x27;s Attack Power as damage</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Hoshido Noble</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/dragon_stone.png" alt="Dragon Stone">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/dragon_ward.png" alt="Dragon Ward">
-                                  <div class="skill-copy">
-                                      <strong>Dragon Ward</strong>
-                                      <span>Allies adjacent to the user have a Luck x 0.5% chance of receiving half damage from enemy attacks</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/hoshidan_unity.png" alt="Hoshidan Unity">
-                                  <div class="skill-copy">
-                                      <strong>Hoshidan Unity</strong>
-                                      <span>Adds 10% to skill activation rates</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Nohr Noble</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/dragon_stone.png" alt="Dragon Stone">
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/draconic_hex.png" alt="Draconic Hex">
-                                  <div class="skill-copy">
-                                      <strong>Draconic Hex</strong>
-                                      <span>After battle, enemy&#x27;s stats -4</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/nohrian_trust.png" alt="Nohrian Trust">
-                                  <div class="skill-copy">
-                                      <strong>Nohrian Trust</strong>
-                                      <span>User shares their support unit&#x27;s battle skills</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="effie"  hidden>
-                      <h3>Inherited Class - Effie</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/defence_2.png" alt="Defence +2">
-                                  <div class="skill-copy">
-                                      <strong>Defence +2</strong>
-                                      <span>Defence +2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/natural_cover.png" alt="Natural Cover">
-                                  <div class="skill-copy">
-                                      <strong>Natural Cover</strong>
-                                      <span>When user fights in terrain with terrain effects, damage received -3 during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>General</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/wary_fighter.png" alt="Wary Fighter">
-                                  <div class="skill-copy">
-                                      <strong>Wary Fighter</strong>
-                                      <span>During battles, neither the user or enemy can perform follow up attacks</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/pavise.png" alt="Pavise">
-                                  <div class="skill-copy">
-                                      <strong>Pavise</strong>
-                                      <span>Skill% chance of halving damage from Sword, Lance, Axe, Beaststone, Claw or Puppet attacks</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Great Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/luna.png" alt="Luna">
-                                  <div class="skill-copy">
-                                      <strong>Luna</strong>
-                                      <span>Skill% chance of ignoring half the enemy&#x27;s Defence (if user has a physical weapon) or Resistance (if user has a magical weapon)</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/armored_blow.png" alt="Armored Blow">
-                                  <div class="skill-copy">
-                                      <strong>Armored Blow</strong>
-                                      <span>When user triggers the battle, physical damage received -10</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="elise"  hidden>
-                      <h3>Inherited Class - Elise</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Troubadour</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/resistance_2.png" alt="Resistance +2">
-                                  <div class="skill-copy">
-                                      <strong>Resistance +2</strong>
-                                      <span>Resistance +2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/demoiselle.png" alt="Demoiselle">
-                                  <div class="skill-copy">
-                                      <strong>Demoiselle</strong>
-                                      <span>Male allies within a 2 tile radius receive 2 less damage during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Strategist</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/rally_resistance.png" alt="Rally Resistance">
-                                  <div class="skill-copy">
-                                      <strong>Rally Resistance</strong>
-                                      <span>Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/inspiration.png" alt="Inspiration">
-                                  <div class="skill-copy">
-                                      <strong>Inspiration</strong>
-                                      <span>Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Maid</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/live_to_serve.png" alt="Live to Serve">
-                                  <div class="skill-copy">
-                                      <strong>Live to Serve</strong>
-                                      <span>When healing an ally, the user recovers the same amount of HP</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/tomebreaker.png" alt="Tomebreaker">
-                                  <div class="skill-copy">
-                                      <strong>Tomebreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with a Tome</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="felicia"  hidden>
-                      <h3>Inherited Class - Felicia</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Troubadour</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/resistance_2.png" alt="Resistance +2">
-                                  <div class="skill-copy">
-                                      <strong>Resistance +2</strong>
-                                      <span>Resistance +2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/demoiselle.png" alt="Demoiselle">
-                                  <div class="skill-copy">
-                                      <strong>Demoiselle</strong>
-                                      <span>Male allies within a 2 tile radius receive 2 less damage during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Strategist</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/rally_resistance.png" alt="Rally Resistance">
-                                  <div class="skill-copy">
-                                      <strong>Rally Resistance</strong>
-                                      <span>Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/inspiration.png" alt="Inspiration">
-                                  <div class="skill-copy">
-                                      <strong>Inspiration</strong>
-                                      <span>Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Maid</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
-                              <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/live_to_serve.png" alt="Live to Serve">
-                                  <div class="skill-copy">
-                                      <strong>Live to Serve</strong>
-                                      <span>When healing an ally, the user recovers the same amount of HP</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/tomebreaker.png" alt="Tomebreaker">
-                                  <div class="skill-copy">
-                                      <strong>Tomebreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with a Tome</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="kagero"  hidden>
-                      <h3>Inherited Class - Kagero</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Ninja</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/locktouch.png" alt="Locktouch">
-                                  <div class="skill-copy">
-                                      <strong>Locktouch</strong>
-                                      <span>User can open doors and chests without requiring keys</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/poison_strike.png" alt="Poison Strike">
-                                  <div class="skill-copy">
-                                      <strong>Poison Strike</strong>
-                                      <span>When user triggers the battle, the enemy&#x27;s HP is reduced by 20% after the battle</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Master Ninja</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/lethality.png" alt="Lethality">
-                                  <div class="skill-copy">
-                                      <strong>Lethality</strong>
-                                      <span>Skill x 0.25% chance of instantly defeating the enemy when dealing 1 or more damage</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/shurikenfaire.png" alt="Shurikenfaire">
-                                  <div class="skill-copy">
-                                      <strong>Shurikenfaire</strong>
-                                      <span>When user is equipped with a Dagger, damage +5 during battle</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Mechanist</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/golembane.png" alt="Golembane">
-                                  <div class="skill-copy">
-                                      <strong>Golembane</strong>
-                                      <span>Attacks are effective against Mechanists, Automatons and Stoneborn</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/replicate.png" alt="Replicate">
-                                  <div class="skill-copy">
-                                      <strong>Replicate</strong>
-                                      <span>Select the “Replicate” command once per map to create a replica with the same appearance, stats, inventory and HP as the user (Anything that happens to the replica happens to the user and vice versa–even death)</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="mozu"  hidden>
-                      <h3>Inherited Class - Mozu</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Archer</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/skill_2.png" alt="Skill +2">
-                                  <div class="skill-copy">
-                                      <strong>Skill +2</strong>
-                                      <span>Skill +2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/quick_draw.png" alt="Quick Draw">
-                                  <div class="skill-copy">
-                                      <strong>Quick Draw</strong>
-                                      <span>When user triggers the battle, damage +4</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Sniper</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/certain_blow.png" alt="Certain Blow">
-                                  <div class="skill-copy">
-                                      <strong>Certain Blow</strong>
-                                      <span>When user triggers the battle, Hit rate +40</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/bowfaire.png" alt="Bowfaire">
-                                  <div class="skill-copy">
-                                      <strong>Bowfaire</strong>
-                                      <span>When user is equipped with a Bow, damage +5 during battle</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Kinshi Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/air_superiority.png" alt="Air Superiority">
-                                  <div class="skill-copy">
-                                      <strong>Air Superiority</strong>
-                                      <span>Hit rate and Avoid +30 when facing Flying enemies</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/amaterasu.png" alt="Amaterasu">
-                                  <div class="skill-copy">
-                                      <strong>Amaterasu</strong>
-                                      <span>Allies within a 2 tile radius recover 20% HP at the start of the user&#x27;s Turn</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="nyx"  hidden>
-                      <h3>Inherited Class - Nyx</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Dark Mage</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/heartseeker.png" alt="Heartseeker">
-                                  <div class="skill-copy">
-                                      <strong>Heartseeker</strong>
-                                      <span>When fighting adjacent to an enemy, enemy&#x27;s Avoid -20</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/malefic_aura.png" alt="Malefic Aura">
-                                  <div class="skill-copy">
-                                      <strong>Malefic Aura</strong>
-                                      <span>Enemies within a 2 tile radius receive 2 extra damage from magical attacks</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Sorcerer</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/vengeance.png" alt="Vengeance">
-                                  <div class="skill-copy">
-                                      <strong>Vengeance</strong>
-                                      <span>Skill x 1.5% chance of adding half the user&#x27;s (Max HP – Current HP) as damage</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/bowbreaker.png" alt="Bowbreaker">
-                                  <div class="skill-copy">
-                                      <strong>Bowbreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with a Bow</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Dark Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/seal_magic.png" alt="Seal Magic">
-                                  <div class="skill-copy">
-                                      <strong>Seal Magic</strong>
-                                      <span>After battle, enemy&#x27;s Magic -6</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/lifetaker.png" alt="Lifetaker">
-                                  <div class="skill-copy">
-                                      <strong>Lifetaker</strong>
-                                      <span>When user triggers the battle, recover 50% HP after defeating the enemy</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="peri"  hidden>
-                      <h3>Inherited Class - Peri</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Cavalier</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/elbow_room.png" alt="Elbow Room">
-                                  <div class="skill-copy">
-                                      <strong>Elbow Room</strong>
-                                      <span>When user fights in terrain with no terrain effects, damage +3 during battles</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/shelter.png" alt="Shelter">
-                                  <div class="skill-copy">
-                                      <strong>Shelter</strong>
-                                      <span>Select the “Shelter” command to make an adjacent ally the user&#x27;s support unit</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Paladin</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/defender.png" alt="Defender">
-                                  <div class="skill-copy">
-                                      <strong>Defender</strong>
-                                      <span>When user is the lead unit while paired up, all stats +1</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/aegis.png" alt="Aegis">
-                                  <div class="skill-copy">
-                                      <strong>Aegis</strong>
-                                      <span>Skill% chance of halving damage from Bow, Magic, Dagger, Dragonstone, Breath or Stone attacks</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Great Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/luna.png" alt="Luna">
-                                  <div class="skill-copy">
-                                      <strong>Luna</strong>
-                                      <span>Skill% chance of ignoring half the enemy&#x27;s Defence (if user has a physical weapon) or Resistance (if user has a magical weapon)</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/armored_blow.png" alt="Armored Blow">
-                                  <div class="skill-copy">
-                                      <strong>Armored Blow</strong>
-                                      <span>When user triggers the battle, physical damage received -10</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="selena"  hidden>
-                      <h3>Inherited Class - Selena</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Mercenary</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/good_fortune.png" alt="Good Fortune">
-                                  <div class="skill-copy">
-                                      <strong>Good Fortune</strong>
-                                      <span>Luck% chance of recovering 20% HP at the start of the user&#x27;s Turn</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/strong_riposte.png" alt="Strong Riposte">
-                                  <div class="skill-copy">
-                                      <strong>Strong Riposte</strong>
-                                      <span>When enemy triggers the battle, damage +3</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Hero</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/sol.png" alt="Sol">
-                                  <div class="skill-copy">
-                                      <strong>Sol</strong>
-                                      <span>Skill% chance of restoring half the damage dealt to the enemy</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/axebreaker.png" alt="Axebreaker">
-                                  <div class="skill-copy">
-                                      <strong>Axebreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with an Axe</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Bow Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/rally_skill.png" alt="Rally Skill">
-                                  <div class="skill-copy">
-                                      <strong>Rally Skill</strong>
-                                      <span>Skill +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/shurikenbreaker.png" alt="Shurikenbreaker">
-                                  <div class="skill-copy">
-                                      <strong>Shurikenbreaker</strong>
-                                      <span>Hit rate and Avoid +50 when the enemy is equipped with a Dagger</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>                  <article class="panel"  data-group="parent-panel" data-key="setsuna"  hidden>
-                      <h3>Inherited Class - Setsuna</h3>
-                      <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Archer</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/skill_2.png" alt="Skill +2">
-                                  <div class="skill-copy">
-                                      <strong>Skill +2</strong>
-                                      <span>Skill +2</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/quick_draw.png" alt="Quick Draw">
-                                  <div class="skill-copy">
-                                      <strong>Quick Draw</strong>
-                                      <span>When user triggers the battle, damage +4</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Sniper</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/certain_blow.png" alt="Certain Blow">
-                                  <div class="skill-copy">
-                                      <strong>Certain Blow</strong>
-                                      <span>When user triggers the battle, Hit rate +40</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/bowfaire.png" alt="Bowfaire">
-                                  <div class="skill-copy">
-                                      <strong>Bowfaire</strong>
-                                      <span>When user is equipped with a Bow, damage +5 during battle</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>    <section class="class-block">
-                          <div class="class-heading">
-                              <h3>Kinshi Knight</h3>
-                              <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
-                              <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
-                          </div>
-                          <div class="skill-list">
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/air_superiority.png" alt="Air Superiority">
-                                  <div class="skill-copy">
-                                      <strong>Air Superiority</strong>
-                                      <span>Hit rate and Avoid +30 when facing Flying enemies</span>
-                                  </div>
-                              </div>
-                              <div class="skill-row">
-                                  <img class="skill-icon" src="../images/icon/skills/amaterasu.png" alt="Amaterasu">
-                                  <div class="skill-copy">
-                                      <strong>Amaterasu</strong>
-                                      <span>Allies within a 2 tile radius recover 20% HP at the start of the user&#x27;s Turn</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </section></article>            </div>
+                    </section></article>              </div>
+              <div>
+                <section class="select-group" aria-label="Parent selector">
+                  <label for="parent-select">Parent</label>
+                  <select id="parent-select" name="parent-select">
+                      <option value="-none-">- None -</option>
+                      <option value="azura">Azura</option>
+                      <option value="beruka">Beruka</option>
+                      <option value="camilla">Camilla</option>
+                      <option value="charlotte">Charlotte</option>
+                      <option value="corrin_f">Corrin (F)</option>
+                      <option value="effie">Effie</option>
+                      <option value="elise">Elise</option>
+                      <option value="felicia">Felicia</option>
+                      <option value="kagero">Kagero</option>
+                      <option value="mozu">Mozu</option>
+                      <option value="nyx">Nyx</option>
+                      <option value="peri">Peri</option>
+                      <option value="selena">Selena</option>
+                      <option value="setsuna">Setsuna</option>
+                  </select>
+                </section>
+                <article class="panel"  data-group="parent-panel" data-key="-none-" >
+                    <h3>Heart Seal - Variable Parent</h3>
+                    <section class="class-block">
+                        <div>(Select a parent)</div>
+                    </section>
+                </article>
+                <article class="panel class-panel"  data-group="parent-panel" data-key="azura"  hidden>
+                    <h3>Inherited Class - Azura</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Sky Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/darting_blow.png" alt="Darting Blow">
+                                <div class="skill-copy">
+                                    <strong>Darting Blow</strong>
+                                    <span>When user triggers the battle, follow up attack speed +5</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/camaraderie.png" alt="Camaraderie">
+                                <div class="skill-copy">
+                                    <strong>Camaraderie</strong>
+                                    <span>Recover 10% HP at the start of the user&#x27;s Turn if there are allies within a 2 tile radius</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Falcon Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/rally_speed.png" alt="Rally Speed">
+                                <div class="skill-copy">
+                                    <strong>Rally Speed</strong>
+                                    <span>Speed +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/warding_blow.png" alt="Warding Blow">
+                                <div class="skill-copy">
+                                    <strong>Warding Blow</strong>
+                                    <span>When user triggers the battle, magical damage received -20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Kinshi Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/air_superiority.png" alt="Air Superiority">
+                                <div class="skill-copy">
+                                    <strong>Air Superiority</strong>
+                                    <span>Hit rate and Avoid +30 when facing Flying enemies</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/amaterasu.png" alt="Amaterasu">
+                                <div class="skill-copy">
+                                    <strong>Amaterasu</strong>
+                                    <span>Allies within a 2 tile radius recover 20% HP at the start of the user&#x27;s Turn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="beruka"  hidden>
+                    <h3>Inherited Class - Beruka</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Fighter</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/hp_5.png" alt="HP +5">
+                                <div class="skill-copy">
+                                    <strong>HP +5</strong>
+                                    <span>Maximum HP +5</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/gamble.png" alt="Gamble">
+                                <div class="skill-copy">
+                                    <strong>Gamble</strong>
+                                    <span>Hit rate -10, Critical rate +10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Berserker</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/rally_strength.png" alt="Rally Strength">
+                                <div class="skill-copy">
+                                    <strong>Rally Strength</strong>
+                                    <span>Strength +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/axefaire.png" alt="Axefaire">
+                                <div class="skill-copy">
+                                    <strong>Axefaire</strong>
+                                    <span>When user is equipped with an Axe, damage +5 during battle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Hero</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/sol.png" alt="Sol">
+                                <div class="skill-copy">
+                                    <strong>Sol</strong>
+                                    <span>Skill% chance of restoring half the damage dealt to the enemy</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/axebreaker.png" alt="Axebreaker">
+                                <div class="skill-copy">
+                                    <strong>Axebreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with an Axe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="camilla"  hidden>
+                    <h3>Inherited Class - Camilla</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Dark Mage</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/heartseeker.png" alt="Heartseeker">
+                                <div class="skill-copy">
+                                    <strong>Heartseeker</strong>
+                                    <span>When fighting adjacent to an enemy, enemy&#x27;s Avoid -20</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/malefic_aura.png" alt="Malefic Aura">
+                                <div class="skill-copy">
+                                    <strong>Malefic Aura</strong>
+                                    <span>Enemies within a 2 tile radius receive 2 extra damage from magical attacks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Sorcerer</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/vengeance.png" alt="Vengeance">
+                                <div class="skill-copy">
+                                    <strong>Vengeance</strong>
+                                    <span>Skill x 1.5% chance of adding half the user&#x27;s (Max HP – Current HP) as damage</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/bowbreaker.png" alt="Bowbreaker">
+                                <div class="skill-copy">
+                                    <strong>Bowbreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with a Bow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Dark Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/seal_magic.png" alt="Seal Magic">
+                                <div class="skill-copy">
+                                    <strong>Seal Magic</strong>
+                                    <span>After battle, enemy&#x27;s Magic -6</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/lifetaker.png" alt="Lifetaker">
+                                <div class="skill-copy">
+                                    <strong>Lifetaker</strong>
+                                    <span>When user triggers the battle, recover 50% HP after defeating the enemy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="charlotte"  hidden>
+                    <h3>Inherited Class - Charlotte</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Troubadour</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/resistance_2.png" alt="Resistance +2">
+                                <div class="skill-copy">
+                                    <strong>Resistance +2</strong>
+                                    <span>Resistance +2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/demoiselle.png" alt="Demoiselle">
+                                <div class="skill-copy">
+                                    <strong>Demoiselle</strong>
+                                    <span>Male allies within a 2 tile radius receive 2 less damage during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Strategist</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/rally_resistance.png" alt="Rally Resistance">
+                                <div class="skill-copy">
+                                    <strong>Rally Resistance</strong>
+                                    <span>Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/inspiration.png" alt="Inspiration">
+                                <div class="skill-copy">
+                                    <strong>Inspiration</strong>
+                                    <span>Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Maid</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/live_to_serve.png" alt="Live to Serve">
+                                <div class="skill-copy">
+                                    <strong>Live to Serve</strong>
+                                    <span>When healing an ally, the user recovers the same amount of HP</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/tomebreaker.png" alt="Tomebreaker">
+                                <div class="skill-copy">
+                                    <strong>Tomebreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with a Tome</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="corrin_f"  hidden>
+                    <h3>Inherited Class - Corrin (F)</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Nohr Prince</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/dragon_stone.png" alt="Dragon Stone">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/nobility.png" alt="Nobility">
+                                <div class="skill-copy">
+                                    <strong>Nobility</strong>
+                                    <span>Experience gained x 1.2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/dragon_fang.png" alt="Dragon Fang">
+                                <div class="skill-copy">
+                                    <strong>Dragon Fang</strong>
+                                    <span>Skill x.0.75% chance of adding 50% of the user&#x27;s Attack Power as damage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Hoshido Noble</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/dragon_stone.png" alt="Dragon Stone">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/dragon_ward.png" alt="Dragon Ward">
+                                <div class="skill-copy">
+                                    <strong>Dragon Ward</strong>
+                                    <span>Allies adjacent to the user have a Luck x 0.5% chance of receiving half damage from enemy attacks</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/hoshidan_unity.png" alt="Hoshidan Unity">
+                                <div class="skill-copy">
+                                    <strong>Hoshidan Unity</strong>
+                                    <span>Adds 10% to skill activation rates</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Nohr Noble</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/dragon_stone.png" alt="Dragon Stone">
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/draconic_hex.png" alt="Draconic Hex">
+                                <div class="skill-copy">
+                                    <strong>Draconic Hex</strong>
+                                    <span>After battle, enemy&#x27;s stats -4</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/nohrian_trust.png" alt="Nohrian Trust">
+                                <div class="skill-copy">
+                                    <strong>Nohrian Trust</strong>
+                                    <span>User shares their support unit&#x27;s battle skills</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="effie"  hidden>
+                    <h3>Inherited Class - Effie</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/defence_2.png" alt="Defence +2">
+                                <div class="skill-copy">
+                                    <strong>Defence +2</strong>
+                                    <span>Defence +2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/natural_cover.png" alt="Natural Cover">
+                                <div class="skill-copy">
+                                    <strong>Natural Cover</strong>
+                                    <span>When user fights in terrain with terrain effects, damage received -3 during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>General</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/wary_fighter.png" alt="Wary Fighter">
+                                <div class="skill-copy">
+                                    <strong>Wary Fighter</strong>
+                                    <span>During battles, neither the user or enemy can perform follow up attacks</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/pavise.png" alt="Pavise">
+                                <div class="skill-copy">
+                                    <strong>Pavise</strong>
+                                    <span>Skill% chance of halving damage from Sword, Lance, Axe, Beaststone, Claw or Puppet attacks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Great Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/luna.png" alt="Luna">
+                                <div class="skill-copy">
+                                    <strong>Luna</strong>
+                                    <span>Skill% chance of ignoring half the enemy&#x27;s Defence (if user has a physical weapon) or Resistance (if user has a magical weapon)</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/armored_blow.png" alt="Armored Blow">
+                                <div class="skill-copy">
+                                    <strong>Armored Blow</strong>
+                                    <span>When user triggers the battle, physical damage received -10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="elise"  hidden>
+                    <h3>Inherited Class - Elise</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Troubadour</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/resistance_2.png" alt="Resistance +2">
+                                <div class="skill-copy">
+                                    <strong>Resistance +2</strong>
+                                    <span>Resistance +2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/demoiselle.png" alt="Demoiselle">
+                                <div class="skill-copy">
+                                    <strong>Demoiselle</strong>
+                                    <span>Male allies within a 2 tile radius receive 2 less damage during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Strategist</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/rally_resistance.png" alt="Rally Resistance">
+                                <div class="skill-copy">
+                                    <strong>Rally Resistance</strong>
+                                    <span>Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/inspiration.png" alt="Inspiration">
+                                <div class="skill-copy">
+                                    <strong>Inspiration</strong>
+                                    <span>Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Maid</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/live_to_serve.png" alt="Live to Serve">
+                                <div class="skill-copy">
+                                    <strong>Live to Serve</strong>
+                                    <span>When healing an ally, the user recovers the same amount of HP</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/tomebreaker.png" alt="Tomebreaker">
+                                <div class="skill-copy">
+                                    <strong>Tomebreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with a Tome</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="felicia"  hidden>
+                    <h3>Inherited Class - Felicia</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Troubadour</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/resistance_2.png" alt="Resistance +2">
+                                <div class="skill-copy">
+                                    <strong>Resistance +2</strong>
+                                    <span>Resistance +2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/demoiselle.png" alt="Demoiselle">
+                                <div class="skill-copy">
+                                    <strong>Demoiselle</strong>
+                                    <span>Male allies within a 2 tile radius receive 2 less damage during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Strategist</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/rally_resistance.png" alt="Rally Resistance">
+                                <div class="skill-copy">
+                                    <strong>Rally Resistance</strong>
+                                    <span>Resistance +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/inspiration.png" alt="Inspiration">
+                                <div class="skill-copy">
+                                    <strong>Inspiration</strong>
+                                    <span>Allies within a 2 tile radius deal 2 extra damage and receive 2 less damage during battles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Maid</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
+                            <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/live_to_serve.png" alt="Live to Serve">
+                                <div class="skill-copy">
+                                    <strong>Live to Serve</strong>
+                                    <span>When healing an ally, the user recovers the same amount of HP</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/tomebreaker.png" alt="Tomebreaker">
+                                <div class="skill-copy">
+                                    <strong>Tomebreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with a Tome</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="kagero"  hidden>
+                    <h3>Inherited Class - Kagero</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Ninja</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/locktouch.png" alt="Locktouch">
+                                <div class="skill-copy">
+                                    <strong>Locktouch</strong>
+                                    <span>User can open doors and chests without requiring keys</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/poison_strike.png" alt="Poison Strike">
+                                <div class="skill-copy">
+                                    <strong>Poison Strike</strong>
+                                    <span>When user triggers the battle, the enemy&#x27;s HP is reduced by 20% after the battle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Master Ninja</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/lethality.png" alt="Lethality">
+                                <div class="skill-copy">
+                                    <strong>Lethality</strong>
+                                    <span>Skill x 0.25% chance of instantly defeating the enemy when dealing 1 or more damage</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/shurikenfaire.png" alt="Shurikenfaire">
+                                <div class="skill-copy">
+                                    <strong>Shurikenfaire</strong>
+                                    <span>When user is equipped with a Dagger, damage +5 during battle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Mechanist</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/golembane.png" alt="Golembane">
+                                <div class="skill-copy">
+                                    <strong>Golembane</strong>
+                                    <span>Attacks are effective against Mechanists, Automatons and Stoneborn</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/replicate.png" alt="Replicate">
+                                <div class="skill-copy">
+                                    <strong>Replicate</strong>
+                                    <span>Select the “Replicate” command once per map to create a replica with the same appearance, stats, inventory and HP as the user (Anything that happens to the replica happens to the user and vice versa–even death)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="mozu"  hidden>
+                    <h3>Inherited Class - Mozu</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Archer</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/skill_2.png" alt="Skill +2">
+                                <div class="skill-copy">
+                                    <strong>Skill +2</strong>
+                                    <span>Skill +2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/quick_draw.png" alt="Quick Draw">
+                                <div class="skill-copy">
+                                    <strong>Quick Draw</strong>
+                                    <span>When user triggers the battle, damage +4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Sniper</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/certain_blow.png" alt="Certain Blow">
+                                <div class="skill-copy">
+                                    <strong>Certain Blow</strong>
+                                    <span>When user triggers the battle, Hit rate +40</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/bowfaire.png" alt="Bowfaire">
+                                <div class="skill-copy">
+                                    <strong>Bowfaire</strong>
+                                    <span>When user is equipped with a Bow, damage +5 during battle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Kinshi Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/air_superiority.png" alt="Air Superiority">
+                                <div class="skill-copy">
+                                    <strong>Air Superiority</strong>
+                                    <span>Hit rate and Avoid +30 when facing Flying enemies</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/amaterasu.png" alt="Amaterasu">
+                                <div class="skill-copy">
+                                    <strong>Amaterasu</strong>
+                                    <span>Allies within a 2 tile radius recover 20% HP at the start of the user&#x27;s Turn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="nyx"  hidden>
+                    <h3>Inherited Class - Nyx</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Dark Mage</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/heartseeker.png" alt="Heartseeker">
+                                <div class="skill-copy">
+                                    <strong>Heartseeker</strong>
+                                    <span>When fighting adjacent to an enemy, enemy&#x27;s Avoid -20</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/malefic_aura.png" alt="Malefic Aura">
+                                <div class="skill-copy">
+                                    <strong>Malefic Aura</strong>
+                                    <span>Enemies within a 2 tile radius receive 2 extra damage from magical attacks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Sorcerer</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/vengeance.png" alt="Vengeance">
+                                <div class="skill-copy">
+                                    <strong>Vengeance</strong>
+                                    <span>Skill x 1.5% chance of adding half the user&#x27;s (Max HP – Current HP) as damage</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/bowbreaker.png" alt="Bowbreaker">
+                                <div class="skill-copy">
+                                    <strong>Bowbreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with a Bow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Dark Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/seal_magic.png" alt="Seal Magic">
+                                <div class="skill-copy">
+                                    <strong>Seal Magic</strong>
+                                    <span>After battle, enemy&#x27;s Magic -6</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/lifetaker.png" alt="Lifetaker">
+                                <div class="skill-copy">
+                                    <strong>Lifetaker</strong>
+                                    <span>When user triggers the battle, recover 50% HP after defeating the enemy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="peri"  hidden>
+                    <h3>Inherited Class - Peri</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Cavalier</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/elbow_room.png" alt="Elbow Room">
+                                <div class="skill-copy">
+                                    <strong>Elbow Room</strong>
+                                    <span>When user fights in terrain with no terrain effects, damage +3 during battles</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/shelter.png" alt="Shelter">
+                                <div class="skill-copy">
+                                    <strong>Shelter</strong>
+                                    <span>Select the “Shelter” command to make an adjacent ally the user&#x27;s support unit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Paladin</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/defender.png" alt="Defender">
+                                <div class="skill-copy">
+                                    <strong>Defender</strong>
+                                    <span>When user is the lead unit while paired up, all stats +1</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/aegis.png" alt="Aegis">
+                                <div class="skill-copy">
+                                    <strong>Aegis</strong>
+                                    <span>Skill% chance of halving damage from Bow, Magic, Dagger, Dragonstone, Breath or Stone attacks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Great Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/luna.png" alt="Luna">
+                                <div class="skill-copy">
+                                    <strong>Luna</strong>
+                                    <span>Skill% chance of ignoring half the enemy&#x27;s Defence (if user has a physical weapon) or Resistance (if user has a magical weapon)</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/armored_blow.png" alt="Armored Blow">
+                                <div class="skill-copy">
+                                    <strong>Armored Blow</strong>
+                                    <span>When user triggers the battle, physical damage received -10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="selena"  hidden>
+                    <h3>Inherited Class - Selena</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Mercenary</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/good_fortune.png" alt="Good Fortune">
+                                <div class="skill-copy">
+                                    <strong>Good Fortune</strong>
+                                    <span>Luck% chance of recovering 20% HP at the start of the user&#x27;s Turn</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/strong_riposte.png" alt="Strong Riposte">
+                                <div class="skill-copy">
+                                    <strong>Strong Riposte</strong>
+                                    <span>When enemy triggers the battle, damage +3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Hero</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/sol.png" alt="Sol">
+                                <div class="skill-copy">
+                                    <strong>Sol</strong>
+                                    <span>Skill% chance of restoring half the damage dealt to the enemy</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/axebreaker.png" alt="Axebreaker">
+                                <div class="skill-copy">
+                                    <strong>Axebreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with an Axe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Bow Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/rally_skill.png" alt="Rally Skill">
+                                <div class="skill-copy">
+                                    <strong>Rally Skill</strong>
+                                    <span>Skill +4 to all allies within a 2 tile radius for one Turn when the “Rally” command is used</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/shurikenbreaker.png" alt="Shurikenbreaker">
+                                <div class="skill-copy">
+                                    <strong>Shurikenbreaker</strong>
+                                    <span>Hit rate and Avoid +50 when the enemy is equipped with a Dagger</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>                <article class="panel class-panel"  data-group="parent-panel" data-key="setsuna"  hidden>
+                    <h3>Inherited Class - Setsuna</h3>
+                    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Archer</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/skill_2.png" alt="Skill +2">
+                                <div class="skill-copy">
+                                    <strong>Skill +2</strong>
+                                    <span>Skill +2</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/quick_draw.png" alt="Quick Draw">
+                                <div class="skill-copy">
+                                    <strong>Quick Draw</strong>
+                                    <span>When user triggers the battle, damage +4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Sniper</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/certain_blow.png" alt="Certain Blow">
+                                <div class="skill-copy">
+                                    <strong>Certain Blow</strong>
+                                    <span>When user triggers the battle, Hit rate +40</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/bowfaire.png" alt="Bowfaire">
+                                <div class="skill-copy">
+                                    <strong>Bowfaire</strong>
+                                    <span>When user is equipped with a Bow, damage +5 during battle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    <section class="class-block">
+                        <div class="class-heading">
+                            <h3>Kinshi Knight</h3>
+                            <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
+                            <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/air_superiority.png" alt="Air Superiority">
+                                <div class="skill-copy">
+                                    <strong>Air Superiority</strong>
+                                    <span>Hit rate and Avoid +30 when facing Flying enemies</span>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <img class="skill-icon" src="../images/icon/skills/amaterasu.png" alt="Amaterasu">
+                                <div class="skill-copy">
+                                    <strong>Amaterasu</strong>
+                                    <span>Allies within a 2 tile radius recover 20% HP at the start of the user&#x27;s Turn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section></article>              </div>
+            </div>
         </section>
 
         <section class="cards-grid">
@@ -1176,7 +1179,7 @@
                                 <option value="wyvern_rider" >Wyvern Rider</option>
                             </select>
                         </div>
-                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="apothecary"  hidden>
+                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="apothecary"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1243,7 +1246,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="archer"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="archer"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1309,7 +1312,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="cavalier"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="cavalier"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1378,7 +1381,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="dark_mage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="dark_mage"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1444,7 +1447,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="diviner"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="diviner"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1511,7 +1514,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="fighter"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1577,7 +1580,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="knight"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1645,7 +1648,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="mercenary"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="mercenary"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1712,7 +1715,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="monk"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="monk"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1779,7 +1782,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="ninja"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="ninja"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1846,7 +1849,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="oni_savage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="oni_savage"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1913,7 +1916,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="outlaw"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="outlaw"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -1973,7 +1976,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="samurai"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="samurai"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2040,7 +2043,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="shrine_maiden"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="shrine_maiden"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2107,7 +2110,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="sky_knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="sky_knight"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2174,7 +2177,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="spear_fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="spear_fighter"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2240,7 +2243,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="troubadour_m"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="troubadour_m"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2307,7 +2310,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="friendship-talent-kana_m" data-key="wyvern_rider"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="friendship-talent-kana_m" data-key="wyvern_rider"  hidden>
                             <h3>Friendship Seal - Kana (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2375,7 +2378,7 @@
                                     </div>
                                 </div>
                             </section></article>                    </div>
-                    <article class="panel"  data-group="friendship-panel" data-key="dwyer"  hidden>
+                    <article class="panel class-panel"  data-group="friendship-panel" data-key="dwyer"  hidden>
                         <h3>Friendship Seal - Dwyer</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2442,7 +2445,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="ignatius"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="friendship-panel" data-key="ignatius"  hidden>
                         <h3>Friendship Seal - Ignatius</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -2583,7 +2586,7 @@
                         </section>
                     </article>
                     <div data-group="partner-panel" data-key="corrin_f" hidden>
-                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="apothecary"  hidden>
+                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="apothecary"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2650,7 +2653,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="archer"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="archer"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2716,7 +2719,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="cavalier"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="cavalier"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2785,7 +2788,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="dark_mage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="dark_mage"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2851,7 +2854,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="diviner"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="diviner"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2918,7 +2921,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="fighter"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -2984,7 +2987,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="knight"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3052,7 +3055,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="mercenary"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="mercenary"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3119,7 +3122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="monk"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="monk"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3186,7 +3189,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="ninja"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="ninja"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3253,7 +3256,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="oni_savage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="oni_savage"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3320,7 +3323,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="outlaw"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="outlaw"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3380,7 +3383,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="samurai"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="samurai"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3447,7 +3450,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="shrine_maiden"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="shrine_maiden"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3514,7 +3517,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="sky_knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="sky_knight"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3581,7 +3584,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="spear_fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="spear_fighter"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3647,7 +3650,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="troubadour_f"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="troubadour_f"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3714,7 +3717,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-corrin_f" data-key="wyvern_rider"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-corrin_f" data-key="wyvern_rider"  hidden>
                             <h3>Partner Seal - Corrin (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3783,7 +3786,7 @@
                                 </div>
                             </section></article>                    </div>
                     <div data-group="partner-panel" data-key="kana_f" hidden>
-                        <article class="panel"  data-group="partner-talent-kana_f" data-key="apothecary"  hidden>
+                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="apothecary"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3850,7 +3853,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="archer"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="archer"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3916,7 +3919,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="cavalier"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="cavalier"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -3985,7 +3988,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="dark_mage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="dark_mage"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4051,7 +4054,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="diviner"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="diviner"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4118,7 +4121,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="fighter"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4184,7 +4187,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="knight"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4252,7 +4255,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="mercenary"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="mercenary"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4319,7 +4322,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="monk"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="monk"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4386,7 +4389,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="ninja"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="ninja"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4453,7 +4456,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="oni_savage"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="oni_savage"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4520,7 +4523,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="outlaw"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="outlaw"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4580,7 +4583,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="samurai"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="samurai"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4647,7 +4650,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="shrine_maiden"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="shrine_maiden"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4714,7 +4717,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="sky_knight"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="sky_knight"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4781,7 +4784,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="spear_fighter"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="spear_fighter"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4847,7 +4850,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="troubadour_f"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="troubadour_f"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4914,7 +4917,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section></article>                        <article class="panel"  data-group="partner-talent-kana_f" data-key="wyvern_rider"  hidden>
+                            </section></article>                        <article class="panel class-panel"  data-group="partner-talent-kana_f" data-key="wyvern_rider"  hidden>
                             <h3>Partner Seal - Kana (F)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
@@ -4982,7 +4985,7 @@
                                     </div>
                                 </div>
                             </section></article>                    </div>
-                    <article class="panel"  data-group="partner-panel" data-key="sophie"  hidden>
+                    <article class="panel class-panel"  data-group="partner-panel" data-key="sophie"  hidden>
                         <h3>Partner Seal - Sophie</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5051,7 +5054,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="midori"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="midori"  hidden>
                         <h3>Partner Seal - Midori</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5118,7 +5121,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="mitama"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="mitama"  hidden>
                         <h3>Partner Seal - Mitama</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5185,7 +5188,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="rhajat"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="rhajat"  hidden>
                         <h3>Partner Seal - Rhajat</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5252,7 +5255,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="velouria"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="velouria"  hidden>
                         <h3>Partner Seal - Velouria</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5318,7 +5321,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="ophelia"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="ophelia"  hidden>
                         <h3>Partner Seal - Ophelia</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5384,7 +5387,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="soleil"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="soleil"  hidden>
                         <h3>Partner Seal - Soleil</h3>
                         <section class="class-block">
                             <div class="class-heading">
@@ -5451,7 +5454,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section></article>                    <article class="panel"  data-group="partner-panel" data-key="nina"  hidden>
+                        </section></article>                    <article class="panel class-panel"  data-group="partner-panel" data-key="nina"  hidden>
                         <h3>Partner Seal - Nina</h3>
                         <section class="class-block">
                             <div class="class-heading">

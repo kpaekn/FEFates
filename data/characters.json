@@ -235,7 +235,7 @@
         "gender": "m",
         "route": "birthright",
         "supports": {
-            "friendship": "azama, kaden",
+            "friendship": "azama, kaden, fuga",
             "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, effie, nyx"
         },
         "adult": true,
@@ -834,7 +834,7 @@
         "gender": "m",
         "route": "revelation",
         "supports": {
-            "friendship": "",
+            "friendship": "hayato",
             "partner": "corrin_f"
         },
         "adult": true,
