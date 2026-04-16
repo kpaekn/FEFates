@@ -4,7 +4,7 @@
   --control-height: 2rem;
 
   --font-size-xl: 1.4rem;
-  --font-size-lg: 1rem;
+  --font-size-lg: 1.1rem;
   --font-size-md: 0.8rem;
   --font-size-sm: 0.7rem;
 
@@ -281,7 +281,8 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .panel>header h3 {
-    font-size: var(--font-size-lg);
+  /* space not needed on stacked view */
+  .section-title::after {
+    display: none;
   }
 }
