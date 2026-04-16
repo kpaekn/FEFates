@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
     <main class="container">
-        <header class="page-header">
+        <header>
             <h1>Fire Emblem Fates - Character Guides - Azura</h1>
             <nav class="breadcrumb">
               <ul>
@@ -26,17 +26,14 @@
         </header>
 
 
-
         <section>
             <h2 class="section-title">Default Classes and Skills</h2>
             <div class="three-column-grid">
                 <article class="panel" >
-                    <header>
-                        <h3>Default Class Set</h3>
-                    </header>
+                    <h3>Default Class Set</h3>
                     <section class="class-block">
                         <div class="class-heading">
-                            <h4>Songstress</h4>
+                            <h3>Songstress</h3>
                             <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                         </div>
                         <div class="skill-list">
@@ -70,12 +67,10 @@
                             </div>
                         </div>
                     </section></article>                <article class="panel" >
-                    <header>
-                        <h3>Heart Seal</h3>
-                    </header>
+                    <h3>Heart Seal</h3>
                     <section class="class-block">
                         <div class="class-heading">
-                            <h4>Sky Knight</h4>
+                            <h3>Sky Knight</h3>
                             <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                         </div>
                         <div class="skill-list">
@@ -96,7 +91,7 @@
                         </div>
                     </section>    <section class="class-block">
                         <div class="class-heading">
-                            <h4>Falcon Knight</h4>
+                            <h3>Falcon Knight</h3>
                             <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                         </div>
@@ -118,7 +113,7 @@
                         </div>
                     </section>    <section class="class-block">
                         <div class="class-heading">
-                            <h4>Kinshi Knight</h4>
+                            <h3>Kinshi Knight</h3>
                             <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                         </div>
@@ -145,7 +140,7 @@
             <h2 class="section-title">Friendship/Partner Seal Classes and Skills</h2>
             <div class="two-column-grid">
                 <div>
-                    <div class="selector-group">
+                    <div class="select-group" aria-label="Friendship Seal Selector">
                         <label for="friendship-support">Friendship Seal (A+)</label>
                         <select id="friendship-support" name="friendship-support">
                             <option value="-none-">- None -</option>
@@ -154,21 +149,17 @@
                             <option value="elise">Elise</option>
                         </select>
                     </div>
-                    <article class="panel" data-group="friendship-panel" data-key="-none-">
-                        <header>
-                            <h3>Friendship Seal</h3>
-                        </header>
+                    <article class="panel"  data-group="friendship-panel" data-key="-none-" >
+                        <h3>Friendship Seal</h3>
                         <section class="class-block">
                             <div>(Select an A+ rank support partner)</div>
                         </section>
                     </article>
                     <article class="panel"  data-group="friendship-panel" data-key="sakura"  hidden>
-                        <header>
-                            <h3>Friendship Seal - Sakura</h3>
-                        </header>
+                        <h3>Friendship Seal - Sakura</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Shrine Maiden</h4>
+                                <h3>Shrine Maiden</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
                             <div class="skill-list">
@@ -189,7 +180,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Priestess</h4>
+                                <h3>Priestess</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -211,7 +202,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Onmyoji</h4>
+                                <h3>Onmyoji</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -232,12 +223,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="hinoka"  hidden>
-                        <header>
-                            <h3>Friendship Seal - Hinoka</h3>
-                        </header>
+                        <h3>Friendship Seal - Hinoka</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Sky Knight</h4>
+                                <h3>Sky Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
                             <div class="skill-list">
@@ -258,7 +247,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Falcon Knight</h4>
+                                <h3>Falcon Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -280,7 +269,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Kinshi Knight</h4>
+                                <h3>Kinshi Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -301,12 +290,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="friendship-panel" data-key="elise"  hidden>
-                        <header>
-                            <h3>Friendship Seal - Elise</h3>
-                        </header>
+                        <h3>Friendship Seal - Elise</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Troubadour</h4>
+                                <h3>Troubadour</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
                             <div class="skill-list">
@@ -327,7 +314,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Strategist</h4>
+                                <h3>Strategist</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -349,7 +336,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Maid</h4>
+                                <h3>Maid</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -371,43 +358,35 @@
                             </div>
                         </section></article>                </div>
                 <div>
-                    <div class="selector-group">
-                        <label for="partner-support">Partner Seal (S)</label>
-                        <select id="partner-support" name="partner-support">
-                            <option value="-none-">- None -</option>
-                            <option value="corrin_m">Corrin (M)</option>
-                            <option value="jakob">Jakob</option>
-                            <option value="kaze">Kaze</option>
-                            <option value="silas">Silas</option>
-                            <option value="subaki">Subaki</option>
-                            <option value="saizo">Saizo</option>
-                            <option value="azama">Azama</option>
-                            <option value="hayato">Hayato</option>
-                            <option value="hinata">Hinata</option>
-                            <option value="takumi">Takumi</option>
-                            <option value="kaden">Kaden</option>
-                            <option value="ryoma">Ryoma</option>
-                            <option value="arthur">Arthur</option>
-                            <option value="odin">Odin</option>
-                            <option value="niles">Niles</option>
-                            <option value="laslow">Laslow</option>
-                            <option value="benny">Benny</option>
-                            <option value="leo">Leo</option>
-                            <option value="keaton">Keaton</option>
-                            <option value="xander">Xander</option>
-                        </select>
-                    </div>
-                    <article class="panel" data-group="partner-panel" data-key="-none-">
-                        <header>
-                            <h3>Partner Seal</h3>
-                        </header>
-                        <section class="class-block">
-                            <div>(Select an S rank support partner)</div>
-                        </section>
-                    </article>
-                    <div data-group="partner-panel" data-key="corrin_m" hidden>
-                        <div class="selector-group">
-                            <label for="partner-talent-corrin_m">Class Talent</label>
+                    <div class="select-group-container">
+                        <div class="select-group" aria-label="Partner Seal Selector">
+                            <label for="partner-support">Partner Seal (S)</label>
+                            <select id="partner-support" name="partner-support">
+                                <option value="-none-">- None -</option>
+                                <option value="corrin_m">Corrin (M)</option>
+                                <option value="jakob">Jakob</option>
+                                <option value="kaze">Kaze</option>
+                                <option value="silas">Silas</option>
+                                <option value="subaki">Subaki</option>
+                                <option value="saizo">Saizo</option>
+                                <option value="azama">Azama</option>
+                                <option value="hayato">Hayato</option>
+                                <option value="hinata">Hinata</option>
+                                <option value="takumi">Takumi</option>
+                                <option value="kaden">Kaden</option>
+                                <option value="ryoma">Ryoma</option>
+                                <option value="arthur">Arthur</option>
+                                <option value="odin">Odin</option>
+                                <option value="niles">Niles</option>
+                                <option value="laslow">Laslow</option>
+                                <option value="benny">Benny</option>
+                                <option value="leo">Leo</option>
+                                <option value="keaton">Keaton</option>
+                                <option value="xander">Xander</option>
+                            </select>
+                        </div>
+                        <div class="select-group" aria-label="Corrin Talent Selector" data-group="partner-talent-control" data-key="corrin_m" hidden>
+                            <label for="partner-talent-corrin_m">Corrin Talent</label>
                             <select id="partner-talent-corrin_m" name="partner-talent-corrin_m">
                                 <option value="apothecary" >Apothecary</option>
                                 <option value="archer" >Archer</option>
@@ -429,13 +408,19 @@
                                 <option value="wyvern_rider" >Wyvern Rider</option>
                             </select>
                         </div>
+                    </div>
+                    <article class="panel"  data-group="partner-panel" data-key="-none-" >
+                        <h3>Partner Seal</h3>
+                        <section class="class-block">
+                            <div>(Select an S rank support partner)</div>
+                        </section>
+                    </article>
+                    <div data-group="partner-panel" data-key="corrin_m" hidden>
                         <article class="panel"  data-group="partner-talent-corrin_m" data-key="apothecary"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Apothecary</h4>
+                                    <h3>Apothecary</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
                                 <div class="skill-list">
@@ -456,7 +441,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Merchant</h4>
+                                    <h3>Merchant</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -478,7 +463,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Mechanist</h4>
+                                    <h3>Mechanist</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -499,12 +484,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="archer"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Archer</h4>
+                                    <h3>Archer</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
                                 <div class="skill-list">
@@ -525,7 +508,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Sniper</h4>
+                                    <h3>Sniper</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
                                 <div class="skill-list">
@@ -546,7 +529,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Kinshi Knight</h4>
+                                    <h3>Kinshi Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -567,12 +550,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="cavalier"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Cavalier</h4>
+                                    <h3>Cavalier</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 </div>
@@ -594,7 +575,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Paladin</h4>
+                                    <h3>Paladin</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 </div>
@@ -616,7 +597,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Great Knight</h4>
+                                    <h3>Great Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -638,12 +619,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="dark_mage"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Dark Mage</h4>
+                                    <h3>Dark Mage</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
                                 <div class="skill-list">
@@ -664,7 +643,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Sorcerer</h4>
+                                    <h3>Sorcerer</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
                                 <div class="skill-list">
@@ -685,7 +664,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Dark Knight</h4>
+                                    <h3>Dark Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
@@ -706,12 +685,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="diviner"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Diviner</h4>
+                                    <h3>Diviner</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
                                 <div class="skill-list">
@@ -732,7 +709,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Onmyoji</h4>
+                                    <h3>Onmyoji</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -754,7 +731,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Basara</h4>
+                                    <h3>Basara</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
@@ -775,12 +752,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="fighter"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Fighter</h4>
+                                    <h3>Fighter</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
                                 <div class="skill-list">
@@ -801,7 +776,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Berserker</h4>
+                                    <h3>Berserker</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
                                 <div class="skill-list">
@@ -822,7 +797,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Hero</h4>
+                                    <h3>Hero</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
@@ -843,12 +818,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="knight"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Knight</h4>
+                                    <h3>Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 </div>
                                 <div class="skill-list">
@@ -869,7 +842,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>General</h4>
+                                    <h3>General</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
@@ -891,7 +864,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Great Knight</h4>
+                                    <h3>Great Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -913,12 +886,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="mercenary"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Mercenary</h4>
+                                    <h3>Mercenary</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 </div>
                                 <div class="skill-list">
@@ -939,7 +910,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Hero</h4>
+                                    <h3>Hero</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
@@ -961,7 +932,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Bow Knight</h4>
+                                    <h3>Bow Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -982,12 +953,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="monk"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Monk</h4>
+                                    <h3>Monk</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
                                 <div class="skill-list">
@@ -1008,7 +977,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Great Master</h4>
+                                    <h3>Great Master</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1030,7 +999,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Onmyoji</h4>
+                                    <h3>Onmyoji</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1051,12 +1020,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="ninja"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Ninja</h4>
+                                    <h3>Ninja</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                 </div>
                                 <div class="skill-list">
@@ -1077,7 +1044,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Master Ninja</h4>
+                                    <h3>Master Ninja</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                 </div>
@@ -1099,7 +1066,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Mechanist</h4>
+                                    <h3>Mechanist</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -1120,12 +1087,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="oni_savage"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Oni Savage</h4>
+                                    <h3>Oni Savage</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
                                 <div class="skill-list">
@@ -1146,7 +1111,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Oni Chieftain</h4>
+                                    <h3>Oni Chieftain</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
@@ -1168,7 +1133,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Blacksmith</h4>
+                                    <h3>Blacksmith</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
@@ -1189,12 +1154,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="outlaw"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Outlaw</h4>
+                                    <h3>Outlaw</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
                                 <div class="skill-list">
@@ -1208,7 +1171,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Adventurer</h4>
+                                    <h3>Adventurer</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1230,7 +1193,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Bow Knight</h4>
+                                    <h3>Bow Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -1251,12 +1214,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="samurai"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Samurai</h4>
+                                    <h3>Samurai</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 </div>
                                 <div class="skill-list">
@@ -1277,7 +1238,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Swordmaster</h4>
+                                    <h3>Swordmaster</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 </div>
                                 <div class="skill-list">
@@ -1298,7 +1259,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Master of Arms</h4>
+                                    <h3>Master of Arms</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -1320,12 +1281,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="shrine_maiden"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Shrine Maiden</h4>
+                                    <h3>Shrine Maiden</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
                                 <div class="skill-list">
@@ -1346,7 +1305,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Priestess</h4>
+                                    <h3>Priestess</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1368,7 +1327,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Onmyoji</h4>
+                                    <h3>Onmyoji</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1389,12 +1348,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="sky_knight"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Sky Knight</h4>
+                                    <h3>Sky Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 </div>
                                 <div class="skill-list">
@@ -1415,7 +1372,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Falcon Knight</h4>
+                                    <h3>Falcon Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1437,7 +1394,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Kinshi Knight</h4>
+                                    <h3>Kinshi Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 </div>
@@ -1458,12 +1415,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="spear_fighter"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Spear Fighter</h4>
+                                    <h3>Spear Fighter</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 </div>
                                 <div class="skill-list">
@@ -1484,7 +1439,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Spear Master</h4>
+                                    <h3>Spear Master</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 </div>
                                 <div class="skill-list">
@@ -1505,7 +1460,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Basara</h4>
+                                    <h3>Basara</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
@@ -1526,12 +1481,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="troubadour_m"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Troubadour</h4>
+                                    <h3>Troubadour</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
                                 <div class="skill-list">
@@ -1552,7 +1505,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Strategist</h4>
+                                    <h3>Strategist</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1574,7 +1527,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Butler</h4>
+                                    <h3>Butler</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                     <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                                 </div>
@@ -1595,12 +1548,10 @@
                                     </div>
                                 </div>
                             </section></article>                        <article class="panel"  data-group="partner-talent-corrin_m" data-key="wyvern_rider"  hidden>
-                            <header>
-                                <h3>Partner Seal - Corrin (M)</h3>
-                            </header>
+                            <h3>Partner Seal - Corrin (M)</h3>
                             <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Wyvern Rider</h4>
+                                    <h3>Wyvern Rider</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
                                 <div class="skill-list">
@@ -1621,7 +1572,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Wyvern Lord</h4>
+                                    <h3>Wyvern Lord</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                 </div>
@@ -1643,7 +1594,7 @@
                                 </div>
                             </section>    <section class="class-block">
                                 <div class="class-heading">
-                                    <h4>Malig Knight</h4>
+                                    <h3>Malig Knight</h3>
                                     <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                                     <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 </div>
@@ -1665,12 +1616,10 @@
                                 </div>
                             </section></article>                    </div>
                     <article class="panel"  data-group="partner-panel" data-key="jakob"  hidden>
-                        <header>
-                            <h3>Partner Seal - Jakob</h3>
-                        </header>
+                        <h3>Partner Seal - Jakob</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Troubadour</h4>
+                                <h3>Troubadour</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
                             <div class="skill-list">
@@ -1691,7 +1640,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Strategist</h4>
+                                <h3>Strategist</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -1713,7 +1662,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Butler</h4>
+                                <h3>Butler</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -1734,12 +1683,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="kaze"  hidden>
-                        <header>
-                            <h3>Partner Seal - Kaze</h3>
-                        </header>
+                        <h3>Partner Seal - Kaze</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Ninja</h4>
+                                <h3>Ninja</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                             </div>
                             <div class="skill-list">
@@ -1760,7 +1707,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Master Ninja</h4>
+                                <h3>Master Ninja</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                             </div>
@@ -1782,7 +1729,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Mechanist</h4>
+                                <h3>Mechanist</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -1803,12 +1750,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="silas"  hidden>
-                        <header>
-                            <h3>Partner Seal - Silas</h3>
-                        </header>
+                        <h3>Partner Seal - Silas</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Cavalier</h4>
+                                <h3>Cavalier</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
@@ -1830,7 +1775,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Paladin</h4>
+                                <h3>Paladin</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
@@ -1852,7 +1797,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Great Knight</h4>
+                                <h3>Great Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -1874,12 +1819,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="subaki"  hidden>
-                        <header>
-                            <h3>Partner Seal - Subaki</h3>
-                        </header>
+                        <h3>Partner Seal - Subaki</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Sky Knight</h4>
+                                <h3>Sky Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
                             <div class="skill-list">
@@ -1900,7 +1843,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Falcon Knight</h4>
+                                <h3>Falcon Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -1922,7 +1865,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Kinshi Knight</h4>
+                                <h3>Kinshi Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -1943,12 +1886,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="saizo"  hidden>
-                        <header>
-                            <h3>Partner Seal - Saizo</h3>
-                        </header>
+                        <h3>Partner Seal - Saizo</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Ninja</h4>
+                                <h3>Ninja</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                             </div>
                             <div class="skill-list">
@@ -1969,7 +1910,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Master Ninja</h4>
+                                <h3>Master Ninja</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                             </div>
@@ -1991,7 +1932,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Mechanist</h4>
+                                <h3>Mechanist</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/dagger.png" alt="Dagger">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -2012,12 +1953,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="azama"  hidden>
-                        <header>
-                            <h3>Partner Seal - Azama</h3>
-                        </header>
+                        <h3>Partner Seal - Azama</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Monk</h4>
+                                <h3>Monk</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
                             <div class="skill-list">
@@ -2038,7 +1977,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Great Master</h4>
+                                <h3>Great Master</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -2060,7 +1999,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Onmyoji</h4>
+                                <h3>Onmyoji</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -2081,12 +2020,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="hayato"  hidden>
-                        <header>
-                            <h3>Partner Seal - Hayato</h3>
-                        </header>
+                        <h3>Partner Seal - Hayato</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Diviner</h4>
+                                <h3>Diviner</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
                             <div class="skill-list">
@@ -2107,7 +2044,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Onmyoji</h4>
+                                <h3>Onmyoji</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -2129,7 +2066,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Basara</h4>
+                                <h3>Basara</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
@@ -2150,12 +2087,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="hinata"  hidden>
-                        <header>
-                            <h3>Partner Seal - Hinata</h3>
-                        </header>
+                        <h3>Partner Seal - Hinata</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Samurai</h4>
+                                <h3>Samurai</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                             </div>
                             <div class="skill-list">
@@ -2176,7 +2111,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Swordmaster</h4>
+                                <h3>Swordmaster</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                             </div>
                             <div class="skill-list">
@@ -2197,7 +2132,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Master of Arms</h4>
+                                <h3>Master of Arms</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -2219,12 +2154,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="takumi"  hidden>
-                        <header>
-                            <h3>Partner Seal - Takumi</h3>
-                        </header>
+                        <h3>Partner Seal - Takumi</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Archer</h4>
+                                <h3>Archer</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
                             <div class="skill-list">
@@ -2245,7 +2178,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Sniper</h4>
+                                <h3>Sniper</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
                             <div class="skill-list">
@@ -2266,7 +2199,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Kinshi Knight</h4>
+                                <h3>Kinshi Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -2287,12 +2220,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="kaden"  hidden>
-                        <header>
-                            <h3>Partner Seal - Kaden</h3>
-                        </header>
+                        <h3>Partner Seal - Kaden</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Diviner</h4>
+                                <h3>Diviner</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
                             <div class="skill-list">
@@ -2313,7 +2244,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Onmyoji</h4>
+                                <h3>Onmyoji</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -2335,7 +2266,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Basara</h4>
+                                <h3>Basara</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
@@ -2356,12 +2287,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="ryoma"  hidden>
-                        <header>
-                            <h3>Partner Seal - Ryoma</h3>
-                        </header>
+                        <h3>Partner Seal - Ryoma</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Samurai</h4>
+                                <h3>Samurai</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                             </div>
                             <div class="skill-list">
@@ -2382,7 +2311,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Swordmaster</h4>
+                                <h3>Swordmaster</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                             </div>
                             <div class="skill-list">
@@ -2403,7 +2332,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Master of Arms</h4>
+                                <h3>Master of Arms</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -2425,12 +2354,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="arthur"  hidden>
-                        <header>
-                            <h3>Partner Seal - Arthur</h3>
-                        </header>
+                        <h3>Partner Seal - Arthur</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Fighter</h4>
+                                <h3>Fighter</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
                             <div class="skill-list">
@@ -2451,7 +2378,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Berserker</h4>
+                                <h3>Berserker</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
                             <div class="skill-list">
@@ -2472,7 +2399,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Hero</h4>
+                                <h3>Hero</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
@@ -2493,12 +2420,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="odin"  hidden>
-                        <header>
-                            <h3>Partner Seal - Odin</h3>
-                        </header>
+                        <h3>Partner Seal - Odin</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Dark Mage</h4>
+                                <h3>Dark Mage</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
                             <div class="skill-list">
@@ -2519,7 +2444,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Sorcerer</h4>
+                                <h3>Sorcerer</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
                             <div class="skill-list">
@@ -2540,7 +2465,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Dark Knight</h4>
+                                <h3>Dark Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
@@ -2561,12 +2486,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="niles"  hidden>
-                        <header>
-                            <h3>Partner Seal - Niles</h3>
-                        </header>
+                        <h3>Partner Seal - Niles</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Outlaw</h4>
+                                <h3>Outlaw</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
                             <div class="skill-list">
@@ -2580,7 +2503,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Adventurer</h4>
+                                <h3>Adventurer</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                                 <img class="weapon-icon" src="../images/icon/weapons/staff.png" alt="Staff">
                             </div>
@@ -2602,7 +2525,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Bow Knight</h4>
+                                <h3>Bow Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -2623,12 +2546,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="laslow"  hidden>
-                        <header>
-                            <h3>Partner Seal - Laslow</h3>
-                        </header>
+                        <h3>Partner Seal - Laslow</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Mercenary</h4>
+                                <h3>Mercenary</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                             </div>
                             <div class="skill-list">
@@ -2649,7 +2570,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Hero</h4>
+                                <h3>Hero</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
@@ -2671,7 +2592,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Bow Knight</h4>
+                                <h3>Bow Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/bow.png" alt="Bow">
                             </div>
@@ -2692,12 +2613,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="benny"  hidden>
-                        <header>
-                            <h3>Partner Seal - Benny</h3>
-                        </header>
+                        <h3>Partner Seal - Benny</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Knight</h4>
+                                <h3>Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
                             <div class="skill-list">
@@ -2718,7 +2637,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>General</h4>
+                                <h3>General</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
@@ -2740,7 +2659,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Great Knight</h4>
+                                <h3>Great Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
@@ -2762,12 +2681,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="leo"  hidden>
-                        <header>
-                            <h3>Partner Seal - Leo</h3>
-                        </header>
+                        <h3>Partner Seal - Leo</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Dark Mage</h4>
+                                <h3>Dark Mage</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
                             <div class="skill-list">
@@ -2788,7 +2705,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Sorcerer</h4>
+                                <h3>Sorcerer</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
                             <div class="skill-list">
@@ -2809,7 +2726,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Dark Knight</h4>
+                                <h3>Dark Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/tome.png" alt="Tome">
                             </div>
@@ -2830,12 +2747,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="keaton"  hidden>
-                        <header>
-                            <h3>Partner Seal - Keaton</h3>
-                        </header>
+                        <h3>Partner Seal - Keaton</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Fighter</h4>
+                                <h3>Fighter</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
                             <div class="skill-list">
@@ -2856,7 +2771,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Berserker</h4>
+                                <h3>Berserker</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
                             <div class="skill-list">
@@ -2877,7 +2792,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Hero</h4>
+                                <h3>Hero</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">
                             </div>
@@ -2898,12 +2813,10 @@
                                 </div>
                             </div>
                         </section></article>                    <article class="panel"  data-group="partner-panel" data-key="xander"  hidden>
-                        <header>
-                            <h3>Partner Seal - Xander</h3>
-                        </header>
+                        <h3>Partner Seal - Xander</h3>
                         <section class="class-block">
                             <div class="class-heading">
-                                <h4>Cavalier</h4>
+                                <h3>Cavalier</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
@@ -2925,7 +2838,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Paladin</h4>
+                                <h3>Paladin</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                             </div>
@@ -2947,7 +2860,7 @@
                             </div>
                         </section>    <section class="class-block">
                             <div class="class-heading">
-                                <h4>Great Knight</h4>
+                                <h3>Great Knight</h3>
                                 <img class="weapon-icon" src="../images/icon/weapons/sword.png" alt="Sword">
                                 <img class="weapon-icon" src="../images/icon/weapons/lance.png" alt="Lance">
                                 <img class="weapon-icon" src="../images/icon/weapons/axe.png" alt="Axe">

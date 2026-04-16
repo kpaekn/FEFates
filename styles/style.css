@@ -1,5 +1,5 @@
 :root {
-  --pico-font-family: "Macondo", serif;
+  --font-family: "Macondo", serif;
 
   --control-height: 2rem;
 
@@ -17,78 +17,95 @@
 
   --color-brown: #310500;
   --color-tan: #f0d9a5;
-  --color-light-tan: #f7e8c3;
+  --color-light-tan: color-mix(in srgb, var(--color-tan), white 40%);
   --color-blue: #213057;
+  --color-dark-blue: color-mix(in srgb, var(--color-blue), black 70%);
+
+  --color-background: var(--color-dark-blue);
+  --color-href: var(--color-blue);
 
   --border-radius: 0.4rem;
 }
 
 body {
-  line-height: 1.4;
+  background-color: var(--color-background);
+  color: var(--color-tan);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
 }
 
 main.container {
   max-width: 1240px;
+  margin: 0 auto;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
+  padding-bottom: var(--space-md);
 }
 
-.page-header h1 {
-  font-size: var(--font-size-xl);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
   margin: var(--space-md) 0;
 }
 
+h1 {
+  font-size: var(--font-size-xl);
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+}
+
+h3 {
+  font-size: var(--font-size-md);
+}
+
+h4 {
+  font-size: var(--font-size-sm);
+}
+
+a {
+  color: var(--color-href);
+}
+
+/* breadcrumb */
 .breadcrumb {
   background-color: var(--color-tan);
   border: 2px solid var(--color-brown);
   border-radius: var(--border-radius);
+  color: var(--color-brown);
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  --pico-nav-breadcrumb-divider: '/';
 }
 
-.breadcrumb li {
-  color: var(--color-brown);
-  font-size: var(--font-size-sm);
+.breadcrumb ul,
+.breadcrumb ol {
+  display: flex;
+  gap: var(--space-md);
   padding: 0;
-  margin-left: var(--space-md);
+  list-style: none;
 }
 
-.breadcrumb li::after{
+.breadcrumb li::after {
   content: '/';
   display: inline-block;
   margin-left: var(--space-md);
-}
-
-.breadcrumb li:last-child {
-  margin-right: var(--space-md);
 }
 
 .breadcrumb li:last-child::after {
   display: none;
 }
 
-.breadcrumb li a {
-  color: var(--color-blue);
-  text-decoration-color: var(--color-blue);
-  padding: 0;
-  margin: 0;
-}
-
-.section-title {
-  font-size: var(--font-size-lg);
-  margin: var(--space-md) 0;
-}
-
-.character-index {
-  display: grid;
-  gap: var(--space-md);
-}
-
+/* character grid */
 .character-grid {
   display: grid;
   gap: var(--space-md);
   grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  margin-block-start: var(--space-md);
 }
 
 .character-card {
@@ -107,8 +124,6 @@ main.container {
   background-color: var(--color-brown);
   color: var(--color-tan);
   margin: 0;
-  padding: var(--space-xs) 0;
-  font-size: var(--font-size-sm);
   text-align: center;
 }
 
@@ -122,31 +137,35 @@ main.container {
   color: var(--color-light-tan);
 }
 
-.control-stack,
-.selector-group {
+/* select group */
+.select-group-container {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.select-group {
   display: grid;
   gap: var(--space-xs);
   margin-bottom: var(--space-md);
-  max-width: 12rem;
+  width: 10rem;
 }
 
-.control-stack label,
-.selector-group label {
-  font-size: var(--font-size-md);
+.select-group label {
   font-weight: 800;
-  margin: 0;
+  margin-top: var(--space-md);
 }
 
 select {
-  border: 2px solid var(--color-brown);
-  color: var(--color-brown);
   background-color: var(--color-tan);
+  border: 2px solid var(--color-brown);
+  border-radius: var(--border-radius);
+  color: var(--color-brown);
   font-size: var(--font-size-md);
-  margin: 0;
-  min-height: var(--control-height);
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
 }
 
+/* column-grid */
 .three-column-grid,
 .two-column-grid {
   display: grid;
@@ -162,39 +181,25 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.two-column-grid>*,
-.three-column-grid>* {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
+/* panel */
 .panel {
-  flex: 1 1 auto;
-  border: 2px solid var(--color-brown);
   background-color: var(--color-tan);
-  color: var(--color-brown);
+  border: 2px solid var(--color-brown);
   border-radius: var(--border-radius);
-  margin-block-end: 0;
-  padding-bottom: 0;
+  color: var(--color-brown);
 }
 
-.panel>header {
+.panel>h3 {
   background-color: var(--color-brown);
-  margin-block-end: var(--space-sm);
+  color: var(--color-tan);
+  margin: 0;
   padding: var(--space-sm) var(--space-md);
 }
 
-.panel>header h3 {
-  color: var(--color-tan);
-  font-size: var(--font-size-md);
-  margin: 0;
-}
-
+/* class block */
 .class-block {
   font-size: var(--font-size-md);
-  margin: 0 calc(-1 * var(--space-lg));
-  margin-block-end: var(--space-sm);
+  margin-bottom: var(--space-sm);
   padding: var(--space-xs) var(--space-md);
 }
 
@@ -209,10 +214,8 @@ select {
   gap: var(--space-sm);
 }
 
-.class-heading h4 {
-  color: var(--color-brown);
+.class-heading h3 {
   margin: 0;
-  font-size: var(--font-size-md);
 }
 
 .weapon-icon {
@@ -242,7 +245,6 @@ select {
 
 .skill-copy span {
   line-height: 1.2;
-  font-size: var(--font-size-sm);
 }
 
 [hidden] {

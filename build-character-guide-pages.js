@@ -555,6 +555,10 @@ function buildCharacterContext(charKey, char) {
 
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper('json', (value) => JSON.stringify(value));
+Handlebars.registerHelper('or', function (...args) {
+    args.pop(); // Handlebars passes the options object as the last argument.
+    return args.some(Boolean);
+});
 Handlebars.registerPartial(
     'class-block',
     fs.readFileSync(path.join(PARTIALS_DIR, 'class-block.hbs'), 'utf8'),
@@ -562,6 +566,10 @@ Handlebars.registerPartial(
 Handlebars.registerPartial(
     'class-panel',
     fs.readFileSync(path.join(PARTIALS_DIR, 'class-panel.hbs'), 'utf8'),
+);
+Handlebars.registerPartial(
+    'placeholder-panel',
+    fs.readFileSync(path.join(PARTIALS_DIR, 'placeholder-panel.hbs'), 'utf8'),
 );
 const characterTemplate = Handlebars.compile(
     fs.readFileSync(path.join(TEMPLATES_DIR, 'character.hbs'), 'utf8'),

@@ -35,8 +35,10 @@
         var partnerSelect = document.getElementById('partner-support');
         partnerSelect.addEventListener('change', function () {
             showGroup('partner-panel', this.value);
+            showGroup('partner-talent-control', this.value);
         });
         showGroup('partner-panel', partnerSelect.value);
+        showGroup('partner-talent-control', partnerSelect.value);
 
         cfg.partnerCorrinKana.forEach(function (entry) {
             var subSel = document.getElementById('partner-talent-' + entry.key);

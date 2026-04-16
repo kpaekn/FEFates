@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
     <main class="container">
-        <header class="page-header">
+        <header>
             <h1>{{pageTitle}}</h1>
             <nav class="breadcrumb">
               <ul>
@@ -25,26 +25,30 @@
             </nav>
         </header>
 
-        {{#if isCorrinKana}}
-        <section class="control-stack" aria-label="Class Talent selector">
-            <label for="class-talent">Class Talent</label>
-            <select id="class-talent" name="class-talent">
-                {{#each talentOptions}}
-                <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
-                {{/each}}
-            </select>
-        </section>
-        {{/if}}
+        {{#if (or isCorrinKana isChild)}}
+        <section class="select-group-container">
+            {{#if isCorrinKana}}
+            <section class="select-group" aria-label="Corrin Talent selector">
+                <label for="class-talent">Corrin Talent</label>
+                <select id="class-talent" name="class-talent">
+                    {{#each talentOptions}}
+                    <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </section>
+            {{/if}}
 
-        {{#if isChild}}
-        <section class="control-stack" aria-label="Parent selector">
-            <label for="parent-select">Parent</label>
-            <select id="parent-select" name="parent-select">
-                <option value="-none-">- None -</option>
-                {{#each parentOptions}}
-                <option value="{{key}}">{{displayName}}</option>
-                {{/each}}
-            </select>
+            {{#if isChild}}
+            <section class="select-group" aria-label="Parent selector">
+                <label for="parent-select">Parent</label>
+                <select id="parent-select" name="parent-select">
+                    <option value="-none-">- None -</option>
+                    {{#each parentOptions}}
+                    <option value="{{key}}">{{displayName}}</option>
+                    {{/each}}
+                </select>
+            </section>
+            {{/if}}
         </section>
         {{/if}}
 
@@ -60,14 +64,7 @@
                   {{/each}}
                 {{/if}}
                 {{#if isChild}}
-                  <article class="panel" data-group="parent-panel" data-key="-none-">
-                      <header>
-                          <h3>Heart Seal - Variable Parent</h3>
-                      </header>
-                      <section class="class-block">
-                          <div>(Select a parent)</div>
-                      </section>
-                  </article>
+                  {{> placeholder-panel label="Heart Seal - Variable Parent" bodyText="(Select a parent)" group="parent-panel" key="-none-"}}
                   {{#each parentPanels}}
                   {{> class-panel}}
                   {{/each}}
@@ -81,7 +78,7 @@
             <div class="two-column-grid">
                 {{#if hasFriendship}}
                 <div>
-                    <div class="selector-group">
+                    <div class="select-group" aria-label="Friendship Seal Selector">
                         <label for="friendship-support">Friendship Seal (A+)</label>
                         <select id="friendship-support" name="friendship-support">
                             <option value="-none-">- None -</option>
@@ -90,19 +87,12 @@
                             {{/each}}
                         </select>
                     </div>
-                    <article class="panel" data-group="friendship-panel" data-key="-none-">
-                        <header>
-                            <h3>Friendship Seal</h3>
-                        </header>
-                        <section class="class-block">
-                            <div>(Select an A+ rank support partner)</div>
-                        </section>
-                    </article>
+                    {{> placeholder-panel label="Friendship Seal" bodyText="(Select an A+ rank support partner)" group="friendship-panel" key="-none-"}}
                     {{#each friendshipPanels}}
                     {{#if isCorrinKana}}
                     <div data-group="friendship-panel" data-key="{{panelKey}}" hidden>
-                        <div class="selector-group">
-                            <label for="friendship-talent-{{panelKey}}">Class Talent</label>
+                        <div class="select-group" aria-label="Corrin Talent Selector">
+                            <label for="friendship-talent-{{panelKey}}">Corrin Talent</label>
                             <select id="friendship-talent-{{panelKey}}" name="friendship-talent-{{panelKey}}">
                                 {{#each talentOptions}}
                                 <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
@@ -121,34 +111,33 @@
                 {{/if}}
                 {{#if hasPartner}}
                 <div>
-                    <div class="selector-group">
-                        <label for="partner-support">Partner Seal (S)</label>
-                        <select id="partner-support" name="partner-support">
-                            <option value="-none-">- None -</option>
-                            {{#each partnerOptions}}
-                            <option value="{{key}}">{{displayName}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <article class="panel" data-group="partner-panel" data-key="-none-">
-                        <header>
-                            <h3>Partner Seal</h3>
-                        </header>
-                        <section class="class-block">
-                            <div>(Select an S rank support partner)</div>
-                        </section>
-                    </article>
-                    {{#each partnerPanels}}
-                    {{#if isCorrinKana}}
-                    <div data-group="partner-panel" data-key="{{panelKey}}" hidden>
-                        <div class="selector-group">
-                            <label for="partner-talent-{{panelKey}}">Class Talent</label>
+                    <div class="select-group-container">
+                        <div class="select-group" aria-label="Partner Seal Selector">
+                            <label for="partner-support">Partner Seal (S)</label>
+                            <select id="partner-support" name="partner-support">
+                                <option value="-none-">- None -</option>
+                                {{#each partnerOptions}}
+                                <option value="{{key}}">{{displayName}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{#each partnerPanels}}
+                        {{#if isCorrinKana}}
+                        <div class="select-group" aria-label="Corrin Talent Selector" data-group="partner-talent-control" data-key="{{panelKey}}" hidden>
+                            <label for="partner-talent-{{panelKey}}">Corrin Talent</label>
                             <select id="partner-talent-{{panelKey}}" name="partner-talent-{{panelKey}}">
                                 {{#each talentOptions}}
                                 <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
                                 {{/each}}
                             </select>
                         </div>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    {{> placeholder-panel label="Partner Seal" bodyText="(Select an S rank support partner)" group="partner-panel" key="-none-"}}
+                    {{#each partnerPanels}}
+                    {{#if isCorrinKana}}
+                    <div data-group="partner-panel" data-key="{{panelKey}}" hidden>
                         {{#each talentPanels}}
                         {{> class-panel}}
                         {{/each}}

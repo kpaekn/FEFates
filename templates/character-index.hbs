@@ -8,12 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
-    <main class="container character-index">
+    <main class="container">
         <header class="page-header">
             <h1>{{pageTitle}}</h1>
             <nav class="breadcrumb" aria-label="breadcrumb">
@@ -25,19 +25,17 @@
         </header>
 
         {{#each sections}}
-        <section class="character-section">
-            {{#if title}}
-            <h2 class="section-title">{{title}}</h2>
-            {{/if}}
-            <div class="character-grid">
-                {{#each characters}}
-                <a class="character-card" href="{{href}}">
-                  <img src="{{portraitPath}}" />
-                  <h3>{{name}}</h3>
-                </a>
-                {{/each}}
-            </div>
-        </section>
+        {{#if title}}
+        <h2 class="section-title">{{title}}</h2>
+        {{/if}}
+        <div class="character-grid">
+            {{#each characters}}
+            <a class="character-card" href="{{href}}">
+                <img src="{{portraitPath}}" />
+                <h3>{{name}}</h3>
+            </a>
+            {{/each}}
+        </div>
         {{/each}}
     </main>
 </body>
