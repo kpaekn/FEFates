@@ -1,17 +1,113 @@
 (function () {
   var cfg = window.PAGE_CONFIG;
   var cloneCounter = 0;
+  var corrinBoonConfig = cfg.corrinBoon;
+
+  function getModifierArray(map, key) {
+    if (!map || !key) return null;
+    return map[key] || null;
+  }
+
+  function applyModifiers(baseValues) {
+    var modifierSets = Array.prototype.slice.call(arguments, 1);
+    return baseValues.map(function (value, index) {
+      return modifierSets.reduce(function (total, modifierSet) {
+        return total + (modifierSet && modifierSet[index] ? modifierSet[index] : 0);
+      }, value);
+    });
+  }
+
+  function getCorrinSelections() {
+    var boonSelect = document.getElementById('corrin-boon');
+    var baneSelect = document.getElementById('corrin-bane');
+    return {
+      boonSelect: boonSelect,
+      baneSelect: baneSelect,
+      boonKey: boonSelect ? boonSelect.value : null,
+      baneKey: baneSelect ? baneSelect.value : null,
+    };
+  }
+
+  function updateCorrinBaseGrowth(baseGrowth) {
+    document.querySelectorAll('[data-base-growth-idx]').forEach(function (td) {
+      var index = Number(td.dataset.baseGrowthIdx);
+      td.textContent = baseGrowth[index] + '%';
+    });
+  }
+
+  function updateCorrinBaseStats(boonKey, baneKey) {
+    if (!corrinBoonConfig) return;
+    var boonModifier = getModifierArray(corrinBoonConfig.baseStatBoonMap, boonKey);
+    var baneModifier = getModifierArray(corrinBoonConfig.baseStatBaneMap, baneKey);
+
+    document.querySelectorAll('[data-base-stat-row]').forEach(function (td) {
+      var rowIndex = Number(td.dataset.baseStatRow);
+      var statIndex = Number(td.dataset.baseStatIdx);
+      var rowValues = corrinBoonConfig.baseStatRows[rowIndex];
+      if (!rowValues) return;
+      var total = rowValues[statIndex] +
+        (boonModifier ? boonModifier[statIndex] : 0) +
+        (baneModifier ? baneModifier[statIndex] : 0);
+      td.textContent = total;
+    });
+  }
+
+  function updateGrowthDisplays() {
+    var classGrowthSelect = document.getElementById('class-growth-select');
+    var classKey = classGrowthSelect ? classGrowthSelect.value : null;
+    var classGrowth = classKey ? cfg.classGrowthMap[classKey] : null;
+    var baseGrowth = cfg.baseGrowth.slice();
+
+    if (corrinBoonConfig) {
+      var selections = getCorrinSelections();
+      baseGrowth = applyModifiers(
+        baseGrowth,
+        getModifierArray(corrinBoonConfig.growthBoonMap, selections.boonKey),
+        getModifierArray(corrinBoonConfig.growthBaneMap, selections.baneKey),
+      );
+      updateCorrinBaseGrowth(baseGrowth);
+      updateCorrinBaseStats(selections.boonKey, selections.baneKey);
+    }
+
+    if (!classGrowth) return;
+    document.querySelectorAll('[data-class-growth-idx]').forEach(function (td) {
+      var i = Number(td.dataset.classGrowthIdx);
+      td.textContent = baseGrowth[i] + classGrowth[i] + '%';
+    });
+  }
+
+  function disableMatchingOption(select, blockedValue) {
+    if (!select) return;
+    Array.prototype.forEach.call(select.options, function (option) {
+      option.disabled = option.value === blockedValue;
+    });
+  }
+
+  function ensureDistinctCorrinSelections(changedKey) {
+    if (!corrinBoonConfig) return;
+    var selections = getCorrinSelections();
+    if (!selections.boonSelect || !selections.baneSelect) return;
+
+    if (selections.boonKey === selections.baneKey) {
+      var targetSelect = changedKey === 'bane' ? selections.boonSelect : selections.baneSelect;
+      var blockedValue = changedKey === 'bane' ? selections.baneKey : selections.boonKey;
+      var fallback = Array.prototype.find.call(targetSelect.options, function (option) {
+        return option.value !== blockedValue;
+      });
+      if (fallback) {
+        targetSelect.value = fallback.value;
+        selections = getCorrinSelections();
+      }
+    }
+
+    disableMatchingOption(selections.boonSelect, selections.baneKey);
+    disableMatchingOption(selections.baneSelect, selections.boonKey);
+  }
 
   // ── Growth-rate class dropdown ───────────────────────────────────────────
   function updateClassGrowth(classKey) {
-    var classGrowth = cfg.classGrowthMap[classKey];
-    if (!classGrowth) return;
-    var cells = document.querySelectorAll('[data-class-growth-idx]');
-    cells.forEach(function (td) {
-      var i = Number(td.dataset.classGrowthIdx);
-      var total = cfg.baseGrowth[i] + classGrowth[i];
-      td.textContent = total + '%';
-    });
+    if (!classKey) return;
+    updateGrowthDisplays();
   }
 
   var classGrowthSelect = document.getElementById('class-growth-select');
@@ -20,6 +116,22 @@
       updateClassGrowth(this.value);
     });
     updateClassGrowth(classGrowthSelect.value);
+  }
+
+  if (corrinBoonConfig) {
+    var corrinSelections = getCorrinSelections();
+    if (corrinSelections.boonSelect && corrinSelections.baneSelect) {
+      corrinSelections.boonSelect.addEventListener('change', function () {
+        ensureDistinctCorrinSelections('boon');
+        updateGrowthDisplays();
+      });
+      corrinSelections.baneSelect.addEventListener('change', function () {
+        ensureDistinctCorrinSelections('bane');
+        updateGrowthDisplays();
+      });
+      ensureDistinctCorrinSelections('init');
+      updateGrowthDisplays();
+    }
   }
 
   function showGroup(group, key) {

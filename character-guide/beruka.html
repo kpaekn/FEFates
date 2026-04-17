@@ -25,101 +25,143 @@
       </nav>
     </header>
 
-    <section>
-      <h2 class="section-title">Growth Rates</h2>
-      <table class="growth-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>HP</th>
-            <th>Str</th>
-            <th>Mag</th>
-            <th>Skl</th>
-            <th>Spd</th>
-            <th>Lck</th>
-            <th>Def</th>
-            <th>Res</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="row-label">Base</td>
-            <td>45%</td>
-            <td>30%</td>
-            <td>10%</td>
-            <td>55%</td>
-            <td>30%</td>
-            <td>45%</td>
-            <td>40%</td>
-            <td>25%</td>
-          </tr>
-          <tr id="class-growth-row">
-            <td class="row-label class-growth-select-container">
-              <select id="class-growth-select" name="class-growth-select">
-                <option value="adventurer" >Adventurer</option>
-                <option value="apothecary" >Apothecary</option>
-                <option value="archer" >Archer</option>
-                <option value="basara" >Basara</option>
-                <option value="berserker" >Berserker</option>
-                <option value="blacksmith" >Blacksmith</option>
-                <option value="bow_knight" >Bow Knight</option>
-                <option value="butler" >Butler</option>
-                <option value="cavalier" >Cavalier</option>
-                <option value="dark_knight" >Dark Knight</option>
-                <option value="dark_mage" >Dark Mage</option>
-                <option value="diviner" >Diviner</option>
-                <option value="falcon_knight" >Falcon Knight</option>
-                <option value="fighter" >Fighter</option>
-                <option value="general" >General</option>
-                <option value="great_knight" >Great Knight</option>
-                <option value="great_master" >Great Master</option>
-                <option value="hero" >Hero</option>
-                <option value="hoshido_noble" >Hoshido Noble</option>
-                <option value="kinshi_knight" >Kinshi Knight</option>
-                <option value="knight" >Knight</option>
-                <option value="maid" >Maid</option>
-                <option value="malig_knight" >Malig Knight</option>
-                <option value="master_ninja" >Master Ninja</option>
-                <option value="master_of_arms" >Master of Arms</option>
-                <option value="mechanist" >Mechanist</option>
-                <option value="mercenary" >Mercenary</option>
-                <option value="merchant" >Merchant</option>
-                <option value="nine_tails" >Nine-Tails</option>
-                <option value="ninja" >Ninja</option>
-                <option value="nohr_noble" >Nohr Noble</option>
-                <option value="oni_chieftain" >Oni Chieftain</option>
-                <option value="oni_savage" >Oni Savage</option>
-                <option value="onmyoji" >Onmyoji</option>
-                <option value="outlaw" >Outlaw</option>
-                <option value="paladin" >Paladin</option>
-                <option value="priestess" >Priestess</option>
-                <option value="samurai" >Samurai</option>
-                <option value="shrine_maiden" >Shrine Maiden</option>
-                <option value="sky_knight" >Sky Knight</option>
-                <option value="sniper" >Sniper</option>
-                <option value="sorcerer" >Sorcerer</option>
-                <option value="spear_fighter" >Spear Fighter</option>
-                <option value="spear_master" >Spear Master</option>
-                <option value="strategist" >Strategist</option>
-                <option value="swordmaster" >Swordmaster</option>
-                <option value="troubadour_f" >Troubadour</option>
-                <option value="wolfssegner" >Wolfssegner</option>
-                <option value="wyvern_lord" >Wyvern Lord</option>
-                <option value="wyvern_rider"  selected>Wyvern Rider</option>
-              </select>
-            </td>
-            <td data-class-growth-idx="0"></td>
-            <td data-class-growth-idx="1"></td>
-            <td data-class-growth-idx="2"></td>
-            <td data-class-growth-idx="3"></td>
-            <td data-class-growth-idx="4"></td>
-            <td data-class-growth-idx="5"></td>
-            <td data-class-growth-idx="6"></td>
-            <td data-class-growth-idx="7"></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <header>
+      <h2 class="section-title">Growth Rate and Base Stats</h2>
+    </header>
+    <div class="three-column-grid">
+      <div class="two-span-column">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Growth Rates</th>
+              <th>HP</th>
+              <th>Str</th>
+              <th>Mag</th>
+              <th>Skl</th>
+              <th>Spd</th>
+              <th>Lck</th>
+              <th>Def</th>
+              <th>Res</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Base</td>
+              <td>45%</td>
+              <td>30%</td>
+              <td>10%</td>
+              <td>55%</td>
+              <td>30%</td>
+              <td>45%</td>
+              <td>40%</td>
+              <td>25%</td>
+            </tr>
+            <tr id="class-growth-row">
+              <td class="row-label select-container">
+                <select id="class-growth-select" name="class-growth-select">
+                  <option value="adventurer" >Adventurer</option>
+                  <option value="apothecary" >Apothecary</option>
+                  <option value="archer" >Archer</option>
+                  <option value="ballistician" >Ballistician</option>
+                  <option value="basara" >Basara</option>
+                  <option value="berserker" >Berserker</option>
+                  <option value="blacksmith" >Blacksmith</option>
+                  <option value="bow_knight" >Bow Knight</option>
+                  <option value="butler" >Butler</option>
+                  <option value="cavalier" >Cavalier</option>
+                  <option value="dark_falcon" >Dark Falcon</option>
+                  <option value="dark_knight" >Dark Knight</option>
+                  <option value="dark_mage" >Dark Mage</option>
+                  <option value="diviner" >Diviner</option>
+                  <option value="dread_fighter" >Dread Fighter</option>
+                  <option value="falcon_knight" >Falcon Knight</option>
+                  <option value="fighter" >Fighter</option>
+                  <option value="general" >General</option>
+                  <option value="grandmaster" >Grandmaster</option>
+                  <option value="great_knight" >Great Knight</option>
+                  <option value="great_lord" >Great Lord</option>
+                  <option value="great_master" >Great Master</option>
+                  <option value="hero" >Hero</option>
+                  <option value="hoshido_noble" >Hoshido Noble</option>
+                  <option value="kinshi_knight" >Kinshi Knight</option>
+                  <option value="knight" >Knight</option>
+                  <option value="lodestar" >Lodestar</option>
+                  <option value="maid" >Maid</option>
+                  <option value="malig_knight" >Malig Knight</option>
+                  <option value="master_ninja" >Master Ninja</option>
+                  <option value="master_of_arms" >Master of Arms</option>
+                  <option value="mechanist" >Mechanist</option>
+                  <option value="mercenary" >Mercenary</option>
+                  <option value="merchant" >Merchant</option>
+                  <option value="nine_tails" >Nine-Tails</option>
+                  <option value="ninja" >Ninja</option>
+                  <option value="nohr_noble" >Nohr Noble</option>
+                  <option value="oni_chieftain" >Oni Chieftain</option>
+                  <option value="oni_savage" >Oni Savage</option>
+                  <option value="onmyoji" >Onmyoji</option>
+                  <option value="outlaw" >Outlaw</option>
+                  <option value="paladin" >Paladin</option>
+                  <option value="priestess" >Priestess</option>
+                  <option value="samurai" >Samurai</option>
+                  <option value="shrine_maiden" >Shrine Maiden</option>
+                  <option value="sky_knight" >Sky Knight</option>
+                  <option value="sniper" >Sniper</option>
+                  <option value="sorcerer" >Sorcerer</option>
+                  <option value="spear_fighter" >Spear Fighter</option>
+                  <option value="spear_master" >Spear Master</option>
+                  <option value="strategist" >Strategist</option>
+                  <option value="swordmaster" >Swordmaster</option>
+                  <option value="troubadour_f" >Troubadour</option>
+                  <option value="vanguard" >Vanguard</option>
+                  <option value="witch" >Witch</option>
+                  <option value="wolfssegner" >Wolfssegner</option>
+                  <option value="wyvern_lord" >Wyvern Lord</option>
+                  <option value="wyvern_rider"  selected>Wyvern Rider</option>
+                </select>
+              </td>
+              <td data-class-growth-idx="0"></td>
+              <td data-class-growth-idx="1"></td>
+              <td data-class-growth-idx="2"></td>
+              <td data-class-growth-idx="3"></td>
+              <td data-class-growth-idx="4"></td>
+              <td data-class-growth-idx="5"></td>
+              <td data-class-growth-idx="6"></td>
+              <td data-class-growth-idx="7"></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Base Stats</th>
+              <th>Level</th>
+              <th>HP</th>
+              <th>Str</th>
+              <th>Mag</th>
+              <th>Skl</th>
+              <th>Spd</th>
+              <th>Lck</th>
+              <th>Def</th>
+              <th>Res</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Standard</td>
+              <td>9</td>
+              <td>23</td>
+              <td>13</td>
+              <td>0</td>
+              <td>14</td>
+              <td>9</td>
+              <td>10</td>
+              <td>14</td>
+              <td>7</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <section>
       <div class="three-column-grid">
@@ -2691,7 +2733,7 @@
     </section>
   </main>
 
-  <script>window.PAGE_CONFIG = {"isCorrin":false,"isCorrinKana":false,"isChild":false,"hasFriendship":true,"hasPartner":true,"baseGrowth":[45,30,10,55,30,45,40,25],"classGrowthMap":{"hoshido_noble":[15,15,10,10,10,10,15,0],"nohr_noble":[15,10,15,5,15,5,5,15],"samurai":[10,10,0,15,20,15,0,10],"swordmaster":[10,10,5,15,20,15,0,10],"master_of_arms":[20,15,0,10,10,10,10,0],"apothecary":[20,20,0,10,10,5,10,5],"merchant":[20,20,0,10,5,15,10,5],"mechanist":[10,10,0,15,10,5,5,15],"ninja":[5,5,0,20,20,0,5,15],"master_ninja":[5,5,0,20,20,0,5,20],"oni_savage":[20,20,10,0,10,0,20,0],"oni_chieftain":[10,20,15,0,10,0,20,5],"blacksmith":[20,15,0,15,10,5,15,0],"spear_fighter":[15,15,0,15,15,5,10,5],"spear_master":[15,15,0,15,15,5,10,5],"basara":[20,10,10,10,10,15,5,10],"diviner":[0,5,15,10,15,5,0,10],"onmyoji":[0,0,20,10,15,0,0,15],"great_master":[10,15,5,5,15,15,10,10],"shrine_maiden":[0,5,10,10,15,15,0,20],"priestess":[10,10,10,5,15,15,0,20],"sky_knight":[0,10,0,10,15,20,0,20],"falcon_knight":[0,10,10,10,15,20,0,20],"kinshi_knight":[0,5,0,15,15,15,0,15],"archer":[10,15,0,15,15,5,10,0],"sniper":[10,15,0,20,15,5,10,0],"nine_tails":[10,10,0,15,20,10,0,20],"cavalier":[10,15,0,10,10,15,10,5],"paladin":[10,15,0,10,10,15,10,10],"great_knight":[20,20,0,10,5,5,20,0],"knight":[20,20,0,15,5,10,20,0],"general":[25,20,0,15,0,10,20,5],"fighter":[20,20,0,15,15,5,5,0],"berserker":[30,25,0,15,15,0,0,0],"hero":[20,15,0,20,15,5,10,0],"mercenary":[10,15,0,20,15,5,10,5],"bow_knight":[10,10,0,15,15,10,0,10],"outlaw":[0,10,5,10,20,0,0,20],"adventurer":[0,5,15,5,20,0,0,20],"wyvern_rider":[10,15,5,10,10,5,20,0],"wyvern_lord":[10,15,0,15,10,5,20,0],"malig_knight":[0,15,15,10,5,0,10,15],"dark_mage":[0,10,20,0,10,0,5,10],"sorcerer":[0,0,25,0,10,0,5,15],"dark_knight":[15,20,10,5,5,5,15,5],"troubadour_f":[0,0,10,20,10,15,0,15],"strategist":[0,0,15,5,10,20,0,15],"butler":[0,10,10,15,15,10,5,10],"maid":[0,10,10,15,15,10,5,10],"wolfssegner":[20,20,0,5,15,5,10,0]},"friendshipCorrinKana":[],"partnerCorrinKana":[{"key":"corrin_m","subGroup":"partner-talent-corrin_m"}]};</script>
+  <script>window.PAGE_CONFIG = {"isCorrin":false,"isCorrinKana":false,"isChild":false,"hasFriendship":true,"hasPartner":true,"baseGrowth":[45,30,10,55,30,45,40,25],"classGrowthMap":{"hoshido_noble":[15,15,10,10,10,10,15,0],"nohr_noble":[15,10,15,5,15,5,5,15],"samurai":[10,10,0,15,20,15,0,10],"swordmaster":[10,10,5,15,20,15,0,10],"master_of_arms":[20,15,0,10,10,10,10,0],"apothecary":[20,20,0,10,10,5,10,5],"merchant":[20,20,0,10,5,15,10,5],"mechanist":[10,10,0,15,10,5,5,15],"ninja":[5,5,0,20,20,0,5,15],"master_ninja":[5,5,0,20,20,0,5,20],"oni_savage":[20,20,10,0,10,0,20,0],"oni_chieftain":[10,20,15,0,10,0,20,5],"blacksmith":[20,15,0,15,10,5,15,0],"spear_fighter":[15,15,0,15,15,5,10,5],"spear_master":[15,15,0,15,15,5,10,5],"basara":[20,10,10,10,10,15,5,10],"diviner":[0,5,15,10,10,5,0,10],"onmyoji":[0,0,20,10,15,0,0,15],"great_master":[10,15,5,5,15,15,10,10],"shrine_maiden":[0,5,10,10,15,15,0,20],"priestess":[10,10,10,5,15,15,0,20],"sky_knight":[0,10,0,10,15,20,0,20],"falcon_knight":[0,10,10,10,15,20,0,20],"kinshi_knight":[0,5,0,15,15,15,0,15],"archer":[10,15,0,15,15,5,10,0],"sniper":[10,15,0,20,15,5,10,0],"nine_tails":[10,10,0,15,20,10,0,20],"cavalier":[10,15,0,10,10,15,10,5],"paladin":[10,15,0,10,10,15,10,10],"great_knight":[20,20,0,10,5,5,20,0],"knight":[20,20,0,15,5,10,20,0],"general":[25,20,0,15,0,10,20,5],"fighter":[20,20,0,15,15,5,5,0],"berserker":[30,25,0,15,15,0,0,0],"hero":[20,15,0,20,15,5,10,0],"mercenary":[10,15,0,20,15,5,10,5],"bow_knight":[10,10,0,15,15,10,0,10],"outlaw":[0,10,5,10,20,0,0,20],"adventurer":[0,5,15,5,20,0,0,20],"wyvern_rider":[10,15,5,10,10,5,20,0],"wyvern_lord":[10,15,0,15,10,5,20,0],"malig_knight":[0,15,15,10,5,0,10,15],"dark_mage":[0,10,20,0,10,0,5,10],"sorcerer":[0,0,25,0,10,0,5,15],"dark_knight":[15,20,10,5,5,5,15,5],"troubadour_f":[0,0,10,20,10,15,0,15],"strategist":[0,0,15,5,10,20,0,15],"butler":[0,10,10,15,15,10,5,10],"maid":[0,10,10,15,15,10,5,10],"wolfssegner":[20,20,0,5,15,5,10,0],"dread_fighter":[15,15,5,5,15,0,5,20],"ballistician":[5,25,0,15,0,10,5,5],"dark_falcon":[0,10,15,5,15,15,0,20],"witch":[5,0,25,5,20,5,0,10],"lodestar":[15,10,0,20,10,25,5,5],"great_lord":[15,15,0,10,10,15,10,5],"vanguard":[20,20,0,5,5,10,15,0],"grandmaster":[10,15,15,15,5,0,5,15]},"corrinBoon":null,"friendshipCorrinKana":[],"partnerCorrinKana":[{"key":"corrin_m","subGroup":"partner-talent-corrin_m"}]};</script>
   <script src="../scripts/seal-ui.js"></script>
 </body>
 

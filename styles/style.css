@@ -149,7 +149,18 @@ a {
 .section-title,
 .select-group {
   line-height: var(--control-height);
+}
+
+.section-title {
+  margin: calc(var(--space-md) + var(--space-sm)) 0 0;
+}
+
+.select-group {
   margin: var(--space-md) 0 var(--space-sm);
+}
+
+.select-group.boon-bane-select {
+  margin-top: 0;
 }
 
 .section-title::after {
@@ -288,7 +299,7 @@ button.remove:focus-visible {
 }
 
 /* growth-rate table */
-.growth-table {
+.table {
   border-collapse: separate;
   border-spacing: 0;
   border: 2px solid var(--color-brown);
@@ -296,45 +307,48 @@ button.remove:focus-visible {
   overflow: hidden;
   text-align: center;
   font-size: var(--font-size-md);
+  margin-bottom: var(--space-sm);
+  width: 100%;
 }
 
-.growth-table th,
-.growth-table td {
+.table th,
+.table td {
   padding: var(--space-sm) var(--space-md);
 }
 
-.growth-table thead th {
+.table thead th {
   background-color: var(--color-brown);
   color: var(--color-tan);
   font-weight: 800;
 }
 
-.growth-table tbody td {
+.table tbody td {
   background-color: var(--color-tan);
   border-bottom: 1px solid var(--color-brown);
+  border-right: 1px dashed var(--color-brown);
   color: var(--color-brown);
 }
 
-.growth-table #class-growth-row td {
+.table tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.growth-table .row-label {
-  background-color: var(--color-tan);
-  color: var(--color-brown);
-  font-weight: 800;
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
+.table tbody td:last-child {
+  border-right: 0;
 }
 
-.growth-table .class-growth-select-container {
+.table .row-label {
+  border-right: 1px solid var(--color-brown);
+  font-weight: 800;
+}
+
+.table .select-container {
   background-color: var(--color-tan);
   padding: 0;
   padding-right: var(--space-xs);
 }
 
-.growth-table select {
+.table select {
   background-color: var(--color-tan);
   border: 2px solid var(--color-tan);
   color: var(--color-brown);
@@ -349,7 +363,7 @@ button.remove:focus-visible {
 .three-column-grid,
 .two-column-grid {
   display: grid;
-  gap: 0 var(--space-md);
+  gap: var(--space-md);
   align-items: stretch;
 }
 
@@ -361,17 +375,24 @@ button.remove:focus-visible {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.two-span-column {
+  grid-column: span 2;
+}
+
 @media (max-width: 1080px) {
 
   .three-column-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 740px) {
 
-  .three-column-grid,
-  .two-column-grid {
+  .three-column-grid{
     grid-template-columns: 1fr;
   }
 
