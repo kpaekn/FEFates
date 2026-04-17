@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 
+const Class = require("./models/Class");
 const Skill = require("./models/Skill");
 
 const DATA_DIR = __dirname;
@@ -19,9 +20,17 @@ function hydrateSkills(raw) {
   return result;
 }
 
+function hydrateClasses(raw) {
+  const result = {};
+  for (const [key, data] of Object.entries(raw)) {
+    result[key] = Class.fromJSON(key, data);
+  }
+  return result;
+}
+
 module.exports = {
   characters: loadJSON("characters.json"),
-  classes: loadJSON("classes.json"),
+  classes: hydrateClasses(loadJSON("classes.json")),
   skills: hydrateSkills(loadJSON("skills.json")),
   characterStats: loadJSON("character_stats.json"),
   classStats: loadJSON("class_stats.json"),

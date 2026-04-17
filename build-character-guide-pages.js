@@ -4,6 +4,8 @@ const fs = require("fs");
 const path = require("path");
 const Handlebars = require("handlebars");
 
+const Class = require("./data/models/Class");
+
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const ROOT = path.resolve(__dirname);
 const DIST_DIR = "character-guide";
@@ -230,43 +232,18 @@ const KANA_KEYS = new Set(["kana_m", "kana_f"]);
 const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
 
 // ─── Class-key helpers ────────────────────────────────────────────────────────
-/**
- * Resolve 'troubadour' → gender-specific key; pass all other keys through.
- * Uses the owning character's gender (not the recipient's).
- */
 function resolveClassKey(key, gender) {
-  if (
-    key === "troubadour" ||
-    key === "troubadour_m" ||
-    key === "troubadour_f"
-  ) {
-    return gender === "m" ? "troubadour_m" : "troubadour_f";
-  }
-  if (key === "monk" || key === "shrine_maiden") {
-    return gender === "m" ? "monk" : "shrine_maiden";
-  }
-  return key;
+  return Class.resolveKey(key, gender);
 }
 
-/**
- * Resolve the parallel class for a given class key and the RECIPIENT's gender.
- * Songstress has a two-value parallel: "troubadour_m, troubadour_f" —
- * index 0 for male recipient, index 1 for female.
- */
 function resolveParallel(classKey, recipientGender) {
-  const cls = classes[classKey];
-  if (!cls?.parallel) {
-    return classKey;
-  }
-  const parts = cls.parallel.split(",").map((s) => s.trim());
-  if (parts.length === 1) return parts[0];
-  return recipientGender === "m" ? parts[0] : parts[1];
+  return Class.resolveParallelKey(
+    classKey,
+    recipientGender,
+    classes,
+  );
 }
 
-/**
- * Turn a class key into a renderable object: { name, weapons[], skills[] }.
- * Adjusts "Nohr Prince(ss)" display name by gender.
- */
 function enrichClass(classKey, displayGender) {
   classKey = resolveClassKey(classKey, displayGender);
   const cls = classes[classKey];
@@ -275,26 +252,12 @@ function enrichClass(classKey, displayGender) {
     return { name: classKey, weapons: [], skills: [] };
   }
 
-  let name = cls.name;
-  if (classKey === "nohr_prince_ss") {
-    name = displayGender === "m" ? "Nohr Prince" : "Nohr Princess";
-  }
-
-  const weapons = (cls.weapons || []).map((w) => ({
-    weaponName: w.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-    iconPath: getWeaponIconPath(w),
-  }));
-
-  const skillList = (cls.skills || []).map((sk) => {
-      const skillData = skills[sk];
-      if (!skillData)
-        console.warn(`[warn] Unknown skill: ${sk} (in class ${classKey})`);
-      return skillData
-        ? skillData.toRenderObject(getSkillIconPath(sk))
-        : { name: sk, description: "", iconPath: getSkillIconPath(sk) };
-    });
-
-  return { name, weapons, skills: skillList };
+  return cls.toRenderObject({
+    displayGender,
+    skillsByKey: skills,
+    getWeaponIconPath,
+    getSkillIconPath,
+  });
 }
 
 /**
@@ -328,6 +291,7 @@ function getTalentOptions(gender) {
   const options = [];
   for (const [key, cls] of Object.entries(classes)) {
     if (cls.unique) continue; // unique classes not selectable as talents
+    if (cls.dlc) continue; // DLC classes are not selectable as talents
     if (!cls.promotion) continue; // promoted classes have no promotion field
     if (promotedKeys.has(key)) continue; // this IS a promoted class
     if (key === "troubadour_m" && gender === "f") continue;
@@ -675,7 +639,7 @@ function buildCharacterContext(charKey, char) {
     if (clsKey === "troubadour_f" && char.gender === "m") continue;
     if (clsKey === "monk" && char.gender === "f") continue;
     if (clsKey === "shrine_maiden" && char.gender === "m") continue;
-    const classGrowthKey = cls.growth ?? clsKey;
+    const classGrowthKey = cls.stats ?? clsKey;
     const classGrowth = classStats[classGrowthKey]?.growth;
     if (!classGrowth) continue;
     const normalizedClassGrowth = normalizeStatArray(classGrowth);

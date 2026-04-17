@@ -1,21 +1,7 @@
 {
   "nohr_prince_ss": {
-    "unique": true,
     "name": "Nohr Prince(ss)",
-    "weapons": ["sword", "dragon_stone"],
-    "promotion": ["hoshido_noble", "nohr_noble"],
-    "skills": ["nobility", "dragon_fang"]
-  },
-  "nohr_prince": {
     "unique": true,
-    "name": "Nohr Prince",
-    "weapons": ["sword", "dragon_stone"],
-    "promotion": ["hoshido_noble", "nohr_noble"],
-    "skills": ["nobility", "dragon_fang"]
-  },
-  "nohr_princess": {
-    "unique": true,
-    "name": "Nohr Princess",
     "weapons": ["sword", "dragon_stone"],
     "promotion": ["hoshido_noble", "nohr_noble"],
     "skills": ["nobility", "dragon_fang"]
@@ -31,8 +17,8 @@
     "skills": ["draconic_hex", "nohrian_trust"]
   },
   "songstress": {
-    "unique": true,
     "name": "Songstress",
+    "unique": true,
     "weapons": ["lance"],
     "skills": [
       "luck_4",
@@ -60,8 +46,8 @@
     "skills": ["seal_strength", "life_and_death"]
   },
   "villager": {
-    "unique": true,
     "name": "Villager",
+    "unique": true,
     "weapons": ["lance"],
     "skills": ["aptitude", "underdog"],
     "parallel": "apothecary"
@@ -145,7 +131,7 @@
     "weapons": ["staff"],
     "promotion": ["great_master", "onmyoji"],
     "skills": ["miracle", "rally_luck"],
-    "growth": "monk_shrine_maiden"
+    "stats": "monk_shrine_maiden"
   },
   "great_master": {
     "name": "Great Master",
@@ -157,7 +143,7 @@
     "weapons": ["staff"],
     "promotion": ["priestess", "onmyoji"],
     "skills": ["miracle", "rally_luck"],
-    "growth": "monk_shrine_maiden"
+    "stats": "monk_shrine_maiden"
   },
   "priestess": {
     "name": "Priestess",
@@ -194,16 +180,16 @@
     "skills": ["certain_blow", "bowfaire"]
   },
   "kitsune": {
-    "unique": true,
     "name": "Kitsune",
+    "unique": true,
     "weapons": ["beaststone"],
     "promotion": ["nine_tails"],
     "skills": ["evenhanded", "beastbane"],
     "parallel": "apothecary"
   },
   "nine_tails": {
-    "unique": true,
     "name": "Nine-Tails",
+    "unique": true,
     "weapons": ["beaststone"],
     "skills": ["even_better", "grisly_wound"]
   },
@@ -316,14 +302,14 @@
     "weapons": ["staff"],
     "promotion": ["strategist", "butler"],
     "skills": ["resistance_2", "gentilhomme"],
-    "growth": "troubadour"
+    "stats": "troubadour"
   },
   "troubadour_f": {
     "name": "Troubadour",
     "weapons": ["staff"],
     "promotion": ["strategist", "maid"],
     "skills": ["resistance_2", "demoiselle"],
-    "growth": "troubadour"
+    "stats": "troubadour"
   },
   "strategist": {
     "name": "Strategist",
@@ -334,65 +320,73 @@
     "name": "Butler",
     "weapons": ["dagger", "staff"],
     "skills": ["live_to_serve", "tomebreaker"],
-    "growth": "maid_butler"
+    "stats": "maid_butler"
   },
   "maid": {
     "name": "Maid",
     "weapons": ["dagger", "staff"],
     "skills": ["live_to_serve", "tomebreaker"],
-    "growth": "maid_butler"
+    "stats": "maid_butler"
   },
   "wolfskin": {
-    "unique": true,
     "name": "Wolfskin",
+    "unique": true,
     "weapons": ["beaststone"],
     "promotion": ["wolfssegner"],
     "skills": ["odd_shaped", "beastbane"],
     "parallel": "outlaw"
   },
   "wolfssegner": {
-    "unique": true,
     "name": "Wolfssegner",
+    "unique": true,
     "weapons": ["beaststone"],
     "skills": ["better_odds", "grisly_wound"]
   },
   "dread_fighter": {
     "name": "Dread Fighter",
+    "dlc": true,
     "weapons": ["sword", "axe", "dagger"],
     "skills": ["even_keel", "iron_will", "clarity", "aggressor"]
   },
   "ballistician": {
     "name": "Ballistician",
+    "dlc": true,
     "weapons": ["bow"],
     "skills": ["survey", "opportunity_shot", "rifled_barrel", "surefooted"]
   },
   "dark_falcon": {
     "name": "Dark Falcon",
+    "dlc": true,
     "weapons": ["lance", "tome"],
     "skills": ["speed_2", "relief", "rally_movement", "galeforce"]
   },
   "witch": {
     "name": "Witch",
+    "dlc": true,
     "weapons": ["tome"],
     "skills": ["shadowgift", "witchs_brew", "warp", "toxic_brew"]
   },
   "lodestar": {
     "name": "Lodestar",
+    "dlc": true,
     "weapons": ["sword"],
     "skills": ["dancing_blade", "charm", "dual_guarder", "speedtaker"]
   },
   "great_lord": {
     "name": "Great Lord",
+    "dlc": true,
     "weapons": ["sword", "lance"],
     "skills": ["dual_striker", "charm", "aether", "awakening"]
   },
   "vanguard": {
     "name": "Vanguard",
+    "dlc": true,
     "weapons": ["sword", "axe"],
     "skills": ["heavy_blade", "veteran_intuition", "aether", "strengthtaker"]
   },
   "grandmaster": {
     "name": "Grandmaster",
+    "dlc": true,
     "weapons": ["sword", "tome"],
     "skills": ["tactical_advice", "solidarity", "ignis", "rally_spectrum"]
   }

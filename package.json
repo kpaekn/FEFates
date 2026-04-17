@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "build": "node build-character-guide-pages.js",
-        "test": "node tests/test-skill-model.js"
+        "test": "node tests/test-skill-model.js && node tests/test-class-model.js"
     },
     "author": "",
     "license": "",
