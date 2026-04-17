@@ -103,7 +103,9 @@ const UNIQUE_CLASS_KEYS = new Set(
 );
 
 // ─── Corrin / Kana character keys ─────────────────────────────────────────────
-const CORRIN_KANA_KEYS = new Set(['corrin_m', 'corrin_f', 'kana_m', 'kana_f']);
+const CORRIN_KEYS = new Set(['corrin_m', 'corrin_f']);
+const KANA_KEYS = new Set(['kana_m', 'kana_f']);
+const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
 
 // ─── Class-key helpers ────────────────────────────────────────────────────────
 /**
@@ -456,6 +458,7 @@ function buildSealSection(char, sealType, supportKeys) {
 
 // ─── Per-character template context ──────────────────────────────────────────
 function buildCharacterContext(charKey, char) {
+    const isCorrin = CORRIN_KEYS.has(charKey);
     const isCorrinKana = CORRIN_KANA_KEYS.has(charKey);
     const pageTitle = `Fire Emblem Fates - Character Guides - ${char.name}`;
 
@@ -524,6 +527,7 @@ function buildCharacterContext(charKey, char) {
         characterName: char.name,
         indexHref: `./`,
         characterKey: charKey,
+        isCorrin,
         isCorrinKana,
         isChild,
         talentOptions,
@@ -539,6 +543,7 @@ function buildCharacterContext(charKey, char) {
         partnerPanels,
         hasSealSection: hasFriendship || hasPartner,
         pageConfig: {
+            isCorrin,
             isCorrinKana,
             isChild,
             hasFriendship,

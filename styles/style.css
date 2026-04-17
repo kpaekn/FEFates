@@ -1,30 +1,31 @@
 :root {
   --font-family: "Macondo", serif;
 
-  --control-height: 2rem;
-
   --font-size-xl: 1.4rem;
   --font-size-lg: 1.1rem;
   --font-size-md: 0.8rem;
   --font-size-sm: 0.7rem;
-
-  --font-select: 0.86rem;
 
   --space-lg: 1rem;
   --space-md: 0.5rem;
   --space-sm: 0.3rem;
   --space-xs: 0.2rem;
 
-  --color-brown: #310500;
+  --color-brown: #370600;
+  --color-light-brown: color-mix(in srgb, var(--color-brown), white 5%);
   --color-tan: #f0d9a5;
   --color-light-tan: color-mix(in srgb, var(--color-tan), white 40%);
   --color-blue: #213057;
   --color-dark-blue: color-mix(in srgb, var(--color-blue), black 70%);
+  --color-light-blue: color-mix(in srgb, var(--color-blue), white 5%);
+  --color-red: #a52121;
+  --color-light-red: color-mix(in srgb, var(--color-red), white 5%);
 
   --color-background: var(--color-dark-blue);
   --color-href: var(--color-blue);
 
   --border-radius: 0.4rem;
+  --control-height: 2rem;
 }
 
 body {
@@ -118,6 +119,8 @@ a {
   background-color: var(--color-tan);
   border-radius: var(--border-radius);
   text-decoration: none;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
 }
 
 .character-card img {
@@ -144,7 +147,7 @@ a {
 /* section-title and select-group need to be in sync */
 .section-title,
 .select-group {
-  line-height: 2rem;
+  line-height: var(--control-height);
   margin: var(--space-md) 0 var(--space-sm);
 }
 
@@ -163,20 +166,57 @@ a {
 .select-group {
   display: flex;
   gap: var(--space-md);
+  flex-grow: 1;
 }
 
 .select-group label {
   font-weight: 800;
 }
 
-select {
+.select-group select {
   background-color: var(--color-tan);
   border: 2px solid var(--color-brown);
   border-radius: var(--border-radius);
   color: var(--color-brown);
   font-size: var(--font-size-md);
   padding: 0 var(--space-md);
-  
+  flex-grow: 1;
+}
+
+.select-group button {
+  background-color: var(--color-brown);
+  border: 0;
+  border-radius: var(--border-radius);
+  color: var(--color-tan);
+  font-size: var(--font-size-md);
+  font-weight: 800;
+  padding: 0 var(--space-md);
+  cursor: pointer;
+  line-height: var(--control-height);
+  transition: background-color 0.2s ease;
+}
+
+button:hover,
+button:focus-visible {
+  background-color: var(--color-light-brown);
+}
+
+button.add {
+  background-color: var(--color-blue);
+}
+
+button.add:hover,
+button.add:focus-visible {
+  background-color: var(--color-light-blue);
+}
+
+button.remove {
+  background-color: var(--color-red);
+}
+
+button.remove:hover,
+button.remove:focus-visible {
+  background-color: var(--color-light-red);
 }
 
 /* panel */
@@ -203,6 +243,7 @@ select {
   font-size: var(--font-size-md);
   margin-bottom: var(--space-sm);
   padding: var(--space-xs) var(--space-md);
+  min-height: 8.5rem;
 }
 
 .class-block:not(:last-child) {

@@ -1,9 +1,31 @@
 (function () {
     var cfg = window.PAGE_CONFIG;
+    var cloneCounter = 0;
 
     function showGroup(group, key) {
-        document.querySelectorAll('[data-group="' + group + '"]').forEach(function (el) {
+        showGroupIn(document, group, key);
+    }
+
+    function showGroupIn(root, group, key) {
+        root.querySelectorAll('[data-group="' + group + '"]').forEach(function (el) {
             el.hidden = el.dataset.key !== key;
+        });
+    }
+
+    function bindFriendshipContainer(container) {
+        var sel = container.querySelector('select[name^="friendship-support"]');
+        sel.addEventListener('change', function () {
+            showGroupIn(container, 'friendship-panel', this.value);
+        });
+        showGroupIn(container, 'friendship-panel', sel.value);
+
+        cfg.friendshipCorrinKana.forEach(function (entry) {
+            var subSel = container.querySelector('select[name^="friendship-talent-' + entry.key + '"]');
+            if (!subSel) return;
+            subSel.addEventListener('change', function () {
+                showGroupIn(container, entry.subGroup, this.value);
+            });
+            showGroupIn(container, entry.subGroup, subSel.value);
         });
     }
 
@@ -16,18 +38,45 @@
     }
 
     if (cfg.hasFriendship) {
-        var friendSelect = document.getElementById('friendship-support');
-        friendSelect.addEventListener('change', function () {
-            showGroup('friendship-panel', this.value);
-        });
-        showGroup('friendship-panel', friendSelect.value);
+        var originalContainer = document.querySelector('.friendship-seal-container');
+        bindFriendshipContainer(originalContainer);
 
-        cfg.friendshipCorrinKana.forEach(function (entry) {
-            var subSel = document.getElementById('friendship-talent-' + entry.key);
-            subSel.addEventListener('change', function () {
-                showGroup(entry.subGroup, this.value);
+        document.addEventListener('click', function (e) {
+            var addBtn = e.target.closest('.add-friendship-support');
+            if (!addBtn) return;
+
+            cloneCounter++;
+            var clone = originalContainer.cloneNode(true);
+            var suffix = '-clone-' + cloneCounter;
+
+            clone.querySelectorAll('[id]').forEach(function (el) {
+                el.id = el.id + suffix;
             });
-            showGroup(entry.subGroup, subSel.value);
+            clone.querySelectorAll('[for]').forEach(function (el) {
+                el.setAttribute('for', el.getAttribute('for') + suffix);
+            });
+
+            var cloneSel = clone.querySelector('select[name^="friendship-support"]');
+            cloneSel.name = 'friendship-support' + suffix;
+            cloneSel.value = '-none-';
+
+            showGroupIn(clone, 'friendship-panel', '-none-');
+
+            var btn = clone.querySelector('.add-friendship-support');
+            btn.className = 'remove remove-friendship-support';
+            btn.textContent = '- Remove';
+
+            var grid = originalContainer.parentNode;
+            var allContainers = grid.querySelectorAll('.friendship-seal-container');
+            var last = allContainers[allContainers.length - 1];
+            last.parentNode.insertBefore(clone, last.nextSibling);
+            bindFriendshipContainer(clone);
+        });
+
+        document.addEventListener('click', function (e) {
+            var removeBtn = e.target.closest('.remove-friendship-support');
+            if (!removeBtn) return;
+            removeBtn.closest('.friendship-seal-container').remove();
         });
     }
 

@@ -25,7 +25,7 @@
             </nav>
         </header>
 
-         <section>
+        <section>
             <div class="three-column-grid">
               {{#each defaultPanels}}
               <div>
@@ -40,7 +40,7 @@
               {{#if isCorrinKana}}
                 <div>
                   <section class="select-group" aria-label="Corrin Talent selector">
-                    <label for="class-talent">Corrin Talent</label>
+                    <label for="class-talent">Talent</label>
                     <select id="class-talent" name="class-talent">
                         {{#each talentOptions}}
                         <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
@@ -57,7 +57,7 @@
                 <section class="select-group" aria-label="Parent selector">
                   <label for="parent-select">Parent</label>
                   <select id="parent-select" name="parent-select">
-                      <option value="-none-">- None -</option>
+                      <option value="-none-" selected>- None -</option>
                       {{#each parentOptions}}
                       <option value="{{key}}">{{displayName}}</option>
                       {{/each}}
@@ -77,22 +77,25 @@
             <h2 class="section-title">Friendship/Partner Seal Classes and Skills</h2>
             <div class="three-column-grid">
                 {{#if hasFriendship}}
-                <div>
+                <div class="friendship-seal-container">
                     <div class="select-group" aria-label="Friendship Seal Selector">
-                        <label for="friendship-support">Friendship Seal (A+)</label>
+                        <label for="friendship-support">Friendship (A+)</label>
                         <select id="friendship-support" name="friendship-support">
-                            <option value="-none-">- None -</option>
+                            <option value="-none-" selected>- None -</option>
                             {{#each friendshipOptions}}
                             <option value="{{key}}">{{displayName}}</option>
                             {{/each}}
                         </select>
+                        {{#if isCorrin}}
+                        <button class="add add-friendship-support">+ Add</button>
+                        {{/if}}
                     </div>
                     {{> placeholder-panel label="Friendship Seal" bodyText="(Select an A+ rank support partner)" group="friendship-panel" key="-none-"}}
                     {{#each friendshipPanels}}
                     {{#if isCorrinKana}}
                     <div data-group="friendship-panel" data-key="{{panelKey}}" hidden>
                         <div class="select-group" aria-label="Corrin Talent Selector">
-                            <label for="friendship-talent-{{panelKey}}">Corrin Talent</label>
+                            <label for="friendship-talent-{{panelKey}}">Talent</label>
                             <select id="friendship-talent-{{panelKey}}" name="friendship-talent-{{panelKey}}">
                                 {{#each talentOptions}}
                                 <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
@@ -113,9 +116,9 @@
                 <div>
                     <div class="select-group-container">
                         <div class="select-group" aria-label="Partner Seal Selector">
-                            <label for="partner-support">Partner Seal (S)</label>
+                            <label for="partner-support">Partner (S)</label>
                             <select id="partner-support" name="partner-support">
-                                <option value="-none-">- None -</option>
+                                <option value="-none-" selected>- None -</option>
                                 {{#each partnerOptions}}
                                 <option value="{{key}}">{{displayName}}</option>
                                 {{/each}}
@@ -124,7 +127,7 @@
                         {{#each partnerPanels}}
                         {{#if isCorrinKana}}
                         <div class="select-group" aria-label="Corrin Talent Selector" data-group="partner-talent-control" data-key="{{panelKey}}" hidden>
-                            <label for="partner-talent-{{panelKey}}">Corrin Talent</label>
+                            <label for="partner-talent-{{panelKey}}">Talent</label>
                             <select id="partner-talent-{{panelKey}}" name="partner-talent-{{panelKey}}">
                                 {{#each talentOptions}}
                                 <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>

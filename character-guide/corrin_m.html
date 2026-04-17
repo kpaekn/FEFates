@@ -25,7 +25,7 @@
             </nav>
         </header>
 
-         <section>
+        <section>
             <div class="three-column-grid">
               <div>
                 <h2 class="section-title">Default Classes and Skills</h2>
@@ -102,7 +102,7 @@
                     </section></article>              </div>
                 <div>
                   <section class="select-group" aria-label="Corrin Talent selector">
-                    <label for="class-talent">Corrin Talent</label>
+                    <label for="class-talent">Talent</label>
                     <select id="class-talent" name="class-talent">
                         <option value="apothecary" >Apothecary</option>
                         <option value="archer" >Archer</option>
@@ -1328,12 +1328,12 @@
 
         <section>
             <h2 class="section-title">Friendship/Partner Seal Classes and Skills</h2>
-            <div class="two-column-grid">
-                <div>
+            <div class="three-column-grid">
+                <div class="friendship-seal-container">
                     <div class="select-group" aria-label="Friendship Seal Selector">
-                        <label for="friendship-support">Friendship Seal (A+)</label>
+                        <label for="friendship-support">Friendship (A+)</label>
                         <select id="friendship-support" name="friendship-support">
-                            <option value="-none-">- None -</option>
+                            <option value="-none-" selected>- None -</option>
                             <option value="jakob">Jakob</option>
                             <option value="kaze">Kaze</option>
                             <option value="silas">Silas</option>
@@ -1369,6 +1369,7 @@
                             <option value="percy">Percy</option>
                             <option value="fuga">Fuga</option>
                         </select>
+                        <button class="add add-friendship-support">+ Add</button>
                     </div>
                     <article class="panel"  data-group="friendship-panel" data-key="-none-" >
                         <h3>Friendship Seal</h3>
@@ -3647,9 +3648,9 @@
                 <div>
                     <div class="select-group-container">
                         <div class="select-group" aria-label="Partner Seal Selector">
-                            <label for="partner-support">Partner Seal (S)</label>
+                            <label for="partner-support">Partner (S)</label>
                             <select id="partner-support" name="partner-support">
-                                <option value="-none-">- None -</option>
+                                <option value="-none-" selected>- None -</option>
                                 <option value="azura">Azura</option>
                                 <option value="felicia">Felicia</option>
                                 <option value="mozu">Mozu</option>
@@ -5953,7 +5954,7 @@
         </section>
     </main>
 
-    <script>window.PAGE_CONFIG={"isCorrinKana":true,"isChild":false,"hasFriendship":true,"hasPartner":true,"friendshipCorrinKana":[],"partnerCorrinKana":[]};</script>
+    <script>window.PAGE_CONFIG={"isCorrin":true,"isCorrinKana":true,"isChild":false,"hasFriendship":true,"hasPartner":true,"friendshipCorrinKana":[],"partnerCorrinKana":[]};</script>
     <script src="../scripts/seal-ui.js"></script>
 </body>
 
