@@ -298,11 +298,9 @@ function enrichClass(classKey, displayGender) {
       const skillData = skills[sk];
       if (!skillData)
         console.warn(`[warn] Unknown skill: ${sk} (in class ${classKey})`);
-      return {
-        name: skillData?.name ?? sk,
-        description: skillData?.description ?? "",
-        iconPath: getSkillIconPath(sk),
-      };
+      return skillData
+        ? skillData.toRenderObject(getSkillIconPath(sk))
+        : { name: sk, description: "", iconPath: getSkillIconPath(sk) };
     });
 
   return { name, weapons, skills: skillList };
