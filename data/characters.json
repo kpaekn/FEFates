@@ -199,7 +199,7 @@
         "gender": "f",
         "route": "birthright",
         "supports": {
-            "friendship": "azura, sakura, setsuna",
+            "friendship": "azura, sakura, setsuna, camilla",
             "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, kaden, leo, xander"
         },
         "adult": true,
@@ -435,7 +435,7 @@
         "class_set": "wyvern_rider, dark_mage",
         "gender": "f",
         "supports": {
-            "friendship": "elise, selena, beruka",
+            "friendship": "hinoka, elise, selena, beruka",
             "partner": "corrin_m, jakob, kaze, silas, takumi, ryoma, arthur, odin, niles, laslow, benny, keaton"
         },
         "adult": true,
