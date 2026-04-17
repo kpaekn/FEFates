@@ -250,7 +250,7 @@
         "weapons": "bow",
         "parallel": "archer",
         "promotion": "adventurer, bow_knight",
-        "skills": "movement_1"
+        "skills": "locktouch, movement_1"
     },
     "adventurer": {
         "name": "Adventurer",
