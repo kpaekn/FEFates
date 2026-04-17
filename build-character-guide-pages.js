@@ -211,8 +211,7 @@ function buildCharacterIndexSections() {
 const promotedKeys = new Set();
 for (const cls of Object.values(classes)) {
   if (cls.promotion) {
-    for (const k of cls.promotion.split(",").map((s) => s.trim()))
-      promotedKeys.add(k);
+    for (const k of cls.promotion) promotedKeys.add(k);
   }
 }
 
@@ -281,20 +280,12 @@ function enrichClass(classKey, displayGender) {
     name = displayGender === "m" ? "Nohr Prince" : "Nohr Princess";
   }
 
-  const weapons = (cls.weapons || "")
-    .split(",")
-    .map((w) => w.trim())
-    .filter(Boolean)
-    .map((w) => ({
-      weaponName: w.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-      iconPath: getWeaponIconPath(w),
-    }));
+  const weapons = (cls.weapons || []).map((w) => ({
+    weaponName: w.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+    iconPath: getWeaponIconPath(w),
+  }));
 
-  const skillList = (cls.skills || "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((sk) => {
+  const skillList = (cls.skills || []).map((sk) => {
       const skillData = skills[sk];
       if (!skillData)
         console.warn(`[warn] Unknown skill: ${sk} (in class ${classKey})`);
@@ -320,7 +311,7 @@ function resolveClassTree(rawKey, charGender) {
   }
   const result = [enrichClass(key, charGender)];
   if (cls.promotion) {
-    for (const promKey of cls.promotion.split(",").map((s) => s.trim())) {
+    for (const promKey of cls.promotion) {
       result.push(enrichClass(promKey, charGender));
     }
   }
