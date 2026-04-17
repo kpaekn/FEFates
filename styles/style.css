@@ -43,7 +43,7 @@ main.container {
   padding-bottom: var(--space-md);
 }
 
-main.container> section {
+main.container>section {
   margin-block-start: var(--space-md);
 }
 
@@ -307,12 +307,14 @@ button.remove:focus-visible {
 }
 
 @media (max-width: 1080px) {
+
   .three-column-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 740px) {
+
   .three-column-grid,
   .two-column-grid {
     grid-template-columns: 1fr;

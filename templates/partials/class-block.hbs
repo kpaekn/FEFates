@@ -1,19 +1,19 @@
 <section class="class-block">
-    <div class="class-heading">
-        <h3>{{name}}</h3>
-        {{#each weapons}}
-        <img class="weapon-icon" src="{{iconPath}}" alt="{{weaponName}}">
-        {{/each}}
+  <div class="class-heading">
+    <h3>{{name}}</h3>
+    {{#each weapons}}
+    <img class="weapon-icon" src="{{iconPath}}" alt="{{weaponName}}">
+    {{/each}}
+  </div>
+  <div class="skill-list">
+    {{#each skills}}
+    <div class="skill-row">
+      <img class="skill-icon" src="{{iconPath}}" alt="{{name}}">
+      <div class="skill-copy">
+        <strong>{{name}}</strong>
+        <span>{{description}}</span>
+      </div>
     </div>
-    <div class="skill-list">
-        {{#each skills}}
-        <div class="skill-row">
-            <img class="skill-icon" src="{{iconPath}}" alt="{{name}}">
-            <div class="skill-copy">
-                <strong>{{name}}</strong>
-                <span>{{description}}</span>
-            </div>
-        </div>
-        {{/each}}
-    </div>
+    {{/each}}
+  </div>
 </section>
