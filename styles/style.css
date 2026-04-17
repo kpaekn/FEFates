@@ -243,7 +243,7 @@ button.remove:focus-visible {
   font-size: var(--font-size-md);
   margin-bottom: var(--space-sm);
   padding: var(--space-xs) var(--space-md);
-  min-height: 8.5rem;
+  min-height: 4rem;
 }
 
 .class-block:not(:last-child) {

@@ -113,7 +113,12 @@ const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
  * Uses the owning character's gender (not the recipient's).
  */
 function resolveClassKey(key, gender) {
-    if (key === 'troubadour') return gender === 'm' ? 'troubadour_m' : 'troubadour_f';
+    if (key === 'troubadour' || key === 'troubadour_m' || key === 'troubadour_f') {
+        return gender === 'm' ? 'troubadour_m' : 'troubadour_f';
+    }
+    if (key === 'monk' || key === 'shrine_maiden') {
+        return gender === 'm' ? 'monk' : 'shrine_maiden';
+    }
     return key;
 }
 
@@ -205,6 +210,8 @@ function getTalentOptions(gender) {
         if (promotedKeys.has(key)) continue; // this IS a promoted class
         if (key === 'troubadour_m' && gender === 'f') continue;
         if (key === 'troubadour_f' && gender === 'm') continue;
+        if (key === 'monk' && gender === 'f') continue;
+        if (key === 'shrine_maiden' && gender === 'm') continue;
         options.push({ key, name: cls.name });
     }
     options.sort((a, b) => a.name.localeCompare(b.name));
@@ -349,7 +356,11 @@ function resolveChildInheritedClassKey(child, varParentKey) {
                 child.gender,
             );
         if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
-            return resolveClassKey(varParentClassKeys[1], varParent.gender);
+            const fallback = resolveClassKey(varParentClassKeys[1], varParent.gender);
+            if (fallback === childFirstKey) {
+                return resolveParallel(candidate, child.gender);
+            }
+            return fallback;
         }
     }
 
