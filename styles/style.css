@@ -227,10 +227,6 @@ button.remove:focus-visible {
   color: var(--color-brown);
 }
 
-.class-panel {
-  min-height: 24rem;
-}
-
 .panel>h3 {
   background-color: var(--color-brown);
   color: var(--color-tan);

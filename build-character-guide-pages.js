@@ -571,9 +571,11 @@ function buildCharacterContext(charKey, char) {
 
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper('json', (value) => JSON.stringify(value));
-Handlebars.registerHelper('or', function (...args) {
-    args.pop(); // Handlebars passes the options object as the last argument.
-    return args.some(Boolean);
+Handlebars.registerHelper('hidden', (value) => value ? 'hidden' : null);
+Handlebars.registerHelper('data-group', (...args) => {
+    const group = args[0];
+    const key = args[1];
+    return group ? `data-group="${group}" data-key="${key}"` : null;
 });
 Handlebars.registerPartial(
     'class-block',

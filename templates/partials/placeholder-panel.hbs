@@ -1,6 +1,6 @@
-<article class="panel" {{#if group}} data-group="{{group}}" data-key="{{key}}" {{/if}}{{#if isHidden}} hidden{{/if}}>
-    <h3>{{label}}</h3>
-    <section class="class-block">
-        <div>{{bodyText}}</div>
-    </section>
+<article class="panel" {{{data-group group key}}} {{{hidden isHidden}}}>
+  <h3>{{label}}</h3>
+  <section class="class-block">
+    <div>{{bodyText}}</div>
+  </section>
 </article>
