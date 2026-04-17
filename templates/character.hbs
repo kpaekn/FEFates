@@ -27,6 +27,36 @@
 
     <section>
       <h2 class="section-title">Growth Rates</h2>
+      <table class="growth-table">
+        <thead>
+          <tr>
+            <th></th>
+            {{#each growthRates}}
+            <th>{{stat}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Base</td>
+            {{#each growthRates}}
+            <td>{{value}}%</td>
+            {{/each}}
+          </tr>
+          <tr id="class-growth-row">
+            <td class="row-label class-growth-select-container">
+              <select id="class-growth-select" name="class-growth-select">
+                {{#each classGrowthOptions}}
+                <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
+                {{/each}}
+              </select>
+            </td>
+            {{#each growthRates}}
+            <td data-class-growth-idx="{{@index}}"></td>
+            {{/each}}
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>

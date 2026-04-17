@@ -2,6 +2,26 @@
   var cfg = window.PAGE_CONFIG;
   var cloneCounter = 0;
 
+  // ── Growth-rate class dropdown ───────────────────────────────────────────
+  function updateClassGrowth(classKey) {
+    var classGrowth = cfg.classGrowthMap[classKey];
+    if (!classGrowth) return;
+    var cells = document.querySelectorAll('[data-class-growth-idx]');
+    cells.forEach(function (td) {
+      var i = Number(td.dataset.classGrowthIdx);
+      var total = cfg.baseGrowth[i] + classGrowth[i];
+      td.textContent = total + '%';
+    });
+  }
+
+  var classGrowthSelect = document.getElementById('class-growth-select');
+  if (classGrowthSelect) {
+    classGrowthSelect.addEventListener('change', function () {
+      updateClassGrowth(this.value);
+    });
+    updateClassGrowth(classGrowthSelect.value);
+  }
+
   function showGroup(group, key) {
     showGroupIn(document, group, key);
   }

@@ -23,6 +23,9 @@ const classes = JSON.parse(
 const skills = JSON.parse(
   fs.readFileSync(path.join(DATA_DIR, "skills.json"), "utf8"),
 );
+const growth = JSON.parse(
+  fs.readFileSync(path.join(DATA_DIR, "growth.json"), "utf8"),
+);
 
 const ROUTE_ORDER = ["all", "birthright", "conquest", "revelation"];
 const ROUTE_TITLES = {
@@ -524,16 +527,56 @@ function buildCharacterContext(charKey, char) {
   const isCorrinKana = CORRIN_KANA_KEYS.has(charKey);
   const pageTitle = `Fire Emblem Fates - Character Guides - ${char.name}`;
 
+  const classSetKeys = char.class_set
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  // Growth rates
+  const STAT_LABELS = ["HP", "Str", "Mag", "Skl", "Spd", "Lck", "Def", "Res"];
+  const STAT_KEYS = ["hp", "str", "mag", "skl", "spd", "lck", "def", "res"];
+  const growthKey = char.growth ?? charKey;
+  const charGrowth = growth[growthKey];
+  const growthRates = charGrowth
+    ? STAT_KEYS.map((k, i) => ({ stat: STAT_LABELS[i], value: charGrowth[k] }))
+    : [];
+
+  // Class growth dropdown options: all non-unique classes + unique classes in this character's class_set
+  const charUniqueKeys = new Set(
+    classSetKeys
+      .map((k) => resolveClassKey(k, char.gender))
+      .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
+  );
+  const defaultClassKey = char.starting_class
+    ?? resolveClassKey(classSetKeys[0], char.gender);
+
+  const classGrowthOptions = [];
+  const classGrowthMap = {};
+  for (const [clsKey, cls] of Object.entries(classes)) {
+    if (cls.unique && !charUniqueKeys.has(clsKey)) continue;
+    if (clsKey === "troubadour_m" && char.gender === "f") continue;
+    if (clsKey === "troubadour_f" && char.gender === "m") continue;
+    if (clsKey === "monk" && char.gender === "f") continue;
+    if (clsKey === "shrine_maiden" && char.gender === "m") continue;
+    const clsGrowthKey = cls.growth ?? clsKey;
+    const clsGrowth = growth[clsGrowthKey];
+    if (!clsGrowth) continue;
+    const enriched = enrichClass(clsKey, char.gender);
+    classGrowthOptions.push({
+      key: clsKey,
+      name: enriched.name,
+      selected: clsKey === defaultClassKey,
+    });
+    classGrowthMap[clsKey] = STAT_KEYS.map((k) => clsGrowth[k]);
+  }
+  classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
+
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
   const talentOptions = isCorrinKana ? getTalentOptions(char.gender) : [];
 
   // ── Default class panels ──────────────────────────────────────────────────
   // First class-set key → "Default Class Set"
   // Subsequent keys     → "Heart Seal - {base class name}"
-  const classSetKeys = char.class_set
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
   const defaultPanels = classSetKeys.map((rawKey, i) => {
     const resolvedKey = resolveClassKey(rawKey, char.gender);
     const baseCls = classes[resolvedKey];
@@ -590,6 +633,8 @@ function buildCharacterContext(charKey, char) {
     characterName: char.name,
     indexHref: `./`,
     characterKey: charKey,
+    growthRates,
+    classGrowthOptions,
     isCorrin,
     isCorrinKana,
     isChild,
@@ -611,6 +656,8 @@ function buildCharacterContext(charKey, char) {
       isChild,
       hasFriendship,
       hasPartner,
+      baseGrowth: charGrowth ? STAT_KEYS.map((k) => charGrowth[k]) : [],
+      classGrowthMap,
       friendshipCorrinKana: friendshipPanels
         .filter((p) => p.isCorrinKana)
         .map((p) => ({ key: p.panelKey, subGroup: p.talentSubGroup })),

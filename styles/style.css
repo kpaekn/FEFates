@@ -2,7 +2,7 @@
   --font-family: "Macondo", serif;
 
   --font-size-xl: 1.4rem;
-  --font-size-lg: 1.1rem;
+  --font-size-lg: 1rem;
   --font-size-md: 0.8rem;
   --font-size-sm: 0.7rem;
 
@@ -14,6 +14,7 @@
   --color-brown: #370600;
   --color-light-brown: color-mix(in srgb, var(--color-brown), white 5%);
   --color-tan: #f0d9a5;
+  --color-dark-tan: color-mix(in srgb, var(--color-tan), black 40%);
   --color-light-tan: color-mix(in srgb, var(--color-tan), white 40%);
   --color-blue: #213057;
   --color-dark-blue: color-mix(in srgb, var(--color-blue), black 70%);
@@ -284,6 +285,60 @@ button.remove:focus-visible {
 
 .skill-copy span {
   line-height: 1.2;
+}
+
+/* growth-rate table */
+.growth-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid var(--color-brown);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+.growth-table th,
+.growth-table td {
+  padding: var(--space-sm) var(--space-md);
+}
+
+.growth-table thead th {
+  background-color: var(--color-brown);
+  color: var(--color-tan);
+  font-weight: 800;
+}
+
+.growth-table tbody td {
+  background-color: var(--color-tan);
+  border-bottom: 1px solid var(--color-brown);
+  color: var(--color-brown);
+}
+
+.growth-table #class-growth-row td {
+  border-bottom: 0;
+}
+
+.growth-table .row-label {
+  background-color: var(--color-tan);
+  color: var(--color-brown);
+  font-weight: 800;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.growth-table .class-growth-select-container {
+  background-color: var(--color-tan);
+  padding: 0;
+  padding-right: var(--space-xs);
+}
+
+.growth-table select {
+  background-color: var(--color-tan);
+  border: 2px solid var(--color-tan);
+  color: var(--color-brown);
+  padding: var(--space-sm);
 }
 
 [hidden] {

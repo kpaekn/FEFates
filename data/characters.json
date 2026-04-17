@@ -40,6 +40,7 @@
     "felicia": {
         "name": "Felicia",
         "class_set": "troubadour, mercenary",
+        "starting_class": "maid",
         "gender": "f",
         "route": "all",
         "supports": {
@@ -52,6 +53,7 @@
     "jakob": {
         "name": "Jakob",
         "class_set": "troubadour, cavalier",
+        "starting_class": "butler",
         "gender": "m",
         "route": "all",
         "supports": {
@@ -88,6 +90,7 @@
     "shura": {
         "name": "Shura",
         "class_set": "outlaw, ninja, fighter",
+        "starting_class": "adventurer",
         "gender": "m",
         "route": "all",
         "supports": {
@@ -100,6 +103,7 @@
     "izana": {
         "name": "Izana",
         "class_set": "monk, samurai, apothecary",
+        "starting_class": "onmyoji",
         "gender": "m",
         "route": "all",
         "supports": {
@@ -292,6 +296,7 @@
     "reina": {
         "name": "Reina",
         "class_set": "sky_knight, diviner, ninja",
+        "starting_class": "kinshi_knight",
         "gender": "f",
         "supports": {
             "partner": "corrin_m"
@@ -315,6 +320,7 @@
     "ryoma": {
         "name": "Ryoma",
         "class_set": "samurai, sky_knight",
+        "starting_class": "swordmaster",
         "gender": "m",
         "route": "birthright",
         "supports": {
@@ -327,6 +333,7 @@
     "scarlet": {
         "name": "Scarlet",
         "class_set": "wyvern_rider, outlaw, knight",
+        "starting_class": "wyvern_lord",
         "gender": "f",
         "supports": {
             "partner": "corrin_m"
@@ -338,6 +345,7 @@
     "yukimura": {
         "name": "Yukimura",
         "class_set": "apothecary, samurai, monk",
+        "starting_class": "mechanist",
         "gender": "m",
         "supports": {
             "partner": "corrin_f"
@@ -349,6 +357,7 @@
     "gunter": {
         "name": "Gunter",
         "class_set": "cavalier, mercenary, wyvern_rider",
+        "starting_class": "great_knight",
         "gender": "m",
         "supports": {
             "friendship": "jakob",
@@ -433,6 +442,7 @@
     "camilla": {
         "name": "Camilla",
         "class_set": "wyvern_rider, dark_mage",
+        "starting_class": "malig_knight",
         "gender": "f",
         "supports": {
             "friendship": "hinoka, elise, selena, beruka",
@@ -517,6 +527,7 @@
     "leo": {
         "name": "Leo",
         "class_set": "dark_mage, troubadour",
+        "starting_class": "dark_knight",
         "gender": "m",
         "supports": {
             "friendship": "odin, niles, xander",
@@ -541,6 +552,7 @@
     "xander": {
         "name": "Xander",
         "class_set": "cavalier, wyvern_rider",
+        "starting_class": "paladin",
         "gender": "m",
         "supports": {
             "friendship": "kaze, laslow, leo",
@@ -553,6 +565,7 @@
     "flora": {
         "name": "Flora",
         "class_set": "troubadour, dark_mage, mercenary",
+        "starting_class": "maid",
         "gender": "f",
         "supports": {
             "friendship": "felicia",
