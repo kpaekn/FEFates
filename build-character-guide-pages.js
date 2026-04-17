@@ -8,30 +8,13 @@ const Handlebars = require("handlebars");
 const ROOT = path.resolve(__dirname);
 const DIST_DIR = "character-guide";
 const DIST = path.join(ROOT, DIST_DIR);
-const DATA_DIR = path.join(ROOT, "data");
 const IMG_SKILLS = path.join(ROOT, "images", "icon", "skills");
 const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const characters = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "characters.json"), "utf8"),
-);
-const classes = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "classes.json"), "utf8"),
-);
-const skills = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "skills.json"), "utf8"),
-);
-const characterStats = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "character_stats.json"), "utf8"),
-);
-const classStats = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "class_stats.json"), "utf8"),
-);
-const boonBaneStats = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "boon_bane_stats.json"), "utf8"),
-);
+const { characters, classes, skills, characterStats, classStats, boonBaneStats } =
+  require("./data/database");
 
 const Stat = function(HP, Str, Mag, Skl, Spd, Lck, Def, Res) {
 	this.HP = HP;

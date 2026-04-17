@@ -1,9 +1,23 @@
 {
     "nohr_prince_ss": {
+        "unique": true,
         "name": "Nohr Prince(ss)",
         "weapons": "sword, dragon_stone",
         "promotion": "hoshido_noble, nohr_noble",
+        "skills": "nobility, dragon_fang"
+    },
+    "nohr_prince": {
         "unique": true,
+        "name": "Nohr Prince",
+        "weapons": "sword, dragon_stone",
+        "promotion": "hoshido_noble, nohr_noble",
+        "skills": "nobility, dragon_fang"
+    },
+    "nohr_princess": {
+        "unique": true,
+        "name": "Nohr Princess",
+        "weapons": "sword, dragon_stone",
+        "promotion": "hoshido_noble, nohr_noble",
         "skills": "nobility, dragon_fang"
     },
     "hoshido_noble": {
@@ -17,18 +31,19 @@
         "skills": "draconic_hex, nohrian_trust"
     },
     "songstress": {
+        "unique": true,
         "name": "Songstress",
         "weapons": "lance",
-        "parallel": "troubadour_m, troubadour_f",
         "skills": "luck_4, inspiring_song, voice_of_peace, foreign_princess",
-        "unique": true
+        "parallel": "troubadour_m, troubadour_f"
     },
     "samurai": {
+        "unique": true,
         "name": "Samurai",
         "weapons": "sword",
-        "parallel": "mercenary",
         "promotion": "swordmaster, master_of_arms",
-        "skills": "duelists_blow, vantage"
+        "skills": "duelists_blow, vantage",
+        "parallel": "mercenary"
     },
     "swordmaster": {
         "name": "Swordmaster",
@@ -41,11 +56,11 @@
         "skills": "seal_strength, life_and_death"
     },
     "villager": {
+        "unique": true,
         "name": "Villager",
         "weapons": "lance",
-        "parallel": "apothecary",
         "skills": "aptitude, underdog",
-        "unique": true
+        "parallel": "apothecary"
     },
     "apothecary": {
         "name": "Apothecary",
@@ -66,9 +81,9 @@
     "ninja": {
         "name": "Ninja",
         "weapons": "dagger",
-        "parallel": "cavalier",
         "promotion": "master_ninja, mechanist",
-        "skills": "locktouch, poison_strike"
+        "skills": "locktouch, poison_strike",
+        "parallel": "cavalier"
     },
     "master_ninja": {
         "name": "Master Ninja",
@@ -78,9 +93,9 @@
     "oni_savage": {
         "name": "Oni Savage",
         "weapons": "axe",
-        "parallel": "fighter",
         "promotion": "oni_chieftain, blacksmith",
-        "skills": "seal_resistance, shove"
+        "skills": "seal_resistance, shove",
+        "parallel": "fighter"
     },
     "oni_chieftain": {
         "name": "Oni Chieftain",
@@ -95,9 +110,9 @@
     "spear_fighter": {
         "name": "Spear Fighter",
         "weapons": "lance",
-        "parallel": "knight",
         "promotion": "spear_master, basara",
-        "skills": "seal_defence, swap"
+        "skills": "seal_defence, swap",
+        "parallel": "knight"
     },
     "spear_master": {
         "name": "Spear Master",
@@ -112,9 +127,9 @@
     "diviner": {
         "name": "Diviner",
         "weapons": "tome",
-        "parallel": "dark_mage",
         "promotion": "onmyoji, basara",
-        "skills": "magic_2, future_sight"
+        "skills": "magic_2, future_sight",
+        "parallel": "dark_mage"
     },
     "onmyoji": {
         "name": "Onmyoji",
@@ -148,9 +163,9 @@
     "sky_knight": {
         "name": "Sky Knight",
         "weapons": "lance",
-        "parallel": "wyvern_rider",
         "promotion": "falcon_knight, kinshi_knight",
-        "skills": "darting_blow, camaraderie"
+        "skills": "darting_blow, camaraderie",
+        "parallel": "wyvern_rider"
     },
     "falcon_knight": {
         "name": "Falcon Knight",
@@ -165,9 +180,9 @@
     "archer": {
         "name": "Archer",
         "weapons": "bow",
-        "parallel": "outlaw",
         "promotion": "sniper, kinshi_knight",
-        "skills": "skill_2, quick_draw"
+        "skills": "skill_2, quick_draw",
+        "parallel": "outlaw"
     },
     "sniper": {
         "name": "Sniper",
@@ -175,14 +190,15 @@
         "skills": "certain_blow, bowfaire"
     },
     "kitsune": {
+        "unique": true,
         "name": "Kitsune",
         "weapons": "beaststone",
-        "parallel": "apothecary",
         "promotion": "nine_tails",
         "skills": "evenhanded, beastbane",
-        "unique": true
+        "parallel": "apothecary"
     },
     "nine_tails": {
+        "unique": true,
         "name": "Nine-Tails",
         "weapons": "beaststone",
         "skills": "even_better, grisly_wound"
@@ -190,9 +206,9 @@
     "cavalier": {
         "name": "Cavalier",
         "weapons": "sword, lance",
-        "parallel": "ninja",
         "promotion": "paladin, great_knight",
-        "skills": "elbow_room, shelter"
+        "skills": "elbow_room, shelter",
+        "parallel": "ninja"
     },
     "paladin": {
         "name": "Paladin",
@@ -207,9 +223,9 @@
     "knight": {
         "name": "Knight",
         "weapons": "lance",
-        "parallel": "spear_fighter",
         "promotion": "general, great_knight",
-        "skills": "defence_2, natural_cover"
+        "skills": "defence_2, natural_cover",
+        "parallel": "spear_fighter"
     },
     "general": {
         "name": "General",
@@ -219,9 +235,9 @@
     "fighter": {
         "name": "Fighter",
         "weapons": "axe",
-        "parallel": "oni_savage",
         "promotion": "berserker, hero",
-        "skills": "hp_5, gamble"
+        "skills": "hp_5, gamble",
+        "parallel": "oni_savage"
     },
     "berserker": {
         "name": "Berserker",
@@ -236,9 +252,9 @@
     "mercenary": {
         "name": "Mercenary",
         "weapons": "sword",
-        "parallel": "samurai",
         "promotion": "hero, bow_knight",
-        "skills": "good_fortune, strong_riposte"
+        "skills": "good_fortune, strong_riposte",
+        "parallel": "samurai"
     },
     "bow_knight": {
         "name": "Bow Knight",
@@ -248,9 +264,9 @@
     "outlaw": {
         "name": "Outlaw",
         "weapons": "bow",
-        "parallel": "archer",
         "promotion": "adventurer, bow_knight",
-        "skills": "locktouch, movement_1"
+        "skills": "locktouch, movement_1",
+        "parallel": "archer"
     },
     "adventurer": {
         "name": "Adventurer",
@@ -260,9 +276,9 @@
     "wyvern_rider": {
         "name": "Wyvern Rider",
         "weapons": "axe",
-        "parallel": "sky_knight",
         "promotion": "wyvern_lord, malig_knight",
-        "skills": "strength_2, lunge"
+        "skills": "strength_2, lunge",
+        "parallel": "sky_knight"
     },
     "wyvern_lord": {
         "name": "Wyvern Lord",
@@ -277,9 +293,9 @@
     "dark_mage": {
         "name": "Dark Mage",
         "weapons": "tome",
-        "parallel": "diviner",
         "promotion": "sorcerer, dark_knight",
-        "skills": "heartseeker, malefic_aura"
+        "skills": "heartseeker, malefic_aura",
+        "parallel": "diviner"
     },
     "sorcerer": {
         "name": "Sorcerer",
@@ -323,14 +339,15 @@
         "growth": "maid_butler"
     },
     "wolfskin": {
+        "unique": true,
         "name": "Wolfskin",
         "weapons": "beaststone",
-        "parallel": "outlaw",
         "promotion": "wolfssegner",
         "skills": "odd_shaped, beastbane",
-        "unique": true
+        "parallel": "outlaw"
     },
     "wolfssegner": {
+        "unique": true,
         "name": "Wolfssegner",
         "weapons": "beaststone",
         "skills": "better_odds, grisly_wound"
