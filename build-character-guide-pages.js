@@ -551,7 +551,7 @@ function buildCharacterContext(character) {
   }
 
   // ── Child parent dropdown ──────────────────────────────────────────────────
-  const isChild = !!character.parent;
+  const isChild = character.isChild();
   let parentOptions = [];
   let parentPanels = [];
   if (isChild) {
