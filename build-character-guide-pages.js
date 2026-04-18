@@ -116,9 +116,7 @@ function getTalentOptions(gender) {
     options.push({ key: resolvedClass.key, name: resolvedClass.name });
   }
   options.sort((a, b) => a.name.localeCompare(b.name));
-  const defaultKey = options.some((o) => o.key === "samurai")
-    ? "samurai"
-    : options[0]?.key;
+  const defaultKey = options.some((o) => o.key === "samurai") ? "samurai" : options[0]?.key;
   return options.map((opt) => ({ ...opt, selected: opt.key === defaultKey }));
 }
 
@@ -147,10 +145,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
   }
 
   const charFirstKey = getResolvedClassKey(char.classSet[0], char.gender);
-  const partnerFirstKey = getResolvedClassKey(
-    partner.classSet[0],
-    partner.gender,
-  );
+  const partnerFirstKey = getResolvedClassKey(partner.classSet[0], partner.gender);
 
   const isPartnerCorrinKana = partner.isCorrinOrKana();
 
@@ -158,9 +153,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
   let partnerSecondKey;
   if (isPartnerCorrinKana) {
     if (!partnerTalentKey) {
-      console.warn(
-        `[warn] Corrin/Kana partner ${partnerKey} requires a talent key`,
-      );
+      console.warn(`[warn] Corrin/Kana partner ${partnerKey} requires a talent key`);
       return null;
     }
     // Talent key is already gender-resolved (from getTalentOptions for that Corrin/Kana)
@@ -209,12 +202,7 @@ function buildSealClasses(char, partnerKey, partnerTalentKey) {
  * Applies Cases B, B+A, A, and Normal (same logic as seal resolution).
  * Does NOT handle Corrin/Kana donors — callers short-circuit those first.
  */
-function resolveParentContribution(
-  childFirstKey,
-  donorClassKeys,
-  donorGender,
-  childGender,
-) {
+function resolveParentContribution(childFirstKey, donorClassKeys, donorGender, childGender) {
   const donorFirstKey = getResolvedClassKey(donorClassKeys[0], donorGender);
   if (donorClassKeys.length < 2) return donorFirstKey;
   const donorSecondKey = getResolvedClassKey(donorClassKeys[1], donorGender);
@@ -259,29 +247,16 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     return null;
   }
   const varParentClassKeys = varParent.classSet;
-  const candidate = resolveParentContribution(
-    childFirstKey,
-    varParentClassKeys,
-    varParent.gender,
-    child.gender,
-  );
+  const candidate = resolveParentContribution(childFirstKey, varParentClassKeys, varParent.gender, child.gender);
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = child.parent;
   if (fixedParent) {
     const fixedContribution = fixedParent.isCorrinOrKana()
       ? "nohr_prince_ss"
-      : resolveParentContribution(
-          childFirstKey,
-          fixedParent.classSet,
-          fixedParent.gender,
-          child.gender,
-        );
+      : resolveParentContribution(childFirstKey, fixedParent.classSet, fixedParent.gender, child.gender);
     if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
-      const fallback = getResolvedClassKey(
-        varParentClassKeys[1],
-        varParent.gender,
-      );
+      const fallback = getResolvedClassKey(varParentClassKeys[1], varParent.gender);
       if (fallback === childFirstKey) {
         return resolveParallel(candidate, child.gender);
       }
@@ -354,8 +329,7 @@ function parseSupportList(list) {
  */
 function buildSealSection(char, sealType, supportKeys) {
   const panelGroup = `${sealType}-panel`;
-  const sealLabel =
-    sealType === "friendship" ? "Friendship Seal" : "Partner Seal";
+  const sealLabel = sealType === "friendship" ? "Friendship Seal" : "Partner Seal";
   const options = [];
   const panels = [];
 
@@ -423,14 +397,8 @@ function buildCharacterContext(character) {
   const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
   const corrinBoonBane = isCorrin ? boonBaneStats.get(statKey) : null;
-  const corrinGrowthBoonMap =
-    isCorrin && corrinBoonBane?.growth
-      ? corrinBoonBane.growth.boon.toModifierMap()
-      : null;
-  const corrinGrowthBaneMap =
-    isCorrin && corrinBoonBane?.growth
-      ? corrinBoonBane.growth.bane.toModifierMap()
-      : null;
+  const corrinGrowthBoonMap = isCorrin && corrinBoonBane?.growth ? corrinBoonBane.growth.boon.toModifierMap() : null;
+  const corrinGrowthBaneMap = isCorrin && corrinBoonBane?.growth ? corrinBoonBane.growth.bane.toModifierMap() : null;
   const initialGrowthValues =
     isCorrin && corrinGrowthBoonMap && corrinGrowthBaneMap
       ? Stat.applyModifiers(
@@ -446,14 +414,9 @@ function buildCharacterContext(character) {
 
   // Class growth dropdown options: all non-unique classes + unique classes in this character's class_set
   const charUniqueKeys = new Set(
-    classSetKeys
-      .map((k) => getResolvedClassKey(k, character.gender))
-      .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
+    classSetKeys.map((k) => getResolvedClassKey(k, character.gender)).filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
-  const defaultClassKey = getResolvedClassKey(
-    character.startingClass ?? classSetKeys[0],
-    character.gender,
-  );
+  const defaultClassKey = getResolvedClassKey(character.startingClass ?? classSetKeys[0], character.gender);
 
   const classGrowthOptions = [];
   const classGrowthMap = {};
@@ -491,13 +454,9 @@ function buildCharacterContext(character) {
     return rows;
   })();
   const corrinBaseStatBoonMap =
-    isCorrin && corrinBoonBane?.base
-      ? Stat.singleModifierMap(corrinBoonBane.base.boon)
-      : null;
+    isCorrin && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.boon) : null;
   const corrinBaseStatBaneMap =
-    isCorrin && corrinBoonBane?.base
-      ? Stat.singleModifierMap(corrinBoonBane.base.bane)
-      : null;
+    isCorrin && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.bane) : null;
   const baseStatsRows = rawBaseStatsRows.map((row) => {
     if (!isCorrin || !corrinBaseStatBoonMap || !corrinBaseStatBaneMap) {
       return row;
@@ -513,12 +472,8 @@ function buildCharacterContext(character) {
     };
   });
   const baseStatsHeaders = ["Level", ...Stat.LABELS];
-  const corrinBoonOptions = isCorrin
-    ? Stat.getSelectOptions(CORRIN_DEFAULT_BOON)
-    : [];
-  const corrinBaneOptions = isCorrin
-    ? Stat.getSelectOptions(CORRIN_DEFAULT_BANE)
-    : [];
+  const corrinBoonOptions = isCorrin ? Stat.getSelectOptions(CORRIN_DEFAULT_BOON) : [];
+  const corrinBaneOptions = isCorrin ? Stat.getSelectOptions(CORRIN_DEFAULT_BANE) : [];
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
   const talentOptions = isCorrinKana ? getTalentOptions(character.gender) : [];
@@ -618,9 +573,7 @@ function buildCharacterContext(character) {
             growthBaneMap: corrinGrowthBaneMap,
             baseStatBoonMap: corrinBaseStatBoonMap,
             baseStatBaneMap: corrinBaseStatBaneMap,
-            baseStatRows: rawBaseStatsRows.map((row) =>
-              Stat.KEYS.map((key) => row[key] ?? 0),
-            ),
+            baseStatRows: rawBaseStatsRows.map((row) => Stat.KEYS.map((key) => row[key] ?? 0)),
           }
         : null,
       friendshipCorrinKana: friendshipPanels
@@ -636,38 +589,21 @@ function buildCharacterContext(character) {
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper("json", (value) => JSON.stringify(value));
 Handlebars.registerHelper("hidden", (value) => (value ? "hidden" : null));
-Handlebars.registerHelper(
-  "chara-portrait-path",
-  (name) => `../images/portrait/${name}.png`,
-);
-Handlebars.registerHelper(
-  "skill-icon-path",
-  (skill) => `../images/icon/skills/${skill}.png`,
-);
-Handlebars.registerHelper(
-  "weapon-icon-path",
-  (weapon) => `../images/icon/weapons/${weapon}.png`,
-);
+Handlebars.registerHelper("chara-portrait-path", (name) => `../images/portrait/${name}.png`);
+Handlebars.registerHelper("skill-icon-path", (skill) => `../images/icon/skills/${skill}.png`);
+Handlebars.registerHelper("weapon-icon-path", (weapon) => `../images/icon/weapons/${weapon}.png`);
 Handlebars.registerHelper("data-group", (...args) => {
   const group = args[0];
   const key = args[1];
   return group ? `data-group="${group}" data-key="${key}"` : null;
 });
-Handlebars.registerPartial(
-  "class-block",
-  fs.readFileSync(path.join(PARTIALS_DIR, "class-block.hbs"), "utf8"),
-);
-Handlebars.registerPartial(
-  "class-panel",
-  fs.readFileSync(path.join(PARTIALS_DIR, "class-panel.hbs"), "utf8"),
-);
+Handlebars.registerPartial("class-block", fs.readFileSync(path.join(PARTIALS_DIR, "class-block.hbs"), "utf8"));
+Handlebars.registerPartial("class-panel", fs.readFileSync(path.join(PARTIALS_DIR, "class-panel.hbs"), "utf8"));
 Handlebars.registerPartial(
   "placeholder-panel",
   fs.readFileSync(path.join(PARTIALS_DIR, "placeholder-panel.hbs"), "utf8"),
 );
-const characterTemplate = Handlebars.compile(
-  fs.readFileSync(path.join(TEMPLATES_DIR, "character.hbs"), "utf8"),
-);
+const characterTemplate = Handlebars.compile(fs.readFileSync(path.join(TEMPLATES_DIR, "character.hbs"), "utf8"));
 const characterIndexTemplate = Handlebars.compile(
   fs.readFileSync(path.join(TEMPLATES_DIR, "character-index.hbs"), "utf8"),
 );

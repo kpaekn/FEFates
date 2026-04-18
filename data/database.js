@@ -23,10 +23,7 @@ class Database {
       cls.setStats(this.classStats);
       cls.setClasses(this.classes);
     });
-    this.characterStats = this.loadModel(
-      "character_stats.json",
-      CharacterStats,
-    );
+    this.characterStats = this.loadModel("character_stats.json", CharacterStats);
     this.characters = this.loadModel("characters.json", Character);
     this.characters.forEach((character) => {
       character.setStats(this.characterStats);
@@ -42,9 +39,7 @@ class Database {
    * @returns {Map<string, T>}
    */
   loadModel(filename, Model) {
-    const raw = JSON.parse(
-      fs.readFileSync(path.join(DATA_DIR, filename), "utf8"),
-    );
+    const raw = JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), "utf8"));
     /** @type {Map<string, T>} */
     const result = new Map();
     for (const [key, data] of Object.entries(raw)) {
