@@ -5,7 +5,10 @@ const path = require("path");
 
 const Character = require("./models/Character");
 const Class = require("./models/Class");
-const Stat = require("./models/Stat");
+const Stat = require("./models/Stats");
+const ClassStats = require("./models/ClassStats");
+const BoonBaneStats = require("./models/BoonBaneStats");
+const CharacterStats = require("./models/CharacterStats");
 
 /**
  * @typedef {Object} CharacterData
@@ -24,25 +27,6 @@ const Stat = require("./models/Stat");
  * @property {Record<string, number[]>} base - Keyed by route (e.g. "Standard", "Conquest")
  * @property {number[]} growth
  * @property {number[]} cap
- */
-
-/**
- * @typedef {Object} BoonBaneModifiers
- * @property {number[]} boon
- * @property {number[]} bane
- */
-
-/**
- * @typedef {Object} BoonBaneGrowthCap
- * @property {Record<string, number[]>} boon
- * @property {Record<string, number[]>} bane
- */
-
-/**
- * @typedef {Object} BoonBaneStatEntry
- * @property {BoonBaneModifiers} base
- * @property {BoonBaneGrowthCap} growth
- * @property {BoonBaneGrowthCap} cap
  */
 
 /**
@@ -98,12 +82,33 @@ function hydrateClassStats(raw) {
   /** @type {Record<string, HydratedClassStatEntry>} */
   const result = {};
   for (const [key, data] of Object.entries(raw)) {
-    result[key] = {
-      ...data,
-      base: Stat.fromJSON(data.base),
-      growth: Stat.fromJSON(data.growth),
-      max: Stat.fromJSON(data.max),
-    };
+    result[key] = ClassStats.fromJSON(key, data);
+  }
+  return result;
+}
+
+/**
+ * @param {Record<string, any>} raw
+ * @returns {Record<string, BoonBaneStats>}
+ */
+function hydrateBoonBaneStats(raw) {
+  /** @type {Record<string, BoonBaneStats>} */
+  const result = {};
+  for (const [key, data] of Object.entries(raw)) {
+    result[key] = BoonBaneStats.fromJSON(key, data);
+  }
+  return result;
+}
+
+/**
+ * @param {Record<string, any>} raw
+ * @returns {Record<string, CharacterStats>}
+ */
+function hydrateCharacterStats(raw) {
+  /** @type {Record<string, CharacterStats>} */
+  const result = {};
+  for (const [key, data] of Object.entries(raw)) {
+    result[key] = CharacterStats.fromJSON(key, data);
   }
   return result;
 }
@@ -117,14 +122,9 @@ const skillMap = Object.fromEntries(
 );
 
 module.exports = {
-  /** @type {Record<string, Character>} */
   characters: hydrateCharacters(loadJSON("characters.json")),
-  /** @type {Record<string, Class>} */
   classes: hydrateClasses(loadJSON("classes.json"), skillMap),
-  /** @type {Record<string, CharacterStatEntry>} */
-  characterStats: loadJSON("character_stats.json"),
-  /** @type {Record<string, HydratedClassStatEntry>} */
+  characterStats: hydrateCharacterStats(loadJSON("character_stats.json")),
   classStats: hydrateClassStats(loadJSON("class_stats.json")),
-  /** @type {Record<string, BoonBaneStatEntry>} */
-  boonBaneStats: loadJSON("boon_bane_stats.json"),
+  boonBaneStats: hydrateBoonBaneStats(loadJSON("boon_bane_stats.json")),
 };

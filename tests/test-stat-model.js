@@ -2,10 +2,10 @@
 
 const assert = require("assert");
 const db = require("../data/database");
-const Stat = require("../data/models/Stat");
+const Stat = require("../data/models/Stats");
 
 const stat = new Stat(10, 11, 12, 13, 14, 15, 16, 17);
-const hydrated = Stat.fromJSON([1, 2, 3, 4, 5, 6, 7, 8]);
+const hydrated = Stat.fromArray([1, 2, 3, 4, 5, 6, 7, 8]);
 
 assert(stat instanceof Stat, "Expected stat to be a Stat instance");
 assert.deepStrictEqual({ ...stat }, {

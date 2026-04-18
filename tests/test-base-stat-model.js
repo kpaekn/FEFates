@@ -1,8 +1,8 @@
 "use strict";
 
 const assert = require("assert");
-const BaseStat = require("../data/models/BaseStat");
-const Stat = require("../data/models/Stat");
+const BaseStat = require("../data/models/BaseStats");
+const Stat = require("../data/models/Stats");
 
 const baseStat = new BaseStat(5, 10, 11, 12, 13, 14, 15, 16, 17);
 

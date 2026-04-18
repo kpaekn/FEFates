@@ -4,9 +4,9 @@ const fs = require("fs");
 const path = require("path");
 const Handlebars = require("handlebars");
 
-const BaseStat = require("./data/models/BaseStat");
+const BaseStat = require("./data/models/BaseStats");
 const Class = require("./data/models/Class");
-const Stat = require("./data/models/Stat");
+const Stat = require("./data/models/Stats");
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const ROOT = path.resolve(__dirname);
@@ -437,16 +437,16 @@ function buildCharacterContext(charKey, char) {
   const growthKey = char.growth ?? charKey;
   const charGrowth = characterStats[growthKey]?.growth;
   const baseGrowthValues = charGrowth
-    ? Stat.fromJSON(charGrowth).toArray()
+    ? charGrowth.toArray()
     : [];
   const corrinBoonBane = isCorrin ? boonBaneStats[statKey] : null;
   const corrinGrowthBoonMap =
     isCorrin && corrinBoonBane?.growth
-      ? Stat.multiModifierMap(Stat.normalizeBoonBaneModifiers(corrinBoonBane.growth.boon))
+      ? corrinBoonBane.growth.boon.toModifierMap()
       : null;
   const corrinGrowthBaneMap =
     isCorrin && corrinBoonBane?.growth
-      ? Stat.multiModifierMap(Stat.normalizeBoonBaneModifiers(corrinBoonBane.growth.bane))
+      ? corrinBoonBane.growth.bane.toModifierMap()
       : null;
   const initialGrowthValues =
     isCorrin && corrinGrowthBoonMap && corrinGrowthBaneMap
@@ -484,7 +484,7 @@ function buildCharacterContext(charKey, char) {
       name: enriched.name,
       selected: clsKey === defaultClassKey,
     });
-    classGrowthMap[clsKey] = Stat.fromJSON(classGrowth).toArray();
+    classGrowthMap[clsKey] = classGrowth.toArray();
   }
   classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -493,10 +493,9 @@ function buildCharacterContext(charKey, char) {
     const raw = characterStats[statKey]?.base || {};
     const rows = [];
     const variants = Object.entries(raw);
-    for (const [variant, values] of variants) {
-      if (!Array.isArray(values)) continue;
+    for (const [variant, baseStats] of variants) {
       rows.push(
-        BaseStat.fromArray(values).toRow({
+        baseStats.toRow({
           rowKey: variant.toLowerCase().replace(/[^a-z0-9]+/g, "_"),
           label: variant,
         }),
@@ -506,11 +505,11 @@ function buildCharacterContext(charKey, char) {
   })();
   const corrinBaseStatBoonMap =
     isCorrin && corrinBoonBane?.base
-      ? Stat.singleModifierMap(Stat.fromJSON(corrinBoonBane.base.boon).toRow())
+      ? Stat.singleModifierMap(corrinBoonBane.base.boon)
       : null;
   const corrinBaseStatBaneMap =
     isCorrin && corrinBoonBane?.base
-      ? Stat.singleModifierMap(Stat.fromJSON(corrinBoonBane.base.bane).toRow())
+      ? Stat.singleModifierMap(corrinBoonBane.base.bane)
       : null;
   const baseStatsRows = rawBaseStatsRows.map((row) => {
     if (!isCorrin || !corrinBaseStatBoonMap || !corrinBaseStatBaneMap) {
@@ -523,7 +522,7 @@ function buildCharacterContext(charKey, char) {
     );
     return {
       ...row,
-      ...new Stat(...adjustedValues).toRow(),
+      ...new Stat(...adjustedValues),
     };
   });
   const baseStatsHeaders = ["Level", ...Stat.LABELS];
