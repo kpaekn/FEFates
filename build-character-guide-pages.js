@@ -15,7 +15,7 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const { characters, classes, characterStats, boonBaneStats } =
+const { characters, classes, boonBaneStats } =
   require("./data/database");
 
 const ROUTE_ORDER = ["all", "birthright", "conquest", "revelation"];
@@ -435,8 +435,7 @@ function buildCharacterContext(charKey, char) {
   const classSetKeys = char.classSet;
 
   // Character growth rates
-  const growthKey = char.growth ?? charKey;
-  const charGrowth = characterStats.get(growthKey)?.growth;
+  const charGrowth = char.stats?.growth;
   const baseGrowthValues = charGrowth
     ? charGrowth.toArray()
     : [];
@@ -490,7 +489,7 @@ function buildCharacterContext(charKey, char) {
 
   // Base stat rows from character_stats.json variants
   const rawBaseStatsRows = (() => {
-    const raw = characterStats.get(statKey)?.base || {};
+    const raw = char.stats?.base || {};
     const rows = [];
     const variants = Object.entries(raw);
     for (const [variant, baseStats] of variants) {

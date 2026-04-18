@@ -13,15 +13,6 @@ const CharacterStats = require("./models/CharacterStats");
 const DATA_DIR = __dirname;
 
 /**
- * @template T
- * @param {string} filename
- * @returns {T}
- */
-function loadJSON(filename) {
-  return JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), "utf8"));
-}
-
-/**
  * Hydrate a raw JSON object into a DataSet using a Model's fromJSON factory.
  * @template T
  * @param {string} filename
@@ -40,19 +31,6 @@ function loadModel(filename, Model) {
   return result;
 }
 
-/**
- * @param {Record<string, any>} raw
- * @returns {Record<string, Character>}
- */
-function hydrateCharacters(raw) {
-  /** @type {Record<string, Character>} */
-  const result = {};
-  for (const [key, data] of Object.entries(raw)) {
-    result[key] = Character.fromJSON(key, data);
-  }
-  return result;
-}
-
 const skills = loadModel("skills.json", Skill);
 const boonBaneStats = loadModel("boon_bane_stats.json", BoonBaneStats);
 const classes = loadModel("classes.json", Class);
@@ -63,10 +41,12 @@ classes.forEach((cls) => {
 });
 const characterStats = loadModel("character_stats.json", CharacterStats);
 const characters = loadModel("characters.json", Character);
+characters.forEach((character) => {
+  character.updateStats(characterStats);
+});
 
 module.exports = {
   characters,
   classes,
-  characterStats,
   boonBaneStats,
 };

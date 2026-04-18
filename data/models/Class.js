@@ -1,6 +1,7 @@
 "use strict";
 
 const Skill = require("./Skill");
+const ClassStats = require("./ClassStats");
 const { parseCSV } = require("./utils");
 
 /**
@@ -51,7 +52,7 @@ class Class {
   }
 
   /**
-   * @param {Map<string, import("./ClassStats")>} classStatsDataSet
+   * @param {Map<string, ClassStats>} classStatsDataSet
    */
   updateStats(classStatsDataSet) {
     const classStatsKey = this.rawStats ?? this.key;

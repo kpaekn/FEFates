@@ -1,5 +1,6 @@
 "use strict";
 
+const CharacterStats = require("./CharacterStats");
 const { parseCSV } = require("./utils");
 
 /**
@@ -11,9 +12,9 @@ const { parseCSV } = require("./utils");
  * @property {{ friendship: string, partner: string }} supports
  * @property {boolean} adult
  * @property {string} personal_skill
- * @property {string} growth
  * @property {string} starting_class
  * @property {string} parent
+ * @property {string | null} stats
  */
 
 class Character {
@@ -33,9 +34,24 @@ class Character {
     };
     this.adult = raw.adult;
     this.personalSkill = raw.personal_skill;
-    this.growth = raw.growth;
     this.startingClass = raw.starting_class;
     this.parent = raw.parent;
+    this.rawStats = raw.stats ?? key;
+    this.stats = null;
+  }
+
+  /**
+   * @param {Map<string, CharacterStats>} characterStatsDataSet
+   */
+  updateStats(characterStatsDataSet) {
+    const characterStatsKey = this.rawStats ?? this.key;
+    const stats = characterStatsDataSet.get(characterStatsKey);
+    if (!stats) {
+      throw new Error(
+        `Unknown character stats: ${characterStatsKey} (in character ${this.key})`,
+      );
+    }
+    this.stats = stats;
   }
 
   /**

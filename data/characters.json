@@ -10,7 +10,7 @@
     },
     "adult": true,
     "personal_skill": "supportive",
-    "growth": "corrin"
+    "stats": "corrin"
   },
   "corrin_f": {
     "name": "Corrin (F)",
@@ -23,7 +23,7 @@
     },
     "adult": true,
     "personal_skill": "supportive",
-    "growth": "corrin"
+    "stats": "corrin"
   },
   "azura": {
     "name": "Azura",
@@ -586,7 +586,7 @@
       "partner": "sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina"
     },
     "personal_skill": "draconic_heir",
-    "growth": "kana"
+    "stats": "kana"
   },
   "kana_f": {
     "name": "Kana (F)",
@@ -599,7 +599,7 @@
       "partner": "shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy"
     },
     "personal_skill": "draconic_heir",
-    "growth": "kana"
+    "stats": "kana"
   },
   "shigure": {
     "name": "Shigure",
