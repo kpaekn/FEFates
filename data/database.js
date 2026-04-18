@@ -5,7 +5,6 @@ const path = require("path");
 
 const Character = require("./models/Character");
 const Class = require("./models/Class");
-const Skill = require("./models/Skill");
 const Stat = require("./models/Stat");
 
 /**
@@ -79,26 +78,14 @@ function hydrateCharacters(raw) {
 
 /**
  * @param {Record<string, any>} raw
- * @returns {Record<string, Skill>}
- */
-function hydrateSkills(raw) {
-  /** @type {Record<string, Skill>} */
-  const result = {};
-  for (const [key, data] of Object.entries(raw)) {
-    result[key] = Skill.fromJSON(key, data);
-  }
-  return result;
-}
-
-/**
- * @param {Record<string, any>} raw
+ * @param {Record<string, import("./models/Skill")>} skillMap
  * @returns {Record<string, Class>}
  */
-function hydrateClasses(raw) {
+function hydrateClasses(raw, skillMap) {
   /** @type {Record<string, Class>} */
   const result = {};
   for (const [key, data] of Object.entries(raw)) {
-    result[key] = Class.fromJSON(key, data);
+    result[key] = Class.fromJSON(key, data, skillMap);
   }
   return result;
 }
@@ -121,13 +108,19 @@ function hydrateClassStats(raw) {
   return result;
 }
 
+const Skill = require("./models/Skill");
+const skillMap = Object.fromEntries(
+  Object.entries(loadJSON("skills.json")).map(([key, data]) => [
+    key,
+    Skill.fromJSON(key, data),
+  ]),
+);
+
 module.exports = {
   /** @type {Record<string, Character>} */
   characters: hydrateCharacters(loadJSON("characters.json")),
   /** @type {Record<string, Class>} */
-  classes: hydrateClasses(loadJSON("classes.json")),
-  /** @type {Record<string, Skill>} */
-  skills: hydrateSkills(loadJSON("skills.json")),
+  classes: hydrateClasses(loadJSON("classes.json"), skillMap),
   /** @type {Record<string, CharacterStatEntry>} */
   characterStats: loadJSON("character_stats.json"),
   /** @type {Record<string, HydratedClassStatEntry>} */

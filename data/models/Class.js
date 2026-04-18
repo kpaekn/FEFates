@@ -15,6 +15,7 @@ class Class {
       parallel = null,
       stats = null,
     },
+    skillMap = {},
   ) {
     this.key = key;
     this.name = name;
@@ -22,13 +23,21 @@ class Class {
     this.dlc = dlc;
     this.weapons = parseCSV(weapons);
     this.promotion = parseCSV(promotion);
-    this.skills = parseCSV(skills);
+    this.skills = parseCSV(skills)
+      .map((skillKey) => {
+        const skill = skillMap[skillKey];
+        if (!skill) {
+          console.warn(`[warn] Unknown skill: ${skillKey} (in class ${key})`);
+        }
+        return skill ?? null;
+      })
+      .filter(Boolean);
     this.parallel = parallel;
     this.stats = stats;
   }
 
-  static fromJSON(key, data) {
-    return new Class(key, data);
+  static fromJSON(key, data, skillMap = {}) {
+    return new Class(key, data, skillMap);
   }
 
   static resolveKey(key, gender) {
@@ -83,12 +92,7 @@ class Class {
     );
   }
 
-  toRenderObject({
-    displayGender,
-    skillsByKey = {},
-    getWeaponIconPath,
-    getSkillIconPath,
-  }) {
+  toRenderObject({ displayGender, getWeaponIconPath, getSkillIconPath }) {
     const weapons = this.weapons.map((weaponKey) => ({
       weaponName: weaponKey
         .replace(/_/g, " ")
@@ -96,15 +100,9 @@ class Class {
       iconPath: getWeaponIconPath(weaponKey),
     }));
 
-    const skillList = this.skills.map((skillKey) => {
-      const skill = skillsByKey[skillKey];
-      if (!skill) {
-        console.warn(`[warn] Unknown skill: ${skillKey} (in class ${this.key})`);
-      }
-      return skill
-        ? skill.toRenderObject(getSkillIconPath(skillKey))
-        : { name: skillKey, description: "", iconPath: getSkillIconPath(skillKey) };
-    });
+    const skillList = this.skills.map((skill) =>
+      skill.toRenderObject(getSkillIconPath(skill.key)),
+    );
 
     return {
       name: this.getDisplayName(displayGender),

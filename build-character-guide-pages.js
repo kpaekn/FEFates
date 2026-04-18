@@ -17,7 +17,7 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const { characters, classes, skills, characterStats, classStats, boonBaneStats } =
+const { characters, classes, characterStats, classStats, boonBaneStats } =
   require("./data/database");
 
 const ROUTE_ORDER = ["all", "birthright", "conquest", "revelation"];
@@ -133,7 +133,6 @@ function enrichClass(classKey, displayGender) {
 
   return cls.toRenderObject({
     displayGender,
-    skillsByKey: skills,
     getWeaponIconPath,
     getSkillIconPath,
   });

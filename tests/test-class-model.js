@@ -3,6 +3,7 @@
 const assert = require("assert");
 const db = require("../data/database");
 const Class = require("../data/models/Class");
+const Skill = require("../data/models/Skill");
 
 const classes = db.classes;
 const keys = Object.keys(classes);
@@ -20,6 +21,9 @@ for (const [key, cls] of Object.entries(classes)) {
   assert(Array.isArray(cls.weapons), `${key}.weapons should be an array`);
   assert(Array.isArray(cls.promotion), `${key}.promotion should be an array`);
   assert(Array.isArray(cls.skills), `${key}.skills should be an array`);
+  for (const skill of cls.skills) {
+    assert(skill instanceof Skill, `${key}.skills should contain Skill instances`);
+  }
   assert(
     cls.parallel === null || typeof cls.parallel === "string",
     `${key}.parallel should be null or a string`,
@@ -52,9 +56,9 @@ assert(nohrPrince, "Expected 'nohr_prince_ss' class to exist");
 assert.strictEqual(nohrPrince.getDisplayName("m"), "Nohr Prince");
 assert.strictEqual(nohrPrince.getDisplayName("f"), "Nohr Princess");
 
-const rendered = classes.swordmaster.toRenderObject({
+const swordmaster = classes.swordmaster;
+const rendered = swordmaster.toRenderObject({
   displayGender: "m",
-  skillsByKey: db.skills,
   getWeaponIconPath: (weaponKey) => `icons/${weaponKey}.png`,
   getSkillIconPath: (skillKey) => `skills/${skillKey}.png`,
 });
@@ -64,8 +68,8 @@ assert.deepStrictEqual(rendered.weapons, [
 ]);
 assert.strictEqual(rendered.skills.length, 2);
 assert.strictEqual(rendered.skills[0].iconPath, "skills/astra.png");
-assert.strictEqual(rendered.skills[0].name, db.skills.astra.name);
-assert.strictEqual(rendered.skills[0].description, db.skills.astra.description);
+assert.strictEqual(rendered.skills[0].name, swordmaster.skills[0].name);
+assert.strictEqual(rendered.skills[0].description, swordmaster.skills[0].description);
 console.log("  toRenderObject() returns correct shape");
 
 console.log("PASS: Class model tests");
