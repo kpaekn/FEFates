@@ -44,6 +44,7 @@ const characterStats = loadModel("character_stats.json", CharacterStats);
 const characters = loadModel("characters.json", Character);
 characters.forEach((character) => {
   character.setStats(characterStats);
+  character.setParent(characters);
 });
 
 module.exports = {

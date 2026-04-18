@@ -35,9 +35,10 @@ class Character {
     this.adult = raw.adult;
     this.personalSkill = raw.personal_skill;
     this.startingClass = raw.starting_class;
-    this.parent = raw.parent;
     this.rawStats = raw.stats ?? key;
     this.stats = null;
+
+    this._parent = raw.parent;
   }
 
   /**
@@ -52,6 +53,21 @@ class Character {
       );
     }
     this.stats = stats;
+  }
+
+  /**
+   * @param {Map<string, Character>} charactersDataSet
+   */
+  setParent(charactersDataSet) {
+    if (this._parent) {
+      const parent = charactersDataSet.get(this._parent);
+      if (!parent) {
+        throw new Error(
+          `Unknown parent character: ${this._parent} (in character ${this.key})`,
+        );
+      }
+      this.parent = parent;
+    }
   }
 
   /**
@@ -76,7 +92,7 @@ class Character {
   }
 
   isChild() {
-    return !!this.parent;
+    return !!this._parent;
   }
 }
 

@@ -257,7 +257,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
   );
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
-  const fixedParent = characters.get(child.parent);
+  const fixedParent = child.parent;
   if (fixedParent) {
     const fixedContribution = fixedParent.isCorrinOrKana()
       ? "nohr_prince_ss"
@@ -287,9 +287,9 @@ function resolveChildInheritedClassKey(child, varParentKey) {
  * Options are the fixed parent's partner support list, sorted by name.
  */
 function buildChildParentSection(char) {
-  const fixedParent = characters.get(char.parent);
+  const fixedParent = char.parent;
   if (!fixedParent) {
-    console.warn(`[warn] Unknown fixed parent: ${char.parent}`);
+    console.warn(`[warn] Unknown fixed parent: ${char.key}`);
     return { parentOptions: [], parentPanels: [] };
   }
   const varParentKeys = parseSupportList(fixedParent.supports?.partner);
