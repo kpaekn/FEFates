@@ -8,7 +8,6 @@
       "friendship": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy, fuga",
       "partner": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, niles, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina, anna"
     },
-    "adult": true,
     "personal_skill": "supportive",
     "stats": "corrin"
   },
@@ -21,7 +20,6 @@
       "friendship": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, velouria, ophelia, soleil, nina, anna",
       "partner": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, niles, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, rhajat, siegbert, forrest, ignatius, percy, fuga"
     },
-    "adult": true,
     "personal_skill": "supportive",
     "stats": "corrin"
   },
@@ -34,7 +32,6 @@
       "friendship": "sakura, hinoka, elise",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "personal_skill": "healing_descant"
   },
   "felicia": {
@@ -47,7 +44,6 @@
       "friendship": "hana, peri, flora",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "personal_skill": "devoted_partner"
   },
   "jakob": {
@@ -60,7 +56,6 @@
       "friendship": "silas, takumi, gunter",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "personal_skill": "evasive_partner"
   },
   "kaze": {
@@ -72,7 +67,6 @@
       "friendship": "silas, saizo, xander",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "personal_skill": "miraculous_save"
   },
   "silas": {
@@ -84,7 +78,6 @@
       "friendship": "jakob, kaze, ryoma",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "personal_skill": "vow_of_friendship"
   },
   "shura": {
@@ -97,7 +90,6 @@
       "friendship": "",
       "partner": "corrin_f"
     },
-    "adult": true,
     "personal_skill": "highwayman"
   },
   "izana": {
@@ -110,7 +102,6 @@
       "friendship": "",
       "partner": "corrin_f"
     },
-    "adult": true,
     "personal_skill": "peacebringer"
   },
   "mozu": {
@@ -122,7 +113,6 @@
       "friendship": "oboro, effie, nyx",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "personal_skill": "forager"
   },
   "rinkah": {
@@ -134,7 +124,6 @@
       "friendship": "orochi, oboro, kagero, charlotte",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, benny, keaton"
     },
-    "adult": true,
     "personal_skill": "fiery_blood"
   },
   "sakura": {
@@ -146,7 +135,6 @@
       "friendship": "azura, hana, hinoka, elise",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, kaden, leo, xander"
     },
-    "adult": true,
     "personal_skill": "quiet_strength"
   },
   "hana": {
@@ -158,7 +146,6 @@
       "friendship": "felicia, sakura, setsuna, effie",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, laslow, keaton"
     },
-    "adult": true,
     "personal_skill": "fearsome_blow"
   },
   "subaki": {
@@ -170,7 +157,6 @@
       "friendship": "saizo, azama, hinata, niles",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, nyx, selena"
     },
-    "adult": true,
     "personal_skill": "perfectionist"
   },
   "saizo": {
@@ -182,7 +168,6 @@
       "friendship": "kaze, subaki, ryoma, laslow",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, beruka, charlotte"
     },
-    "adult": true,
     "personal_skill": "pyrotechnics"
   },
   "orochi": {
@@ -194,7 +179,6 @@
       "friendship": "rinkah, oboro, kagero, nyx",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, odin, laslow"
     },
-    "adult": true,
     "personal_skill": "capture"
   },
   "hinoka": {
@@ -206,7 +190,6 @@
       "friendship": "azura, sakura, setsuna, camilla",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, kaden, leo, xander"
     },
-    "adult": true,
     "personal_skill": "rallying_cry"
   },
   "azama": {
@@ -218,7 +201,6 @@
       "friendship": "subaki, hayato, kaden, arthur",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, effie, beruka"
     },
-    "adult": true,
     "personal_skill": "divine_retribution"
   },
   "setsuna": {
@@ -230,7 +212,6 @@
       "friendship": "hana, hinoka, kagero, selena",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, niles"
     },
-    "adult": true,
     "personal_skill": "optimist"
   },
   "hayato": {
@@ -242,7 +223,6 @@
       "friendship": "azama, kaden, fuga, benny",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, effie, nyx"
     },
-    "adult": true,
     "personal_skill": "pride"
   },
   "oboro": {
@@ -254,7 +234,6 @@
       "friendship": "mozu, rinkah, orochi, beruka",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, niles, benny"
     },
-    "adult": true,
     "personal_skill": "nohr_enmity"
   },
   "hinata": {
@@ -266,7 +245,6 @@
       "friendship": "subaki, takumi, kaden, odin",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, selena, peri"
     },
-    "adult": true,
     "personal_skill": "triple_threat"
   },
   "takumi": {
@@ -278,7 +256,6 @@
       "friendship": "jakob, hinata, ryoma, leo",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, hana, orochi, setsuna, oboro, kagero, elise, camilla"
     },
-    "adult": true,
     "personal_skill": "competitive"
   },
   "kagero": {
@@ -290,7 +267,6 @@
       "friendship": "rinkah, orochi, setsuna, peri",
       "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin"
     },
-    "adult": true,
     "personal_skill": "shuriken_mastery"
   },
   "reina": {
@@ -302,7 +278,6 @@
       "partner": "corrin_m"
     },
     "route": "birthright",
-    "adult": true,
     "personal_skill": "morbid_celebration"
   },
   "kaden": {
@@ -314,7 +289,6 @@
       "friendship": "azama, hayato, hinata, keaton",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, peri, charlotte"
     },
-    "adult": true,
     "personal_skill": "reciprocity"
   },
   "ryoma": {
@@ -327,7 +301,6 @@
       "friendship": "silas, saizo, takumi, xander",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, hana, orochi, setsuna, oboro, kagero, elise, camilla"
     },
-    "adult": true,
     "personal_skill": "bushido"
   },
   "scarlet": {
@@ -339,7 +312,6 @@
       "partner": "corrin_m"
     },
     "route": "birthright",
-    "adult": true,
     "personal_skill": "in_extremis"
   },
   "yukimura": {
@@ -351,7 +323,6 @@
       "partner": "corrin_f"
     },
     "route": "birthright",
-    "adult": true,
     "personal_skill": "perspicacious"
   },
   "gunter": {
@@ -363,7 +334,6 @@
       "friendship": "jakob",
       "partner": "corrin_f"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "forceful_partner"
   },
@@ -375,7 +345,6 @@
       "friendship": "azura, effie, camilla, sakura",
       "partner": "corrin_m, jakob, kaze, silas, takumi, ryoma, arthur, odin, niles, laslow, benny, keaton"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "lily_s_poise"
   },
@@ -387,7 +356,6 @@
       "friendship": "niles, benny, keaton, azama",
       "partner": "corrin_f, azura, felicia, mozu, setsuna, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "misfortunate"
   },
@@ -399,7 +367,6 @@
       "friendship": "mozu, elise, nyx, hana",
       "partner": "corrin_m, jakob, kaze, silas, azama, hayato, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "puissance"
   },
@@ -411,7 +378,6 @@
       "friendship": "niles, laslow, leo, hinata",
       "partner": "corrin_f, azura, felicia, mozu, orochi, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "aching_blood"
   },
@@ -423,7 +389,6 @@
       "friendship": "arthur, odin, leo, subaki",
       "partner": "corrin_m, corrin_f, azura, felicia, mozu, setsuna, oboro, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "kidnap"
   },
@@ -435,7 +400,6 @@
       "friendship": "mozu, effie, charlotte, orochi",
       "partner": "corrin_m, jakob, kaze, silas, subaki, hayato, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "countercurse"
   },
@@ -448,7 +412,6 @@
       "friendship": "hinoka, elise, selena, beruka",
       "partner": "corrin_m, jakob, kaze, silas, takumi, ryoma, arthur, odin, niles, laslow, benny, keaton"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "rose_s_thorn"
   },
@@ -460,7 +423,6 @@
       "friendship": "camilla, beruka, peri, setsuna",
       "partner": "corrin_m, jakob, kaze, silas, subaki, hinata, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "fierce_rival"
   },
@@ -472,7 +434,6 @@
       "friendship": "camilla, selena, charlotte, oboro",
       "partner": "corrin_m, jakob, kaze, silas, saizo, azama, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "opportunist"
   },
@@ -484,7 +445,6 @@
       "friendship": "odin, keaton, xander, saizo",
       "partner": "corrin_f, azura, felicia, mozu, hana, orochi, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "fancy_footwork"
   },
@@ -496,7 +456,6 @@
       "friendship": "felicia, selena, charlotte, kagero",
       "partner": "corrin_m, jakob, kaze, silas, hinata, kaden, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "bloodthirst"
   },
@@ -508,7 +467,6 @@
       "friendship": "arthur, keaton, hayato",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, oboro, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "fierce_mien"
   },
@@ -520,7 +478,6 @@
       "friendship": "nyx, beruka, peri, rinkah",
       "partner": "corrin_m, jakob, kaze, silas, saizo, kaden, arthur, odin, niles, laslow, benny, leo, keaton, xander"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "unmask"
   },
@@ -533,7 +490,6 @@
       "friendship": "odin, niles, xander, takumi",
       "partner": "corrin_f, azura, felicia, mozu, sakura, hinoka, effie, nyx, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "pragmatic"
   },
@@ -545,7 +501,6 @@
       "friendship": "arthur, laslow, benny, kaden",
       "partner": "corrin_f, azura, felicia, mozu, rinkah, hana, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "collector"
   },
@@ -558,7 +513,6 @@
       "friendship": "kaze, laslow, leo, ryoma",
       "partner": "corrin_f, azura, felicia, mozu, sakura, hinoka, effie, nyx, selena, beruka, peri, charlotte"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "chivalry"
   },
@@ -571,7 +525,6 @@
       "friendship": "felicia",
       "partner": "corrin_m"
     },
-    "adult": true,
     "route": "conquest",
     "personal_skill": "icy_blood"
   },
@@ -850,7 +803,6 @@
       "friendship": "hayato",
       "partner": "corrin_f"
     },
-    "adult": true,
     "personal_skill": "wind_disciple"
   },
   "anna": {
@@ -862,7 +814,6 @@
       "friendship": "",
       "partner": "corrin_m"
     },
-    "adult": true,
     "personal_skill": "make_a_killing"
   }
 }

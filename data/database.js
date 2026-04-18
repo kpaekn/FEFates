@@ -18,32 +18,25 @@ class Database {
     this.boonBaneStats = this.loadModel("boon_bane_stats.json", BoonBaneStats);
     this.classes = this.loadModel("classes.json", Class);
     this.classStats = this.loadModel("class_stats.json", ClassStats);
-    this.classes.forEach((cls) => {
-      cls.setSkills(this.skills);
-      cls.setStats(this.classStats);
-      cls.setClasses(this.classes);
-    });
     this.characterStats = this.loadModel("character_stats.json", CharacterStats);
     this.characters = this.loadModel("characters.json", Character);
-    this.characters.forEach((character) => {
-      character.setStats(this.characterStats);
-      character.setParent(this.characters);
-    });
+
+    this.classes.forEach((cls) => cls.linkObjects(this));
+    this.characters.forEach((character) => character.linkObjects(this));
   }
 
   /**
    * Hydrate a raw JSON object into a DataSet using a Model's fromJSON factory.
    * @template T
    * @param {string} filename
-   * @param {{ fromJSON(key: string, data: any, database: Database): T }} Model
+   * @param {{ fromJSON(key: string, data: any): T }} Model
    * @returns {Map<string, T>}
    */
   loadModel(filename, Model) {
     const raw = JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), "utf8"));
-    /** @type {Map<string, T>} */
     const result = new Map();
     for (const [key, data] of Object.entries(raw)) {
-      result.set(key, Model.fromJSON(key, data, this));
+      result.set(key, Model.fromJSON(key, data));
     }
     return result;
   }

@@ -1,6 +1,5 @@
 "use strict";
 
-const CharacterStats = require("./CharacterStats");
 const { parseCSV } = require("./utils");
 
 /**
@@ -10,7 +9,6 @@ const { parseCSV } = require("./utils");
  * @property {"m" | "f"} gender
  * @property {"all" | "birthright" | "conquest" | "revelation"} route
  * @property {{ friendship: string, partner: string }} supports
- * @property {boolean} adult
  * @property {string} personal_skill
  * @property {string} starting_class
  * @property {string} parent
@@ -32,42 +30,11 @@ class Character {
       friendship: parseCSV(raw.supports.friendship),
       partner: parseCSV(raw.supports.partner),
     };
-    this.adult = raw.adult;
     this.personalSkill = raw.personal_skill;
     this.startingClass = raw.starting_class;
-    this.rawStats = raw.stats ?? key;
-    this.stats = null;
 
-    this._parent = raw.parent;
-  }
-
-  /**
-   * @param {Map<string, CharacterStats>} characterStatsDataSet
-   */
-  setStats(characterStatsDataSet) {
-    const characterStatsKey = this.rawStats ?? this.key;
-    const stats = characterStatsDataSet.get(characterStatsKey);
-    if (!stats) {
-      throw new Error(
-        `Unknown character stats: ${characterStatsKey} (in character ${this.key})`,
-      );
-    }
-    this.stats = stats;
-  }
-
-  /**
-   * @param {Map<string, Character>} charactersDataSet
-   */
-  setParent(charactersDataSet) {
-    if (this._parent) {
-      const parent = charactersDataSet.get(this._parent);
-      if (!parent) {
-        throw new Error(
-          `Unknown parent character: ${this._parent} (in character ${this.key})`,
-        );
-      }
-      this.parent = parent;
-    }
+    this._statsKey = raw.stats ?? key;
+    this._parentKey = raw.parent;
   }
 
   /**
@@ -77,6 +44,27 @@ class Character {
    */
   static fromJSON(key, raw) {
     return new Character(key, raw);
+  }
+
+  /**
+   * @param {import("../database")} database
+   */
+  linkObjects(database) {
+    // Resolve stats
+    const stats = database.characterStats.get(this._statsKey);
+    if (!stats) {
+      throw new Error(`Unknown character stats: ${this._statsKey} (in character ${this.key})`);
+    }
+    this.stats = stats;
+
+    // Resolve parent
+    if (this._parentKey) {
+      const parent = database.characters.get(this._parentKey);
+      if (!parent) {
+        throw new Error(`Unknown parent character: ${this._parentKey} (in character ${this.key})`);
+      }
+      this.parent = parent;
+    }
   }
 
   /**
@@ -104,7 +92,7 @@ class Character {
    * @returns {boolean}
    */
   isChild() {
-    return !!this._parent;
+    return !!this._parentKey;
   }
 }
 

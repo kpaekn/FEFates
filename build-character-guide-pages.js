@@ -14,7 +14,6 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const Character = require("./data/models/Character");
 const { characters, classes, boonBaneStats } = require("./data/database");
 
 const CORRIN_DEFAULT_BOON = "mag";
@@ -380,8 +379,8 @@ function buildSealSection(char, sealType, supportKeys) {
 }
 
 // ─── Per-character template context ──────────────────────────────────────────
-/**
- * @param {Character} character
+/**d
+ * @param {import("./data/models/Character")} character
  * @returns
  */
 function buildCharacterContext(character) {

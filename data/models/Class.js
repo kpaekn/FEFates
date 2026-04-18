@@ -1,7 +1,5 @@
 "use strict";
 
-const Skill = require("./Skill");
-const ClassStats = require("./ClassStats");
 const { parseCSV } = require("./utils");
 
 /**
@@ -30,12 +28,12 @@ class Class {
     this.unique = raw.unique ?? false;
     this.dlc = raw.dlc ?? false;
     this.weapons = parseCSV(raw.weapons);
-    
-    this._oppositeGender = raw.opposite_gender ?? null;
-    this._promotion = raw.promotion ?? "";
-    this._skills = raw.skills ?? "";
-    this._parallel = raw.parallel ?? null;
-    this._stats = raw.stats ?? key;
+
+    this._oppositeGenderedClassKey = raw.opposite_gender ?? null;
+    this._promotionClassKeys = raw.promotion ?? "";
+    this._skillKeys = raw.skills ?? "";
+    this._parallelClassKey = raw.parallel ?? null;
+    this._statsKey = raw.stats ?? key;
   }
 
   /**
@@ -48,64 +46,52 @@ class Class {
   }
 
   /**
-   * @param {Map<string, Skill>} skillsDataSet
+   * @param {import("../database")} database
    */
-  setSkills(skillsDataSet) {
-    this.skills = parseCSV(this._skills)
+  linkObjects(database) {
+    // Resolve skills
+    this.skills = parseCSV(this._skillKeys)
       .map((skillKey) => {
-        const skill = skillsDataSet.get(skillKey);
+        const skill = database.skills.get(skillKey);
         if (!skill) {
           throw new Error(`Unknown skill: ${skillKey} (in class ${this.key})`);
         }
         return skill;
       })
       .filter(Boolean);
-  }
 
-  /**
-   * @param {Map<string, ClassStats>} classStatsDataSet
-   */
-  setStats(classStatsDataSet) {
-    const classStatsKey = this._stats;
-    const stats = classStatsDataSet.get(classStatsKey);
+    // Resolve stats
+    const stats = database.classStats.get(this._statsKey);
     if (!stats) {
-      throw new Error(
-        `Unknown class stats: ${classStatsKey} (in class ${this.key})`,
-      );
+      throw new Error(`Unknown class stats: ${this._statsKey} (in class ${this.key})`);
     }
     this.stats = stats;
-  }
 
-  /**
-   * @param {Map<string, Class>} classesDataSet
-   */
-  setClasses(classesDataSet) {
-    if (this._oppositeGender) {
-      const oppositeClass = classesDataSet.get(this._oppositeGender);
+    // Resolve opposite gendered class
+    if (this._oppositeGenderedClassKey) {
+      const oppositeClass = database.classes.get(this._oppositeGenderedClassKey);
       if (!oppositeClass) {
-        throw new Error(
-          `Unknown opposite gender class: ${this._oppositeGender} (in class ${this.key})`,
-        );
+        throw new Error(`Unknown opposite gender class: ${this._oppositeGenderedClassKey} (in class ${this.key})`);
       }
       this.oppositeGenderClass = oppositeClass;
     }
 
-    this.promotion = parseCSV(this._promotion)
+    // Resolve promotion classes
+    this.promotion = parseCSV(this._promotionClassKeys)
       .map((classKey) => {
-        const cls = classesDataSet.get(classKey);
+        const cls = database.classes.get(classKey);
         if (!cls) {
           throw new Error(`Unknown class: ${classKey} (in class ${this.key})`);
         }
         return cls;
       })
       .filter(Boolean);
-    
-    if (this._parallel) {
-      const parallelClass = classesDataSet.get(this._parallel);
+
+    // Resolve parallel class
+    if (this._parallelClassKey) {
+      const parallelClass = database.classes.get(this._parallelClassKey);
       if (!parallelClass) {
-        throw new Error(
-          `Unknown parallel class: ${this._parallel} (in class ${this.key})`,
-        );
+        throw new Error(`Unknown parallel class: ${this._parallelClassKey} (in class ${this.key})`);
       }
       this.parallelClass = parallelClass;
     }
