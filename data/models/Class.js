@@ -29,11 +29,10 @@ class Class {
     this.unique = raw.unique ?? false;
     this.dlc = raw.dlc ?? false;
     this.weapons = parseCSV(raw.weapons);
-    this.promotion = parseCSV(raw.promotion);
     
+    this._promotion = raw.promotion;
     this._skills = raw.skills;
     this._parallel = raw.parallel ?? null;
-    this.parallelClass = null;
     this._stats = raw.stats ?? key;
   }
 
@@ -57,6 +56,21 @@ class Class {
           throw new Error(`Unknown skill: ${skillKey} (in class ${this.key})`);
         }
         return skill;
+      })
+      .filter(Boolean);
+  }
+
+  /**
+   * @param {Map<string, Class>} classesDataSet
+   */
+  setPromotion(classesDataSet) {
+    this.promotion = parseCSV(this._promotion)
+      .map((classKey) => {
+        const cls = classesDataSet.get(classKey);
+        if (!cls) {
+          throw new Error(`Unknown class: ${classKey} (in class ${this.key})`);
+        }
+        return cls;
       })
       .filter(Boolean);
   }
@@ -88,6 +102,20 @@ class Class {
       }
       this.parallelClass = parallelClass;
     }
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  hasPromotion() {
+    return !!this.promotion && this.promotion.length > 0;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  isTalent() {
+    return !this.unique && !this.dlc && this.hasPromotion();
   }
 
   static resolveKey(key, gender) {

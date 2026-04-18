@@ -79,18 +79,30 @@ class Character {
     return new Character(key, raw);
   }
 
+  /**
+   * @returns {boolean}
+   */
   isCorrin() {
     return this.key === "corrin_m" || this.key === "corrin_f";
   }
 
+  /**
+   * @returns {boolean}
+   */
   isKana() {
     return this.key === "kana_m" || this.key === "kana_f";
   }
 
+  /**
+   * @returns {boolean}
+   */
   isCorrinOrKana() {
     return this.isCorrin() || this.isKana();
   }
 
+  /**
+   * @returns {boolean}
+   */
   isChild() {
     return !!this._parent;
   }

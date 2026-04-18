@@ -36,13 +36,6 @@ function buildCharacterIndexSections() {
   return Object.values(sections);
 }
 
-// ─── Promoted-class key set (to identify base classes for talent options) ─────
-const promotedKeys = new Set(
-  Array.from(classes.values())
-    .filter((cls) => cls.promotion.length > 0)
-    .flatMap((cls) => cls.promotion),
-);
-
 const UNIQUE_CLASS_KEYS = new Set(
   Array.from(classes.entries())
     .filter(([, cls]) => cls.unique)
@@ -84,8 +77,8 @@ function resolveClassTree(rawKey, charGender) {
   }
   const result = [enrichClass(key, charGender)];
   if (cls.promotion) {
-    for (const promKey of cls.promotion) {
-      result.push(enrichClass(promKey, charGender));
+    for (const promCls of cls.promotion) {
+      result.push(enrichClass(promCls.key, charGender));
     }
   }
   return result;
@@ -100,10 +93,7 @@ function resolveClassTree(rawKey, charGender) {
 function getTalentOptions(gender) {
   const options = [];
   for (const [key, cls] of classes.entries()) {
-    if (cls.unique) continue;
-    if (cls.dlc) continue;
-    if (!cls.promotion) continue;
-    if (promotedKeys.has(key)) continue;
+    if (!cls.isTalent()) continue;
     if (!cls.isAvailableForGender(gender)) continue;
     options.push({ key, name: cls.name });
   }
