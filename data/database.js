@@ -3,12 +3,14 @@
 const fs = require("fs");
 const path = require("path");
 
+const Skill = require("./models/Skill");
 const Character = require("./models/Character");
 const Class = require("./models/Class");
 const Stat = require("./models/Stats");
 const ClassStats = require("./models/ClassStats");
 const BoonBaneStats = require("./models/BoonBaneStats");
 const CharacterStats = require("./models/CharacterStats");
+const DataSet = require("./models/DataSet");
 
 /**
  * @typedef {Object} CharacterData
@@ -62,14 +64,14 @@ function hydrateCharacters(raw) {
 
 /**
  * @param {Record<string, any>} raw
- * @param {Record<string, import("./models/Skill")>} skillMap
+ * @param {DataSet<Skill>} skills
  * @returns {Record<string, Class>}
  */
-function hydrateClasses(raw, skillMap) {
+function hydrateClasses(raw, skills) {
   /** @type {Record<string, Class>} */
   const result = {};
   for (const [key, data] of Object.entries(raw)) {
-    result[key] = Class.fromJSON(key, data, skillMap);
+    result[key] = Class.fromJSON(key, data, skills);
   }
   return result;
 }
@@ -89,19 +91,6 @@ function hydrateClassStats(raw) {
 
 /**
  * @param {Record<string, any>} raw
- * @returns {Record<string, BoonBaneStats>}
- */
-function hydrateBoonBaneStats(raw) {
-  /** @type {Record<string, BoonBaneStats>} */
-  const result = {};
-  for (const [key, data] of Object.entries(raw)) {
-    result[key] = BoonBaneStats.fromJSON(key, data);
-  }
-  return result;
-}
-
-/**
- * @param {Record<string, any>} raw
  * @returns {Record<string, CharacterStats>}
  */
 function hydrateCharacterStats(raw) {
@@ -113,18 +102,13 @@ function hydrateCharacterStats(raw) {
   return result;
 }
 
-const Skill = require("./models/Skill");
-const skillMap = Object.fromEntries(
-  Object.entries(loadJSON("skills.json")).map(([key, data]) => [
-    key,
-    Skill.fromJSON(key, data),
-  ]),
-);
+const skills = DataSet.fromJSON(loadJSON("skills.json"), Skill);
+const boonBaneStats = DataSet.fromJSON(loadJSON("boon_bane_stats.json"), BoonBaneStats);
 
 module.exports = {
   characters: hydrateCharacters(loadJSON("characters.json")),
-  classes: hydrateClasses(loadJSON("classes.json"), skillMap),
+  classes: hydrateClasses(loadJSON("classes.json"), skills),
   characterStats: hydrateCharacterStats(loadJSON("character_stats.json")),
   classStats: hydrateClassStats(loadJSON("class_stats.json")),
-  boonBaneStats: hydrateBoonBaneStats(loadJSON("boon_bane_stats.json")),
+  boonBaneStats,
 };

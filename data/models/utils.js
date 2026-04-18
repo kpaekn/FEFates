@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * @param {string | string[]} value
+ * @returns {string[]}
+ */
 function parseCSV(value) {
   if (Array.isArray(value)) {
     console.log("warning: parseCSV: value is already an array", value);

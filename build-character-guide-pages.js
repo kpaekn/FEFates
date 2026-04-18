@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const Handlebars = require("handlebars");
 
-const BaseStat = require("./data/models/BaseStats");
 const Class = require("./data/models/Class");
 const Stat = require("./data/models/Stats");
 
@@ -439,7 +438,7 @@ function buildCharacterContext(charKey, char) {
   const baseGrowthValues = charGrowth
     ? charGrowth.toArray()
     : [];
-  const corrinBoonBane = isCorrin ? boonBaneStats[statKey] : null;
+  const corrinBoonBane = isCorrin ? boonBaneStats.get(statKey) : null;
   const corrinGrowthBoonMap =
     isCorrin && corrinBoonBane?.growth
       ? corrinBoonBane.growth.boon.toModifierMap()

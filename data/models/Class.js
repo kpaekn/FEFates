@@ -1,21 +1,28 @@
 "use strict";
 
+const DataSet = require("./DataSet");
+const Skill = require("./Skill");
 const { parseCSV } = require("./utils");
 
 class Class {
+  /**
+   * @param {string} key
+   * @param {*} data // see classes.json
+   * @param {DataSet<Skill>} skillsDataSet
+   */
   constructor(
     key,
     {
       name,
       unique = false,
       dlc = false,
-      weapons = "",
+      weapons,
       promotion = "",
-      skills = "",
+      skills,
       parallel = null,
       stats = null,
     },
-    skillMap = {},
+    skillsDataSet,
   ) {
     this.key = key;
     this.name = name;
@@ -25,19 +32,25 @@ class Class {
     this.promotion = parseCSV(promotion);
     this.skills = parseCSV(skills)
       .map((skillKey) => {
-        const skill = skillMap[skillKey];
+        const skill = skillsDataSet.get(skillKey);
         if (!skill) {
-          console.warn(`[warn] Unknown skill: ${skillKey} (in class ${key})`);
+          throw new Error(`Unknown skill: ${skillKey} (in class ${key})`);
         }
-        return skill ?? null;
+        return skill;
       })
       .filter(Boolean);
     this.parallel = parallel;
     this.stats = stats;
   }
 
-  static fromJSON(key, data, skillMap = {}) {
-    return new Class(key, data, skillMap);
+  /**
+   * @param {string} key
+   * @param {*} data // see classes.json
+   * @param {DataSet<Skill>} skills
+   * @returns {Class}
+   */
+  static fromJSON(key, data, skills) {
+    return new Class(key, data, skills);
   }
 
   static resolveKey(key, gender) {
