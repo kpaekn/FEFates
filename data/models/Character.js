@@ -1,12 +1,14 @@
 "use strict";
 
+const { parseCSV } = require("./utils");
+
 class Character {
   constructor(key, {
     name,
     class_set,
     gender,
     route = "all",
-    supports = {},
+    supports = { friendship: "", partner: "" },
     adult = false,
     personal_skill,
     growth = null,
@@ -15,12 +17,12 @@ class Character {
   }) {
     this.key = key;
     this.name = name;
-    this.classSet = Character.parseCSV(class_set);
+    this.classSet = parseCSV(class_set);
     this.gender = gender;
     this.route = route;
     this.supports = {
-      friendship: Character.parseCSV(supports.friendship),
-      partner: Character.parseCSV(supports.partner),
+      friendship: parseCSV(supports.friendship),
+      partner: parseCSV(supports.partner),
     };
     this.adult = adult;
     this.personalSkill = personal_skill;
@@ -31,11 +33,6 @@ class Character {
 
   static fromJSON(key, data) {
     return new Character(key, data);
-  }
-
-  static parseCSV(str) {
-    if (!str) return [];
-    return str.split(",").map((s) => s.trim()).filter(Boolean);
   }
 
   isChild() {

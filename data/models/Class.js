@@ -1,5 +1,7 @@
 "use strict";
 
+const { parseCSV } = require("./utils");
+
 class Class {
   constructor(
     key,
@@ -7,9 +9,9 @@ class Class {
       name,
       unique = false,
       dlc = false,
-      weapons = [],
-      promotion = [],
-      skills = [],
+      weapons = "",
+      promotion = "",
+      skills = "",
       parallel = null,
       stats = null,
     },
@@ -18,9 +20,9 @@ class Class {
     this.name = name;
     this.unique = unique;
     this.dlc = dlc;
-    this.weapons = weapons;
-    this.promotion = promotion;
-    this.skills = skills;
+    this.weapons = parseCSV(weapons);
+    this.promotion = parseCSV(promotion);
+    this.skills = parseCSV(skills);
     this.parallel = parallel;
     this.stats = stats;
   }
