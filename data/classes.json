@@ -1,8 +1,9 @@
 {
   "nohr_prince": {
     "name": "Nohr Prince",
-    "gender": "m",
     "unique": true,
+    "gender": "m",
+    "opposite_gender": "nohr_princess",
     "weapons": "sword, dragon_stone",
     "promotion": "hoshido_noble, nohr_noble",
     "skills": "nobility, dragon_fang",
@@ -10,8 +11,9 @@
   },
   "nohr_princess": {
     "name": "Nohr Princess",
-    "gender": "f",
     "unique": true,
+    "gender": "f",
+    "opposite_gender": "nohr_prince",
     "weapons": "sword, dragon_stone",
     "promotion": "hoshido_noble, nohr_noble",
     "skills": "nobility, dragon_fang",
@@ -135,6 +137,7 @@
   "monk": {
     "name": "Monk",
     "gender": "m",
+    "opposite_gender": "shrine_maiden",
     "weapons": "staff",
     "promotion": "great_master, onmyoji",
     "skills": "miracle, rally_luck",
@@ -143,12 +146,14 @@
   "great_master": {
     "name": "Great Master",
     "gender": "m",
+    "opposite_gender": "priestess",
     "weapons": "lance, staff",
     "skills": "renewal, countermagic"
   },
   "shrine_maiden": {
     "name": "Shrine Maiden",
     "gender": "f",
+    "opposite_gender": "monk",
     "weapons": "staff",
     "promotion": "priestess, onmyoji",
     "skills": "miracle, rally_luck",
@@ -157,6 +162,7 @@
   "priestess": {
     "name": "Priestess",
     "gender": "f",
+    "opposite_gender": "great_master",
     "weapons": "bow, staff",
     "skills": "renewal, countermagic"
   },
@@ -310,6 +316,7 @@
   "troubadour_m": {
     "name": "Troubadour",
     "gender": "m",
+    "opposite_gender": "troubadour_f",
     "weapons": "staff",
     "promotion": "strategist, butler",
     "skills": "resistance_2, gentilhomme",
@@ -318,6 +325,7 @@
   "troubadour_f": {
     "name": "Troubadour",
     "gender": "f",
+    "opposite_gender": "troubadour_m",
     "weapons": "staff",
     "promotion": "strategist, maid",
     "skills": "resistance_2, demoiselle",
@@ -331,6 +339,7 @@
   "butler": {
     "name": "Butler",
     "gender": "m",
+    "opposite_gender": "maid",
     "weapons": "dagger, staff",
     "skills": "live_to_serve, tomebreaker",
     "stats": "maid_butler"
@@ -338,6 +347,7 @@
   "maid": {
     "name": "Maid",
     "gender": "f",
+    "opposite_gender": "butler",
     "weapons": "dagger, staff",
     "skills": "live_to_serve, tomebreaker",
     "stats": "maid_butler"

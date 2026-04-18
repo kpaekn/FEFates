@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const Handlebars = require("handlebars");
 
-const Class = require("./data/models/Class");
 const Stat = require("./data/models/Stats");
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
@@ -43,18 +42,38 @@ const UNIQUE_CLASS_KEYS = new Set(
 );
 
 // ─── Class-key helpers ────────────────────────────────────────────────────────
-function resolveParallel(classKey, recipientGender) {
-  const cls = classes.get(classKey);
-  if (!cls?.parallelClass) {
-    return classKey;
+/**
+ * @param {string} rawKey
+ * @param {string} gender
+ */
+function getResolvedClass(rawKey, gender) {
+  let cls = classes.get(rawKey);
+  if (!cls) {
+    throw new Error(`Raw class key "${rawKey}" is not valid`);
   }
 
-  return Class.resolveKey(cls.parallelClass.key, recipientGender);
+  return cls.resolveClassForGender(gender);
+}
+
+/**
+ * @param {string} rawKey
+ * @param {string} gender
+ */
+function getResolvedClassKey(rawKey, gender) {
+  return getResolvedClass(rawKey, gender)?.key || rawKey;
+}
+
+function resolveParallel(classKey, recipientGender) {
+  const cls = getResolvedClass(classKey, recipientGender);
+  if (!cls?.parallelClass) {
+    return cls?.key || classKey;
+  }
+
+  return getResolvedClassKey(cls.parallelClass.key, recipientGender);
 }
 
 function enrichClass(classKey, displayGender) {
-  classKey = Class.resolveKey(classKey, displayGender);
-  const cls = classes.get(classKey);
+  const cls = getResolvedClass(classKey, displayGender);
   if (!cls) {
     console.warn(`[warn] Unknown class: ${classKey} ${displayGender}`);
     return { name: classKey, weapons: [], skills: [] };
@@ -69,13 +88,12 @@ function enrichClass(classKey, displayGender) {
  * Uses charGender for the Nohr Prince(ss) name and troubadour resolution.
  */
 function resolveClassTree(rawKey, charGender) {
-  const key = Class.resolveKey(rawKey, charGender);
-  const cls = classes.get(key);
+  const cls = getResolvedClass(rawKey, charGender);
   if (!cls) {
-    console.warn(`[warn] Unknown class in tree: ${key}`);
+    console.warn(`[warn] Unknown class in tree: ${rawKey}`);
     return [];
   }
-  const result = [enrichClass(key, charGender)];
+  const result = [enrichClass(cls.key, charGender)];
   if (cls.promotion) {
     for (const promCls of cls.promotion) {
       result.push(enrichClass(promCls.key, charGender));
@@ -92,10 +110,13 @@ function resolveClassTree(rawKey, charGender) {
  */
 function getTalentOptions(gender) {
   const options = [];
+  const seenClassKeys = new Set();
   for (const [key, cls] of classes.entries()) {
     if (!cls.isTalent()) continue;
-    if (!cls.isAvailableForGender(gender)) continue;
-    options.push({ key, name: cls.name });
+    const resolvedClass = getResolvedClass(key, gender);
+    if (!resolvedClass || seenClassKeys.has(resolvedClass.key)) continue;
+    seenClassKeys.add(resolvedClass.key);
+    options.push({ key: resolvedClass.key, name: resolvedClass.name });
   }
   options.sort((a, b) => a.name.localeCompare(b.name));
   const defaultKey = options.some((o) => o.key === "samurai")
@@ -128,8 +149,8 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
     return null;
   }
 
-  const charFirstKey = Class.resolveKey(char.classSet[0], char.gender);
-  const partnerFirstKey = Class.resolveKey(partner.classSet[0], partner.gender);
+  const charFirstKey = getResolvedClassKey(char.classSet[0], char.gender);
+  const partnerFirstKey = getResolvedClassKey(partner.classSet[0], partner.gender);
 
   const isPartnerCorrinKana = partner.isCorrinOrKana();
 
@@ -149,7 +170,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
       // Partner has only one class; nothing to fall back to in Case A
       return partnerFirstKey;
     }
-    partnerSecondKey = Class.resolveKey(partner.classSet[1], partner.gender);
+    partnerSecondKey = getResolvedClassKey(partner.classSet[1], partner.gender);
   }
 
   // ── Case B: partner's first class is a unique-first class ────────────────
@@ -195,9 +216,9 @@ function resolveParentContribution(
   donorGender,
   childGender,
 ) {
-  const donorFirstKey = Class.resolveKey(donorClassKeys[0], donorGender);
+  const donorFirstKey = getResolvedClassKey(donorClassKeys[0], donorGender);
   if (donorClassKeys.length < 2) return donorFirstKey;
-  const donorSecondKey = Class.resolveKey(donorClassKeys[1], donorGender);
+  const donorSecondKey = getResolvedClassKey(donorClassKeys[1], donorGender);
 
   // Case B: donor's first class is unique
   if (UNIQUE_CLASS_KEYS.has(donorFirstKey)) {
@@ -224,7 +245,7 @@ function resolveParentContribution(
  */
 function resolveChildInheritedClassKey(child, varParentKey) {
   const childClassKeys = child.classSet;
-  const childFirstKey = Class.resolveKey(childClassKeys[0], child.gender);
+  const childFirstKey = getResolvedClassKey(childClassKeys[0], child.gender);
   const variableParent = characters.get(varParentKey);
 
   // Corrin/Kana as variable parent always contribute nohr_prince or nohr_princess
@@ -258,10 +279,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
           child.gender,
         );
     if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
-      const fallback = Class.resolveKey(
-        varParentClassKeys[1],
-        varParent.gender,
-      );
+      const fallback = getResolvedClassKey(varParentClassKeys[1], varParent.gender);
       if (fallback === childFirstKey) {
         return resolveParallel(candidate, child.gender);
       }
@@ -427,26 +445,32 @@ function buildCharacterContext(character) {
   // Class growth dropdown options: all non-unique classes + unique classes in this character's class_set
   const charUniqueKeys = new Set(
     classSetKeys
-      .map((k) => Class.resolveKey(k, character.gender))
+      .map((k) => getResolvedClassKey(k, character.gender))
       .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
   const defaultClassKey =
-    character.startingClass ?? Class.resolveKey(classSetKeys[0], character.gender);
+    getResolvedClassKey(
+      character.startingClass ?? classSetKeys[0],
+      character.gender,
+    );
 
   const classGrowthOptions = [];
   const classGrowthMap = {};
+  const seenGrowthClassKeys = new Set();
   classes.forEach((cls, clsKey) => {
-    if (cls.unique && !charUniqueKeys.has(clsKey)) return;
-    if (!cls.isAvailableForGender(character.gender)) return;
-    const classGrowth = cls.stats?.growth;
+    const resolvedClass = getResolvedClass(clsKey, character.gender);
+    if (!resolvedClass || seenGrowthClassKeys.has(resolvedClass.key)) return;
+    if (resolvedClass.unique && !charUniqueKeys.has(resolvedClass.key)) return;
+    const classGrowth = resolvedClass.stats?.growth;
     if (!classGrowth) return;
-    const enriched = enrichClass(clsKey, character.gender);
+    seenGrowthClassKeys.add(resolvedClass.key);
+    const enriched = enrichClass(resolvedClass.key, character.gender);
     classGrowthOptions.push({
-      key: clsKey,
+      key: resolvedClass.key,
       name: enriched.name,
-      selected: clsKey === defaultClassKey,
+      selected: resolvedClass.key === defaultClassKey,
     });
-    classGrowthMap[clsKey] = classGrowth.toArray();
+    classGrowthMap[resolvedClass.key] = classGrowth.toArray();
   });
   classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
 

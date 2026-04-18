@@ -37,9 +37,8 @@ const classes = loadModel("classes.json", Class);
 const classStats = loadModel("class_stats.json", ClassStats);
 classes.forEach((cls) => {
   cls.setSkills(skills);
-  cls.setPromotion(classes);
   cls.setStats(classStats);
-  cls.setParallelClass(classes);
+  cls.setClasses(classes);
 });
 const characterStats = loadModel("character_stats.json", CharacterStats);
 const characters = loadModel("characters.json", Character);

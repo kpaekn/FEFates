@@ -39,7 +39,7 @@
   },
   "felicia": {
     "name": "Felicia",
-    "class_set": "troubadour, mercenary",
+    "class_set": "troubadour_f, mercenary",
     "starting_class": "maid",
     "gender": "f",
     "route": "all",
@@ -52,7 +52,7 @@
   },
   "jakob": {
     "name": "Jakob",
-    "class_set": "troubadour, cavalier",
+    "class_set": "troubadour_m, cavalier",
     "starting_class": "butler",
     "gender": "m",
     "route": "all",
@@ -369,7 +369,7 @@
   },
   "elise": {
     "name": "Elise",
-    "class_set": "troubadour, wyvern_rider",
+    "class_set": "troubadour_f, wyvern_rider",
     "gender": "f",
     "supports": {
       "friendship": "azura, effie, camilla, sakura",
@@ -393,7 +393,7 @@
   },
   "effie": {
     "name": "Effie",
-    "class_set": "knight, troubadour",
+    "class_set": "knight, troubadour_f",
     "gender": "f",
     "supports": {
       "friendship": "mozu, elise, nyx, hana",
@@ -514,7 +514,7 @@
   },
   "charlotte": {
     "name": "Charlotte",
-    "class_set": "fighter, troubadour",
+    "class_set": "fighter, troubadour_f",
     "gender": "f",
     "supports": {
       "friendship": "nyx, beruka, peri, rinkah",
@@ -526,7 +526,7 @@
   },
   "leo": {
     "name": "Leo",
-    "class_set": "dark_mage, troubadour",
+    "class_set": "dark_mage, troubadour_m",
     "starting_class": "dark_knight",
     "gender": "m",
     "supports": {
@@ -564,7 +564,7 @@
   },
   "flora": {
     "name": "Flora",
-    "class_set": "troubadour, dark_mage, mercenary",
+    "class_set": "troubadour_f, dark_mage, mercenary",
     "starting_class": "maid",
     "gender": "f",
     "supports": {
@@ -603,7 +603,7 @@
   },
   "shigure": {
     "name": "Shigure",
-    "class_set": "sky_knight, troubadour",
+    "class_set": "sky_knight, troubadour_m",
     "gender": "m",
     "route": "all",
     "supports": {
@@ -615,7 +615,7 @@
   },
   "dwyer": {
     "name": "Dwyer",
-    "class_set": "troubadour, cavalier",
+    "class_set": "troubadour_m, cavalier",
     "gender": "m",
     "route": "all",
     "supports": {
@@ -759,7 +759,7 @@
   },
   "forrest": {
     "name": "Forrest",
-    "class_set": "troubadour, dark_mage",
+    "class_set": "troubadour_m, dark_mage",
     "gender": "m",
     "supports": {
       "friendship": "shigure, siegbert, ignatius, kiragi",
@@ -855,7 +855,7 @@
   },
   "anna": {
     "name": "Anna",
-    "class_set": "outlaw, troubadour, apothecary",
+    "class_set": "outlaw, troubadour_f, apothecary",
     "gender": "f",
     "route": "all",
     "supports": {
