@@ -4,7 +4,9 @@ const fs = require("fs");
 const path = require("path");
 const Handlebars = require("handlebars");
 
+const BaseStat = require("./data/models/BaseStat");
 const Class = require("./data/models/Class");
+const Stat = require("./data/models/Stat");
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const ROOT = path.resolve(__dirname);
@@ -17,22 +19,6 @@ const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 // ─── Load data ────────────────────────────────────────────────────────────────
 const { characters, classes, skills, characterStats, classStats, boonBaneStats } =
   require("./data/database");
-
-const Stat = function(HP, Str, Mag, Skl, Spd, Lck, Def, Res) {
-	this.HP = HP;
-	this.Str = Str;
-	this.Mag = Mag;
-	this.Skl = Skl;
-	this.Spd = Spd;
-	this.Lck = Lck;
-	this.Def = Def;
-	this.Res = Res;
-};
-
-const BaseStat = function(level, HP, Str, Mag, Skl, Spd, Lck, Def, Res) {
-	this.level = level;
-	this.stat = new Stat(HP, Str, Mag, Skl, Spd, Lck, Def, Res);
-};
 
 const ROUTE_ORDER = ["all", "birthright", "conquest", "revelation"];
 const ROUTE_TITLES = {
@@ -108,6 +94,14 @@ function statArrayToRow(values) {
 }
 
 function normalizeStatArray(values) {
+  if (values instanceof Stat) {
+    return values;
+  }
+
+  if (!Array.isArray(values) && values) {
+    return Stat.fromJSON(values);
+  }
+
   const [HP, Str, Mag, Skl, Spd, Lck, Def, Res] = values ?? [];
   return new Stat(HP ?? 0, Str ?? 0, Mag ?? 0, Skl ?? 0, Spd ?? 0, Lck ?? 0, Def ?? 0, Res ?? 0);
 }

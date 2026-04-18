@@ -5,6 +5,7 @@ const path = require("path");
 
 const Class = require("./models/Class");
 const Skill = require("./models/Skill");
+const Stat = require("./models/Stat");
 
 const DATA_DIR = __dirname;
 
@@ -28,11 +29,24 @@ function hydrateClasses(raw) {
   return result;
 }
 
+function hydrateClassStats(raw) {
+  const result = {};
+  for (const [key, data] of Object.entries(raw)) {
+    result[key] = {
+      ...data,
+      base: Stat.fromJSON(data.base),
+      growth: Stat.fromJSON(data.growth),
+      max: Stat.fromJSON(data.max),
+    };
+  }
+  return result;
+}
+
 module.exports = {
   characters: loadJSON("characters.json"),
   classes: hydrateClasses(loadJSON("classes.json")),
   skills: hydrateSkills(loadJSON("skills.json")),
   characterStats: loadJSON("character_stats.json"),
-  classStats: loadJSON("class_stats.json"),
+  classStats: hydrateClassStats(loadJSON("class_stats.json")),
   boonBaneStats: loadJSON("boon_bane_stats.json"),
 };
