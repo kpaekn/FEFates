@@ -26,8 +26,6 @@ const ROUTE_TITLES = {
   conquest: "Conquest",
   revelation: "Revelation",
 };
-const STAT_LABELS = ["HP", "Str", "Mag", "Skl", "Spd", "Lck", "Def", "Res"];
-const STAT_KEYS = ["hp", "str", "mag", "skl", "spd", "lck", "def", "res"];
 const CORRIN_DEFAULT_BOON = "mag";
 const CORRIN_DEFAULT_BANE = "lck";
 
@@ -52,112 +50,6 @@ function getSkillIconPath(skillKey) {
 
 function getWeaponIconPath(weaponKey) {
   return `../images/icon/weapons/${weaponKey}.png`;
-}
-
-function createEmptyStatArray() {
-  return STAT_KEYS.map(() => 0);
-}
-
-function createSingleStatModifierMap(rawModifiers) {
-  const modifierMap = {};
-  for (const key of STAT_KEYS) {
-    modifierMap[key] = STAT_KEYS.map((statKey) =>
-      statKey === key ? (rawModifiers?.[key] ?? 0) : 0,
-    );
-  }
-  return modifierMap;
-}
-
-function createMultiStatModifierMap(rawModifiers) {
-  const modifierMap = {};
-  for (const key of STAT_KEYS) {
-    const entry = rawModifiers?.[key] ?? {};
-    modifierMap[key] = STAT_KEYS.map((statKey) => entry[statKey] ?? 0);
-  }
-  return modifierMap;
-}
-
-function applyStatModifiers(baseValues, ...modifierSets) {
-  return baseValues.map((value, index) =>
-    modifierSets.reduce(
-      (total, modifierSet) => total + (modifierSet?.[index] ?? 0),
-      value,
-    ),
-  );
-}
-
-function statArrayToRow(values) {
-  return STAT_KEYS.reduce((row, key, index) => {
-    row[key] = values[index];
-    return row;
-  }, {});
-}
-
-function normalizeStatArray(values) {
-  if (values instanceof Stat) {
-    return values;
-  }
-
-  if (!Array.isArray(values) && values) {
-    return Stat.fromJSON(values);
-  }
-
-  const [HP, Str, Mag, Skl, Spd, Lck, Def, Res] = values ?? [];
-  return new Stat(HP ?? 0, Str ?? 0, Mag ?? 0, Skl ?? 0, Spd ?? 0, Lck ?? 0, Def ?? 0, Res ?? 0);
-}
-
-function statObjectToArray(stat) {
-  return [
-    stat?.HP ?? 0,
-    stat?.Str ?? 0,
-    stat?.Mag ?? 0,
-    stat?.Skl ?? 0,
-    stat?.Spd ?? 0,
-    stat?.Lck ?? 0,
-    stat?.Def ?? 0,
-    stat?.Res ?? 0,
-  ];
-}
-
-function normalizeBaseStatArray(values) {
-  const [level, HP, Str, Mag, Skl, Spd, Lck, Def, Res] = values ?? [];
-  return new BaseStat(
-    level ?? 0,
-    HP ?? 0,
-    Str ?? 0,
-    Mag ?? 0,
-    Skl ?? 0,
-    Spd ?? 0,
-    Lck ?? 0,
-    Def ?? 0,
-    Res ?? 0,
-  );
-}
-
-function baseStatToRow(baseStat, extras = {}) {
-  return {
-    ...extras,
-    level: baseStat?.level ?? 0,
-    ...statArrayToRow(statObjectToArray(baseStat?.stat)),
-  };
-}
-
-function normalizeBoonBaneMultiStatModifiers(rawModifiers) {
-  const modifierMap = {};
-  for (const [label, values] of Object.entries(rawModifiers ?? {})) {
-    modifierMap[label.toLowerCase()] = statArrayToRow(
-      statObjectToArray(normalizeStatArray(values)),
-    );
-  }
-  return modifierMap;
-}
-
-function getCorrinStatOptions(selectedKey) {
-  return STAT_KEYS.map((key, index) => ({
-    key,
-    name: STAT_LABELS[index],
-    selected: key === selectedKey,
-  }));
 }
 
 function getRouteBucket(char) {
@@ -211,14 +103,7 @@ for (const cls of Object.values(classes)) {
   }
 }
 
-// ─── Unique-first-class keys that trigger Case B seal resolution ──────────────
-//     Derive these from the class data so the seal logic follows the source of
-//     truth instead of a hand-maintained list.
-const UNIQUE_CLASS_KEYS = new Set(
-  Object.entries(classes)
-    .filter(([, cls]) => cls.unique)
-    .map(([key]) => key),
-);
+const UNIQUE_CLASS_KEYS = Class.uniqueKeys(classes);
 
 // ─── Corrin / Kana character keys ─────────────────────────────────────────────
 const CORRIN_KEYS = new Set(["corrin_m", "corrin_f"]);
@@ -284,14 +169,11 @@ function resolveClassTree(rawKey, charGender) {
 function getTalentOptions(gender) {
   const options = [];
   for (const [key, cls] of Object.entries(classes)) {
-    if (cls.unique) continue; // unique classes not selectable as talents
-    if (cls.dlc) continue; // DLC classes are not selectable as talents
-    if (!cls.promotion) continue; // promoted classes have no promotion field
-    if (promotedKeys.has(key)) continue; // this IS a promoted class
-    if (key === "troubadour_m" && gender === "f") continue;
-    if (key === "troubadour_f" && gender === "m") continue;
-    if (key === "monk" && gender === "f") continue;
-    if (key === "shrine_maiden" && gender === "m") continue;
+    if (cls.unique) continue;
+    if (cls.dlc) continue;
+    if (!cls.promotion) continue;
+    if (promotedKeys.has(key)) continue;
+    if (!cls.isAvailableForGender(gender)) continue;
     options.push({ key, name: cls.name });
   }
   options.sort((a, b) => a.name.localeCompare(b.name));
@@ -594,27 +476,27 @@ function buildCharacterContext(charKey, char) {
   const growthKey = char.growth ?? charKey;
   const charGrowth = characterStats[growthKey]?.growth;
   const baseGrowthValues = charGrowth
-    ? statObjectToArray(normalizeStatArray(charGrowth))
+    ? Stat.fromJSON(charGrowth).toArray()
     : [];
   const corrinBoonBane = isCorrin ? boonBaneStats[statKey] : null;
   const corrinGrowthBoonMap =
     isCorrin && corrinBoonBane?.growth
-      ? createMultiStatModifierMap(normalizeBoonBaneMultiStatModifiers(corrinBoonBane.growth.boon))
+      ? Stat.multiModifierMap(Stat.normalizeBoonBaneModifiers(corrinBoonBane.growth.boon))
       : null;
   const corrinGrowthBaneMap =
     isCorrin && corrinBoonBane?.growth
-      ? createMultiStatModifierMap(normalizeBoonBaneMultiStatModifiers(corrinBoonBane.growth.bane))
+      ? Stat.multiModifierMap(Stat.normalizeBoonBaneModifiers(corrinBoonBane.growth.bane))
       : null;
   const initialGrowthValues =
     isCorrin && corrinGrowthBoonMap && corrinGrowthBaneMap
-      ? applyStatModifiers(
+      ? Stat.applyModifiers(
         baseGrowthValues,
         corrinGrowthBoonMap[CORRIN_DEFAULT_BOON],
         corrinGrowthBaneMap[CORRIN_DEFAULT_BANE],
       )
       : baseGrowthValues;
   const growthRates = initialGrowthValues.map((value, index) => ({
-    stat: STAT_LABELS[index],
+    stat: Stat.LABELS[index],
     value,
   }));
 
@@ -631,21 +513,17 @@ function buildCharacterContext(charKey, char) {
   const classGrowthMap = {};
   for (const [clsKey, cls] of Object.entries(classes)) {
     if (cls.unique && !charUniqueKeys.has(clsKey)) continue;
-    if (clsKey === "troubadour_m" && char.gender === "f") continue;
-    if (clsKey === "troubadour_f" && char.gender === "m") continue;
-    if (clsKey === "monk" && char.gender === "f") continue;
-    if (clsKey === "shrine_maiden" && char.gender === "m") continue;
+    if (!cls.isAvailableForGender(char.gender)) continue;
     const classGrowthKey = cls.stats ?? clsKey;
     const classGrowth = classStats[classGrowthKey]?.growth;
     if (!classGrowth) continue;
-    const normalizedClassGrowth = normalizeStatArray(classGrowth);
     const enriched = enrichClass(clsKey, char.gender);
     classGrowthOptions.push({
       key: clsKey,
       name: enriched.name,
       selected: clsKey === defaultClassKey,
     });
-    classGrowthMap[clsKey] = statObjectToArray(normalizedClassGrowth);
+    classGrowthMap[clsKey] = Stat.fromJSON(classGrowth).toArray();
   }
   classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -654,12 +532,10 @@ function buildCharacterContext(charKey, char) {
     const raw = characterStats[statKey]?.base || {};
     const rows = [];
     const variants = Object.entries(raw);
-    const hasMultipleVariants = variants.length > 1;
     for (const [variant, values] of variants) {
       if (!Array.isArray(values)) continue;
-      const normalizedBaseStat = normalizeBaseStatArray(values);
       rows.push(
-        baseStatToRow(normalizedBaseStat, {
+        BaseStat.fromArray(values).toRow({
           rowKey: variant.toLowerCase().replace(/[^a-z0-9]+/g, "_"),
           label: variant,
         }),
@@ -669,36 +545,32 @@ function buildCharacterContext(charKey, char) {
   })();
   const corrinBaseStatBoonMap =
     isCorrin && corrinBoonBane?.base
-      ? createSingleStatModifierMap(
-        statArrayToRow(statObjectToArray(normalizeStatArray(corrinBoonBane.base.boon))),
-      )
+      ? Stat.singleModifierMap(Stat.fromJSON(corrinBoonBane.base.boon).toRow())
       : null;
   const corrinBaseStatBaneMap =
     isCorrin && corrinBoonBane?.base
-      ? createSingleStatModifierMap(
-        statArrayToRow(statObjectToArray(normalizeStatArray(corrinBoonBane.base.bane))),
-      )
+      ? Stat.singleModifierMap(Stat.fromJSON(corrinBoonBane.base.bane).toRow())
       : null;
   const baseStatsRows = rawBaseStatsRows.map((row) => {
     if (!isCorrin || !corrinBaseStatBoonMap || !corrinBaseStatBaneMap) {
       return row;
     }
-    const adjustedValues = applyStatModifiers(
-      STAT_KEYS.map((key) => row[key] ?? 0),
+    const adjustedValues = Stat.applyModifiers(
+      Stat.KEYS.map((key) => row[key] ?? 0),
       corrinBaseStatBoonMap[CORRIN_DEFAULT_BOON],
       corrinBaseStatBaneMap[CORRIN_DEFAULT_BANE],
     );
     return {
       ...row,
-      ...statArrayToRow(adjustedValues),
+      ...new Stat(...adjustedValues).toRow(),
     };
   });
-  const baseStatsHeaders = ["Level", ...STAT_LABELS];
+  const baseStatsHeaders = ["Level", ...Stat.LABELS];
   const corrinBoonOptions = isCorrin
-    ? getCorrinStatOptions(CORRIN_DEFAULT_BOON)
+    ? Stat.getSelectOptions(CORRIN_DEFAULT_BOON)
     : [];
   const corrinBaneOptions = isCorrin
-    ? getCorrinStatOptions(CORRIN_DEFAULT_BANE)
+    ? Stat.getSelectOptions(CORRIN_DEFAULT_BANE)
     : [];
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
@@ -796,13 +668,13 @@ function buildCharacterContext(charKey, char) {
         ? {
           defaultBoon: CORRIN_DEFAULT_BOON,
           defaultBane: CORRIN_DEFAULT_BANE,
-          emptyStats: createEmptyStatArray(),
+          emptyStats: Stat.emptyArray(),
           growthBoonMap: corrinGrowthBoonMap,
           growthBaneMap: corrinGrowthBaneMap,
           baseStatBoonMap: corrinBaseStatBoonMap,
           baseStatBaneMap: corrinBaseStatBaneMap,
           baseStatRows: rawBaseStatsRows.map((row) =>
-            STAT_KEYS.map((key) => row[key] ?? 0),
+            Stat.KEYS.map((key) => row[key] ?? 0),
           ),
         }
         : null,

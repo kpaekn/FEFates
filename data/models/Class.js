@@ -54,11 +54,31 @@ class Class {
     return recipientGender === "m" ? parts[0] : parts[1];
   }
 
+  isAvailableForGender(gender) {
+    if (this.key === "troubadour_m" && gender === "f") return false;
+    if (this.key === "troubadour_f" && gender === "m") return false;
+    if (this.key === "monk" && gender === "f") return false;
+    if (this.key === "shrine_maiden" && gender === "m") return false;
+    return true;
+  }
+
   getDisplayName(displayGender) {
     if (this.key === "nohr_prince_ss") {
       return displayGender === "m" ? "Nohr Prince" : "Nohr Princess";
     }
     return this.name;
+  }
+
+  /**
+   * @param {Record<string, Class>} classMap
+   * @returns {Set<string>}
+   */
+  static uniqueKeys(classMap) {
+    return new Set(
+      Object.entries(classMap)
+        .filter(([, cls]) => cls.unique)
+        .map(([key]) => key),
+    );
   }
 
   toRenderObject({
