@@ -1,7 +1,7 @@
 {
   "corrin_m": {
     "name": "Corrin (M)",
-    "class_set": "nohr_prince_ss",
+    "class_set": "nohr_prince",
     "gender": "m",
     "route": "all",
     "supports": {
@@ -14,7 +14,7 @@
   },
   "corrin_f": {
     "name": "Corrin (F)",
-    "class_set": "nohr_prince_ss",
+    "class_set": "nohr_princess",
     "gender": "f",
     "route": "all",
     "supports": {
@@ -577,7 +577,7 @@
   },
   "kana_m": {
     "name": "Kana (M)",
-    "class_set": "nohr_prince_ss",
+    "class_set": "nohr_prince",
     "gender": "m",
     "route": "all",
     "parent": "corrin_f",
@@ -590,7 +590,7 @@
   },
   "kana_f": {
     "name": "Kana (F)",
-    "class_set": "nohr_prince_ss",
+    "class_set": "nohr_princess",
     "gender": "f",
     "route": "all",
     "parent": "corrin_m",

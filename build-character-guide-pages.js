@@ -71,14 +71,9 @@ function buildCharacterIndexSections() {
 }
 
 // ─── Promoted-class key set (to identify base classes for talent options) ─────
-const promotedKeys = new Set();
-for (const cls of Object.values(classes)) {
-  if (cls.promotion) {
-    for (const k of cls.promotion) promotedKeys.add(k);
-  }
-}
+const promotedKeys = new Set(classes.filter((cls) => cls.promotion.length > 0).values().flatMap((cls) => cls.promotion));
 
-const UNIQUE_CLASS_KEYS = Class.uniqueKeys(classes);
+const UNIQUE_CLASS_KEYS = classes.filter((cls) => cls.unique).keys();
 
 // ─── Corrin / Kana character keys ─────────────────────────────────────────────
 const CORRIN_KEYS = new Set(["corrin_m", "corrin_f"]);
@@ -86,10 +81,6 @@ const KANA_KEYS = new Set(["kana_m", "kana_f"]);
 const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
 
 // ─── Class-key helpers ────────────────────────────────────────────────────────
-function resolveClassKey(key, gender) {
-  return Class.resolveKey(key, gender);
-}
-
 function resolveParallel(classKey, recipientGender) {
   return Class.resolveParallelKey(
     classKey,
@@ -99,8 +90,8 @@ function resolveParallel(classKey, recipientGender) {
 }
 
 function enrichClass(classKey, displayGender) {
-  classKey = resolveClassKey(classKey, displayGender);
-  const cls = classes[classKey];
+  classKey = Class.resolveKey(classKey, displayGender);
+  const cls = classes.get(classKey);
   if (!cls) {
     console.warn(`[warn] Unknown class: ${classKey} ${displayGender}`);
     return { name: classKey, weapons: [], skills: [] };
@@ -115,8 +106,8 @@ function enrichClass(classKey, displayGender) {
  * Uses charGender for the Nohr Prince(ss) name and troubadour resolution.
  */
 function resolveClassTree(rawKey, charGender) {
-  const key = resolveClassKey(rawKey, charGender);
-  const cls = classes[key];
+  const key = Class.resolveKey(rawKey, charGender);
+  const cls = classes.get(key);
   if (!cls) {
     console.warn(`[warn] Unknown class in tree: ${key}`);
     return [];
@@ -138,7 +129,7 @@ function resolveClassTree(rawKey, charGender) {
  */
 function getTalentOptions(gender) {
   const options = [];
-  for (const [key, cls] of Object.entries(classes)) {
+  for (const [key, cls] of classes.entries()) {
     if (cls.unique) continue;
     if (cls.dlc) continue;
     if (!cls.promotion) continue;
@@ -177,8 +168,8 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
     return null;
   }
 
-  const charFirstKey = resolveClassKey(char.classSet[0], char.gender);
-  const partnerFirstKey = resolveClassKey(partner.classSet[0], partner.gender);
+  const charFirstKey = Class.resolveKey(char.classSet[0], char.gender);
+  const partnerFirstKey = Class.resolveKey(partner.classSet[0], partner.gender);
 
   const isPartnerCorrinKana = CORRIN_KANA_KEYS.has(partnerKey);
 
@@ -198,7 +189,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
       // Partner has only one class; nothing to fall back to in Case A
       return partnerFirstKey;
     }
-    partnerSecondKey = resolveClassKey(partner.classSet[1], partner.gender);
+    partnerSecondKey = Class.resolveKey(partner.classSet[1], partner.gender);
   }
 
   // ── Case B: partner's first class is a unique-first class ────────────────
@@ -243,9 +234,9 @@ function resolveParentContribution(
   donorGender,
   childGender,
 ) {
-  const donorFirstKey = resolveClassKey(donorClassKeys[0], donorGender);
+  const donorFirstKey = Class.resolveKey(donorClassKeys[0], donorGender);
   if (donorClassKeys.length < 2) return donorFirstKey;
-  const donorSecondKey = resolveClassKey(donorClassKeys[1], donorGender);
+  const donorSecondKey = Class.resolveKey(donorClassKeys[1], donorGender);
 
   // Case B: donor's first class is unique
   if (UNIQUE_CLASS_KEYS.has(donorFirstKey)) {
@@ -266,16 +257,19 @@ function resolveParentContribution(
 
 /**
  * Determine which class key a child inherits from their variable parent.
- * Corrin/Kana always contribute nohr_prince_ss (no talent needed).
+ * Corrin/Kana always contribute nohr_prince or nohr_princess (no talent needed).
  * Also checks Case C: if the result matches what the fixed parent contributes,
  * use the variable parent's second class instead.
  */
 function resolveChildInheritedClassKey(child, varParentKey) {
   const childClassKeys = child.classSet;
-  const childFirstKey = resolveClassKey(childClassKeys[0], child.gender);
+  const childFirstKey = Class.resolveKey(childClassKeys[0], child.gender);
 
-  // Corrin/Kana as variable parent always contribute nohr_prince_ss
-  if (CORRIN_KANA_KEYS.has(varParentKey)) return "nohr_prince_ss";
+  // Corrin/Kana as variable parent always contribute nohr_prince or nohr_princess
+  if (CORRIN_KANA_KEYS.has(varParentKey)) {
+    if (child.gender === "m") return "nohr_prince";
+    else return "nohr_princess";
+  }
 
   const varParent = characters[varParentKey];
   if (!varParent) {
@@ -302,7 +296,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
         child.gender,
       );
     if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
-      const fallback = resolveClassKey(varParentClassKeys[1], varParent.gender);
+      const fallback = Class.resolveKey(varParentClassKeys[1], varParent.gender);
       if (fallback === childFirstKey) {
         return resolveParallel(candidate, child.gender);
       }
@@ -463,20 +457,20 @@ function buildCharacterContext(charKey, char) {
   // Class growth dropdown options: all non-unique classes + unique classes in this character's class_set
   const charUniqueKeys = new Set(
     classSetKeys
-      .map((k) => resolveClassKey(k, char.gender))
+      .map((k) => Class.resolveKey(k, char.gender))
       .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
   const defaultClassKey = char.startingClass
-    ?? resolveClassKey(classSetKeys[0], char.gender);
-
+    ?? Class.resolveKey(classSetKeys[0], char.gender);
+  
   const classGrowthOptions = [];
   const classGrowthMap = {};
-  for (const [clsKey, cls] of Object.entries(classes)) {
-    if (cls.unique && !charUniqueKeys.has(clsKey)) continue;
-    if (!cls.isAvailableForGender(char.gender)) continue;
+  classes.forEach((cls, clsKey) => {
+    if (cls.unique && !charUniqueKeys.has(clsKey)) return;
+    if (!cls.isAvailableForGender(char.gender)) return;
     const classGrowthKey = cls.stats ?? clsKey;
     const classGrowth = classStats[classGrowthKey]?.growth;
-    if (!classGrowth) continue;
+    if (!classGrowth) return;
     const enriched = enrichClass(clsKey, char.gender);
     classGrowthOptions.push({
       key: clsKey,
@@ -484,8 +478,9 @@ function buildCharacterContext(charKey, char) {
       selected: clsKey === defaultClassKey,
     });
     classGrowthMap[clsKey] = classGrowth.toArray();
-  }
+  });
   classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
+  console.log(`[debug] Built class growth options for ${charKey}:`, classGrowthOptions);
 
   // Base stat rows from character_stats.json variants
   const rawBaseStatsRows = (() => {
@@ -539,8 +534,6 @@ function buildCharacterContext(charKey, char) {
   // First class-set key → "Default Class Set"
   // Subsequent keys     → "Heart Seal - {base class name}"
   const defaultPanels = classSetKeys.map((rawKey, i) => {
-    const resolvedKey = resolveClassKey(rawKey, char.gender);
-    const baseCls = classes[resolvedKey];
     const label = i === 0 ? "Default Class Set" : `Heart Seal`;
     return { label, classes: resolveClassTree(rawKey, char.gender) };
   });

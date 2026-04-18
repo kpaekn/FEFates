@@ -6,51 +6,55 @@ const { parseCSV } = require("./utils");
 
 class Class {
   /**
+   * @typedef {Object} RawClassData
+   * @property {string} name
+   * @property {string} gender
+   * @property {boolean} unique
+   * @property {boolean} dlc
+   * @property {string} weapons
+   * @property {string} promotion
+   * @property {string} skills
+   * @property {string} parallel
+   * @property {string} stats
+   *
    * @param {string} key
-   * @param {*} data // see classes.json
+   * @param {RawClassData} raw
+   */
+  constructor(key, raw) {
+    this.key = key;
+    this.name = raw.name;
+    this.gender = raw.gender;
+    this.unique = raw.unique;
+    this.dlc = raw.dlc;
+    this.weapons = parseCSV(raw.weapons);
+    this.promotion = parseCSV(raw.promotion);
+    this.rawSkills = raw.skills;
+    this.parallel = raw.parallel;
+    this.stats = raw.stats;
+  }
+
+  /**
    * @param {DataSet<Skill>} skillsDataSet
    */
-  constructor(
-    key,
-    {
-      name,
-      unique = false,
-      dlc = false,
-      weapons,
-      promotion = "",
-      skills,
-      parallel = null,
-      stats = null,
-    },
-    skillsDataSet,
-  ) {
-    this.key = key;
-    this.name = name;
-    this.unique = unique;
-    this.dlc = dlc;
-    this.weapons = parseCSV(weapons);
-    this.promotion = parseCSV(promotion);
-    this.skills = parseCSV(skills)
+  updateSkills(skillsDataSet) {
+    this.skills = parseCSV(this.rawSkills)
       .map((skillKey) => {
         const skill = skillsDataSet.get(skillKey);
         if (!skill) {
-          throw new Error(`Unknown skill: ${skillKey} (in class ${key})`);
+          throw new Error(`Unknown skill: ${skillKey} (in class ${this.key})`);
         }
         return skill;
       })
       .filter(Boolean);
-    this.parallel = parallel;
-    this.stats = stats;
   }
 
   /**
    * @param {string} key
-   * @param {*} data // see classes.json
-   * @param {DataSet<Skill>} skills
+   * @param {RawClassData} raw
    * @returns {Class}
    */
-  static fromJSON(key, data, skills) {
-    return new Class(key, data, skills);
+  static fromJSON(key, raw) {
+    return new Class(key, raw);
   }
 
   static resolveKey(key, gender) {
@@ -64,11 +68,14 @@ class Class {
     if (key === "monk" || key === "shrine_maiden") {
       return gender === "m" ? "monk" : "shrine_maiden";
     }
+    if (key === "nohr_prince_ss" || key === "nohr_prince" || key === "nohr_princess") {
+      return gender === "m" ? "nohr_prince" : "nohr_princess";
+    }
     return key;
   }
 
-  static resolveParallelKey(classKey, recipientGender, classMap) {
-    const cls = classMap[classKey];
+  static resolveParallelKey(classKey, recipientGender, classesDataSet) {
+    const cls = classesDataSet.get(classKey);
     if (!cls?.parallel) {
       return classKey;
     }
@@ -91,18 +98,6 @@ class Class {
       return displayGender === "m" ? "Nohr Prince" : "Nohr Princess";
     }
     return this.name;
-  }
-
-  /**
-   * @param {Record<string, Class>} classMap
-   * @returns {Set<string>}
-   */
-  static uniqueKeys(classMap) {
-    return new Set(
-      Object.entries(classMap)
-        .filter(([, cls]) => cls.unique)
-        .map(([key]) => key),
-    );
   }
 
   toRenderObject({ displayGender }) {

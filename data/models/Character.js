@@ -3,36 +3,46 @@
 const { parseCSV } = require("./utils");
 
 class Character {
-  constructor(key, {
-    name,
-    class_set,
-    gender,
-    route = "all",
-    supports = { friendship: "", partner: "" },
-    adult = false,
-    personal_skill,
-    growth = null,
-    starting_class = null,
-    parent = null,
-  }) {
+  /**
+   * @typedef {Object} RawCharacterData
+   * @property {string} name
+   * @property {string} class_set
+   * @property {"m" | "f"} gender
+   * @property {"all" | "birthright" | "conquest" | "revelation"} route
+   * @property {{ friendship: string, partner: string }} supports
+   * @property {boolean} adult
+   * @property {string} personal_skill
+   * @property {string} growth
+   * @property {string} starting_class
+   * @property {string} parent
+   * 
+   * @param {string} key
+   * @param {RawCharacterData} raw
+   */
+  constructor(key, raw) {
     this.key = key;
-    this.name = name;
-    this.classSet = parseCSV(class_set);
-    this.gender = gender;
-    this.route = route;
+    this.name = raw.name;
+    this.classSet = parseCSV(raw.class_set);
+    this.gender = raw.gender;
+    this.route = raw.route;
     this.supports = {
-      friendship: parseCSV(supports.friendship),
-      partner: parseCSV(supports.partner),
+      friendship: parseCSV(raw.supports.friendship),
+      partner: parseCSV(raw.supports.partner),
     };
-    this.adult = adult;
-    this.personalSkill = personal_skill;
-    this.growth = growth;
-    this.startingClass = starting_class;
-    this.parent = parent;
+    this.adult = raw.adult;
+    this.personalSkill = raw.personal_skill;
+    this.growth = raw.growth;
+    this.startingClass = raw.starting_class;
+    this.parent = raw.parent;
   }
 
-  static fromJSON(key, data) {
-    return new Character(key, data);
+  /**
+   * @param {string} key
+   * @param {RawCharacterData} raw
+   * @returns {Character}
+   */
+  static fromJSON(key, raw) {
+    return new Character(key, raw);
   }
 
   isChild() {

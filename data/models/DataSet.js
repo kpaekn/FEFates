@@ -47,9 +47,9 @@ class DataSet {
     return key in this._map;
   }
 
-  /** @returns {string[]} */
+  /** @returns {Set<string>} */
   keys() {
-    return Object.keys(this._map);
+    return new Set(Object.keys(this._map));
   }
 
   /** @returns {T[]} */

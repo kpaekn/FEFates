@@ -42,11 +42,7 @@ class StatsModifierMap {
   }
 
   toModifierMap() {
-    const rowMap = {};
-    for (const key of Stats.KEYS) {
-      rowMap[key] = this[key];
-    }
-    return Stats.multiModifierMap(rowMap);
+    return Stats.multiModifierMap(this);
   }
 }
 

@@ -13,18 +13,6 @@ const CharacterStats = require("./models/CharacterStats");
 const DataSet = require("./models/DataSet");
 
 /**
- * @typedef {Object} CharacterData
- * @property {string} name
- * @property {string} class_set
- * @property {"m" | "f"} gender
- * @property {"all" | "birthright" | "conquest" | "revelation"} route
- * @property {{ friendship: string, partner: string }} supports
- * @property {boolean} adult
- * @property {string} personal_skill
- * @property {string} growth
- */
-
-/**
  * @typedef {Object} CharacterStatEntry
  * @property {Record<string, number[]>} base - Keyed by route (e.g. "Standard", "Conquest")
  * @property {number[]} growth
@@ -64,20 +52,6 @@ function hydrateCharacters(raw) {
 
 /**
  * @param {Record<string, any>} raw
- * @param {DataSet<Skill>} skills
- * @returns {Record<string, Class>}
- */
-function hydrateClasses(raw, skills) {
-  /** @type {Record<string, Class>} */
-  const result = {};
-  for (const [key, data] of Object.entries(raw)) {
-    result[key] = Class.fromJSON(key, data, skills);
-  }
-  return result;
-}
-
-/**
- * @param {Record<string, any>} raw
  * @returns {Record<string, HydratedClassStatEntry>}
  */
 function hydrateClassStats(raw) {
@@ -104,10 +78,12 @@ function hydrateCharacterStats(raw) {
 
 const skills = DataSet.fromJSON(loadJSON("skills.json"), Skill);
 const boonBaneStats = DataSet.fromJSON(loadJSON("boon_bane_stats.json"), BoonBaneStats);
+const classes = DataSet.fromJSON(loadJSON("classes.json"), Class);
+classes.forEach((cls) => cls.updateSkills(skills));
 
 module.exports = {
   characters: hydrateCharacters(loadJSON("characters.json")),
-  classes: hydrateClasses(loadJSON("classes.json"), skills),
+  classes,
   characterStats: hydrateCharacterStats(loadJSON("character_stats.json")),
   classStats: hydrateClassStats(loadJSON("class_stats.json")),
   boonBaneStats,
