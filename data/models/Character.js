@@ -63,6 +63,18 @@ class Character {
     return new Character(key, raw);
   }
 
+  isCorrin() {
+    return this.key === "corrin_m" || this.key === "corrin_f";
+  }
+
+  isKana() {
+    return this.key === "kana_m" || this.key === "kana_f";
+  }
+
+  isCorrinOrKana() {
+    return this.isCorrin() || this.isKana();
+  }
+
   isChild() {
     return !!this.parent;
   }

@@ -49,11 +49,6 @@ const UNIQUE_CLASS_KEYS = new Set(
     .map(([key]) => key),
 );
 
-// ─── Corrin / Kana character keys ─────────────────────────────────────────────
-const CORRIN_KEYS = new Set(["corrin_m", "corrin_f"]);
-const KANA_KEYS = new Set(["kana_m", "kana_f"]);
-const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
-
 // ─── Class-key helpers ────────────────────────────────────────────────────────
 function resolveParallel(classKey, recipientGender) {
   const cls = classes.get(classKey);
@@ -146,7 +141,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
   const charFirstKey = Class.resolveKey(char.classSet[0], char.gender);
   const partnerFirstKey = Class.resolveKey(partner.classSet[0], partner.gender);
 
-  const isPartnerCorrinKana = CORRIN_KANA_KEYS.has(partnerKey);
+  const isPartnerCorrinKana = partner.isCorrinOrKana();
 
   // Determine the partner's effective "second class" (talent for Corrin/Kana)
   let partnerSecondKey;
@@ -240,9 +235,10 @@ function resolveParentContribution(
 function resolveChildInheritedClassKey(child, varParentKey) {
   const childClassKeys = child.classSet;
   const childFirstKey = Class.resolveKey(childClassKeys[0], child.gender);
+  const variableParent = characters.get(varParentKey);
 
   // Corrin/Kana as variable parent always contribute nohr_prince or nohr_princess
-  if (CORRIN_KANA_KEYS.has(varParentKey)) {
+  if (variableParent?.isCorrinOrKana()) {
     if (child.gender === "m") return "nohr_prince";
     else return "nohr_princess";
   }
@@ -263,7 +259,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = characters.get(child.parent);
   if (fixedParent) {
-    const fixedContribution = CORRIN_KANA_KEYS.has(child.parent)
+    const fixedContribution = fixedParent.isCorrinOrKana()
       ? "nohr_prince_ss"
       : resolveParentContribution(
           childFirstKey,
@@ -360,7 +356,7 @@ function buildSealSection(char, sealType, supportKeys) {
       continue;
     }
 
-    const isCorrinKana = CORRIN_KANA_KEYS.has(partnerKey);
+    const isCorrinKana = partner.isCorrinOrKana();
 
     options.push({ key: partnerKey, displayName: partner.name });
 
@@ -406,8 +402,8 @@ function buildSealSection(char, sealType, supportKeys) {
  */
 function buildCharacterContext(character) {
   const charKey = character.key;
-  const isCorrin = CORRIN_KEYS.has(charKey);
-  const isCorrinKana = CORRIN_KANA_KEYS.has(charKey);
+  const isCorrin = character.isCorrin();
+  const isCorrinKana = character.isCorrinOrKana();
   const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
   const statKey = charKey.replace(/_(m|f)$/, "");
 
