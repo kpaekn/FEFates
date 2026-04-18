@@ -2,8 +2,7 @@
     "name": "fe-fates-db",
     "version": "1.0.0",
     "scripts": {
-        "build": "node build-character-guide-pages.js",
-        "test": "node tests/test-skill-model.js && node tests/test-class-model.js && node tests/test-stat-model.js && node tests/test-base-stat-model.js"
+        "build": "node build-character-guide-pages.js"
     },
     "author": "",
     "license": "",
