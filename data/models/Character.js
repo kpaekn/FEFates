@@ -43,7 +43,7 @@ class Character {
   /**
    * @param {Map<string, CharacterStats>} characterStatsDataSet
    */
-  updateStats(characterStatsDataSet) {
+  setStats(characterStatsDataSet) {
     const characterStatsKey = this.rawStats ?? this.key;
     const stats = characterStatsDataSet.get(characterStatsKey);
     if (!stats) {

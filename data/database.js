@@ -36,13 +36,14 @@ const boonBaneStats = loadModel("boon_bane_stats.json", BoonBaneStats);
 const classes = loadModel("classes.json", Class);
 const classStats = loadModel("class_stats.json", ClassStats);
 classes.forEach((cls) => {
-  cls.updateSkills(skills);
-  cls.updateStats(classStats);
+  cls.setSkills(skills);
+  cls.setStats(classStats);
+  cls.setParallelClass(classes);
 });
 const characterStats = loadModel("character_stats.json", CharacterStats);
 const characters = loadModel("characters.json", Character);
 characters.forEach((character) => {
-  character.updateStats(characterStats);
+  character.setStats(characterStats);
 });
 
 module.exports = {

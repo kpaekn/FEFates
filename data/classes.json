@@ -32,7 +32,7 @@
     "unique": true,
     "weapons": "lance",
     "skills": "luck_4, inspiring_song, voice_of_peace, foreign_princess",
-    "parallel": "troubadour_m, troubadour_f"
+    "parallel": "troubadour_f"
   },
   "samurai": {
     "name": "Samurai",

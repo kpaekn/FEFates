@@ -30,17 +30,27 @@ class Class {
     this.dlc = raw.dlc ?? false;
     this.weapons = parseCSV(raw.weapons);
     this.promotion = parseCSV(raw.promotion);
-    this.rawSkills = raw.skills;
-    this.parallel = raw.parallel ?? null;
-    this.rawStats = raw.stats ?? null;
-    this.stats = null;
+    
+    this._skills = raw.skills;
+    this._parallel = raw.parallel ?? null;
+    this.parallelClass = null;
+    this._stats = raw.stats ?? key;
+  }
+
+  /**
+   * @param {string} key
+   * @param {RawClassData} raw
+   * @returns {Class}
+   */
+  static fromJSON(key, raw) {
+    return new Class(key, raw);
   }
 
   /**
    * @param {Map<string, Skill>} skillsDataSet
    */
-  updateSkills(skillsDataSet) {
-    this.skills = parseCSV(this.rawSkills)
+  setSkills(skillsDataSet) {
+    this.skills = parseCSV(this._skills)
       .map((skillKey) => {
         const skill = skillsDataSet.get(skillKey);
         if (!skill) {
@@ -54,8 +64,8 @@ class Class {
   /**
    * @param {Map<string, ClassStats>} classStatsDataSet
    */
-  updateStats(classStatsDataSet) {
-    const classStatsKey = this.rawStats ?? this.key;
+  setStats(classStatsDataSet) {
+    const classStatsKey = this._stats;
     const stats = classStatsDataSet.get(classStatsKey);
     if (!stats) {
       throw new Error(
@@ -66,12 +76,18 @@ class Class {
   }
 
   /**
-   * @param {string} key
-   * @param {RawClassData} raw
-   * @returns {Class}
+   * @param {Map<string, Class>} classDataSet
    */
-  static fromJSON(key, raw) {
-    return new Class(key, raw);
+  setParallelClass(classDataSet) {
+    if (this._parallel) {
+      const parallelClass = classDataSet.get(this._parallel);
+      if (!parallelClass) {
+        throw new Error(
+          `Unknown parallel class: ${this._parallel} (in class ${this.key})`,
+        );
+      }
+      this.parallelClass = parallelClass;
+    }
   }
 
   static resolveKey(key, gender) {
@@ -93,17 +109,6 @@ class Class {
       return gender === "m" ? "nohr_prince" : "nohr_princess";
     }
     return key;
-  }
-
-  static resolveParallelKey(classKey, recipientGender, classesDataSet) {
-    const cls = classesDataSet.get(classKey);
-    if (!cls?.parallel) {
-      return classKey;
-    }
-
-    const parts = cls.parallel.split(",").map((value) => value.trim());
-    if (parts.length === 1) return parts[0];
-    return recipientGender === "m" ? parts[0] : parts[1];
   }
 
   isAvailableForGender(gender) {

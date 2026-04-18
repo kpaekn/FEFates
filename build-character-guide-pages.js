@@ -15,6 +15,7 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
+const Character = require("./data/models/Character");
 const { characters, classes, boonBaneStats } = require("./data/database");
 
 const CORRIN_DEFAULT_BOON = "mag";
@@ -31,6 +32,7 @@ function buildCharacterIndexSections() {
   characters.forEach((chara) => {
     sections[chara.route].characters.push(chara);
   });
+
   return Object.values(sections);
 }
 
@@ -54,7 +56,12 @@ const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
 
 // ─── Class-key helpers ────────────────────────────────────────────────────────
 function resolveParallel(classKey, recipientGender) {
-  return Class.resolveParallelKey(classKey, recipientGender, classes);
+  const cls = classes.get(classKey);
+  if (!cls?.parallelClass) {
+    return classKey;
+  }
+
+  return Class.resolveKey(cls.parallelClass.key, recipientGender);
 }
 
 function enrichClass(classKey, displayGender) {
@@ -169,6 +176,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
       lentKey = isPartnerCorrinKana
         ? resolveParallel(partnerSecondKey, char.gender) // parallel of talent
         : resolveParallel(partnerFirstKey, char.gender); // parallel of unique class
+        
     }
 
     return lentKey;
@@ -392,16 +400,21 @@ function buildSealSection(char, sealType, supportKeys) {
 }
 
 // ─── Per-character template context ──────────────────────────────────────────
-function buildCharacterContext(charKey, char) {
+/**
+ * @param {Character} character 
+ * @returns 
+ */
+function buildCharacterContext(character) {
+  const charKey = character.key;
   const isCorrin = CORRIN_KEYS.has(charKey);
   const isCorrinKana = CORRIN_KANA_KEYS.has(charKey);
-  const pageTitle = `Fire Emblem Fates - Character Guides - ${char.name}`;
+  const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
   const statKey = charKey.replace(/_(m|f)$/, "");
 
-  const classSetKeys = char.classSet;
+  const classSetKeys = character.classSet;
 
   // Character growth rates
-  const charGrowth = char.stats?.growth;
+  const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
   const corrinBoonBane = isCorrin ? boonBaneStats.get(statKey) : null;
   const corrinGrowthBoonMap =
@@ -428,20 +441,20 @@ function buildCharacterContext(charKey, char) {
   // Class growth dropdown options: all non-unique classes + unique classes in this character's class_set
   const charUniqueKeys = new Set(
     classSetKeys
-      .map((k) => Class.resolveKey(k, char.gender))
+      .map((k) => Class.resolveKey(k, character.gender))
       .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
   const defaultClassKey =
-    char.startingClass ?? Class.resolveKey(classSetKeys[0], char.gender);
+    character.startingClass ?? Class.resolveKey(classSetKeys[0], character.gender);
 
   const classGrowthOptions = [];
   const classGrowthMap = {};
   classes.forEach((cls, clsKey) => {
     if (cls.unique && !charUniqueKeys.has(clsKey)) return;
-    if (!cls.isAvailableForGender(char.gender)) return;
+    if (!cls.isAvailableForGender(character.gender)) return;
     const classGrowth = cls.stats?.growth;
     if (!classGrowth) return;
-    const enriched = enrichClass(clsKey, char.gender);
+    const enriched = enrichClass(clsKey, character.gender);
     classGrowthOptions.push({
       key: clsKey,
       name: enriched.name,
@@ -453,7 +466,7 @@ function buildCharacterContext(charKey, char) {
 
   // Base stat rows from character_stats.json variants
   const rawBaseStatsRows = (() => {
-    const raw = char.stats?.base || {};
+    const raw = character.stats?.base || {};
     const rows = [];
     const variants = Object.entries(raw);
     for (const [variant, baseStats] of variants) {
@@ -497,14 +510,14 @@ function buildCharacterContext(charKey, char) {
     : [];
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
-  const talentOptions = isCorrinKana ? getTalentOptions(char.gender) : [];
+  const talentOptions = isCorrinKana ? getTalentOptions(character.gender) : [];
 
   // ── Default class panels ──────────────────────────────────────────────────
   // First class-set key → "Default Class Set"
   // Subsequent keys     → "Heart Seal - {base class name}"
   const defaultPanels = classSetKeys.map((rawKey, i) => {
     const label = i === 0 ? "Default Class Set" : `Heart Seal`;
-    return { label, classes: resolveClassTree(rawKey, char.gender) };
+    return { label, classes: resolveClassTree(rawKey, character.gender) };
   });
 
   // ── Heart Seal talent panels (Corrin/Kana only) ───────────────────────────
@@ -514,46 +527,46 @@ function buildCharacterContext(charKey, char) {
         key: opt.key,
         label: `Heart Seal`,
         group: "heart-seal",
-        classes: resolveClassTree(opt.key, char.gender),
+        classes: resolveClassTree(opt.key, character.gender),
         isHidden: true,
       }))
     : [];
 
   // ── Friendship supports ───────────────────────────────────────────────────
-  const friendshipKeys = parseSupportList(char.supports?.friendship);
+  const friendshipKeys = parseSupportList(character.supports?.friendship);
   const hasFriendship = friendshipKeys.length > 0;
   let friendshipOptions = [];
   let friendshipPanels = [];
   if (hasFriendship) {
-    const built = buildSealSection(char, "friendship", friendshipKeys);
+    const built = buildSealSection(character, "friendship", friendshipKeys);
     friendshipOptions = built.options;
     friendshipPanels = built.panels;
   }
 
   // ── Partner supports ──────────────────────────────────────────────────────
-  const partnerKeys = parseSupportList(char.supports?.partner);
+  const partnerKeys = parseSupportList(character.supports?.partner);
   const hasPartner = partnerKeys.length > 0;
   let partnerOptions = [];
   let partnerPanels = [];
   if (hasPartner) {
-    const built = buildSealSection(char, "partner", partnerKeys);
+    const built = buildSealSection(character, "partner", partnerKeys);
     partnerOptions = built.options;
     partnerPanels = built.panels;
   }
 
   // ── Child parent dropdown ──────────────────────────────────────────────────
-  const isChild = !!char.parent;
+  const isChild = !!character.parent;
   let parentOptions = [];
   let parentPanels = [];
   if (isChild) {
-    const built = buildChildParentSection(char);
+    const built = buildChildParentSection(character);
     parentOptions = built.parentOptions;
     parentPanels = built.parentPanels;
   }
 
   return {
     pageTitle,
-    characterName: char.name,
+    characterName: character.name,
     indexHref: `./`,
     characterKey: charKey,
     growthRates,
@@ -659,7 +672,7 @@ fs.writeFileSync(path.join(DIST, "index.html"), indexHtml, "utf8");
 
 let count = 0;
 for (const [charKey, char] of characters.entries()) {
-  const context = buildCharacterContext(charKey, char);
+  const context = buildCharacterContext(char);
   const html = characterTemplate(context);
   fs.writeFileSync(path.join(DIST, `${charKey}.html`), html, "utf8");
   count++;
