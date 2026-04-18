@@ -493,6 +493,8 @@ function buildChildParentSection(char) {
       continue;
     }
 
+      if (varParent.gender === fixedParent.gender) continue;
+
     parentOptions.push({ key: varParentKey, displayName: varParent.name });
 
     const inheritedKey = resolveChildInheritedClassKey(char, varParentKey);
