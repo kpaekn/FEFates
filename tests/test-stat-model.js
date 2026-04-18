@@ -31,8 +31,10 @@ assert.deepStrictEqual({ ...hydrated }, {
   Res: 8,
 });
 
-assert(db.classStats.samurai.growth instanceof Stat, "Expected class growth stats to be hydrated as Stat instances");
-assert(db.classStats.samurai.base instanceof Stat, "Expected class base stats to be hydrated as Stat instances");
-assert(db.classStats.samurai.max instanceof Stat, "Expected class max stats to be hydrated as Stat instances");
+const samuraiClassStats = db.classStats.get("samurai");
+assert(samuraiClassStats, "Expected samurai class stats to exist");
+assert(samuraiClassStats.growth instanceof Stat, "Expected class growth stats to be hydrated as Stat instances");
+assert(samuraiClassStats.base instanceof Stat, "Expected class base stats to be hydrated as Stat instances");
+assert(samuraiClassStats.max instanceof Stat, "Expected class max stats to be hydrated as Stat instances");
 
 console.log("PASS: Stat model tests");

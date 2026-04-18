@@ -469,7 +469,7 @@ function buildCharacterContext(charKey, char) {
     if (cls.unique && !charUniqueKeys.has(clsKey)) return;
     if (!cls.isAvailableForGender(char.gender)) return;
     const classGrowthKey = cls.stats ?? clsKey;
-    const classGrowth = classStats[classGrowthKey]?.growth;
+    const classGrowth = classStats.get(classGrowthKey)?.growth;
     if (!classGrowth) return;
     const enriched = enrichClass(clsKey, char.gender);
     classGrowthOptions.push({
@@ -480,7 +480,6 @@ function buildCharacterContext(charKey, char) {
     classGrowthMap[clsKey] = classGrowth.toArray();
   });
   classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
-  console.log(`[debug] Built class growth options for ${charKey}:`, classGrowthOptions);
 
   // Base stat rows from character_stats.json variants
   const rawBaseStatsRows = (() => {

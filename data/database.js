@@ -6,7 +6,6 @@ const path = require("path");
 const Skill = require("./models/Skill");
 const Character = require("./models/Character");
 const Class = require("./models/Class");
-const Stat = require("./models/Stats");
 const ClassStats = require("./models/ClassStats");
 const BoonBaneStats = require("./models/BoonBaneStats");
 const CharacterStats = require("./models/CharacterStats");
@@ -17,13 +16,6 @@ const DataSet = require("./models/DataSet");
  * @property {Record<string, number[]>} base - Keyed by route (e.g. "Standard", "Conquest")
  * @property {number[]} growth
  * @property {number[]} cap
- */
-
-/**
- * @typedef {Object} HydratedClassStatEntry
- * @property {Stat} base
- * @property {Stat} growth
- * @property {Stat} max
  */
 
 const DATA_DIR = __dirname;
@@ -52,19 +44,6 @@ function hydrateCharacters(raw) {
 
 /**
  * @param {Record<string, any>} raw
- * @returns {Record<string, HydratedClassStatEntry>}
- */
-function hydrateClassStats(raw) {
-  /** @type {Record<string, HydratedClassStatEntry>} */
-  const result = {};
-  for (const [key, data] of Object.entries(raw)) {
-    result[key] = ClassStats.fromJSON(key, data);
-  }
-  return result;
-}
-
-/**
- * @param {Record<string, any>} raw
  * @returns {Record<string, CharacterStats>}
  */
 function hydrateCharacterStats(raw) {
@@ -79,12 +58,13 @@ function hydrateCharacterStats(raw) {
 const skills = DataSet.fromJSON(loadJSON("skills.json"), Skill);
 const boonBaneStats = DataSet.fromJSON(loadJSON("boon_bane_stats.json"), BoonBaneStats);
 const classes = DataSet.fromJSON(loadJSON("classes.json"), Class);
+const classStats = DataSet.fromJSON(loadJSON("class_stats.json"), ClassStats);
 classes.forEach((cls) => cls.updateSkills(skills));
 
 module.exports = {
   characters: hydrateCharacters(loadJSON("characters.json")),
   classes,
   characterStats: hydrateCharacterStats(loadJSON("character_stats.json")),
-  classStats: hydrateClassStats(loadJSON("class_stats.json")),
+  classStats,
   boonBaneStats,
 };
