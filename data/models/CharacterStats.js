@@ -3,33 +3,42 @@
 const BaseStats = require("./BaseStats");
 const Stats = require("./Stats");
 
+/**
+ * @typedef {[number, number, number, number, number, number, number, number]} StatValues
+ * @typedef {[number, number, number, number, number, number, number, number, number]} BaseStatsValues
+ *
+ * @typedef {Object} RawCharacterStatsData
+ * @property {{ [name: string]: BaseStatsValues }} base
+ * @property {StatValues} growth
+ * @property {StatValues} cap
+ */
+
 class CharacterStats {
   /**
    * @param {string} key
-   * @param {{ [name: string]: BaseStats }} base
-   * @param {Stats} growth
-   * @param {Stats} cap
+   * @param {RawCharacterStatsData} raw
    */
-  constructor(key, base, growth, cap) {
+  constructor(key, raw) {
     this.key = key;
-    this.base = base;
-    this.growth = growth;
-    this.cap = cap;
+    this.base = Object.fromEntries(
+      Object.entries(raw.base).map(([name, values]) => [
+        name,
+        BaseStats.fromArray(values),
+      ]),
+    );
+    this.growth = Stats.fromArray(raw.growth);
+    this.cap = raw.cap ? Stats.fromArray(raw.cap) : null;
   }
 
   /**
-   * @param {string} key 
-   * @param {*} data // see character_stats.json
+   * @param {string} key
+   * @param {RawCharacterStatsData} raw
    * @returns {CharacterStats}
    */
-  static fromJSON(key, data) {
+  static fromJSON(key, raw) {
     try {
-      const base = Object.fromEntries(Object.entries(data.base).map(([name, values]) => [name, BaseStats.fromArray(values)]));
-      const growth = Stats.fromArray(data.growth);
-      const cap = data.cap ? Stats.fromArray(data.cap) : null;
-      return new CharacterStats(key, base, growth, cap);
-    }
-    catch (error) {
+      return new CharacterStats(key, raw);
+    } catch (error) {
       console.error(`Error loading character_stats.json for ${key}:`);
       throw error;
     }

@@ -1,5 +1,10 @@
 "use strict";
 
+
+/**
+ * @typedef {[number, number, number, number, number, number, number, number]} StatValues
+ */
+
 class Stats {
   /**
    * @param {number} hp
@@ -23,7 +28,7 @@ class Stats {
   }
 
   /**
-   * @param {[number, number, number, number, number, number, number, number]} values
+   * @param {StatValues} values
    * @returns {Stats}
    */
   static fromArray(values) {
@@ -31,7 +36,7 @@ class Stats {
   }
 
   /**
-   * @returns {[number, number, number, number, number, number, number, number]}
+   * @returns {StatValues}
    */
   toArray() {
     return [this.hp, this.str, this.mag, this.skl, this.spd, this.lck, this.def, this.res];

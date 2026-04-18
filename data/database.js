@@ -10,13 +10,6 @@ const ClassStats = require("./models/ClassStats");
 const BoonBaneStats = require("./models/BoonBaneStats");
 const CharacterStats = require("./models/CharacterStats");
 
-/**
- * @typedef {Object} CharacterStatEntry
- * @property {Record<string, number[]>} base - Keyed by route (e.g. "Standard", "Conquest")
- * @property {number[]} growth
- * @property {number[]} cap
- */
-
 const DATA_DIR = __dirname;
 
 /**

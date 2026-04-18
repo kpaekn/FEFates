@@ -3,19 +3,21 @@
 const Skill = require("./Skill");
 const { parseCSV } = require("./utils");
 
+/**
+ * @typedef {Object} RawClassData
+ * @property {string} name
+ * @property {string} gender
+ * @property {boolean} unique
+ * @property {boolean} dlc
+ * @property {string} weapons
+ * @property {string} promotion
+ * @property {string} skills
+ * @property {string} parallel
+ * @property {string} stats
+ */
+
 class Class {
   /**
-   * @typedef {Object} RawClassData
-   * @property {string} name
-   * @property {string} gender
-   * @property {boolean} unique
-   * @property {boolean} dlc
-   * @property {string} weapons
-   * @property {string} promotion
-   * @property {string} skills
-   * @property {string} parallel
-   * @property {string} stats
-   *
    * @param {string} key
    * @param {RawClassData} raw
    */
@@ -55,7 +57,9 @@ class Class {
     const classStatsKey = this.rawStats ?? this.key;
     const stats = classStatsDataSet.get(classStatsKey);
     if (!stats) {
-      throw new Error(`Unknown class stats: ${classStatsKey} (in class ${this.key})`);
+      throw new Error(
+        `Unknown class stats: ${classStatsKey} (in class ${this.key})`,
+      );
     }
     this.stats = stats;
   }
@@ -80,7 +84,11 @@ class Class {
     if (key === "monk" || key === "shrine_maiden") {
       return gender === "m" ? "monk" : "shrine_maiden";
     }
-    if (key === "nohr_prince_ss" || key === "nohr_prince" || key === "nohr_princess") {
+    if (
+      key === "nohr_prince_ss" ||
+      key === "nohr_prince" ||
+      key === "nohr_princess"
+    ) {
       return gender === "m" ? "nohr_prince" : "nohr_princess";
     }
     return key;

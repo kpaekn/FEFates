@@ -2,6 +2,10 @@
 
 const Stats = require("./Stats");
 
+/**
+ * @typedef {[number, number, number, number, number, number, number, number, number]} BaseStatsValues
+ */
+
 class BaseStats {
   /**
    * @param {number} level
@@ -20,7 +24,7 @@ class BaseStats {
   }
 
   /**
-   * @param {[number, number, number, number, number, number, number, number, number]} values
+   * @param {BaseStatsValues} values
    * @returns {BaseStats}
    */
   static fromArray(values) {
