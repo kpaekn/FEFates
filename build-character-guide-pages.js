@@ -52,7 +52,7 @@ function buildCharacterIndexSections() {
   ]);
 
   for (const [charKey, char] of sortCharactersByRoute(
-    Object.entries(characters),
+    characters.entries(),
   )) {
     const bucket = getRouteBucket(char);
     sectionMap.get(bucket).push({
@@ -170,7 +170,7 @@ function getTalentOptions(gender) {
  *   The already-resolved talent class key (required when partner is Corrin/Kana)
  */
 function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
-  const partner = characters[partnerKey];
+  const partner = characters.get(partnerKey);
   if (!partner) {
     console.warn(`[warn] Unknown partner: ${partnerKey}`);
     return null;
@@ -279,7 +279,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     else return "nohr_princess";
   }
 
-  const varParent = characters[varParentKey];
+  const varParent = characters.get(varParentKey);
   if (!varParent) {
     console.warn(`[warn] Unknown variable parent: ${varParentKey}`);
     return null;
@@ -293,7 +293,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
   );
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
-  const fixedParent = characters[child.parent];
+  const fixedParent = characters.get(child.parent);
   if (fixedParent) {
     const fixedContribution = CORRIN_KANA_KEYS.has(child.parent)
       ? "nohr_prince_ss"
@@ -320,15 +320,15 @@ function resolveChildInheritedClassKey(child, varParentKey) {
  * Options are the fixed parent's partner support list, sorted by name.
  */
 function buildChildParentSection(char) {
-  const fixedParent = characters[char.parent];
+  const fixedParent = characters.get(char.parent);
   if (!fixedParent) {
     console.warn(`[warn] Unknown fixed parent: ${char.parent}`);
     return { parentOptions: [], parentPanels: [] };
   }
   const varParentKeys = parseSupportList(fixedParent.supports?.partner);
   const sorted = [...varParentKeys].sort((a, b) => {
-    const na = characters[a]?.name ?? a;
-    const nb = characters[b]?.name ?? b;
+    const na = characters.get(a)?.name ?? a;
+    const nb = characters.get(b)?.name ?? b;
     return na.localeCompare(nb);
   });
 
@@ -336,7 +336,7 @@ function buildChildParentSection(char) {
   const parentPanels = [];
 
   for (const varParentKey of sorted) {
-    const varParent = characters[varParentKey];
+    const varParent = characters.get(varParentKey);
     if (!varParent) {
       console.warn(`[warn] Unknown variable parent: ${varParentKey}`);
       continue;
@@ -380,7 +380,7 @@ function buildSealSection(char, sealType, supportKeys) {
   const panels = [];
 
   for (const partnerKey of supportKeys) {
-    const partner = characters[partnerKey];
+    const partner = characters.get(partnerKey);
     if (!partner) {
       console.warn(`[warn] Unknown support character: ${partnerKey}`);
       continue;
@@ -436,7 +436,7 @@ function buildCharacterContext(charKey, char) {
 
   // Character growth rates
   const growthKey = char.growth ?? charKey;
-  const charGrowth = characterStats[growthKey]?.growth;
+  const charGrowth = characterStats.get(growthKey)?.growth;
   const baseGrowthValues = charGrowth
     ? charGrowth.toArray()
     : [];
@@ -490,7 +490,7 @@ function buildCharacterContext(charKey, char) {
 
   // Base stat rows from character_stats.json variants
   const rawBaseStatsRows = (() => {
-    const raw = characterStats[statKey]?.base || {};
+    const raw = characterStats.get(statKey)?.base || {};
     const rows = [];
     const variants = Object.entries(raw);
     for (const [variant, baseStats] of variants) {
@@ -686,7 +686,7 @@ fs.writeFileSync(path.join(DIST, "index.html"), indexHtml, "utf8");
 
 let count = 0;
 for (const [charKey, char] of sortCharactersByRoute(
-  Object.entries(characters),
+  characters.entries(),
 )) {
   const context = buildCharacterContext(charKey, char);
   const html = characterTemplate(context);

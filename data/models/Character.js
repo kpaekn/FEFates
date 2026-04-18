@@ -2,20 +2,22 @@
 
 const { parseCSV } = require("./utils");
 
+/**
+ * @typedef {Object} RawCharacterData
+ * @property {string} name
+ * @property {string} class_set
+ * @property {"m" | "f"} gender
+ * @property {"all" | "birthright" | "conquest" | "revelation"} route
+ * @property {{ friendship: string, partner: string }} supports
+ * @property {boolean} adult
+ * @property {string} personal_skill
+ * @property {string} growth
+ * @property {string} starting_class
+ * @property {string} parent
+ */
+
 class Character {
   /**
-   * @typedef {Object} RawCharacterData
-   * @property {string} name
-   * @property {string} class_set
-   * @property {"m" | "f"} gender
-   * @property {"all" | "birthright" | "conquest" | "revelation"} route
-   * @property {{ friendship: string, partner: string }} supports
-   * @property {boolean} adult
-   * @property {string} personal_skill
-   * @property {string} growth
-   * @property {string} starting_class
-   * @property {string} parent
-   * 
    * @param {string} key
    * @param {RawCharacterData} raw
    */

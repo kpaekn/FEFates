@@ -53,19 +53,6 @@ function hydrateCharacters(raw) {
   return result;
 }
 
-/**
- * @param {Record<string, any>} raw
- * @returns {Record<string, CharacterStats>}
- */
-function hydrateCharacterStats(raw) {
-  /** @type {Record<string, CharacterStats>} */
-  const result = {};
-  for (const [key, data] of Object.entries(raw)) {
-    result[key] = CharacterStats.fromJSON(key, data);
-  }
-  return result;
-}
-
 const skills = loadModel("skills.json", Skill);
 const boonBaneStats = loadModel("boon_bane_stats.json", BoonBaneStats);
 const classes = loadModel("classes.json", Class);
@@ -74,10 +61,12 @@ classes.forEach((cls) => {
   cls.updateSkills(skills);
   cls.updateStats(classStats);
 });
+const characterStats = loadModel("character_stats.json", CharacterStats);
+const characters = loadModel("characters.json", Character);
 
 module.exports = {
-  characters: hydrateCharacters(loadJSON("characters.json")),
+  characters,
   classes,
-  characterStats: hydrateCharacterStats(loadJSON("character_stats.json")),
+  characterStats,
   boonBaneStats,
 };
