@@ -20,14 +20,13 @@ const { characters, classes, boonBaneStats } = require("./data/database");
 const CORRIN_DEFAULT_BOON = "mag";
 const CORRIN_DEFAULT_BANE = "lck";
 
-
 function buildCharacterIndexSections() {
   const sections = {
-    all: { title: "", characters: new Array()},
-    birthright: { title: "Birthright", characters: new Array()},
-    conquest: { title: "Conquest", characters: new Array()},
-    revelation: { title: "Revelation", characters: new Array()},
-  }
+    all: { title: "", characters: new Array() },
+    birthright: { title: "Birthright", characters: new Array() },
+    conquest: { title: "Conquest", characters: new Array() },
+    revelation: { title: "Revelation", characters: new Array() },
+  };
   characters.forEach((chara) => {
     sections[chara.route].characters.push(chara);
   });
@@ -75,11 +74,9 @@ function resolveParallel(classKey, recipientGender) {
 function enrichClass(classKey, displayGender) {
   const cls = getResolvedClass(classKey, displayGender);
   if (!cls) {
-    console.warn(`[warn] Unknown class: ${classKey} ${displayGender}`);
-    return { name: classKey, weapons: [], skills: [] };
+    throw new Error(`Unknown class: ${classKey} ${displayGender}`);
   }
-
-  return cls.toRenderObject({ displayGender });
+  return cls;
 }
 
 /**
@@ -150,7 +147,10 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
   }
 
   const charFirstKey = getResolvedClassKey(char.classSet[0], char.gender);
-  const partnerFirstKey = getResolvedClassKey(partner.classSet[0], partner.gender);
+  const partnerFirstKey = getResolvedClassKey(
+    partner.classSet[0],
+    partner.gender,
+  );
 
   const isPartnerCorrinKana = partner.isCorrinOrKana();
 
@@ -182,7 +182,6 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
       lentKey = isPartnerCorrinKana
         ? resolveParallel(partnerSecondKey, char.gender) // parallel of talent
         : resolveParallel(partnerFirstKey, char.gender); // parallel of unique class
-        
     }
 
     return lentKey;
@@ -279,7 +278,10 @@ function resolveChildInheritedClassKey(child, varParentKey) {
           child.gender,
         );
     if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
-      const fallback = getResolvedClassKey(varParentClassKeys[1], varParent.gender);
+      const fallback = getResolvedClassKey(
+        varParentClassKeys[1],
+        varParent.gender,
+      );
       if (fallback === childFirstKey) {
         return resolveParallel(candidate, child.gender);
       }
@@ -405,8 +407,8 @@ function buildSealSection(char, sealType, supportKeys) {
 
 // ─── Per-character template context ──────────────────────────────────────────
 /**
- * @param {Character} character 
- * @returns 
+ * @param {Character} character
+ * @returns
  */
 function buildCharacterContext(character) {
   const charKey = character.key;
@@ -448,11 +450,10 @@ function buildCharacterContext(character) {
       .map((k) => getResolvedClassKey(k, character.gender))
       .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
-  const defaultClassKey =
-    getResolvedClassKey(
-      character.startingClass ?? classSetKeys[0],
-      character.gender,
-    );
+  const defaultClassKey = getResolvedClassKey(
+    character.startingClass ?? classSetKeys[0],
+    character.gender,
+  );
 
   const classGrowthOptions = [];
   const classGrowthMap = {};
@@ -641,11 +642,11 @@ Handlebars.registerHelper(
 );
 Handlebars.registerHelper(
   "skill-icon-path",
-  (skillKey) => `../images/icon/skills/${skillKey}.png`,
+  (skill) => `../images/icon/skills/${skill}.png`,
 );
 Handlebars.registerHelper(
   "weapon-icon-path",
-  (weaponKey) => `../images/icon/weapons/${weaponKey}.png`,
+  (weapon) => `../images/icon/weapons/${weapon}.png`,
 );
 Handlebars.registerHelper("data-group", (...args) => {
   const group = args[0];

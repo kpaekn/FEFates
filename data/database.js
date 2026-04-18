@@ -12,43 +12,48 @@ const CharacterStats = require("./models/CharacterStats");
 
 const DATA_DIR = __dirname;
 
-/**
- * Hydrate a raw JSON object into a DataSet using a Model's fromJSON factory.
- * @template T
- * @param {string} filename
- * @param {{ fromJSON(key: string, data: any): T }} Model
- * @returns {Map<string, T>}
- */
-function loadModel(filename, Model) {
-  const raw = JSON.parse(
-    fs.readFileSync(path.join(DATA_DIR, filename), "utf8"),
-  );
-  /** @type {Map<string, T>} */
-  const result = new Map();
-  for (const [key, data] of Object.entries(raw)) {
-    result.set(key, Model.fromJSON(key, data));
+class Database {
+  constructor() {
+    this.skills = this.loadModel("skills.json", Skill);
+    this.boonBaneStats = this.loadModel("boon_bane_stats.json", BoonBaneStats);
+    this.classes = this.loadModel("classes.json", Class);
+    this.classStats = this.loadModel("class_stats.json", ClassStats);
+    this.classes.forEach((cls) => {
+      cls.setSkills(this.skills);
+      cls.setStats(this.classStats);
+      cls.setClasses(this.classes);
+    });
+    this.characterStats = this.loadModel(
+      "character_stats.json",
+      CharacterStats,
+    );
+    this.characters = this.loadModel("characters.json", Character);
+    this.characters.forEach((character) => {
+      character.setStats(this.characterStats);
+      character.setParent(this.characters);
+    });
   }
-  return result;
+
+  /**
+   * Hydrate a raw JSON object into a DataSet using a Model's fromJSON factory.
+   * @template T
+   * @param {string} filename
+   * @param {{ fromJSON(key: string, data: any, database: Database): T }} Model
+   * @returns {Map<string, T>}
+   */
+  loadModel(filename, Model) {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(DATA_DIR, filename), "utf8"),
+    );
+    /** @type {Map<string, T>} */
+    const result = new Map();
+    for (const [key, data] of Object.entries(raw)) {
+      result.set(key, Model.fromJSON(key, data, this));
+    }
+    return result;
+  }
 }
 
-const skills = loadModel("skills.json", Skill);
-const boonBaneStats = loadModel("boon_bane_stats.json", BoonBaneStats);
-const classes = loadModel("classes.json", Class);
-const classStats = loadModel("class_stats.json", ClassStats);
-classes.forEach((cls) => {
-  cls.setSkills(skills);
-  cls.setStats(classStats);
-  cls.setClasses(classes);
-});
-const characterStats = loadModel("character_stats.json", CharacterStats);
-const characters = loadModel("characters.json", Character);
-characters.forEach((character) => {
-  character.setStats(characterStats);
-  character.setParent(characters);
-});
+const database = new Database();
 
-module.exports = {
-  characters,
-  classes,
-  boonBaneStats,
-};
+module.exports = database;
