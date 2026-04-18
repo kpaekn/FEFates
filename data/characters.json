@@ -5,7 +5,7 @@
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, niles, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy, fuga",
+      "friendship": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy, fuga",
       "partner": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, niles, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina, anna"
     },
     "adult": true,
@@ -18,7 +18,7 @@
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina, anna",
+      "friendship": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, velouria, ophelia, soleil, nina, anna",
       "partner": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, niles, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, rhajat, siegbert, forrest, ignatius, percy, fuga"
     },
     "adult": true,
