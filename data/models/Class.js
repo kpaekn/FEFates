@@ -1,6 +1,5 @@
 "use strict";
 
-const DataSet = require("./DataSet");
 const Skill = require("./Skill");
 const { parseCSV } = require("./utils");
 
@@ -23,18 +22,19 @@ class Class {
   constructor(key, raw) {
     this.key = key;
     this.name = raw.name;
-    this.gender = raw.gender;
-    this.unique = raw.unique;
-    this.dlc = raw.dlc;
+    this.gender = raw.gender ?? null;
+    this.unique = raw.unique ?? false;
+    this.dlc = raw.dlc ?? false;
     this.weapons = parseCSV(raw.weapons);
     this.promotion = parseCSV(raw.promotion);
     this.rawSkills = raw.skills;
-    this.parallel = raw.parallel;
-    this.stats = raw.stats;
+    this.parallel = raw.parallel ?? null;
+    this.rawStats = raw.stats ?? null;
+    this.stats = null;
   }
 
   /**
-   * @param {DataSet<Skill>} skillsDataSet
+   * @param {Map<string, Skill>} skillsDataSet
    */
   updateSkills(skillsDataSet) {
     this.skills = parseCSV(this.rawSkills)
@@ -46,6 +46,18 @@ class Class {
         return skill;
       })
       .filter(Boolean);
+  }
+
+  /**
+   * @param {Map<string, import("./ClassStats")>} classStatsDataSet
+   */
+  updateStats(classStatsDataSet) {
+    const classStatsKey = this.rawStats ?? this.key;
+    const stats = classStatsDataSet.get(classStatsKey);
+    if (!stats) {
+      throw new Error(`Unknown class stats: ${classStatsKey} (in class ${this.key})`);
+    }
+    this.stats = stats;
   }
 
   /**

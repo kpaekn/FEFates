@@ -3,15 +3,16 @@
 const assert = require("assert");
 const db = require("../data/database");
 const Class = require("../data/models/Class");
+const ClassStats = require("../data/models/ClassStats");
 const Skill = require("../data/models/Skill");
 
 const classes = db.classes;
-const keys = Object.keys(classes);
+const keys = Array.from(classes.keys());
 
 assert(keys.length > 0, "Expected at least one class");
 console.log(`  classes loaded: ${keys.length}`);
 
-for (const [key, cls] of Object.entries(classes)) {
+for (const [key, cls] of classes.entries()) {
   assert(cls instanceof Class, `${key} should be a Class instance`);
   assert.strictEqual(typeof cls.key, "string", `${key}.key should be a string`);
   assert.strictEqual(cls.key, key, `${key}.key should match its object key`);
@@ -29,8 +30,8 @@ for (const [key, cls] of Object.entries(classes)) {
     `${key}.parallel should be null or a string`,
   );
   assert(
-    cls.stats === null || typeof cls.stats === "string",
-    `${key}.stats should be null or a string`,
+    cls.stats instanceof ClassStats,
+    `${key}.stats should be a ClassStats instance`,
   );
 }
 console.log("  all classes are valid Class instances");
@@ -51,12 +52,15 @@ assert.strictEqual(
 );
 console.log("  parallel resolution behaves correctly");
 
-const nohrPrince = classes.nohr_prince_ss;
-assert(nohrPrince, "Expected 'nohr_prince_ss' class to exist");
+const nohrPrince = classes.get("nohr_prince");
+assert(nohrPrince, "Expected 'nohr_prince' class to exist");
 assert.strictEqual(nohrPrince.getDisplayName("m"), "Nohr Prince");
-assert.strictEqual(nohrPrince.getDisplayName("f"), "Nohr Princess");
+const nohrPrincess = classes.get("nohr_princess");
+assert(nohrPrincess, "Expected 'nohr_princess' class to exist");
+assert.strictEqual(nohrPrincess.getDisplayName("f"), "Nohr Princess");
 
-const swordmaster = classes.swordmaster;
+const swordmaster = classes.get("swordmaster");
+assert(swordmaster, "Expected 'swordmaster' class to exist");
 const rendered = swordmaster.toRenderObject({ displayGender: "m" });
 assert.strictEqual(rendered.name, "Swordmaster");
 assert.deepStrictEqual(rendered.weapons, [

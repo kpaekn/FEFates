@@ -15,7 +15,7 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const { characters, classes, characterStats, classStats, boonBaneStats } =
+const { characters, classes, characterStats, boonBaneStats } =
   require("./data/database");
 
 const ROUTE_ORDER = ["all", "birthright", "conquest", "revelation"];
@@ -71,9 +71,17 @@ function buildCharacterIndexSections() {
 }
 
 // ─── Promoted-class key set (to identify base classes for talent options) ─────
-const promotedKeys = new Set(classes.filter((cls) => cls.promotion.length > 0).values().flatMap((cls) => cls.promotion));
+const promotedKeys = new Set(
+  Array.from(classes.values())
+    .filter((cls) => cls.promotion.length > 0)
+    .flatMap((cls) => cls.promotion),
+);
 
-const UNIQUE_CLASS_KEYS = classes.filter((cls) => cls.unique).keys();
+const UNIQUE_CLASS_KEYS = new Set(
+  Array.from(classes.entries())
+    .filter(([, cls]) => cls.unique)
+    .map(([key]) => key),
+);
 
 // ─── Corrin / Kana character keys ─────────────────────────────────────────────
 const CORRIN_KEYS = new Set(["corrin_m", "corrin_f"]);
@@ -468,8 +476,7 @@ function buildCharacterContext(charKey, char) {
   classes.forEach((cls, clsKey) => {
     if (cls.unique && !charUniqueKeys.has(clsKey)) return;
     if (!cls.isAvailableForGender(char.gender)) return;
-    const classGrowthKey = cls.stats ?? clsKey;
-    const classGrowth = classStats.get(classGrowthKey)?.growth;
+    const classGrowth = cls.stats?.growth;
     if (!classGrowth) return;
     const enriched = enrichClass(clsKey, char.gender);
     classGrowthOptions.push({

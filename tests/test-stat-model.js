@@ -31,7 +31,7 @@ assert.deepStrictEqual({ ...hydrated }, {
   Res: 8,
 });
 
-const samuraiClassStats = db.classStats.get("samurai");
+const samuraiClassStats = db.classes.get("samurai")?.stats;
 assert(samuraiClassStats, "Expected samurai class stats to exist");
 assert(samuraiClassStats.growth instanceof Stat, "Expected class growth stats to be hydrated as Stat instances");
 assert(samuraiClassStats.base instanceof Stat, "Expected class base stats to be hydrated as Stat instances");
