@@ -15,59 +15,23 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const { characters, classes, boonBaneStats } =
-  require("./data/database");
+const { characters, classes, boonBaneStats } = require("./data/database");
 
-const ROUTE_ORDER = ["all", "birthright", "conquest", "revelation"];
-const ROUTE_TITLES = {
-  birthright: "Birthright",
-  conquest: "Conquest",
-  revelation: "Revelation",
-};
 const CORRIN_DEFAULT_BOON = "mag";
 const CORRIN_DEFAULT_BANE = "lck";
 
-function getRouteBucket(char) {
-  if (ROUTE_ORDER.includes(char.route)) return char.route;
-  return "all";
-}
-
-function sortCharactersByRoute(entries) {
-  return [...entries].sort((a, b) => {
-    const routeA = getRouteBucket(a[1]);
-    const routeB = getRouteBucket(b[1]);
-    const rankA = ROUTE_ORDER.indexOf(routeA);
-    const rankB = ROUTE_ORDER.indexOf(routeB);
-    if (rankA !== rankB) return rankA - rankB;
-    return 0;
-  });
-}
 
 function buildCharacterIndexSections() {
-  const sectionMap = new Map([
-    ["all", []],
-    ["birthright", []],
-    ["conquest", []],
-    ["revelation", []],
-  ]);
-
-  for (const [charKey, char] of sortCharactersByRoute(
-    characters.entries(),
-  )) {
-    const bucket = getRouteBucket(char);
-    sectionMap.get(bucket).push({
-      key: charKey,
-      name: char.name,
-      href: `${charKey}.html`,
-      portraitPath: `../images/portrait/${char.name}.png`,
-    });
+  const sections = {
+    all: { title: "", characters: new Array()},
+    birthright: { title: "Birthright", characters: new Array()},
+    conquest: { title: "Conquest", characters: new Array()},
+    revelation: { title: "Revelation", characters: new Array()},
   }
-
-  return [...sectionMap.entries()].map(([route, chars]) => ({
-    route,
-    title: ROUTE_TITLES[route] ?? null,
-    characters: chars,
-  }));
+  characters.forEach((chara) => {
+    sections[chara.route].characters.push(chara);
+  });
+  return Object.values(sections);
 }
 
 // ─── Promoted-class key set (to identify base classes for talent options) ─────
@@ -90,11 +54,7 @@ const CORRIN_KANA_KEYS = new Set([...CORRIN_KEYS, ...KANA_KEYS]);
 
 // ─── Class-key helpers ────────────────────────────────────────────────────────
 function resolveParallel(classKey, recipientGender) {
-  return Class.resolveParallelKey(
-    classKey,
-    recipientGender,
-    classes,
-  );
+  return Class.resolveParallelKey(classKey, recipientGender, classes);
 }
 
 function enrichClass(classKey, displayGender) {
@@ -298,13 +258,16 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     const fixedContribution = CORRIN_KANA_KEYS.has(child.parent)
       ? "nohr_prince_ss"
       : resolveParentContribution(
-        childFirstKey,
-        fixedParent.classSet,
-        fixedParent.gender,
-        child.gender,
-      );
+          childFirstKey,
+          fixedParent.classSet,
+          fixedParent.gender,
+          child.gender,
+        );
     if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
-      const fallback = Class.resolveKey(varParentClassKeys[1], varParent.gender);
+      const fallback = Class.resolveKey(
+        varParentClassKeys[1],
+        varParent.gender,
+      );
       if (fallback === childFirstKey) {
         return resolveParallel(candidate, child.gender);
       }
@@ -365,7 +328,10 @@ function buildChildParentSection(char) {
 function parseSupportList(list) {
   if (!list) return [];
   if (Array.isArray(list)) return list;
-  return list.split(",").map((s) => s.trim()).filter(Boolean);
+  return list
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
 }
 
 /**
@@ -436,9 +402,7 @@ function buildCharacterContext(charKey, char) {
 
   // Character growth rates
   const charGrowth = char.stats?.growth;
-  const baseGrowthValues = charGrowth
-    ? charGrowth.toArray()
-    : [];
+  const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
   const corrinBoonBane = isCorrin ? boonBaneStats.get(statKey) : null;
   const corrinGrowthBoonMap =
     isCorrin && corrinBoonBane?.growth
@@ -451,10 +415,10 @@ function buildCharacterContext(charKey, char) {
   const initialGrowthValues =
     isCorrin && corrinGrowthBoonMap && corrinGrowthBaneMap
       ? Stat.applyModifiers(
-        baseGrowthValues,
-        corrinGrowthBoonMap[CORRIN_DEFAULT_BOON],
-        corrinGrowthBaneMap[CORRIN_DEFAULT_BANE],
-      )
+          baseGrowthValues,
+          corrinGrowthBoonMap[CORRIN_DEFAULT_BOON],
+          corrinGrowthBaneMap[CORRIN_DEFAULT_BANE],
+        )
       : baseGrowthValues;
   const growthRates = initialGrowthValues.map((value, index) => ({
     stat: Stat.LABELS[index],
@@ -467,9 +431,9 @@ function buildCharacterContext(charKey, char) {
       .map((k) => Class.resolveKey(k, char.gender))
       .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
-  const defaultClassKey = char.startingClass
-    ?? Class.resolveKey(classSetKeys[0], char.gender);
-  
+  const defaultClassKey =
+    char.startingClass ?? Class.resolveKey(classSetKeys[0], char.gender);
+
   const classGrowthOptions = [];
   const classGrowthMap = {};
   classes.forEach((cls, clsKey) => {
@@ -547,12 +511,12 @@ function buildCharacterContext(charKey, char) {
   // All panels start hidden; JS shows the one matching the talent select.
   const heartSealTalentPanels = isCorrinKana
     ? talentOptions.map((opt) => ({
-      key: opt.key,
-      label: `Heart Seal`,
-      group: "heart-seal",
-      classes: resolveClassTree(opt.key, char.gender),
-      isHidden: true,
-    }))
+        key: opt.key,
+        label: `Heart Seal`,
+        group: "heart-seal",
+        classes: resolveClassTree(opt.key, char.gender),
+        isHidden: true,
+      }))
     : [];
 
   // ── Friendship supports ───────────────────────────────────────────────────
@@ -623,17 +587,17 @@ function buildCharacterContext(charKey, char) {
       classGrowthMap,
       corrinBoon: isCorrin
         ? {
-          defaultBoon: CORRIN_DEFAULT_BOON,
-          defaultBane: CORRIN_DEFAULT_BANE,
-          emptyStats: Stat.emptyArray(),
-          growthBoonMap: corrinGrowthBoonMap,
-          growthBaneMap: corrinGrowthBaneMap,
-          baseStatBoonMap: corrinBaseStatBoonMap,
-          baseStatBaneMap: corrinBaseStatBaneMap,
-          baseStatRows: rawBaseStatsRows.map((row) =>
-            Stat.KEYS.map((key) => row[key] ?? 0),
-          ),
-        }
+            defaultBoon: CORRIN_DEFAULT_BOON,
+            defaultBane: CORRIN_DEFAULT_BANE,
+            emptyStats: Stat.emptyArray(),
+            growthBoonMap: corrinGrowthBoonMap,
+            growthBaneMap: corrinGrowthBaneMap,
+            baseStatBoonMap: corrinBaseStatBoonMap,
+            baseStatBaneMap: corrinBaseStatBaneMap,
+            baseStatRows: rawBaseStatsRows.map((row) =>
+              Stat.KEYS.map((key) => row[key] ?? 0),
+            ),
+          }
         : null,
       friendshipCorrinKana: friendshipPanels
         .filter((p) => p.isCorrinKana)
@@ -648,8 +612,18 @@ function buildCharacterContext(charKey, char) {
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper("json", (value) => JSON.stringify(value));
 Handlebars.registerHelper("hidden", (value) => (value ? "hidden" : null));
-Handlebars.registerHelper("skill-icon-path", (skillKey) => `../images/icon/skills/${skillKey}.png`);
-Handlebars.registerHelper("weapon-icon-path", (weaponKey) => `../images/icon/weapons/${weaponKey}.png`);
+Handlebars.registerHelper(
+  "chara-portrait-path",
+  (name) => `../images/portrait/${name}.png`,
+);
+Handlebars.registerHelper(
+  "skill-icon-path",
+  (skillKey) => `../images/icon/skills/${skillKey}.png`,
+);
+Handlebars.registerHelper(
+  "weapon-icon-path",
+  (weaponKey) => `../images/icon/weapons/${weaponKey}.png`,
+);
 Handlebars.registerHelper("data-group", (...args) => {
   const group = args[0];
   const key = args[1];
@@ -684,9 +658,7 @@ const indexHtml = characterIndexTemplate({
 fs.writeFileSync(path.join(DIST, "index.html"), indexHtml, "utf8");
 
 let count = 0;
-for (const [charKey, char] of sortCharactersByRoute(
-  characters.entries(),
-)) {
+for (const [charKey, char] of characters.entries()) {
   const context = buildCharacterContext(charKey, char);
   const html = characterTemplate(context);
   fs.writeFileSync(path.join(DIST, `${charKey}.html`), html, "utf8");

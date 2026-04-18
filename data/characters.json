@@ -857,7 +857,7 @@
     "name": "Anna",
     "class_set": "outlaw, troubadour, apothecary",
     "gender": "f",
-    "route": "dlc",
+    "route": "all",
     "supports": {
       "friendship": "",
       "partner": "corrin_m"
