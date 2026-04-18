@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 
+const Character = require("./models/Character");
 const Class = require("./models/Class");
 const Skill = require("./models/Skill");
 const Stat = require("./models/Stat");
@@ -65,6 +66,19 @@ function loadJSON(filename) {
 
 /**
  * @param {Record<string, any>} raw
+ * @returns {Record<string, Character>}
+ */
+function hydrateCharacters(raw) {
+  /** @type {Record<string, Character>} */
+  const result = {};
+  for (const [key, data] of Object.entries(raw)) {
+    result[key] = Character.fromJSON(key, data);
+  }
+  return result;
+}
+
+/**
+ * @param {Record<string, any>} raw
  * @returns {Record<string, Skill>}
  */
 function hydrateSkills(raw) {
@@ -108,8 +122,8 @@ function hydrateClassStats(raw) {
 }
 
 module.exports = {
-  /** @type {Record<string, CharacterData>} */
-  characters: loadJSON("characters.json"),
+  /** @type {Record<string, Character>} */
+  characters: hydrateCharacters(loadJSON("characters.json")),
   /** @type {Record<string, Class>} */
   classes: hydrateClasses(loadJSON("classes.json")),
   /** @type {Record<string, Skill>} */

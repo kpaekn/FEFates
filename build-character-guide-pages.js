@@ -207,11 +207,8 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
     return null;
   }
 
-  const charClassKeys = char.class_set.split(",").map((s) => s.trim());
-  const partnerClassKeys = partner.class_set.split(",").map((s) => s.trim());
-
-  const charFirstKey = resolveClassKey(charClassKeys[0], char.gender);
-  const partnerFirstKey = resolveClassKey(partnerClassKeys[0], partner.gender);
+  const charFirstKey = resolveClassKey(char.classSet[0], char.gender);
+  const partnerFirstKey = resolveClassKey(partner.classSet[0], partner.gender);
 
   const isPartnerCorrinKana = CORRIN_KANA_KEYS.has(partnerKey);
 
@@ -227,11 +224,11 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
     // Talent key is already gender-resolved (from getTalentOptions for that Corrin/Kana)
     partnerSecondKey = partnerTalentKey;
   } else {
-    if (partnerClassKeys.length < 2) {
+    if (partner.classSet.length < 2) {
       // Partner has only one class; nothing to fall back to in Case A
       return partnerFirstKey;
     }
-    partnerSecondKey = resolveClassKey(partnerClassKeys[1], partner.gender);
+    partnerSecondKey = resolveClassKey(partner.classSet[1], partner.gender);
   }
 
   // ── Case B: partner's first class is a unique-first class ────────────────
@@ -304,7 +301,7 @@ function resolveParentContribution(
  * use the variable parent's second class instead.
  */
 function resolveChildInheritedClassKey(child, varParentKey) {
-  const childClassKeys = child.class_set.split(",").map((s) => s.trim());
+  const childClassKeys = child.classSet;
   const childFirstKey = resolveClassKey(childClassKeys[0], child.gender);
 
   // Corrin/Kana as variable parent always contribute nohr_prince_ss
@@ -315,9 +312,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     console.warn(`[warn] Unknown variable parent: ${varParentKey}`);
     return null;
   }
-  const varParentClassKeys = varParent.class_set
-    .split(",")
-    .map((s) => s.trim());
+  const varParentClassKeys = varParent.classSet;
   const candidate = resolveParentContribution(
     childFirstKey,
     varParentClassKeys,
@@ -332,7 +327,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
       ? "nohr_prince_ss"
       : resolveParentContribution(
         childFirstKey,
-        fixedParent.class_set.split(",").map((s) => s.trim()),
+        fixedParent.classSet,
         fixedParent.gender,
         child.gender,
       );
@@ -395,12 +390,10 @@ function buildChildParentSection(char) {
 }
 
 // ─── Context helpers ──────────────────────────────────────────────────────────
-function parseSupportList(csv) {
-  if (!csv) return [];
-  return csv
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
+function parseSupportList(list) {
+  if (!list) return [];
+  if (Array.isArray(list)) return list;
+  return list.split(",").map((s) => s.trim()).filter(Boolean);
 }
 
 /**
@@ -467,10 +460,7 @@ function buildCharacterContext(charKey, char) {
   const pageTitle = `Fire Emblem Fates - Character Guides - ${char.name}`;
   const statKey = charKey.replace(/_(m|f)$/, "");
 
-  const classSetKeys = char.class_set
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const classSetKeys = char.classSet;
 
   // Character growth rates
   const growthKey = char.growth ?? charKey;
@@ -506,7 +496,7 @@ function buildCharacterContext(charKey, char) {
       .map((k) => resolveClassKey(k, char.gender))
       .filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
-  const defaultClassKey = char.starting_class
+  const defaultClassKey = char.startingClass
     ?? resolveClassKey(classSetKeys[0], char.gender);
 
   const classGrowthOptions = [];
