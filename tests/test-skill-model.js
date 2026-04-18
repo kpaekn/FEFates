@@ -32,11 +32,8 @@ console.log("  all skills are valid Skill instances");
 
 const sample = skills["aegis"];
 assert(sample, "Expected 'aegis' skill to exist");
-
-const rendered = sample.toRenderObject("icons/aegis.png");
-assert.strictEqual(rendered.name, sample.name);
-assert.strictEqual(rendered.description, sample.description);
-assert.strictEqual(rendered.iconPath, "icons/aegis.png");
-console.log("  toRenderObject() returns correct shape");
+assert.strictEqual(typeof sample.name, "string");
+assert.strictEqual(typeof sample.description, "string");
+console.log("  sample skill has expected properties");
 
 console.log("PASS: Skill model tests");

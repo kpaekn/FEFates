@@ -27,7 +27,7 @@
     "name": "Samurai",
     "weapons": "sword",
     "promotion": "swordmaster, master_of_arms",
-    "skills": "duelists_blow, vantage",
+    "skills": "duelist_s_blow, vantage",
     "parallel": "mercenary"
   },
   "swordmaster": {

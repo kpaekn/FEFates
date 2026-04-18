@@ -12,7 +12,6 @@ const Stat = require("./data/models/Stat");
 const ROOT = path.resolve(__dirname);
 const DIST_DIR = "character-guide";
 const DIST = path.join(ROOT, DIST_DIR);
-const IMG_SKILLS = path.join(ROOT, "images", "icon", "skills");
 const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
@@ -28,29 +27,6 @@ const ROUTE_TITLES = {
 };
 const CORRIN_DEFAULT_BOON = "mag";
 const CORRIN_DEFAULT_BANE = "lck";
-
-// ─── Skill icon map (normalised: strip underscores + lowercase for fuzzy match)
-//     Handles e.g. key "duelists_blow" → file "duelist_s_blow.png"
-function normKey(s) {
-  return s.toLowerCase().replace(/_/g, "");
-}
-
-const skillIconMap = new Map();
-for (const file of fs
-  .readdirSync(IMG_SKILLS)
-  .filter((f) => f.endsWith(".png"))) {
-  skillIconMap.set(normKey(file.slice(0, -4)), file);
-}
-
-function getSkillIconPath(skillKey) {
-  const file = skillIconMap.get(normKey(skillKey));
-  if (!file) console.warn(`[warn] No skill icon for: ${skillKey}`);
-  return `../images/icon/skills/${file ?? skillKey + ".png"}`;
-}
-
-function getWeaponIconPath(weaponKey) {
-  return `../images/icon/weapons/${weaponKey}.png`;
-}
 
 function getRouteBucket(char) {
   if (ROUTE_ORDER.includes(char.route)) return char.route;
@@ -131,11 +107,7 @@ function enrichClass(classKey, displayGender) {
     return { name: classKey, weapons: [], skills: [] };
   }
 
-  return cls.toRenderObject({
-    displayGender,
-    getWeaponIconPath,
-    getSkillIconPath,
-  });
+  return cls.toRenderObject({ displayGender });
 }
 
 /**
@@ -369,7 +341,7 @@ function buildChildParentSection(char) {
       continue;
     }
 
-      if (varParent.gender === fixedParent.gender) continue;
+    if (varParent.gender === fixedParent.gender) continue;
 
     parentOptions.push({ key: varParentKey, displayName: varParent.name });
 
@@ -680,6 +652,8 @@ function buildCharacterContext(charKey, char) {
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper("json", (value) => JSON.stringify(value));
 Handlebars.registerHelper("hidden", (value) => (value ? "hidden" : null));
+Handlebars.registerHelper("skill-icon-path", (skillKey) => `../images/icon/skills/${skillKey}.png`);
+Handlebars.registerHelper("weapon-icon-path", (weaponKey) => `../images/icon/weapons/${weaponKey}.png`);
 Handlebars.registerHelper("data-group", (...args) => {
   const group = args[0];
   const key = args[1];

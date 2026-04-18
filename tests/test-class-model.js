@@ -57,17 +57,13 @@ assert.strictEqual(nohrPrince.getDisplayName("m"), "Nohr Prince");
 assert.strictEqual(nohrPrince.getDisplayName("f"), "Nohr Princess");
 
 const swordmaster = classes.swordmaster;
-const rendered = swordmaster.toRenderObject({
-  displayGender: "m",
-  getWeaponIconPath: (weaponKey) => `icons/${weaponKey}.png`,
-  getSkillIconPath: (skillKey) => `skills/${skillKey}.png`,
-});
+const rendered = swordmaster.toRenderObject({ displayGender: "m" });
 assert.strictEqual(rendered.name, "Swordmaster");
 assert.deepStrictEqual(rendered.weapons, [
-  { weaponName: "Sword", iconPath: "icons/sword.png" },
+  { key: "sword", weaponName: "Sword" },
 ]);
 assert.strictEqual(rendered.skills.length, 2);
-assert.strictEqual(rendered.skills[0].iconPath, "skills/astra.png");
+assert.strictEqual(rendered.skills[0], swordmaster.skills[0]);
 assert.strictEqual(rendered.skills[0].name, swordmaster.skills[0].name);
 assert.strictEqual(rendered.skills[0].description, swordmaster.skills[0].description);
 console.log("  toRenderObject() returns correct shape");

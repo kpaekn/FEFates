@@ -92,22 +92,18 @@ class Class {
     );
   }
 
-  toRenderObject({ displayGender, getWeaponIconPath, getSkillIconPath }) {
+  toRenderObject({ displayGender }) {
     const weapons = this.weapons.map((weaponKey) => ({
+      key: weaponKey,
       weaponName: weaponKey
         .replace(/_/g, " ")
         .replace(/\b\w/g, (char) => char.toUpperCase()),
-      iconPath: getWeaponIconPath(weaponKey),
     }));
-
-    const skillList = this.skills.map((skill) =>
-      skill.toRenderObject(getSkillIconPath(skill.key)),
-    );
 
     return {
       name: this.getDisplayName(displayGender),
       weapons,
-      skills: skillList,
+      skills: this.skills,
     };
   }
 }

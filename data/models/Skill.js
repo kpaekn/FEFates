@@ -11,14 +11,6 @@ class Skill {
   static fromJSON(key, data) {
     return new Skill(key, data);
   }
-
-  toRenderObject(iconPath) {
-    return {
-      name: this.name,
-      description: this.description,
-      iconPath,
-    };
-  }
 }
 
 module.exports = Skill;
