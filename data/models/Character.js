@@ -31,7 +31,7 @@ class Character {
       partner: parseCSV(raw.supports.partner),
     };
     this.personalSkill = raw.personal_skill;
-    this.startingClass = raw.starting_class;
+    this._startingClassKey = raw.starting_class ?? this.classSet[0];
 
     this._statsKey = raw.stats ?? key;
     this._parentKey = raw.parent;
@@ -50,6 +50,13 @@ class Character {
    * @param {import("../database")} database
    */
   linkObjects(database) {
+    // Resolve starting class
+    const startingClass = database.classes.get(this._startingClassKey);
+    if (!startingClass) {
+      throw new Error(`Unknown starting class: ${this._startingClassKey} (in character ${this.key})`);
+    }
+    this.startingClass = startingClass;
+
     // Resolve stats
     const stats = database.characterStats.get(this._statsKey);
     if (!stats) {

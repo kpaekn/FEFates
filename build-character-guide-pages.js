@@ -415,7 +415,6 @@ function buildCharacterContext(character) {
   const charUniqueKeys = new Set(
     classSetKeys.map((k) => getResolvedClassKey(k, character.gender)).filter((k) => UNIQUE_CLASS_KEYS.has(k)),
   );
-  const defaultClassKey = getResolvedClassKey(character.startingClass ?? classSetKeys[0], character.gender);
 
   const classGrowthOptions = [];
   const classGrowthMap = {};
@@ -431,7 +430,7 @@ function buildCharacterContext(character) {
     classGrowthOptions.push({
       key: resolvedClass.key,
       name: enriched.name,
-      selected: resolvedClass.key === defaultClassKey,
+      selected: resolvedClass.key === character.startingClass?.key,
     });
     classGrowthMap[resolvedClass.key] = classGrowth.toArray();
   });
