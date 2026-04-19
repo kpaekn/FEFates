@@ -208,6 +208,40 @@ a {
   transition: background-color 0.2s ease;
 }
 
+/* cfg-opts - config options */
+.cfg-opts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.sgc {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.sgc .sg {
+  display: flex;
+  flex-direction: column;
+  min-width: 10rem;
+}
+
+.sgc .sg label {
+  color: var(--color-tan);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sgc .sg select {
+  background-color: var(--color-tan);
+  border: 2px solid var(--color-brown);
+  border-radius: var(--border-radius);
+  color: var(--color-brown);
+  font-size: var(--font-size-md);
+  padding: var(--space-xs) var(--space-md);
+}
+
 button:hover,
 button:focus-visible {
   background-color: var(--color-light-brown);
@@ -384,7 +418,7 @@ button.remove:focus-visible {
   .three-column-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
+
   .two-column-grid {
     grid-template-columns: 1fr;
   }
@@ -392,12 +426,17 @@ button.remove:focus-visible {
 
 @media (max-width: 740px) {
 
-  .three-column-grid{
+  .three-column-grid {
     grid-template-columns: 1fr;
   }
 
   /* space not needed on stacked view */
   .section-title::after {
     display: none;
+  }
+
+  .sgc {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

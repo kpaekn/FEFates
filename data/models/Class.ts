@@ -1,55 +1,60 @@
-"use strict";
+import { parseCSV } from "./utils.ts";
+import type ClassStats from "./ClassStats.ts";
+import type Skill from "./Skill.ts";
+import type { Database } from "../database.ts";
 
-const { parseCSV } = require("./utils");
+interface RawClassData {
+  name: string;
+  gender?: string;
+  opposite_gender?: string;
+  unique?: boolean;
+  dlc?: boolean;
+  weapons?: string;
+  promotion?: string;
+  skills?: string;
+  parallel?: string;
+  stats?: string;
+}
 
-/**
- * @typedef {Object} RawClassData
- * @property {string} name
- * @property {string} gender
- * @property {string} opposite_gender
- * @property {boolean} unique
- * @property {boolean} dlc
- * @property {string} weapons
- * @property {string} promotion
- * @property {string} skills
- * @property {string} parallel
- * @property {string} stats
- */
+export default class Class {
+  key: string;
+  name: string;
+  gender: string | null;
+  unique: boolean;
+  dlc: boolean;
+  weapons: string[];
+  skills!: Skill[];
+  stats!: ClassStats;
+  oppositeGenderClass?: Class;
+  promotion!: Class[];
+  parallelClass?: Class;
 
-class Class {
-  /**
-   * @param {string} key
-   * @param {RawClassData} raw
-   */
-  constructor(key, raw) {
+  _oppositeGenderedClassKey: string;
+  _promotionClassKeys: string[];
+  _skillKeys: string[];
+  _parallelClassKey: string;
+  _statsKey: string;
+
+  constructor(key: string, raw: RawClassData) {
     this.key = key;
     this.name = raw.name;
     this.gender = raw.gender ?? null;
     this.unique = raw.unique ?? false;
     this.dlc = raw.dlc ?? false;
-    this.weapons = parseCSV(raw.weapons);
+    this.weapons = parseCSV(raw.weapons ?? "");
 
     this._oppositeGenderedClassKey = raw.opposite_gender ?? "";
-    this._promotionClassKeys = parseCSV(raw.promotion);
-    this._skillKeys = parseCSV(raw.skills);
+    this._promotionClassKeys = parseCSV(raw.promotion ?? "");
+    this._skillKeys = parseCSV(raw.skills ?? "");
     this._parallelClassKey = raw.parallel ?? "";
     this._statsKey = raw.stats ?? key;
   }
 
-  /**
-   * @param {string} key
-   * @param {RawClassData} raw
-   * @returns {Class}
-   */
-  static fromJSON(key, raw) {
+  static fromJSON(key: string, raw: RawClassData): Class {
     return new Class(key, raw);
   }
 
-  /**
-   * @param {import("../database")} database
-   */
-  linkObjects(database) {
-    // Resolve skills
+  linkObjects(database: Database): void {
     this.skills = this._skillKeys
       .map((skillKey) => {
         const skill = database.skills.get(skillKey);
@@ -58,16 +63,14 @@ class Class {
         }
         return skill;
       })
-      .filter(Boolean);
+      .filter(Boolean) as Skill[];
 
-    // Resolve stats
     const stats = database.classStats.get(this._statsKey);
     if (!stats) {
       throw new Error(`Unknown class stats: ${this._statsKey} (in class ${this.key})`);
     }
     this.stats = stats;
 
-    // Resolve opposite gendered class
     if (this._oppositeGenderedClassKey) {
       const oppositeClass = database.classes.get(this._oppositeGenderedClassKey);
       if (!oppositeClass) {
@@ -76,7 +79,6 @@ class Class {
       this.oppositeGenderClass = oppositeClass;
     }
 
-    // Resolve promotion classes
     this.promotion = this._promotionClassKeys
       .map((classKey) => {
         const cls = database.classes.get(classKey);
@@ -85,9 +87,8 @@ class Class {
         }
         return cls;
       })
-      .filter(Boolean);
+      .filter(Boolean) as Class[];
 
-    // Resolve parallel class
     if (this._parallelClassKey) {
       const parallelClass = database.classes.get(this._parallelClassKey);
       if (!parallelClass) {
@@ -97,36 +98,22 @@ class Class {
     }
   }
 
-  /**
-   * Returns true if this class matches the given gender. If this class has no specified gender, returns true.
-   * @param {string} gender
-   * @returns {boolean}
-   */
-  matchesGender(gender) {
-    return this.gender ? this.gender === gender : true;
+  matchesGender(gender?: string): boolean {
+    return gender && this.gender ? this.gender === gender : true;
   }
 
-  /**
-   * @param {string} gender
-   * @returns {Class}
-   */
-  resolveClassForGender(gender) {
+  resolveClassForGender(gender: string): Class {
     if (this.gender === gender) {
       return this;
     }
-    return this.oppositeGenderClass || this;
+    return this.oppositeGenderClass ?? this;
   }
 
-  /**
-   * @returns {boolean}
-   */
-  isTalent() {
-    return !this.unique && !this.dlc && this._hasPromotion();
+  isTalent(gender?: string): boolean {
+    return !this.unique && !this.dlc && this._hasPromotion() && this.matchesGender(gender);
   }
 
-  _hasPromotion() {
+  _hasPromotion(): boolean {
     return !!this.promotion && this.promotion.length > 0;
   }
 }
-
-module.exports = Class;

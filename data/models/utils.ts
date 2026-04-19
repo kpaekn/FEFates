@@ -1,18 +1,8 @@
-"use strict";
-
-/**
- * @param {string | string[]} value
- * @returns {string[]}
- */
-function parseCSV(value) {
+export function parseCSV(value: string | string[]): string[] {
   if (Array.isArray(value)) {
     console.log("warning: parseCSV: value is already an array", value);
     return value;
   }
   if (!value) return [];
   return value.split(",").map((s) => s.trim()).filter(Boolean);
-}
-
-module.exports = {
-  parseCSV,
 }

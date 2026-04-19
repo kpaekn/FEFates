@@ -1,12 +1,12 @@
-"use strict";
+import fs from "node:fs";
+import path from "node:path";
+import Handlebars from "handlebars";
 
-const fs = require("fs");
-const path = require("path");
-const Handlebars = require("handlebars");
-
-const Stat = require("./data/models/Stats");
+import Stats from "./data/models/Stats.ts";
+import db from "./data/database.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
+const __dirname = import.meta.dirname;
 const ROOT = path.resolve(__dirname);
 const DIST_DIR = "character-guide";
 const DIST = path.join(ROOT, DIST_DIR);
@@ -14,8 +14,6 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const Stats = require("./data/models/Stats");
-const { characters, classes } = require("./data/database");
 
 function buildCharacterIndexSections() {
   const sections = {
@@ -24,7 +22,7 @@ function buildCharacterIndexSections() {
     conquest: { title: "Conquest", characters: new Array() },
     revelation: { title: "Revelation", characters: new Array() },
   };
-  characters.forEach((chara) => {
+  db.characters.forEach((chara) => {
     sections[chara.route].characters.push(chara);
   });
 
@@ -32,7 +30,7 @@ function buildCharacterIndexSections() {
 }
 
 const UNIQUE_CLASS_KEYS = new Set(
-  Array.from(classes.entries())
+  Array.from(db.classes.entries())
     .filter(([, cls]) => cls.unique)
     .map(([key]) => key),
 );
@@ -43,7 +41,7 @@ const UNIQUE_CLASS_KEYS = new Set(
  * @param {string} gender
  */
 function getResolvedClass(rawKey, gender) {
-  let cls = classes.get(rawKey);
+  let cls = db.classes.get(rawKey);
   if (!cls) {
     throw new Error(`Raw class key "${rawKey}" is not valid`);
   }
@@ -105,7 +103,7 @@ function resolveClassTree(rawKey, charGender) {
 function getTalentOptions(gender) {
   const options = [];
   const seenClassKeys = new Set();
-  for (const [key, cls] of classes.entries()) {
+  for (const [key, cls] of db.classes.entries()) {
     if (!cls.isTalent()) continue;
     const resolvedClass = getResolvedClass(key, gender);
     if (!resolvedClass || seenClassKeys.has(resolvedClass.key)) continue;
@@ -135,7 +133,7 @@ function getTalentOptions(gender) {
  *   The already-resolved talent class key (required when partner is Corrin/Kana)
  */
 function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
-  const partner = characters.get(partnerKey);
+  const partner = db.characters.get(partnerKey);
   if (!partner) {
     console.warn(`[warn] Unknown partner: ${partnerKey}`);
     return null;
@@ -230,7 +228,7 @@ function resolveParentContribution(childFirstKey, donorClassKeys, donorGender, c
 function resolveChildInheritedClassKey(child, varParentKey) {
   const childClassKeys = child.classSet.map((cls) => cls.key);
   const childFirstKey = getResolvedClassKey(childClassKeys[0], child.gender);
-  const variableParent = characters.get(varParentKey);
+  const variableParent = db.characters.get(varParentKey);
 
   // Corrin/Kana as variable parent always contribute nohr_prince or nohr_princess
   if (variableParent?.isCorrinOrKana()) {
@@ -238,7 +236,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     else return "nohr_princess";
   }
 
-  const varParent = characters.get(varParentKey);
+  const varParent = db.characters.get(varParentKey);
   if (!varParent) {
     console.warn(`[warn] Unknown variable parent: ${varParentKey}`);
     return null;
@@ -281,8 +279,8 @@ function buildChildParentSection(char) {
   }
   const varParentKeys = parseSupportList(fixedParent.supports?.partner);
   const sorted = [...varParentKeys].sort((a, b) => {
-    const na = characters.get(a)?.name ?? a;
-    const nb = characters.get(b)?.name ?? b;
+    const na = db.characters.get(a)?.name ?? a;
+    const nb = db.characters.get(b)?.name ?? b;
     return na.localeCompare(nb);
   });
 
@@ -290,7 +288,7 @@ function buildChildParentSection(char) {
   const parentPanels = [];
 
   for (const varParentKey of sorted) {
-    const varParent = characters.get(varParentKey);
+    const varParent = db.characters.get(varParentKey);
     if (!varParent) {
       console.warn(`[warn] Unknown variable parent: ${varParentKey}`);
       continue;
@@ -336,7 +334,7 @@ function buildSealSection(char, sealType, supportKeys) {
   const panels = [];
 
   for (const partnerKey of supportKeys) {
-    const partner = characters.get(partnerKey);
+    const partner = db.characters.get(partnerKey);
     if (!partner) {
       console.warn(`[warn] Unknown support character: ${partnerKey}`);
       continue;
@@ -390,15 +388,29 @@ function createBoonBaneOptions(character, rawBaseStatsRows) {
 
   return {
     template: {
-      selectOptions: Stat.KEYS.map((key, index) => ({ key, name: Stat.LABELS[index] })),
+      selectOptions: Stats.KEYS.map((key, index) => ({ key, name: Stats.LABELS[index] })),
     },
     js: {
       growthBoonMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null,
       growthBaneMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null,
-      baseStatBoonMap: boonBaneStats.base ? Stat.singleModifierMap(boonBaneStats.base.boon) : null,
-      baseStatBaneMap: boonBaneStats.base ? Stat.singleModifierMap(boonBaneStats.base.bane) : null,
-      baseStatRows: rawBaseStatsRows.map((row) => Stat.KEYS.map((key) => row[key] ?? 0)),
+      baseStatBoonMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.boon) : null,
+      baseStatBaneMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.bane) : null,
+      baseStatRows: rawBaseStatsRows.map((row) => Stats.KEYS.map((key) => row[key] ?? 0)),
     },
+  };
+}
+
+/**
+ * @param {import("./data/models/Character")} character
+ * @returns
+ */
+function createConfigOptions(character) {
+  return {
+    talents: db.getTalentOptions(character.gender),
+    boonBane: Stats.MAP,
+    parents: db.getParentOptions(character),
+    friendships: [],
+    partners: [],
   };
 }
 
@@ -417,7 +429,7 @@ function buildCharacterContext(character) {
   const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
   const growthRates = baseGrowthValues.map((value, index) => ({
-    stat: Stat.LABELS[index],
+    stat: Stats.LABELS[index],
     value,
   }));
 
@@ -452,9 +464,8 @@ function buildCharacterContext(character) {
     return rows;
   })();
   const baseStatsRows = rawBaseStatsRows;
-  const baseStatsHeaders = ["Level", ...Stat.LABELS];
+  const baseStatsHeaders = ["Level", ...Stats.LABELS];
   const boonBaneOptions = createBoonBaneOptions(character, rawBaseStatsRows);
-  if (boonBaneOptions) console.log(boonBaneOptions);
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
   const talentOptions = character.isCorrinOrKana() ? getTalentOptions(character.gender) : [];
@@ -520,10 +531,10 @@ function buildCharacterContext(character) {
     classGrowthOptions,
     baseStatsHeaders,
     baseStatsRows,
+    boonBane: boonBaneOptions?.template,
     isCorrin: character.isCorrin(),
     isCorrinOrKana: character.isCorrinOrKana(),
     isChild,
-    boonBane: boonBaneOptions?.template,
     talentOptions,
     defaultPanels,
     heartSealTalentPanels,
@@ -540,11 +551,11 @@ function buildCharacterContext(character) {
       isCorrin: character.isCorrin(),
       isCorrinOrKana: character.isCorrinOrKana(),
       isChild,
-      hasFriendship,
-      hasPartner,
       baseGrowth: baseGrowthValues,
       classGrowthMap,
       boonBane: boonBaneOptions?.js,
+      hasFriendship,
+      hasPartner,
       friendshipCorrinKana: friendshipPanels
         .filter((p) => p.isCorrinOrKana)
         .map((p) => ({ key: p.panelKey, subGroup: p.talentSubGroup })),
@@ -566,12 +577,10 @@ Handlebars.registerHelper("data-group", (...args) => {
   const key = args[1];
   return group ? `data-group="${group}" data-key="${key}"` : null;
 });
-Handlebars.registerPartial("class-block", fs.readFileSync(path.join(PARTIALS_DIR, "class-block.hbs"), "utf8"));
-Handlebars.registerPartial("class-panel", fs.readFileSync(path.join(PARTIALS_DIR, "class-panel.hbs"), "utf8"));
-Handlebars.registerPartial(
-  "placeholder-panel",
-  fs.readFileSync(path.join(PARTIALS_DIR, "placeholder-panel.hbs"), "utf8"),
-);
+
+["config-section", "stats-section", "class-block", "class-panel", "placeholder-panel"].forEach((partial) => {
+  Handlebars.registerPartial(partial, fs.readFileSync(path.join(PARTIALS_DIR, `${partial}.hbs`), "utf8"));
+});
 const characterTemplate = Handlebars.compile(fs.readFileSync(path.join(TEMPLATES_DIR, "character.hbs"), "utf8"));
 const characterIndexTemplate = Handlebars.compile(
   fs.readFileSync(path.join(TEMPLATES_DIR, "character-index.hbs"), "utf8"),
@@ -587,7 +596,7 @@ const indexHtml = characterIndexTemplate({
 fs.writeFileSync(path.join(DIST, "index.html"), indexHtml, "utf8");
 
 let count = 0;
-for (const [charKey, char] of characters.entries()) {
+for (const [charKey, char] of db.characters.entries()) {
   const context = buildCharacterContext(char);
   const html = characterTemplate(context);
   fs.writeFileSync(path.join(DIST, `${charKey}.html`), html, "utf8");

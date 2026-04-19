@@ -25,87 +25,8 @@
       </nav>
     </header>
 
-    <header>
-      <h2 class="section-title">Growth Rate and Base Stats (Work in Progress)</h2>
-    </header>
-    <div class="three-column-grid">
-      <div class="two-span-column">
-        {{#if boonBane}}
-        <section class="select-group boon-bane-select" aria-label="Corrin Boon/Bane selector">
-          <label for="boon-select">Boon</label>
-          <select id="boon-select" name="boon-select">
-            {{#each boonBane.selectOptions}}
-            <option value="{{key}}">+{{name}}</option>
-            {{/each}}
-          </select>
-          <label for="bane-select">Bane</label>
-          <select id="bane-select" name="bane-select">
-            {{#each boonBane.selectOptions}}
-            <option value="{{key}}">-{{name}}</option>
-            {{/each}}
-          </select>
-        </section>
-        {{/if}}
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Growth Rates</th>
-              {{#each growthRates}}
-              <th>{{stat}}</th>
-              {{/each}}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="row-label">Base</td>
-              {{#each growthRates}}
-              <td{{#if ../isCorrin}} data-base-growth-idx="{{@index}}"{{/if}}>{{value}}%</td>
-              {{/each}}
-            </tr>
-            <tr id="class-growth-row">
-              <td class="row-label select-container">
-                <select id="class-growth-select" name="class-growth-select">
-                  {{#each classGrowthOptions}}
-                  <option value="{{key}}" {{#if selected}} selected{{/if}}>{{name}}</option>
-                  {{/each}}
-                </select>
-              </td>
-              {{#each growthRates}}
-              <td data-class-growth-idx="{{@index}}"></td>
-              {{/each}}
-            </tr>
-          </tbody>
-        </table>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Base Stats</th>
-              {{#each baseStatsHeaders}}
-              <th>{{this}}</th>
-              {{/each}}
-            </tr>
-          </thead>
-          <tbody>
-            {{#if baseStatsRows}}
-            {{#each baseStatsRows}}
-            <tr>
-              <td class="row-label">{{label}}</td>
-              <td>{{level}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="0"{{/if}}>{{hp}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="1"{{/if}}>{{str}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="2"{{/if}}>{{mag}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="3"{{/if}}>{{skl}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="4"{{/if}}>{{spd}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="5"{{/if}}>{{lck}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="6"{{/if}}>{{def}}</td>
-              <td{{#if ../isCorrin}} data-base-stat-row="{{@index}}" data-base-stat-idx="7"{{/if}}>{{res}}</td>
-            </tr>
-            {{/each}}
-            {{/if}}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    {{> config-section}}
+    {{> stats-section}}
 
     <section>
       <div class="three-column-grid">

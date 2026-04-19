@@ -1,13 +1,15 @@
 {
-    "name": "fe-fates-db",
-    "version": "1.0.0",
-    "scripts": {
-        "build": "node build-character-guide-pages.js"
-    },
-    "author": "",
-    "license": "",
-    "description": "",
-    "devDependencies": {
-        "handlebars": "^4.7.8"
-    }
+  "name": "fe-fates-db",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build-character-guide-pages.ts"
+  },
+  "author": "",
+  "license": "",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "handlebars": "^4.7.8"
+  }
 }
