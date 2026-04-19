@@ -143,8 +143,8 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
     return null;
   }
 
-  const charFirstKey = getResolvedClassKey(char.classSet[0], char.gender);
-  const partnerFirstKey = getResolvedClassKey(partner.classSet[0], partner.gender);
+  const charFirstKey = getResolvedClassKey(char.classSet[0].key, char.gender);
+  const partnerFirstKey = getResolvedClassKey(partner.classSet[0].key, partner.gender);
 
   const isPartnerCorrinKana = partner.isCorrinOrKana();
 
@@ -162,7 +162,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
       // Partner has only one class; nothing to fall back to in Case A
       return partnerFirstKey;
     }
-    partnerSecondKey = getResolvedClassKey(partner.classSet[1], partner.gender);
+    partnerSecondKey = getResolvedClassKey(partner.classSet[1].key, partner.gender);
   }
 
   // ── Case B: partner's first class is a unique-first class ────────────────
@@ -230,7 +230,7 @@ function resolveParentContribution(childFirstKey, donorClassKeys, donorGender, c
  * use the variable parent's second class instead.
  */
 function resolveChildInheritedClassKey(child, varParentKey) {
-  const childClassKeys = child.classSet;
+  const childClassKeys = child.classSet.map((cls) => cls.key);
   const childFirstKey = getResolvedClassKey(childClassKeys[0], child.gender);
   const variableParent = characters.get(varParentKey);
 
@@ -245,7 +245,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     console.warn(`[warn] Unknown variable parent: ${varParentKey}`);
     return null;
   }
-  const varParentClassKeys = varParent.classSet;
+  const varParentClassKeys = varParent.classSet?.map((cls) => cls.key) || [];
   const candidate = resolveParentContribution(childFirstKey, varParentClassKeys, varParent.gender, child.gender);
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
@@ -253,7 +253,12 @@ function resolveChildInheritedClassKey(child, varParentKey) {
   if (fixedParent) {
     const fixedContribution = fixedParent.isCorrinOrKana()
       ? "nohr_prince_ss"
-      : resolveParentContribution(childFirstKey, fixedParent.classSet, fixedParent.gender, child.gender);
+      : resolveParentContribution(
+          childFirstKey,
+          fixedParent.classSet?.map((cls) => cls.key) || [],
+          fixedParent.gender,
+          child.gender,
+        );
     if (candidate === fixedContribution && varParentClassKeys.length >= 2) {
       const fallback = getResolvedClassKey(varParentClassKeys[1], varParent.gender);
       if (fallback === childFirstKey) {
@@ -386,7 +391,7 @@ function buildCharacterContext(character) {
   const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
   const statKey = charKey.replace(/_(m|f)$/, "");
 
-  const classSetKeys = character.classSet;
+  const classSetKeys = character.classSet?.map((cls) => cls.key) || [];
 
   // Character growth rates
   const charGrowth = character.stats?.growth;
@@ -409,30 +414,20 @@ function buildCharacterContext(character) {
     value,
   }));
 
-  // Class growth dropdown options: all non-unique classes + unique classes in this character's class_set
-  const charUniqueKeys = new Set(
-    classSetKeys.map((k) => getResolvedClassKey(k, character.gender)).filter((k) => UNIQUE_CLASS_KEYS.has(k)),
+  const classGrowthMap = Object.fromEntries(
+    new Map(
+      character.classChangeOptions?.map((cls) => {
+        return [cls.key, cls.stats?.growth.toArray()];
+      }),
+    ),
   );
-
-  const classGrowthOptions = [];
-  const classGrowthMap = {};
-  const seenGrowthClassKeys = new Set();
-  classes.forEach((cls, clsKey) => {
-    const resolvedClass = getResolvedClass(clsKey, character.gender);
-    if (!resolvedClass || seenGrowthClassKeys.has(resolvedClass.key)) return;
-    if (resolvedClass.unique && !charUniqueKeys.has(resolvedClass.key)) return;
-    const classGrowth = resolvedClass.stats?.growth;
-    if (!classGrowth) return;
-    seenGrowthClassKeys.add(resolvedClass.key);
-    const enriched = enrichClass(resolvedClass.key, character.gender);
-    classGrowthOptions.push({
-      key: resolvedClass.key,
-      name: enriched.name,
-      selected: resolvedClass.key === character.startingClass?.key,
-    });
-    classGrowthMap[resolvedClass.key] = classGrowth.toArray();
+  const classGrowthOptions = character.classChangeOptions?.map((cls) => {
+    return {
+      key: cls.key,
+      name: cls.name,
+      selected: cls.key === character.startingClass?.key,
+    };
   });
-  classGrowthOptions.sort((a, b) => a.name.localeCompare(b.name));
 
   // Base stat rows from character_stats.json variants
   const rawBaseStatsRows = (() => {

@@ -23,7 +23,6 @@ class Character {
   constructor(key, raw) {
     this.key = key;
     this.name = raw.name;
-    this.classSet = parseCSV(raw.class_set);
     this.gender = raw.gender;
     this.route = raw.route;
     this.supports = {
@@ -31,8 +30,9 @@ class Character {
       partner: parseCSV(raw.supports.partner),
     };
     this.personalSkill = raw.personal_skill;
-    this._startingClassKey = raw.starting_class ?? this.classSet[0];
 
+    this._classSet = parseCSV(raw.class_set);
+    this._startingClassKey = raw.starting_class ?? this._classSet[0];
     this._statsKey = raw.stats ?? key;
     this._parentKey = raw.parent;
   }
@@ -50,6 +50,15 @@ class Character {
    * @param {import("../database")} database
    */
   linkObjects(database) {
+    // Resolve class set
+    this.classSet = this._classSet.map((classKey) => {
+      const cls = database.classes.get(classKey);
+      if (!cls) {
+        throw new Error(`Unknown class: ${classKey} (in character ${this.key})`);
+      }
+      return cls;
+    });
+
     // Resolve starting class
     const startingClass = database.classes.get(this._startingClassKey);
     if (!startingClass) {
@@ -72,6 +81,15 @@ class Character {
       }
       this.parent = parent;
     }
+
+    // Resolve class change options
+    // A character can change into any class in their class set + all non-unique classes.
+    // Gender-restricted classes only count if they match the character
+    this.classChangeOptions = [...database.classes]
+      .filter(([_, cls]) => {
+        return cls.matchesGender(this.gender) && (this._classSet.includes(cls.key) || !cls.unique);
+      })
+      .map(([_, cls]) => cls);
   }
 
   /**

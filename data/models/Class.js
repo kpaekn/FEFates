@@ -98,6 +98,15 @@ class Class {
   }
 
   /**
+   * Returns true if this class matches the given gender. If this class has no specified gender, returns true.
+   * @param {string} gender
+   * @returns {boolean}
+   */
+  matchesGender(gender) {
+    return this.gender ? this.gender === gender : true;
+  }
+
+  /**
    * @param {string} gender
    * @returns {Class}
    */

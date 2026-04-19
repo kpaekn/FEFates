@@ -21,11 +21,13 @@
   },
   "hoshido_noble": {
     "name": "Hoshido Noble",
+    "unique": true,
     "weapons": "sword, dragon_stone, staff",
     "skills": "dragon_ward, hoshidan_unity"
   },
   "nohr_noble": {
     "name": "Nohr Noble",
+    "unique": true,
     "weapons": "sword, dragon_stone, tome",
     "skills": "draconic_hex, nohrian_trust"
   },
