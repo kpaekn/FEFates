@@ -29,10 +29,10 @@ class Class {
     this.dlc = raw.dlc ?? false;
     this.weapons = parseCSV(raw.weapons);
 
-    this._oppositeGenderedClassKey = raw.opposite_gender ?? null;
-    this._promotionClassKeys = raw.promotion ?? "";
-    this._skillKeys = raw.skills ?? "";
-    this._parallelClassKey = raw.parallel ?? null;
+    this._oppositeGenderedClassKey = raw.opposite_gender ?? "";
+    this._promotionClassKeys = parseCSV(raw.promotion);
+    this._skillKeys = parseCSV(raw.skills);
+    this._parallelClassKey = raw.parallel ?? "";
     this._statsKey = raw.stats ?? key;
   }
 
@@ -50,7 +50,7 @@ class Class {
    */
   linkObjects(database) {
     // Resolve skills
-    this.skills = parseCSV(this._skillKeys)
+    this.skills = this._skillKeys
       .map((skillKey) => {
         const skill = database.skills.get(skillKey);
         if (!skill) {
@@ -77,7 +77,7 @@ class Class {
     }
 
     // Resolve promotion classes
-    this.promotion = parseCSV(this._promotionClassKeys)
+    this.promotion = this._promotionClassKeys
       .map((classKey) => {
         const cls = database.classes.get(classKey);
         if (!cls) {
