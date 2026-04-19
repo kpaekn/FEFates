@@ -87,7 +87,12 @@ class Character {
     // Gender-restricted classes only count if they match the character
     this.classChangeOptions = [...database.classes]
       .filter(([_, cls]) => {
-        return cls.matchesGender(this.gender) && (this._classSet.includes(cls.key) || !cls.unique);
+        const isInClassSet = this.classSet?.some((classSetCls) => {
+          return (
+            classSetCls.key === cls.key || classSetCls.promotion?.some((promotedCls) => promotedCls.key === cls.key)
+          );
+        });
+        return cls.matchesGender(this.gender) && (isInClassSet || !cls.unique);
       })
       .map(([_, cls]) => cls);
   }
