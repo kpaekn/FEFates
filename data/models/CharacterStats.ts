@@ -1,14 +1,12 @@
 import BaseStats from "./BaseStats.ts";
-import Stats, { type StatValues } from "./Stats.ts";
+import Stats from "./Stats.ts";
 import type BoonBaneStats from "./BoonBaneStats.ts";
 import type { Database } from "../database.ts";
 
-type BaseStatsValues = [number, number, number, number, number, number, number, number, number];
-
 interface RawCharacterStatsData {
-  base: Record<string, BaseStatsValues>;
-  growth: StatValues;
-  cap?: StatValues;
+  base: Record<string, number[]>;
+  growth: number[];
+  cap?: number[];
 }
 
 export default class CharacterStats {

@@ -1,4 +1,10 @@
-import Stats, { type StatValues } from "./Stats.ts";
+import Stats from "./Stats.ts";
+
+interface RawClassStatsData {
+  base: number[];
+  growth: number[];
+  cap?: number[];
+}
 
 export default class ClassStats {
   key: string;
@@ -13,7 +19,7 @@ export default class ClassStats {
     this.max = max;
   }
 
-  static fromJSON(key: string, data: { base: StatValues; growth: StatValues; max: StatValues }): ClassStats {
+  static fromJSON(key: string, data: RawClassStatsData): ClassStats {
     try {
       return new ClassStats(key, Stats.fromArray(data.base), Stats.fromArray(data.growth), Stats.fromArray(data.max));
     } catch (error) {

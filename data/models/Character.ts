@@ -20,8 +20,10 @@ export default class Character {
   name: string;
   gender: "m" | "f";
   route: "all" | "birthright" | "conquest" | "revelation";
+  // todo: remove once friendships and partners are fully linked
   supports: { friendship: string[]; partner: string[] };
   personalSkill: string;
+  
   classSet!: Class[];
   startingClass!: Class;
   stats!: CharacterStats;
