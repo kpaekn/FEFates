@@ -19,9 +19,9 @@
     });
   }
 
-  function getCorrinSelections() {
-    var boonSelect = document.getElementById("corrin-boon");
-    var baneSelect = document.getElementById("corrin-bane");
+  function getBoonBaneSelections() {
+    var boonSelect = document.getElementById("boon-select");
+    var baneSelect = document.getElementById("bane-select");
     return {
       boonSelect: boonSelect,
       baneSelect: baneSelect,
@@ -30,14 +30,14 @@
     };
   }
 
-  function updateCorrinBaseGrowth(baseGrowth) {
+  function updateBaseGrowth(baseGrowth) {
     document.querySelectorAll("[data-base-growth-idx]").forEach(function (td) {
       var index = Number(td.dataset.baseGrowthIdx);
       td.textContent = baseGrowth[index] + "%";
     });
   }
 
-  function updateCorrinBaseStats(boonKey, baneKey) {
+  function updateBaseStats(boonKey, baneKey) {
     if (!boonBaneConfig) return;
     var boonModifier = getModifierArray(boonBaneConfig.baseStatBoonMap, boonKey);
     var baneModifier = getModifierArray(boonBaneConfig.baseStatBaneMap, baneKey);
@@ -62,14 +62,14 @@
     var baseGrowth = cfg.baseGrowth.slice();
 
     if (boonBaneConfig) {
-      var selections = getCorrinSelections();
+      var selections = getBoonBaneSelections();
       baseGrowth = applyModifiers(
         baseGrowth,
         getModifierArray(boonBaneConfig.growthBoonMap, selections.boonKey),
         getModifierArray(boonBaneConfig.growthBaneMap, selections.baneKey),
       );
-      updateCorrinBaseGrowth(baseGrowth);
-      updateCorrinBaseStats(selections.boonKey, selections.baneKey);
+      updateBaseGrowth(baseGrowth);
+      updateBaseStats(selections.boonKey, selections.baneKey);
     }
 
     if (!classGrowth) return;
@@ -86,9 +86,9 @@
     });
   }
 
-  function ensureDistinctCorrinSelections(changedKey) {
+  function ensureDistinctBoonBaneSelections(changedKey) {
     if (!boonBaneConfig) return;
-    var selections = getCorrinSelections();
+    var selections = getBoonBaneSelections();
     if (!selections.boonSelect || !selections.baneSelect) return;
 
     if (selections.boonKey === selections.baneKey) {
@@ -99,7 +99,7 @@
       });
       if (fallback) {
         targetSelect.value = fallback.value;
-        selections = getCorrinSelections();
+        selections = getBoonBaneSelections();
       }
     }
 
@@ -122,17 +122,17 @@
   }
 
   if (boonBaneConfig) {
-    var corrinSelections = getCorrinSelections();
-    if (corrinSelections.boonSelect && corrinSelections.baneSelect) {
-      corrinSelections.boonSelect.addEventListener("change", function () {
-        ensureDistinctCorrinSelections("boon");
+    var boonBaneSelections = getBoonBaneSelections();
+    if (boonBaneSelections.boonSelect && boonBaneSelections.baneSelect) {
+      boonBaneSelections.boonSelect.addEventListener("change", function () {
+        ensureDistinctBoonBaneSelections("boon");
         updateGrowthDisplays();
       });
-      corrinSelections.baneSelect.addEventListener("change", function () {
-        ensureDistinctCorrinSelections("bane");
+      boonBaneSelections.baneSelect.addEventListener("change", function () {
+        ensureDistinctBoonBaneSelections("bane");
         updateGrowthDisplays();
       });
-      ensureDistinctCorrinSelections("init");
+      ensureDistinctBoonBaneSelections("init");
       updateGrowthDisplays();
     }
   }

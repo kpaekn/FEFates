@@ -17,9 +17,6 @@ const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 const Stats = require("./data/models/Stats");
 const { characters, classes } = require("./data/database");
 
-const DEFAULT_BOON = "mag";
-const DEFAULT_BANE = "lck";
-
 function buildCharacterIndexSections() {
   const sections = {
     all: { title: "", characters: new Array() },
@@ -384,9 +381,26 @@ function buildSealSection(char, sealType, supportKeys) {
 
 /**
  * @param {import("./data/models/Character")} character
+ * @param {object[]} rawBaseStatsRows
  * @returns
  */
-function createBoonBaneOptions(character) {}
+function createBoonBaneOptions(character, rawBaseStatsRows) {
+  const boonBaneStats = character.stats?.boonBaneStats;
+  if (!boonBaneStats) return null;
+
+  return {
+    template: {
+      selectOptions: Stat.KEYS.map((key, index) => ({ key, name: Stat.LABELS[index] })),
+    },
+    js: {
+      growthBoonMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null,
+      growthBaneMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null,
+      baseStatBoonMap: boonBaneStats.base ? Stat.singleModifierMap(boonBaneStats.base.boon) : null,
+      baseStatBaneMap: boonBaneStats.base ? Stat.singleModifierMap(boonBaneStats.base.bane) : null,
+      baseStatRows: rawBaseStatsRows.map((row) => Stat.KEYS.map((key) => row[key] ?? 0)),
+    },
+  };
+}
 
 // ─── Per-character template context ──────────────────────────────────────────
 /**
@@ -402,14 +416,7 @@ function buildCharacterContext(character) {
   // Character growth rates
   const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
-  const boonBaneStats = character.stats?.boonBaneStats;
-  const growthBoonMap = boonBaneStats?.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null;
-  const growthBaneMap = boonBaneStats?.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null;
-  const initialGrowthValues =
-    growthBoonMap && growthBaneMap
-      ? Stat.applyModifiers(baseGrowthValues, growthBoonMap[DEFAULT_BOON], growthBaneMap[DEFAULT_BANE])
-      : baseGrowthValues;
-  const growthRates = initialGrowthValues.map((value, index) => ({
+  const growthRates = baseGrowthValues.map((value, index) => ({
     stat: Stat.LABELS[index],
     value,
   }));
@@ -444,25 +451,10 @@ function buildCharacterContext(character) {
     }
     return rows;
   })();
-  const baseStatBoonMap = boonBaneStats?.base ? Stat.singleModifierMap(boonBaneStats.base.boon) : null;
-  const baseStatBaneMap = boonBaneStats?.base ? Stat.singleModifierMap(boonBaneStats.base.bane) : null;
-  const baseStatsRows = rawBaseStatsRows.map((row) => {
-    if (!baseStatBoonMap || !baseStatBaneMap) {
-      return row;
-    }
-    const adjustedValues = Stat.applyModifiers(
-      Stat.KEYS.map((key) => row[key] ?? 0),
-      baseStatBoonMap[DEFAULT_BOON],
-      baseStatBaneMap[DEFAULT_BANE],
-    );
-    return {
-      ...row,
-      ...new Stat(...adjustedValues),
-    };
-  });
+  const baseStatsRows = rawBaseStatsRows;
   const baseStatsHeaders = ["Level", ...Stat.LABELS];
-  const boonOptions = !!boonBaneStats ? Stat.getSelectOptions(DEFAULT_BOON) : [];
-  const baneOptions = !!boonBaneStats ? Stat.getSelectOptions(DEFAULT_BANE) : [];
+  const boonBaneOptions = createBoonBaneOptions(character, rawBaseStatsRows);
+  if (boonBaneOptions) console.log(boonBaneOptions);
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
   const talentOptions = character.isCorrinOrKana() ? getTalentOptions(character.gender) : [];
@@ -531,8 +523,7 @@ function buildCharacterContext(character) {
     isCorrin: character.isCorrin(),
     isCorrinOrKana: character.isCorrinOrKana(),
     isChild,
-    boonOptions,
-    baneOptions,
+    boonBane: boonBaneOptions?.template,
     talentOptions,
     defaultPanels,
     heartSealTalentPanels,
@@ -553,18 +544,7 @@ function buildCharacterContext(character) {
       hasPartner,
       baseGrowth: baseGrowthValues,
       classGrowthMap,
-      boonBane: !!boonBaneStats
-        ? {
-            defaultBoon: DEFAULT_BOON,
-            defaultBane: DEFAULT_BANE,
-            emptyStats: Stat.emptyArray(),
-            growthBoonMap: growthBoonMap,
-            growthBaneMap: growthBaneMap,
-            baseStatBoonMap: baseStatBoonMap,
-            baseStatBaneMap: baseStatBaneMap,
-            baseStatRows: rawBaseStatsRows.map((row) => Stat.KEYS.map((key) => row[key] ?? 0)),
-          }
-        : null,
+      boonBane: boonBaneOptions?.js,
       friendshipCorrinKana: friendshipPanels
         .filter((p) => p.isCorrinOrKana)
         .map((p) => ({ key: p.panelKey, subGroup: p.talentSubGroup })),

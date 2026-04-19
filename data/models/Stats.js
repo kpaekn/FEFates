@@ -1,6 +1,5 @@
 "use strict";
 
-
 /**
  * @typedef {[number, number, number, number, number, number, number, number]} StatValues
  */
@@ -42,25 +41,10 @@ class Stats {
     return [this.hp, this.str, this.mag, this.skl, this.spd, this.lck, this.def, this.res];
   }
 
-  static emptyArray() {
-    return Stats.KEYS.map(() => 0);
-  }
-
-  static applyModifiers(baseValues, ...modifierSets) {
-    return baseValues.map((value, index) =>
-      modifierSets.reduce(
-        (total, modifierSet) => total + (modifierSet?.[index] ?? 0),
-        value,
-      ),
-    );
-  }
-
   static singleModifierMap(rawModifiers) {
     const modifierMap = {};
     for (const key of Stats.KEYS) {
-      modifierMap[key] = Stats.KEYS.map((statKey) =>
-        statKey === key ? (rawModifiers?.[key] ?? 0) : 0,
-      );
+      modifierMap[key] = Stats.KEYS.map((statKey) => (statKey === key ? (rawModifiers?.[key] ?? 0) : 0));
     }
     return modifierMap;
   }
@@ -72,22 +56,6 @@ class Stats {
       modifierMap[key] = Stats.KEYS.map((statKey) => entry[statKey] ?? 0);
     }
     return modifierMap;
-  }
-
-  static normalizeBoonBaneModifiers(rawModifiers) {
-    const modifierMap = {};
-    for (const [label, values] of Object.entries(rawModifiers ?? {})) {
-      modifierMap[label.toLowerCase()] = Stats.fromArray(values);
-    }
-    return modifierMap;
-  }
-
-  static getSelectOptions(selectedKey) {
-    return Stats.KEYS.map((key, index) => ({
-      key,
-      name: Stats.LABELS[index],
-      selected: key === selectedKey,
-    }));
   }
 }
 
