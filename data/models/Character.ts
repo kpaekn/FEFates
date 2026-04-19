@@ -23,11 +23,18 @@ export default class Character {
   // todo: remove once friendships and partners are fully linked
   supports: { friendship: string[]; partner: string[] };
   personalSkill: string;
-  
+  isCorrin: boolean;
+  isKana: boolean;
+  isCorrinOrKana: boolean;
+  isChild: boolean;
+
   classSet!: Class[];
   startingClass!: Class;
   stats!: CharacterStats;
-  parent?: Character;
+  fixedParent?: Character;
+  variableParents!: Character[];
+  fixedChild?: Character;
+  variableChildren!: Character[];
   friendships!: Character[];
   partners!: Character[];
   classChangeOptions!: Class[];
@@ -49,6 +56,10 @@ export default class Character {
       partner: parseCSV(raw.supports.partner),
     };
     this.personalSkill = raw.personal_skill;
+    this.isCorrin = key === "corrin_m" || key === "corrin_f";
+    this.isKana = key === "kana_m" || key === "kana_f";
+    this.isCorrinOrKana = this.isCorrin || this.isKana;
+    this.isChild = !!raw.parent;
 
     this._friendshipKeys = parseCSV(raw.supports.friendship);
     this._partnerKeys = parseCSV(raw.supports.partner);
@@ -62,7 +73,18 @@ export default class Character {
     return new Character(key, raw);
   }
 
+  toJSON() {
+    const { key, name, fixedParent, variableParents, fixedChild, variableChildren, isCorrin } = this;
+    return {
+      key,
+      name,
+      variableChildren,
+      isCorrin,
+    };
+  }
+
   linkObjects(database: Database): void {
+    // Hydrate class set
     this.classSet = this._classSet.map((classKey) => {
       const cls = database.classes.get(classKey);
       if (!cls) {
@@ -71,26 +93,21 @@ export default class Character {
       return cls;
     });
 
+    // Hydrate starting class
     const startingClass = database.classes.get(this._startingClassKey);
     if (!startingClass) {
       throw new Error(`Unknown starting class: ${this._startingClassKey} (in character ${this.key})`);
     }
     this.startingClass = startingClass;
 
+    // Hydrate stats
     const stats = database.characterStats.get(this._statsKey);
     if (!stats) {
       throw new Error(`Unknown character stats: ${this._statsKey} (in character ${this.key})`);
     }
     this.stats = stats;
 
-    if (this._parentKey) {
-      const parent = database.characters.get(this._parentKey);
-      if (!parent) {
-        throw new Error(`Unknown parent character: ${this._parentKey} (in character ${this.key})`);
-      }
-      this.parent = parent;
-    }
-
+    // Hydrate friendships
     this.friendships = this._friendshipKeys.map((key) => {
       const friend = database.characters.get(key);
       if (!friend) {
@@ -99,6 +116,8 @@ export default class Character {
       return friend;
     });
 
+    // Hydrate partners
+    // Note: partners are also used to determine potential parents, so we hydrate them before parents
     this.partners = this._partnerKeys.map((key) => {
       const partner = database.characters.get(key);
       if (!partner) {
@@ -107,6 +126,32 @@ export default class Character {
       return partner;
     });
 
+    // Hydrate parent
+    if (this._parentKey) {
+      const parent = database.characters.get(this._parentKey);
+      if (!parent) {
+        throw new Error(`Unknown parent character: ${this._parentKey} (in character ${this.key})`);
+      }
+      this.fixedParent = parent;
+
+      // Link parent to child (for ease of traversal in both directions)
+      parent.fixedChild = this;
+
+      // Hydrate potential parents (partners of parent)
+      this.variableParents = parent.partners.filter((potentialParent) => {
+        // parents must be opposite genders
+        return parent.gender !== potentialParent.gender;
+      });
+      this.variableParents.forEach((variableParent) => {
+        // Link variable parent to child (for ease of traversal in both directions)
+        if (!variableParent.variableChildren) {
+          variableParent.variableChildren = [];
+        }
+        variableParent.variableChildren.push(this);
+      });
+    }
+
+    // Hydrate class change options
     this.classChangeOptions = [...database.classes]
       .filter(([_, cls]) => {
         return cls.matchesGender(this.gender) && (this._classSet.includes(cls.key) || !cls.unique);
@@ -114,19 +159,18 @@ export default class Character {
       .map(([_, cls]) => cls);
   }
 
-  isCorrin(): boolean {
-    return this.key === "corrin_m" || this.key === "corrin_f";
-  }
-
-  isKana(): boolean {
-    return this.key === "kana_m" || this.key === "kana_f";
-  }
-
-  isCorrinOrKana(): boolean {
-    return this.isCorrin() || this.isKana();
-  }
-
-  isChild(): boolean {
-    return !!this._parentKey;
+  getVariableGrandparents(): Character[] | null {
+    const grandparents = new Map();
+    this.variableParents?.forEach((variableParent) => {
+      variableParent.variableParents?.forEach((variableGrandparent) => {
+        if (!variableGrandparent.isCorrin) {
+          grandparents.set(variableGrandparent.key, variableGrandparent);
+        }
+      });
+    });
+    if (grandparents.size === 0) {
+      return null;
+    }
+    return [...grandparents.values()];
   }
 }

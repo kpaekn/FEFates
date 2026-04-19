@@ -10,16 +10,16 @@ export default class Stats {
 
   static KEYS = ["hp", "str", "mag", "skl", "spd", "lck", "def", "res"];
   static LABELS = ["HP", "Str", "Mag", "Skl", "Spd", "Lck", "Def", "Res"];
-  static MAP: Record<string, string> = {
-    hp: "HP",
-    str: "Str",
-    mag: "Mag",
-    skl: "Skl",
-    spd: "Spd",
-    lck: "Lck",
-    def: "Def",
-    res: "Res",
-  };
+  static MAP: {key: string, name: string}[] = [
+    { key: "hp", name: "HP" },
+    { key: "str", name: "Str" },
+    { key: "mag", name: "Mag" },
+    { key: "skl", name: "Skl" },
+    { key: "spd", name: "Spd" },
+    { key: "lck", name: "Lck" },
+    { key: "def", name: "Def" },
+    { key: "res", name: "Res" },
+  ];
 
   constructor(values: number[]) {
     if (values.length !== 8) {

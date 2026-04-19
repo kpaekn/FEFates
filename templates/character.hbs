@@ -25,7 +25,7 @@
       </nav>
     </header>
 
-    {{> config-section}}
+    {{> config-section configOptions}}
     {{> stats-section}}
 
     <section>
@@ -163,6 +163,7 @@
     {{/if}}
   </main>
 
+  <script>window.DEBUG_CONFIG_OPTIONS = {{{json configOptions}}};</script>
   <script>window.PAGE_CONFIG = {{{json pageConfig}}};</script>
   <script src="../scripts/seal-ui.js"></script>
 </body>

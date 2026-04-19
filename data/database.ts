@@ -31,10 +31,7 @@ export class Database {
     this.characterStats.forEach((stats) => stats.linkObjects(this));
   }
 
-  loadModel<T>(
-    filename: string,
-    Model: { fromJSON(key: string, data: unknown): T },
-  ): Map<string, T> {
+  loadModel<T>(filename: string, Model: { fromJSON(key: string, data: unknown): T }): Map<string, T> {
     const raw = JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), "utf8"));
     const result = new Map<string, T>();
     for (const [key, data] of Object.entries(raw)) {
@@ -44,14 +41,15 @@ export class Database {
   }
 
   getTalentOptions(gender: string): Class[] {
-    return [...this.classes]
-      .filter(([_, cls]) => cls.isTalent(gender))
-      .map(([_, cls]) => cls);
+    return [...this.classes].filter(([_, cls]) => cls.isTalent(gender)).map(([_, cls]) => cls);
   }
 
-  getParentOptions(character: Character): Character[] | undefined {
-    if (character.isChild()) return undefined;
-    return character.parent?.partners;
+  sortCharacters(characters: Character[] | null) {
+    if (!characters) return null;
+    const bank = [...this.characters.keys()];
+    return characters.sort((a, b) => {
+      return bank.indexOf(a.key) - bank.indexOf(b.key);
+    });
   }
 }
 

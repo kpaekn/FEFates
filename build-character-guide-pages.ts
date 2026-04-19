@@ -4,6 +4,7 @@ import Handlebars from "handlebars";
 
 import Stats from "./data/models/Stats.ts";
 import db from "./data/database.ts";
+import Character from "./data/models/Character.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
@@ -142,7 +143,7 @@ function resolveSealClassKey(char, partnerKey, partnerTalentKey) {
   const charFirstKey = getResolvedClassKey(char.classSet[0].key, char.gender);
   const partnerFirstKey = getResolvedClassKey(partner.classSet[0].key, partner.gender);
 
-  const isPartnerCorrinKana = partner.isCorrinOrKana();
+  const isPartnerCorrinKana = partner.isCorrinOrKana;
 
   // Determine the partner's effective "second class" (talent for Corrin/Kana)
   let partnerSecondKey;
@@ -231,7 +232,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
   const variableParent = db.characters.get(varParentKey);
 
   // Corrin/Kana as variable parent always contribute nohr_prince or nohr_princess
-  if (variableParent?.isCorrinOrKana()) {
+  if (variableParent?.isCorrinOrKana) {
     if (child.gender === "m") return "nohr_prince";
     else return "nohr_princess";
   }
@@ -247,7 +248,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = child.parent;
   if (fixedParent) {
-    const fixedContribution = fixedParent.isCorrinOrKana()
+    const fixedContribution = fixedParent.isCorrinOrKana
       ? "nohr_prince_ss"
       : resolveParentContribution(
           childFirstKey,
@@ -272,7 +273,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
  * Options are the fixed parent's partner support list, sorted by name.
  */
 function buildChildParentSection(char) {
-  const fixedParent = char.parent;
+  const fixedParent = char.fixedParent;
   if (!fixedParent) {
     console.warn(`[warn] Unknown fixed parent: ${char.key}`);
     return { parentOptions: [], parentPanels: [] };
@@ -342,7 +343,7 @@ function buildSealSection(char, sealType, supportKeys) {
 
     options.push({ key: partnerKey, displayName: partner.name });
 
-    if (partner.isCorrinOrKana()) {
+    if (partner.isCorrinOrKana) {
       const talentOptions = getTalentOptions(partner.gender);
       const talentSubGroup = `${sealType}-talent-${partnerKey}`;
       const talentPanels = talentOptions.map((opt) => ({
@@ -400,17 +401,14 @@ function createBoonBaneOptions(character, rawBaseStatsRows) {
   };
 }
 
-/**
- * @param {import("./data/models/Character")} character
- * @returns
- */
-function createConfigOptions(character) {
+function createConfigOptions(character: Character) {
   return {
     talents: db.getTalentOptions(character.gender),
     boonBane: Stats.MAP,
-    parents: db.getParentOptions(character),
-    friendships: [],
-    partners: [],
+    parents: character.variableParents,
+    grandparents: db.sortCharacters(character.getVariableGrandparents()),
+    friendships: character.friendships,
+    partners: character.partners,
   };
 }
 
@@ -468,7 +466,7 @@ function buildCharacterContext(character) {
   const boonBaneOptions = createBoonBaneOptions(character, rawBaseStatsRows);
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
-  const talentOptions = character.isCorrinOrKana() ? getTalentOptions(character.gender) : [];
+  const talentOptions = character.isCorrinOrKana ? getTalentOptions(character.gender) : [];
 
   // ── Default class panels ──────────────────────────────────────────────────
   // First class-set key → "Default Class Set"
@@ -480,7 +478,7 @@ function buildCharacterContext(character) {
 
   // ── Heart Seal talent panels (Corrin/Kana only) ───────────────────────────
   // All panels start hidden; JS shows the one matching the talent select.
-  const heartSealTalentPanels = character.isCorrinOrKana()
+  const heartSealTalentPanels = character.isCorrinOrKana
     ? talentOptions.map((opt) => ({
         key: opt.key,
         label: `Heart Seal`,
@@ -513,7 +511,7 @@ function buildCharacterContext(character) {
   }
 
   // ── Child parent dropdown ──────────────────────────────────────────────────
-  const isChild = character.isChild();
+  const isChild = character.isChild;
   let parentOptions = [];
   let parentPanels = [];
   if (isChild) {
@@ -527,13 +525,14 @@ function buildCharacterContext(character) {
     characterName: character.name,
     indexHref: `./`,
     characterKey: charKey,
+    configOptions: createConfigOptions(character),
     growthRates,
     classGrowthOptions,
     baseStatsHeaders,
     baseStatsRows,
     boonBane: boonBaneOptions?.template,
-    isCorrin: character.isCorrin(),
-    isCorrinOrKana: character.isCorrinOrKana(),
+    isCorrin: character.isCorrin,
+    isCorrinOrKana: character.isCorrinOrKana,
     isChild,
     talentOptions,
     defaultPanels,
@@ -548,8 +547,8 @@ function buildCharacterContext(character) {
     partnerPanels,
     hasSealSection: hasFriendship || hasPartner,
     pageConfig: {
-      isCorrin: character.isCorrin(),
-      isCorrinOrKana: character.isCorrinOrKana(),
+      isCorrin: character.isCorrin,
+      isCorrinOrKana: character.isCorrinOrKana,
       isChild,
       baseGrowth: baseGrowthValues,
       classGrowthMap,
@@ -566,9 +565,21 @@ function buildCharacterContext(character) {
   };
 }
 
+// console.log(db.characters.get("jakob")?.variableChildren);
+// throw new Error("stop");
+
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper("json", (value) => JSON.stringify(value));
+Handlebars.registerHelper("or", function (...args) {
+  // Remove the Handlebars 'options' object from the end of the arguments array
+  args.pop();
+  // Check if at least one argument is truthy
+  return args.some((arg) => !!arg);
+});
 Handlebars.registerHelper("hidden", (value) => (value ? "hidden" : null));
+Handlebars.registerHelper("keys", (value: { key: string }[]) => {
+  return value?.map((item) => item.key).join(",");
+});
 Handlebars.registerHelper("chara-portrait-path", (name) => `../images/portrait/${name}.png`);
 Handlebars.registerHelper("skill-icon-path", (skill) => `../images/icon/skills/${skill}.png`);
 Handlebars.registerHelper("weapon-icon-path", (weapon) => `../images/icon/weapons/${weapon}.png`);

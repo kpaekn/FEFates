@@ -2,38 +2,96 @@
   <h2 class="section-title">Config</h2>
 </header>
 <div class="cfg-opts">
+
+  {{#if talents}}
   <div class="sgc">
     <div class="sg">
-      <label>Talent</label>
-      <select><option>- None -</option></select>
+      <label for="cfg-talent">Talent</label>
+      <select id="cfg-talent" name="cfg-talent">
+        {{#each talents}}
+        <option value="{{key}}">{{name}}</option>
+        {{/each}}
+      </select>
     </div>
     <div class="sg"></div>
   </div>
+  {{/if}}
+
+  {{#if boonBane}}
   <div class="sgc">
     <div class="sg">
-      <label>Boon</label>
-      <select><option>- None -</option></select>
+      <label for="cfg-boon">Boon</label>
+      <select id="cfg-boon" name="cfg-boon">
+        {{#each boonBane}}
+        <option value="{{key}}">+ {{name}}</option>
+        {{/each}}
+      </select>
     </div>
     <div class="sg">
-      <label>Bane</label>
-      <select><option>- None -</option></select>
+      <label for="cfg-bane">Bane</label>
+      <select id="cfg-bane" name="cfg-bane">
+        {{#each boonBane}}
+        <option value="{{key}}">- {{name}}</option>
+        {{/each}}
+      </select>
     </div>
   </div>
+  {{/if}}
+
+  {{#if parents}}
   <div class="sgc">
+    {{#if parents}}
     <div class="sg">
-      <label>Parent</label>
-      <select><option>- None -</option></select>
+      <label for="cfg-parent">Parent</label>
+      <select id="cfg-parent" name="cfg-parent">
+        <option>- None -</option>
+        {{#each parents}}
+        <option data-grandparents="{{{keys variableParents}}}" value="{{key}}">{{name}}</option>
+        {{/each}}
+      </select>
     </div>
-    <div class="sg"></div>
+    {{/if}}
+
+    {{#if grandparents}}
+    <div class="sg">
+      <label for="cfg-grandparent">Grandparent</label>
+      <select id="cfg-grandparent" name="cfg-grandparent">
+        <option>- None -</option>
+        {{#each grandparents}}
+        <option data-children="{{{keys variableChildren}}}" value="{{key}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    {{/if}}
   </div>
+  {{/if}}
+
+  {{#if (or friendships partners)}}
   <div class="sgc">
+    {{#if friendships}}
     <div class="sg">
-      <label>Friendship (A+)</label>
-      <select><option>- None -</option></select>
+      <label for="cfg-friendship">Friendship (A+)</label>
+      <select id="cfg-friendship" name="cfg-friendship">
+        <option>- None -</option>
+        {{#each friendships}}
+        <option value="{{key}}">{{name}}</option>
+        {{/each}}
+      </select>
     </div>
+    {{/if}}
+
+    {{#if partners}}
     <div class="sg">
-      <label>Partner (S)</label>
-      <select><option>- None -</option></select>
+      <label for="cfg-partner">Partner (S)</label>
+      <select id="cfg-partner" name="cfg-partner">
+        <option>- None -</option>
+        {{#each partners}}
+        <option value="{{key}}">{{name}}</option>
+        {{/each}}
+      </select>
     </div>
+    {{/if}}
   </div>
+  {{/if}}
+
 </div>

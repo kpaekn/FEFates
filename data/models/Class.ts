@@ -54,6 +54,13 @@ export default class Class {
     return new Class(key, raw);
   }
 
+  toJSON() {
+    return {
+      key: this.key,
+      name: this.name,
+    }
+  }
+
   linkObjects(database: Database): void {
     this.skills = this._skillKeys
       .map((skillKey) => {
