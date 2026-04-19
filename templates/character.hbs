@@ -119,7 +119,7 @@
           {{> class-panel}}
         </div>
         {{/each}}
-        {{#if isCorrinKana}}
+        {{#if isCorrinOrKana}}
         <div>
           <section class="select-group" aria-label="Corrin Talent selector">
             <label for="class-talent">Talent</label>
@@ -176,7 +176,7 @@
           {{> placeholder-panel label="Friendship Seal" bodyText="(Select an A+ rank support partner)"
           group="friendship-panel" key="-none-"}}
           {{#each friendshipPanels}}
-          {{#if isCorrinKana}}
+          {{#if isCorrinOrKana}}
           <div data-group="friendship-panel" data-key="{{panelKey}}" hidden>
             <div class="select-group" aria-label="Corrin Talent Selector">
               <label for="friendship-talent-{{panelKey}}">Talent</label>
@@ -209,7 +209,7 @@
               </select>
             </div>
             {{#each partnerPanels}}
-            {{#if isCorrinKana}}
+            {{#if isCorrinOrKana}}
             <div class="select-group" aria-label="Corrin Talent Selector" data-group="partner-talent-control"
               data-key="{{panelKey}}" hidden>
               <label for="partner-talent-{{panelKey}}">Talent</label>
@@ -225,7 +225,7 @@
           {{> placeholder-panel label="Partner Seal" bodyText="(Select an S rank support partner)"
           group="partner-panel" key="-none-"}}
           {{#each partnerPanels}}
-          {{#if isCorrinKana}}
+          {{#if isCorrinOrKana}}
           <div data-group="partner-panel" data-key="{{panelKey}}" hidden>
             {{#each talentPanels}}
             {{> class-panel}}

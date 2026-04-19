@@ -339,11 +339,9 @@ function buildSealSection(char, sealType, supportKeys) {
       continue;
     }
 
-    const isCorrinKana = partner.isCorrinOrKana();
-
     options.push({ key: partnerKey, displayName: partner.name });
 
-    if (isCorrinKana) {
+    if (partner.isCorrinOrKana()) {
       const talentOptions = getTalentOptions(partner.gender);
       const talentSubGroup = `${sealType}-talent-${partnerKey}`;
       const talentPanels = talentOptions.map((opt) => ({
@@ -355,7 +353,7 @@ function buildSealSection(char, sealType, supportKeys) {
       }));
       panels.push({
         panelKey: partnerKey,
-        isCorrinKana: true,
+        isCorrinOrKana: true,
         group: panelGroup,
         talentOptions,
         talentSubGroup,
@@ -365,7 +363,7 @@ function buildSealSection(char, sealType, supportKeys) {
     } else {
       panels.push({
         panelKey: partnerKey,
-        isCorrinKana: false,
+        isCorrinOrKana: false,
         group: panelGroup,
         key: partnerKey,
         label: `${sealLabel} - ${partner.name}`,
@@ -385,8 +383,6 @@ function buildSealSection(char, sealType, supportKeys) {
  */
 function buildCharacterContext(character) {
   const charKey = character.key;
-  const isCorrin = character.isCorrin();
-  const isCorrinKana = character.isCorrinOrKana();
   const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
   const statKey = charKey.replace(/_(m|f)$/, "");
 
@@ -395,11 +391,13 @@ function buildCharacterContext(character) {
   // Character growth rates
   const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
-  const corrinBoonBane = isCorrin ? boonBaneStats.get(statKey) : null;
-  const corrinGrowthBoonMap = isCorrin && corrinBoonBane?.growth ? corrinBoonBane.growth.boon.toModifierMap() : null;
-  const corrinGrowthBaneMap = isCorrin && corrinBoonBane?.growth ? corrinBoonBane.growth.bane.toModifierMap() : null;
+  const corrinBoonBane = character.isCorrin() ? boonBaneStats.get(statKey) : null;
+  const corrinGrowthBoonMap =
+    character.isCorrin() && corrinBoonBane?.growth ? corrinBoonBane.growth.boon.toModifierMap() : null;
+  const corrinGrowthBaneMap =
+    character.isCorrin() && corrinBoonBane?.growth ? corrinBoonBane.growth.bane.toModifierMap() : null;
   const initialGrowthValues =
-    isCorrin && corrinGrowthBoonMap && corrinGrowthBaneMap
+    character.isCorrin() && corrinGrowthBoonMap && corrinGrowthBaneMap
       ? Stat.applyModifiers(
           baseGrowthValues,
           corrinGrowthBoonMap[CORRIN_DEFAULT_BOON],
@@ -452,11 +450,11 @@ function buildCharacterContext(character) {
     return rows;
   })();
   const corrinBaseStatBoonMap =
-    isCorrin && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.boon) : null;
+    character.isCorrin() && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.boon) : null;
   const corrinBaseStatBaneMap =
-    isCorrin && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.bane) : null;
+    character.isCorrin() && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.bane) : null;
   const baseStatsRows = rawBaseStatsRows.map((row) => {
-    if (!isCorrin || !corrinBaseStatBoonMap || !corrinBaseStatBaneMap) {
+    if (!character.isCorrin() || !corrinBaseStatBoonMap || !corrinBaseStatBaneMap) {
       return row;
     }
     const adjustedValues = Stat.applyModifiers(
@@ -470,11 +468,11 @@ function buildCharacterContext(character) {
     };
   });
   const baseStatsHeaders = ["Level", ...Stat.LABELS];
-  const corrinBoonOptions = isCorrin ? Stat.getSelectOptions(CORRIN_DEFAULT_BOON) : [];
-  const corrinBaneOptions = isCorrin ? Stat.getSelectOptions(CORRIN_DEFAULT_BANE) : [];
+  const corrinBoonOptions = character.isCorrin() ? Stat.getSelectOptions(CORRIN_DEFAULT_BOON) : [];
+  const corrinBaneOptions = character.isCorrin() ? Stat.getSelectOptions(CORRIN_DEFAULT_BANE) : [];
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
-  const talentOptions = isCorrinKana ? getTalentOptions(character.gender) : [];
+  const talentOptions = character.isCorrinOrKana() ? getTalentOptions(character.gender) : [];
 
   // ── Default class panels ──────────────────────────────────────────────────
   // First class-set key → "Default Class Set"
@@ -486,7 +484,7 @@ function buildCharacterContext(character) {
 
   // ── Heart Seal talent panels (Corrin/Kana only) ───────────────────────────
   // All panels start hidden; JS shows the one matching the talent select.
-  const heartSealTalentPanels = isCorrinKana
+  const heartSealTalentPanels = character.isCorrinOrKana()
     ? talentOptions.map((opt) => ({
         key: opt.key,
         label: `Heart Seal`,
@@ -537,8 +535,8 @@ function buildCharacterContext(character) {
     classGrowthOptions,
     baseStatsHeaders,
     baseStatsRows,
-    isCorrin,
-    isCorrinKana,
+    isCorrin: character.isCorrin(),
+    isCorrinOrKana: character.isCorrinOrKana(),
     isChild,
     corrinBoonOptions,
     corrinBaneOptions,
@@ -555,14 +553,14 @@ function buildCharacterContext(character) {
     partnerPanels,
     hasSealSection: hasFriendship || hasPartner,
     pageConfig: {
-      isCorrin,
-      isCorrinKana,
+      isCorrin: character.isCorrin(),
+      isCorrinOrKana: character.isCorrinOrKana(),
       isChild,
       hasFriendship,
       hasPartner,
       baseGrowth: baseGrowthValues,
       classGrowthMap,
-      corrinBoon: isCorrin
+      corrinBoon: character.isCorrin()
         ? {
             defaultBoon: CORRIN_DEFAULT_BOON,
             defaultBane: CORRIN_DEFAULT_BANE,
@@ -575,10 +573,10 @@ function buildCharacterContext(character) {
           }
         : null,
       friendshipCorrinKana: friendshipPanels
-        .filter((p) => p.isCorrinKana)
+        .filter((p) => p.isCorrinOrKana)
         .map((p) => ({ key: p.panelKey, subGroup: p.talentSubGroup })),
       partnerCorrinKana: partnerPanels
-        .filter((p) => p.isCorrinKana)
+        .filter((p) => p.isCorrinOrKana)
         .map((p) => ({ key: p.panelKey, subGroup: p.talentSubGroup })),
     },
   };
