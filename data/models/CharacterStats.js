@@ -21,10 +21,7 @@ class CharacterStats {
   constructor(key, raw) {
     this.key = key;
     this.base = Object.fromEntries(
-      Object.entries(raw.base).map(([name, values]) => [
-        name,
-        BaseStats.fromArray(values),
-      ]),
+      Object.entries(raw.base).map(([name, values]) => [name, BaseStats.fromArray(values)]),
     );
     this.growth = Stats.fromArray(raw.growth);
     this.cap = raw.cap ? Stats.fromArray(raw.cap) : null;
@@ -42,6 +39,13 @@ class CharacterStats {
       console.error(`Error loading character_stats.json for ${key}:`);
       throw error;
     }
+  }
+
+  /**
+   * @param {import("../database")} database
+   */
+  linkObjects(database) {
+    this.boonBaneStats = database.boonBaneStats.get(this.key) || null;
   }
 }
 

@@ -14,10 +14,10 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
-const { characters, classes, boonBaneStats } = require("./data/database");
+const { characters, classes } = require("./data/database");
 
-const CORRIN_DEFAULT_BOON = "mag";
-const CORRIN_DEFAULT_BANE = "lck";
+const DEFAULT_BOON = "mag";
+const DEFAULT_BANE = "lck";
 
 function buildCharacterIndexSections() {
   const sections = {
@@ -389,25 +389,18 @@ function buildSealSection(char, sealType, supportKeys) {
 function buildCharacterContext(character) {
   const charKey = character.key;
   const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
-  const statKey = charKey.replace(/_(m|f)$/, "");
 
   const classSetKeys = character.classSet?.map((cls) => cls.key) || [];
 
   // Character growth rates
   const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
-  const corrinBoonBane = character.isCorrin() ? boonBaneStats.get(statKey) : null;
-  const corrinGrowthBoonMap =
-    character.isCorrin() && corrinBoonBane?.growth ? corrinBoonBane.growth.boon.toModifierMap() : null;
-  const corrinGrowthBaneMap =
-    character.isCorrin() && corrinBoonBane?.growth ? corrinBoonBane.growth.bane.toModifierMap() : null;
+  const boonBaneStats = character.stats?.boonBaneStats;
+  const growthBoonMap = boonBaneStats?.growth ? boonBaneStats.growth.boon.toModifierMap() : null;
+  const growthBaneMap = boonBaneStats?.growth ? boonBaneStats.growth.bane.toModifierMap() : null;
   const initialGrowthValues =
-    character.isCorrin() && corrinGrowthBoonMap && corrinGrowthBaneMap
-      ? Stat.applyModifiers(
-          baseGrowthValues,
-          corrinGrowthBoonMap[CORRIN_DEFAULT_BOON],
-          corrinGrowthBaneMap[CORRIN_DEFAULT_BANE],
-        )
+    growthBoonMap && growthBaneMap
+      ? Stat.applyModifiers(baseGrowthValues, growthBoonMap[DEFAULT_BOON], growthBaneMap[DEFAULT_BANE])
       : baseGrowthValues;
   const growthRates = initialGrowthValues.map((value, index) => ({
     stat: Stat.LABELS[index],
@@ -444,18 +437,16 @@ function buildCharacterContext(character) {
     }
     return rows;
   })();
-  const corrinBaseStatBoonMap =
-    character.isCorrin() && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.boon) : null;
-  const corrinBaseStatBaneMap =
-    character.isCorrin() && corrinBoonBane?.base ? Stat.singleModifierMap(corrinBoonBane.base.bane) : null;
+  const baseStatBoonMap = boonBaneStats?.base ? Stat.singleModifierMap(boonBaneStats.base.boon) : null;
+  const baseStatBaneMap = boonBaneStats?.base ? Stat.singleModifierMap(boonBaneStats.base.bane) : null;
   const baseStatsRows = rawBaseStatsRows.map((row) => {
-    if (!character.isCorrin() || !corrinBaseStatBoonMap || !corrinBaseStatBaneMap) {
+    if (!baseStatBoonMap || !baseStatBaneMap) {
       return row;
     }
     const adjustedValues = Stat.applyModifiers(
       Stat.KEYS.map((key) => row[key] ?? 0),
-      corrinBaseStatBoonMap[CORRIN_DEFAULT_BOON],
-      corrinBaseStatBaneMap[CORRIN_DEFAULT_BANE],
+      baseStatBoonMap[DEFAULT_BOON],
+      baseStatBaneMap[DEFAULT_BANE],
     );
     return {
       ...row,
@@ -463,8 +454,8 @@ function buildCharacterContext(character) {
     };
   });
   const baseStatsHeaders = ["Level", ...Stat.LABELS];
-  const corrinBoonOptions = character.isCorrin() ? Stat.getSelectOptions(CORRIN_DEFAULT_BOON) : [];
-  const corrinBaneOptions = character.isCorrin() ? Stat.getSelectOptions(CORRIN_DEFAULT_BANE) : [];
+  const boonOptions = !!boonBaneStats ? Stat.getSelectOptions(DEFAULT_BOON) : [];
+  const baneOptions = !!boonBaneStats ? Stat.getSelectOptions(DEFAULT_BANE) : [];
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
   const talentOptions = character.isCorrinOrKana() ? getTalentOptions(character.gender) : [];
@@ -533,8 +524,8 @@ function buildCharacterContext(character) {
     isCorrin: character.isCorrin(),
     isCorrinOrKana: character.isCorrinOrKana(),
     isChild,
-    corrinBoonOptions,
-    corrinBaneOptions,
+    boonOptions,
+    baneOptions,
     talentOptions,
     defaultPanels,
     heartSealTalentPanels,
@@ -555,15 +546,15 @@ function buildCharacterContext(character) {
       hasPartner,
       baseGrowth: baseGrowthValues,
       classGrowthMap,
-      corrinBoon: character.isCorrin()
+      boonBane: !!boonBaneStats
         ? {
-            defaultBoon: CORRIN_DEFAULT_BOON,
-            defaultBane: CORRIN_DEFAULT_BANE,
+            defaultBoon: DEFAULT_BOON,
+            defaultBane: DEFAULT_BANE,
             emptyStats: Stat.emptyArray(),
-            growthBoonMap: corrinGrowthBoonMap,
-            growthBaneMap: corrinGrowthBaneMap,
-            baseStatBoonMap: corrinBaseStatBoonMap,
-            baseStatBaneMap: corrinBaseStatBaneMap,
+            growthBoonMap: growthBoonMap,
+            growthBaneMap: growthBaneMap,
+            baseStatBoonMap: baseStatBoonMap,
+            baseStatBaneMap: baseStatBaneMap,
             baseStatRows: rawBaseStatsRows.map((row) => Stat.KEYS.map((key) => row[key] ?? 0)),
           }
         : null,

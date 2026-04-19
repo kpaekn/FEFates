@@ -3,7 +3,7 @@
 (function () {
   var cfg = window.PAGE_CONFIG;
   var cloneCounter = 0;
-  var corrinBoonConfig = cfg.corrinBoon;
+  var boonBaneConfig = cfg.boonBane;
 
   function getModifierArray(map, key) {
     if (!map || !key) return null;
@@ -38,14 +38,14 @@
   }
 
   function updateCorrinBaseStats(boonKey, baneKey) {
-    if (!corrinBoonConfig) return;
-    var boonModifier = getModifierArray(corrinBoonConfig.baseStatBoonMap, boonKey);
-    var baneModifier = getModifierArray(corrinBoonConfig.baseStatBaneMap, baneKey);
+    if (!boonBaneConfig) return;
+    var boonModifier = getModifierArray(boonBaneConfig.baseStatBoonMap, boonKey);
+    var baneModifier = getModifierArray(boonBaneConfig.baseStatBaneMap, baneKey);
 
     document.querySelectorAll("[data-base-stat-row]").forEach(function (td) {
       var rowIndex = Number(td.dataset.baseStatRow);
       var statIndex = Number(td.dataset.baseStatIdx);
-      var rowValues = corrinBoonConfig.baseStatRows[rowIndex];
+      var rowValues = boonBaneConfig.baseStatRows[rowIndex];
       if (!rowValues) return;
       var total =
         rowValues[statIndex] +
@@ -61,12 +61,12 @@
     var classGrowth = classKey ? cfg.classGrowthMap[classKey] : null;
     var baseGrowth = cfg.baseGrowth.slice();
 
-    if (corrinBoonConfig) {
+    if (boonBaneConfig) {
       var selections = getCorrinSelections();
       baseGrowth = applyModifiers(
         baseGrowth,
-        getModifierArray(corrinBoonConfig.growthBoonMap, selections.boonKey),
-        getModifierArray(corrinBoonConfig.growthBaneMap, selections.baneKey),
+        getModifierArray(boonBaneConfig.growthBoonMap, selections.boonKey),
+        getModifierArray(boonBaneConfig.growthBaneMap, selections.baneKey),
       );
       updateCorrinBaseGrowth(baseGrowth);
       updateCorrinBaseStats(selections.boonKey, selections.baneKey);
@@ -87,7 +87,7 @@
   }
 
   function ensureDistinctCorrinSelections(changedKey) {
-    if (!corrinBoonConfig) return;
+    if (!boonBaneConfig) return;
     var selections = getCorrinSelections();
     if (!selections.boonSelect || !selections.baneSelect) return;
 
@@ -121,7 +121,7 @@
     updateClassGrowth(classGrowthSelect.value);
   }
 
-  if (corrinBoonConfig) {
+  if (boonBaneConfig) {
     var corrinSelections = getCorrinSelections();
     if (corrinSelections.boonSelect && corrinSelections.baneSelect) {
       corrinSelections.boonSelect.addEventListener("change", function () {

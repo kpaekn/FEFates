@@ -23,6 +23,7 @@ class Database {
 
     this.classes.forEach((cls) => cls.linkObjects(this));
     this.characters.forEach((character) => character.linkObjects(this));
+    this.characterStats.forEach((stats) => stats.linkObjects(this));
   }
 
   /**
@@ -42,6 +43,4 @@ class Database {
   }
 }
 
-const database = new Database();
-
-module.exports = database;
+module.exports = new Database();

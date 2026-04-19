@@ -34,13 +34,13 @@
         <section class="select-group boon-bane-select" aria-label="Corrin Boon/Bane selector">
           <label for="corrin-boon">Boon</label>
           <select id="corrin-boon" name="corrin-boon">
-            {{#each corrinBoonOptions}}
+            {{#each boonOptions}}
             <option value="{{key}}" {{#if selected}} selected{{/if}}>+{{name}}</option>
             {{/each}}
           </select>
           <label for="corrin-bane">Bane</label>
           <select id="corrin-bane" name="corrin-bane">
-            {{#each corrinBaneOptions}}
+            {{#each baneOptions}}
             <option value="{{key}}" {{#if selected}} selected{{/if}}>-{{name}}</option>
             {{/each}}
           </select>
