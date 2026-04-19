@@ -40,10 +40,6 @@ class StatsModifierMap {
       Stats.fromArray(data.res),
     );
   }
-
-  toModifierMap() {
-    return Stats.multiModifierMap(this);
-  }
 }
 
 module.exports = StatsModifierMap;

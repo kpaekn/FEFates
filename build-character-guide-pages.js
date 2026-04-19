@@ -14,6 +14,7 @@ const TEMPLATES_DIR = path.join(ROOT, "templates");
 const PARTIALS_DIR = path.join(TEMPLATES_DIR, "partials");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
+const Stats = require("./data/models/Stats");
 const { characters, classes } = require("./data/database");
 
 const DEFAULT_BOON = "mag";
@@ -381,8 +382,14 @@ function buildSealSection(char, sealType, supportKeys) {
   return { options, panels };
 }
 
+/**
+ * @param {import("./data/models/Character")} character
+ * @returns
+ */
+function createBoonBaneOptions(character) {}
+
 // ─── Per-character template context ──────────────────────────────────────────
-/**d
+/**
  * @param {import("./data/models/Character")} character
  * @returns
  */
@@ -396,8 +403,8 @@ function buildCharacterContext(character) {
   const charGrowth = character.stats?.growth;
   const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
   const boonBaneStats = character.stats?.boonBaneStats;
-  const growthBoonMap = boonBaneStats?.growth ? boonBaneStats.growth.boon.toModifierMap() : null;
-  const growthBaneMap = boonBaneStats?.growth ? boonBaneStats.growth.bane.toModifierMap() : null;
+  const growthBoonMap = boonBaneStats?.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null;
+  const growthBaneMap = boonBaneStats?.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null;
   const initialGrowthValues =
     growthBoonMap && growthBaneMap
       ? Stat.applyModifiers(baseGrowthValues, growthBoonMap[DEFAULT_BOON], growthBaneMap[DEFAULT_BANE])
