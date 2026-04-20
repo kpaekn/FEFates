@@ -1,0 +1,5 @@
+mixin classPanel(panel)
+  article.panel.class-panel(data-group=panel.group, data-key=panel.key, hidden=panel.isHidden)
+    h3= panel.label
+    each cls in (panel.classes || [])
+      +classBlock(cls)

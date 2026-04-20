@@ -3,7 +3,9 @@ exclude:
   - data/
   - templates/
   - .gitignore
+  - .prettierrc
   - build-character-guide-pages.js
+  - build-character-guide-pages-pug.js
   - package.json
   - package-lock.json
   - tsconfig.json

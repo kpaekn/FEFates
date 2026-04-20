@@ -1,0 +1,59 @@
+header
+  h2 Config
+
+section.cfg-opts
+  if configOptions.talents
+    .sgc: .sg
+      label(for="cfg-talent") Talent
+      select#cfg-talent(name="cfg-talent")
+        each talent in configOptions.talents
+          option(value=talent.key)= talent.name
+
+  if configOptions.boonBane
+    .sgc
+      .sg
+        label(for="cfg-boon") Boon
+        select#cfg-boon(name="cfg-boon")
+          each bb in configOptions.boonBane
+            option(value=bb.key)= '+ ' + bb.label
+      .sg
+        label(for="cfg-bane") Bane
+        select#cfg-bane(name="cfg-bane")
+          each bb in configOptions.boonBane
+            option(value=bb.key)= '- ' + bb.name
+
+  if configOptions.parents
+    .sgc
+      if configOptions.parents
+        .sg
+          label(for="cfg-parent") Parent
+          select#cfg-parent(name="cfg-parent")
+            option - None -
+            each parent in configOptions.parents
+              option(data-grandparents=keys(parent.variableParents), value=parent.key)= parent.name
+
+      if configOptions.grandparents
+        .sg
+          label(for="cfg-grandparent") Grandparent
+          select#cfg-grandparent(name="cfg-grandparent")
+            option - None -
+            each gp in configOptions.grandparents
+              option(data-children=keys(gp.variableChildren), value=gp.key)= gp.name
+
+  if configOptions.friendships || configOptions.partners
+    .sgc
+      if configOptions.friendships
+        .sg
+          label(for="cfg-friendship") Friendship (A+)
+          select#cfg-friendship(name="cfg-friendship")
+            option - None -
+            each friend in configOptions.friendships
+              option(value=friend.key)= friend.name
+
+      if configOptions.partners
+        .sg
+          label(for="cfg-partner") Partner (S)
+          select#cfg-partner(name="cfg-partner")
+            option - None -
+            each partner in configOptions.partners
+              option(value=partner.key)= partner.name

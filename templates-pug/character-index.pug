@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= pageTitle
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Macondo&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="../styles/reset.css")
+    link(rel="stylesheet", href="../styles/style.css")
+  body
+    main.container
+      header.page-header
+        h1= pageTitle
+        nav.breadcrumb(aria-label="breadcrumb")
+          ul
+            li Fire Emblem Fates
+            li Character Guides
+
+      each section in sections
+        if section.title
+          h2.section-title= section.title
+        .character-grid
+          each char in section.characters
+            a.character-card(href=`${char.key}.html`)
+              img(src=charaPortraitPath(char.name))
+              h3= char.name
