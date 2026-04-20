@@ -74,7 +74,8 @@ export default class Character {
   }
 
   toJSON() {
-    const { key, name, fixedParent, variableParents, fixedChild, variableChildren, isCorrin } = this;
+    const { key, name, fixedParent, variableParents, fixedChild, variableChildren, isCorrin } =
+      this;
     return {
       key,
       name,
@@ -96,7 +97,9 @@ export default class Character {
     // Hydrate starting class
     const startingClass = database.classes.get(this._startingClassKey);
     if (!startingClass) {
-      throw new Error(`Unknown starting class: ${this._startingClassKey} (in character ${this.key})`);
+      throw new Error(
+        `Unknown starting class: ${this._startingClassKey} (in character ${this.key})`,
+      );
     }
     this.startingClass = startingClass;
 
@@ -190,7 +193,9 @@ export default class Character {
     }
     if (parent !== this.fixedParent) {
       if (parent.gender === this.fixedParent?.gender) {
-        throw new Error(`Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`);
+        throw new Error(
+          `Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`,
+        );
       }
     }
 
@@ -216,11 +221,13 @@ export default class Character {
     throw new Error(`No inheritable class found from parent ${parent.key} to child ${child.key}`);
   }
 
-  _resolveInheritedClass(candidate: Class, donorFirstClass: Class): Class {
-    // If child already has the candidate, use the parallel of the donor's first class
-    if (this.hasInClassSet(candidate)) {
-      return donorFirstClass.parallelClass?.resolveClassForGender(this.gender) ?? candidate;
+  getBorrowedClass(friendOrPartner: Character): Class {
+    for (let i = 0; i < friendOrPartner.classSet.length; i++) {
+      const borrowedClass = friendOrPartner.classSet[i];
+      if (borrowedClass.unique) continue;
+      return borrowedClass.resolveClassForGender(this.gender);
     }
-    return candidate;
+
+    throw new Error(`No borrowable class found from ${friendOrPartner.key} → ${this.key}`);
   }
 }

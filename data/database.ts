@@ -10,7 +10,10 @@ import CharacterStats from "./models/CharacterStats.ts";
 
 const DATA_DIR = import.meta.dirname;
 
-function loadModel<T>(filename: string, Model: { fromJSON(key: string, data: unknown): T }): Map<string, T> {
+function loadModel<T>(
+  filename: string,
+  Model: { fromJSON(key: string, data: unknown): T },
+): Map<string, T> {
   const raw = JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), "utf8"));
   const result = new Map<string, T>();
   for (const [key, data] of Object.entries(raw)) {
@@ -40,14 +43,27 @@ export class Database {
     this.characterStats.forEach((stats) => stats.linkObjects(this));
   }
 
+  /**
+   * Gets all talent class options available to a character of the given gender.
+   */
   getTalentOptions(gender: string): Class[] {
-    return [...this.classes].filter(([_, cls]) => cls.isTalent(gender)).map(([_, cls]) => cls);
+    return [...this.classes]
+      .filter(([_, cls]) => cls.isTalent() && cls.matchesGender(gender))
+      .map(([_, cls]) => cls);
   }
 
   sortCharacters(characters: Character[] | null) {
     if (!characters) return null;
     const bank = [...this.characters.keys()];
     return characters.sort((a, b) => {
+      return bank.indexOf(a.key) - bank.indexOf(b.key);
+    });
+  }
+
+  sortClasses(classes: Class[] | null) {
+    if (!classes) return null;
+    const bank = [...this.classes.keys()];
+    return classes.sort((a, b) => {
       return bank.indexOf(a.key) - bank.indexOf(b.key);
     });
   }

@@ -108,14 +108,30 @@ export default class Class {
     }
   }
 
+  /**
+   * Checks if this class is the same as another class, considering opposite gender variants as equal (e.g. "troubadour_m" and "troubadour_f").
+   */
   equals(other: Class): boolean {
     return this.key === other.key || this.key === other.oppositeGenderClass?.key;
   }
 
+  /**
+   * Checks if the given class is in the promotion tree of this class (including this class itself).
+   */
   isInClassTree(cls: Class): boolean {
     return this.equals(cls) || this.promotion.some((promotionClass) => promotionClass.isInClassTree(cls));
   }
 
+  /**
+   * Flattens the class tree into a list of classes, starting with this class and followed by all promotion classes recursively.
+   */
+  flattenClassTree(): Class[] {
+    return [this, ...this.promotion.flatMap((promotionClass) => promotionClass.flattenClassTree())];
+  }
+
+  /**
+   * Checks if this class matches the given gender. If gender is not provided, returns true.
+   */
   matchesGender(gender?: string): boolean {
     return gender && this.gender ? this.gender === gender : true;
   }
@@ -127,8 +143,11 @@ export default class Class {
     return this.oppositeGenderClass ?? this;
   }
 
-  isTalent(gender?: string): boolean {
-    return !this.unique && !this.dlc && this._hasPromotion() && this.matchesGender(gender);
+  /**
+   * Checks if this class is a talent class, meaning it is not unique, not dls, and is a base class (has no promotion).
+   */
+  isTalent(): boolean {
+    return !this.unique && !this.dlc && this._hasPromotion();
   }
 
   _hasPromotion(): boolean {

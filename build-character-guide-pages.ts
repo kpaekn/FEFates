@@ -5,6 +5,7 @@ import Handlebars from "handlebars";
 import Stats from "./data/models/Stats.ts";
 import db from "./data/database.ts";
 import Character from "./data/models/Character.ts";
+import Class from "./data/models/Class.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
@@ -105,7 +106,7 @@ function getTalentOptions(gender) {
   const options = [];
   const seenClassKeys = new Set();
   for (const [key, cls] of db.classes.entries()) {
-    if (!cls.isTalent()) continue;
+    if (!cls.isTalent() || !cls.matchesGender(gender)) continue;
     const resolvedClass = getResolvedClass(key, gender);
     if (!resolvedClass || seenClassKeys.has(resolvedClass.key)) continue;
     seenClassKeys.add(resolvedClass.key);
@@ -243,7 +244,12 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     return null;
   }
   const varParentClassKeys = varParent.classSet?.map((cls) => cls.key) || [];
-  const candidate = resolveParentContribution(childFirstKey, varParentClassKeys, varParent.gender, child.gender);
+  const candidate = resolveParentContribution(
+    childFirstKey,
+    varParentClassKeys,
+    varParent.gender,
+    child.gender,
+  );
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = child.parent;
@@ -392,8 +398,12 @@ function createBoonBaneOptions(character, rawBaseStatsRows) {
       selectOptions: Stats.KEYS.map((key, index) => ({ key, name: Stats.LABELS[index] })),
     },
     js: {
-      growthBoonMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null,
-      growthBaneMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null,
+      growthBoonMap: boonBaneStats.growth
+        ? Stats.multiModifierMap(boonBaneStats.growth.boon)
+        : null,
+      growthBaneMap: boonBaneStats.growth
+        ? Stats.multiModifierMap(boonBaneStats.growth.bane)
+        : null,
       baseStatBoonMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.boon) : null,
       baseStatBaneMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.bane) : null,
       baseStatRows: rawBaseStatsRows.map((row) => Stats.KEYS.map((key) => row[key] ?? 0)),
@@ -410,6 +420,27 @@ function createConfigOptions(character: Character) {
     friendships: character.friendships,
     partners: character.partners,
   };
+}
+
+function createClassChangeOptions(character: Character) {
+  const options = new Map<string, Class>();
+  // from talent options
+  db.getTalentOptions(character.gender).forEach((talentClass) => {
+    talentClass.flattenClassTree().forEach((c) => options.set(c.key, c));
+  });
+  // from class set, handles unique classes that are not talent options
+  character.classSet.forEach((cls) => {
+    cls.flattenClassTree().forEach((c) => options.set(c.key, c));
+  });
+  // from variable parents inheritance, handles unique classes that are not talent options
+  character.variableParents?.forEach((parent) => {
+    character
+      .getInheritedClass(parent)
+      .flattenClassTree()
+      .forEach((c) => options.set(c.key, c));
+  });
+  // no need to check friendship/partner seals since those classes are always covered by talent options
+  return db.sortClasses([...options.values()]);
 }
 
 // ─── Per-character template context ──────────────────────────────────────────
@@ -526,6 +557,7 @@ function buildCharacterContext(character) {
     indexHref: `./`,
     characterKey: charKey,
     configOptions: createConfigOptions(character),
+    classChangeOptions: createClassChangeOptions(character),
     growthRates,
     classGrowthOptions,
     baseStatsHeaders,
@@ -589,10 +621,21 @@ Handlebars.registerHelper("data-group", (...args) => {
   return group ? `data-group="${group}" data-key="${key}"` : null;
 });
 
-["config-section", "stats-section", "class-block", "class-panel", "placeholder-panel"].forEach((partial) => {
-  Handlebars.registerPartial(partial, fs.readFileSync(path.join(PARTIALS_DIR, `${partial}.hbs`), "utf8"));
+[
+  "sections/config",
+  "sections/stats",
+  "panels/class-block",
+  "panels/class-panel",
+  "panels/placeholder-panel",
+].forEach((partial) => {
+  Handlebars.registerPartial(
+    partial,
+    fs.readFileSync(path.join(PARTIALS_DIR, `${partial}.hbs`), "utf8"),
+  );
 });
-const characterTemplate = Handlebars.compile(fs.readFileSync(path.join(TEMPLATES_DIR, "character.hbs"), "utf8"));
+const characterTemplate = Handlebars.compile(
+  fs.readFileSync(path.join(TEMPLATES_DIR, "character.hbs"), "utf8"),
+);
 const characterIndexTemplate = Handlebars.compile(
   fs.readFileSync(path.join(TEMPLATES_DIR, "character-index.hbs"), "utf8"),
 );

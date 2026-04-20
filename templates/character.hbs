@@ -25,8 +25,8 @@
       </nav>
     </header>
 
-    {{> config-section configOptions}}
-    {{> stats-section}}
+    {{> sections/config configOptions}}
+    {{> sections/stats}}
 
     <section>
       <div class="three-column-grid">
@@ -37,7 +37,7 @@
           {{else}}
           <h2 class="section-title"></h2>
           {{/if}}
-          {{> class-panel}}
+          {{> panels/class-panel}}
         </div>
         {{/each}}
         {{#if isCorrinOrKana}}
@@ -51,7 +51,7 @@
             </select>
           </section>
           {{#each heartSealTalentPanels}}
-          {{> class-panel}}
+          {{> panels/class-panel}}
           {{/each}}
         </div>
         {{/if}}
@@ -66,10 +66,10 @@
               {{/each}}
             </select>
           </section>
-          {{> placeholder-panel label="Heart Seal - Variable Parent" bodyText="(Select a parent)"
+          {{> panels/placeholder-panel label="Heart Seal - Variable Parent" bodyText="(Select a parent)"
           group="parent-panel" key="-none-"}}
           {{#each parentPanels}}
-          {{> class-panel}}
+          {{> panels/class-panel}}
           {{/each}}
         </div>
         {{/if}}
@@ -94,7 +94,7 @@
             <button class="add add-friendship-support">+ Add</button>
             {{/if}}
           </div>
-          {{> placeholder-panel label="Friendship Seal" bodyText="(Select an A+ rank support partner)"
+          {{> panels/placeholder-panel label="Friendship Seal" bodyText="(Select an A+ rank support partner)"
           group="friendship-panel" key="-none-"}}
           {{#each friendshipPanels}}
           {{#if isCorrinOrKana}}
@@ -108,11 +108,11 @@
               </select>
             </div>
             {{#each talentPanels}}
-            {{> class-panel}}
+            {{> panels/class-panel}}
             {{/each}}
           </div>
           {{else}}
-          {{> class-panel}}
+          {{> panels/class-panel}}
           {{/if}}
           {{/each}}
         </div>
@@ -143,17 +143,17 @@
             {{/if}}
             {{/each}}
           </div>
-          {{> placeholder-panel label="Partner Seal" bodyText="(Select an S rank support partner)"
+          {{> panels/placeholder-panel label="Partner Seal" bodyText="(Select an S rank support partner)"
           group="partner-panel" key="-none-"}}
           {{#each partnerPanels}}
           {{#if isCorrinOrKana}}
           <div data-group="partner-panel" data-key="{{panelKey}}" hidden>
             {{#each talentPanels}}
-            {{> class-panel}}
+            {{> panels/class-panel}}
             {{/each}}
           </div>
           {{else}}
-          {{> class-panel}}
+          {{> panels/class-panel}}
           {{/if}}
           {{/each}}
         </div>
@@ -164,6 +164,7 @@
   </main>
 
   <script>window.DEBUG_CONFIG_OPTIONS = {{{json configOptions}}};</script>
+  <script>window.DEBUG_CLASS_CHANGE_OPTIONS = {{{json classChangeOptions}}};</script>
   <script>window.PAGE_CONFIG = {{{json pageConfig}}};</script>
   <script src="../scripts/seal-ui.js"></script>
 </body>

@@ -1,24 +1,15 @@
 <header>
   <h2 class="section-title">Growth Rate and Base Stats (Work in Progress)</h2>
 </header>
+
+<select id="class-change-options">
+  {{#each classChangeOptions}}
+  <option value="{{key}}">{{name}}</option>
+  {{/each}}
+</select>
+
 <div class="three-column-grid">
   <div class="two-span-column">
-    {{#if boonBane}}
-    <section class="select-group boon-bane-select" aria-label="Corrin Boon/Bane selector">
-      <label for="boon-select">Boon</label>
-      <select id="boon-select" name="boon-select">
-        {{#each boonBane.selectOptions}}
-        <option value="{{key}}">+{{name}}</option>
-        {{/each}}
-      </select>
-      <label for="bane-select">Bane</label>
-      <select id="bane-select" name="bane-select">
-        {{#each boonBane.selectOptions}}
-        <option value="{{key}}">-{{name}}</option>
-        {{/each}}
-      </select>
-    </section>
-    {{/if}}
     <table class="table">
       <thead>
         <tr>

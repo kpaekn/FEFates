@@ -43,8 +43,6 @@ doTest("Parallel", "nina", "nyx", "diviner");
 doTest("Second (Gender Match)", "forrest", "felicia", "mercenary");
 doTest("Second (Gender Result)", "hisame", "hana", "monk");
 doTest("Unique", "soleil", "mozu", "villager");
+doTest("Kana Wolfskin", "kana_f", "velouria", "wolfskin");
 doTest("Second, Collide with Fixed Parent", "kiragi", "oboro", "apothecary");
 doTest("First", "shiro", "rinkah", "oni_savage");
-
-console.log(getChar("azura").gender);
-console.log(getChar("shigure").fixedParent?.gender);
