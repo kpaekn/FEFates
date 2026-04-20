@@ -11,16 +11,17 @@ interface RawCharacterStatsData {
 
 export default class CharacterStats {
   key: string;
-  base: Record<string, BaseStats>;
+  base: { label: string; stats: BaseStats }[];
   growth: Stats;
   cap: Stats | null;
   boonBaneStats: BoonBaneStats | null = null;
 
   constructor(key: string, raw: RawCharacterStatsData) {
     this.key = key;
-    this.base = Object.fromEntries(
-      Object.entries(raw.base).map(([name, values]) => [name, BaseStats.fromArray(values)]),
-    );
+    this.base = Object.entries(raw.base).map(([name, values]) => ({
+      label: name,
+      stats: BaseStats.fromArray(values),
+    }));
     this.growth = Stats.fromArray(raw.growth);
     this.cap = raw.cap ? Stats.fromArray(raw.cap) : null;
   }

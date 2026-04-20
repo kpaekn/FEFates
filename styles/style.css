@@ -45,8 +45,12 @@ main.container {
   padding-bottom: var(--space-md);
 }
 
+main.container>header {
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
 main.container>section {
-  margin-block-start: var(--space-md);
+  margin: var(--space-sm) 0;
 }
 
 h1,
@@ -56,7 +60,7 @@ h4,
 h5,
 h6 {
   font-weight: 800;
-  margin: var(--space-md) 0;
+  margin: var(--space-sm) 0;
 }
 
 h1 {
@@ -351,6 +355,11 @@ button.remove:focus-visible {
   padding: var(--space-sm) var(--space-md);
 }
 
+.table th:not(:first-child),
+.table td:not(:first-child) {
+  width: 8%;
+}
+
 .table thead th {
   background-color: var(--color-brown);
   color: var(--color-tan);
@@ -360,7 +369,6 @@ button.remove:focus-visible {
 .table tbody td {
   background-color: var(--color-tan);
   border-bottom: 1px solid var(--color-brown);
-  border-right: 1px dashed var(--color-brown);
   color: var(--color-brown);
 }
 
@@ -368,8 +376,8 @@ button.remove:focus-visible {
   border-bottom: 0;
 }
 
-.table tbody td:last-child {
-  border-right: 0;
+.table tbody td:first-child {
+  border-right: 1px dashed var(--color-brown);
 }
 
 .table .row-label {

@@ -10,15 +10,15 @@ export default class Stats {
 
   static KEYS = ["hp", "str", "mag", "skl", "spd", "lck", "def", "res"];
   static LABELS = ["HP", "Str", "Mag", "Skl", "Spd", "Lck", "Def", "Res"];
-  static MAP: {key: string, name: string}[] = [
-    { key: "hp", name: "HP" },
-    { key: "str", name: "Str" },
-    { key: "mag", name: "Mag" },
-    { key: "skl", name: "Skl" },
-    { key: "spd", name: "Spd" },
-    { key: "lck", name: "Lck" },
-    { key: "def", name: "Def" },
-    { key: "res", name: "Res" },
+  static MAP: { key: string; label: string }[] = [
+    { key: "hp", label: "HP" },
+    { key: "str", label: "Str" },
+    { key: "mag", label: "Mag" },
+    { key: "skl", label: "Skl" },
+    { key: "spd", label: "Spd" },
+    { key: "lck", label: "Lck" },
+    { key: "def", label: "Def" },
+    { key: "res", label: "Res" },
   ];
 
   constructor(values: number[]) {
@@ -39,6 +39,18 @@ export default class Stats {
     return new Stats(values);
   }
 
+  get(key: string): number {
+    if (key === "hp") return this.hp;
+    if (key === "str") return this.str;
+    if (key === "mag") return this.mag;
+    if (key === "skl") return this.skl;
+    if (key === "spd") return this.spd;
+    if (key === "lck") return this.lck;
+    if (key === "def") return this.def;
+    if (key === "res") return this.res;
+    return 0;
+  }
+
   toArray(): number[] {
     return [this.hp, this.str, this.mag, this.skl, this.spd, this.lck, this.def, this.res];
   }
@@ -46,12 +58,16 @@ export default class Stats {
   static singleModifierMap(rawModifiers: Record<string, number>): Record<string, number[]> {
     const modifierMap: Record<string, number[]> = {};
     for (const key of Stats.KEYS) {
-      modifierMap[key] = Stats.KEYS.map((statKey) => (statKey === key ? (rawModifiers?.[key] ?? 0) : 0));
+      modifierMap[key] = Stats.KEYS.map((statKey) =>
+        statKey === key ? (rawModifiers?.[key] ?? 0) : 0,
+      );
     }
     return modifierMap;
   }
 
-  static multiModifierMap(rawModifiers: Record<string, Record<string, number>>): Record<string, number[]> {
+  static multiModifierMap(
+    rawModifiers: Record<string, Record<string, number>>,
+  ): Record<string, number[]> {
     const modifierMap: Record<string, number[]> = {};
     for (const key of Stats.KEYS) {
       const entry = rawModifiers?.[key] ?? {};

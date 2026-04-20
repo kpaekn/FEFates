@@ -1,13 +1,78 @@
 <header>
-  <h2 class="section-title">Growth Rate and Base Stats (Work in Progress)</h2>
+  <h2>Growth Rate and Base Stats (Work in Progress)</h2>
 </header>
 
-<select id="class-change-options">
-  {{#each classChangeOptions}}
-  <option value="{{key}}">{{name}}</option>
-  {{/each}}
-</select>
+<section class="sgc">
+  <div class="sg">
+    <select id="class-change-options">
+      {{#each classChangeOptions}}
+      <option value="{{key}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</section>
 
+<table id="growths-table" class="table">
+  <thead>
+    <tr>
+      <th>Growth</th>
+      <th></th>
+      {{#each statsData.labels.growth}}
+      <th>{{label}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Base</strong></td>
+      <td></td>
+      {{#each statsData.labels.growth}}
+      <td>{{lookup @root.statsData.growth key}}</td>
+      {{/each}}
+    </tr>
+    {{#each classChangeOptions as |class|}}
+    <tr data-class-key="{{key}}" class="class-growths-row" {{#if hidden}}hidden{{/if}}>
+      <td><strong>{{name}}</strong></td>
+      <td></td>
+      {{#each @root.statsData.labels.growth}}
+      <td data-key="{{key}}">{{add-stats key @root.statsData.growth class.stats.growth}}</td>
+      {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{#each statsData.base as |labeledBaseStats|}}
+<table id="stats-table-{{@index}}" class="table stats-table">
+  <thead>
+    <tr>
+      <th>Base Stats</th>
+      {{#each @root.statsData.labels.base}}
+      <th>{{label}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>{{labeledBaseStats.label}}</strong></td>
+      {{#each @root.statsData.labels.base}}
+      <td>{{lookup labeledBaseStats.stats key}}</td>
+      {{/each}}
+    </tr>
+    {{#each @root.classChangeOptions as |class|}}
+    <tr data-class-key="{{key}}" class="class-stats-row" {{#if hidden}}hidden{{/if}}>
+      <td><strong>{{name}}</strong></td>
+      <td>-</td>
+      {{#each @root.statsData.labels.growth}}
+      <td data-key="{{key}}">{{add-stats key labeledBaseStats.stats class.stats.base}}</td>
+      {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{/each}}
+
+{{!-- Legacy --}}
 <div class="three-column-grid">
   <div class="two-span-column">
     <table class="table">

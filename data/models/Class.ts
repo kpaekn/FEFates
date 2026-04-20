@@ -61,6 +61,7 @@ export default class Class {
     return {
       key: this.key,
       name: this.name,
+      stats: this.stats,
     };
   }
 
@@ -84,7 +85,9 @@ export default class Class {
     if (this._oppositeGenderedClassKey) {
       const oppositeClass = database.classes.get(this._oppositeGenderedClassKey);
       if (!oppositeClass) {
-        throw new Error(`Unknown opposite gender class: ${this._oppositeGenderedClassKey} (in class ${this.key})`);
+        throw new Error(
+          `Unknown opposite gender class: ${this._oppositeGenderedClassKey} (in class ${this.key})`,
+        );
       }
       this.oppositeGenderClass = oppositeClass;
     }
@@ -119,7 +122,9 @@ export default class Class {
    * Checks if the given class is in the promotion tree of this class (including this class itself).
    */
   isInClassTree(cls: Class): boolean {
-    return this.equals(cls) || this.promotion.some((promotionClass) => promotionClass.isInClassTree(cls));
+    return (
+      this.equals(cls) || this.promotion.some((promotionClass) => promotionClass.isInClassTree(cls))
+    );
   }
 
   /**

@@ -2,10 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import Handlebars from "handlebars";
 
+import BaseStats from "./data/models/BaseStats.ts";
 import Stats from "./data/models/Stats.ts";
-import db from "./data/database.ts";
 import Character from "./data/models/Character.ts";
 import Class from "./data/models/Class.ts";
+import db from "./data/database.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
@@ -423,7 +424,7 @@ function createConfigOptions(character: Character) {
 }
 
 function createClassChangeOptions(character: Character) {
-  const options = new Map<string, Class>();
+  const options = new Map<string, any>();
   // from talent options
   db.getTalentOptions(character.gender).forEach((talentClass) => {
     talentClass.flattenClassTree().forEach((c) => options.set(c.key, c));
@@ -439,16 +440,35 @@ function createClassChangeOptions(character: Character) {
       .flattenClassTree()
       .forEach((c) => options.set(c.key, c));
   });
+
+  // default selected/hidden values based on starting class
+  options.forEach((opt) => {
+    const selected = opt.key === character.startingClass.key;
+    opt.selected = selected;
+    opt.hidden = !selected;
+  });
+
   // no need to check friendship/partner seals since those classes are always covered by talent options
   return db.sortClasses([...options.values()]);
 }
 
+function createStatsData(character: Character) {
+  return {
+    startingClass: character.startingClass,
+    labels: {
+      growth: Stats.MAP,
+      base: BaseStats.MAP,
+    },
+    growth: character.stats?.growth,
+    base: character.stats?.base,
+  };
+}
+
 // ─── Per-character template context ──────────────────────────────────────────
 /**
- * @param {import("./data/models/Character")} character
  * @returns
  */
-function buildCharacterContext(character) {
+function buildCharacterContext(character: Character) {
   const charKey = character.key;
   const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
 
@@ -484,7 +504,7 @@ function buildCharacterContext(character) {
     const variants = Object.entries(raw);
     for (const [variant, baseStats] of variants) {
       rows.push(
-        baseStats.toRow({
+        baseStats.stats.toRow({
           rowKey: variant.toLowerCase().replace(/[^a-z0-9]+/g, "_"),
           label: variant,
         }),
@@ -556,8 +576,11 @@ function buildCharacterContext(character) {
     characterName: character.name,
     indexHref: `./`,
     characterKey: charKey,
+
     configOptions: createConfigOptions(character),
     classChangeOptions: createClassChangeOptions(character),
+    statsData: createStatsData(character),
+
     growthRates,
     classGrowthOptions,
     baseStatsHeaders,
@@ -602,15 +625,29 @@ function buildCharacterContext(character) {
 
 // ─── Register Handlebars partials and compile template ────────────────────────
 Handlebars.registerHelper("json", (value) => JSON.stringify(value));
-Handlebars.registerHelper("or", function (...args) {
-  // Remove the Handlebars 'options' object from the end of the arguments array
-  args.pop();
+Handlebars.registerHelper("or", (...args) => {
+  args.pop(); // Remove Handlebars options
   // Check if at least one argument is truthy
   return args.some((arg) => !!arg);
 });
 Handlebars.registerHelper("hidden", (value) => (value ? "hidden" : null));
+Handlebars.registerHelper("hidden-if-not-match", (baseValue: any, ...args: any[]) => {
+  const targetValues = args.slice(0, -1); // remove the options argument
+  const allMatch = targetValues.every((val) => val === baseValue);
+  return allMatch ? null : "hidden";
+});
 Handlebars.registerHelper("keys", (value: { key: string }[]) => {
   return value?.map((item) => item.key).join(",");
+});
+Handlebars.registerHelper("add-stat", (key: string, stats1: Stats, stats2: Stats) => {
+  return stats1.get(key) + stats2.get(key);
+});
+Handlebars.registerHelper("add-stats", (key: string, ...args: any[]) => {
+  // Extract all but the last 'options' argument
+  const statsObjects = args.slice(0, -1) as BaseStats[];
+  return statsObjects.reduce((total, currentStats) => {
+    return total + (currentStats.get(key) || 0);
+  }, 0);
 });
 Handlebars.registerHelper("chara-portrait-path", (name) => `../images/portrait/${name}.png`);
 Handlebars.registerHelper("skill-icon-path", (skill) => `../images/icon/skills/${skill}.png`);

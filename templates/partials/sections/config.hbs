@@ -1,8 +1,8 @@
 <header>
-  <h2 class="section-title">Config</h2>
+  <h2>Config</h2>
 </header>
-<div class="cfg-opts">
 
+<section class="cfg-opts">
   {{#if talents}}
   <div class="sgc">
     <div class="sg">
@@ -23,7 +23,7 @@
       <label for="cfg-boon">Boon</label>
       <select id="cfg-boon" name="cfg-boon">
         {{#each boonBane}}
-        <option value="{{key}}">+ {{name}}</option>
+        <option value="{{key}}">+ {{label}}</option>
         {{/each}}
       </select>
     </div>
@@ -93,5 +93,4 @@
     {{/if}}
   </div>
   {{/if}}
-
-</div>
+</section>
