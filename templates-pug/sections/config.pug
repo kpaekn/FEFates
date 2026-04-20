@@ -30,7 +30,7 @@ section.cfg-opts
           select#cfg-parent(name="cfg-parent")
             option - None -
             each parent in configOptions.parents
-              option(data-grandparents=keys(parent.variableParents), value=parent.key)= parent.name
+              option(data-grandparents=listKeys(parent.variableParents), value=parent.key)= parent.name
 
       if configOptions.grandparents
         .sg
@@ -38,7 +38,7 @@ section.cfg-opts
           select#cfg-grandparent(name="cfg-grandparent")
             option - None -
             each gp in configOptions.grandparents
-              option(data-children=keys(gp.variableChildren), value=gp.key)= gp.name
+              option(data-children=listKeys(gp.variableChildren), value=gp.key)= gp.name
 
   if configOptions.friendships || configOptions.partners
     .sgc

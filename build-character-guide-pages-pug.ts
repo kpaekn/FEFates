@@ -624,7 +624,7 @@ const pugHelpers = {
   charaPortraitPath: (name: string) => `../images/portrait/${name}.png`,
   skillIconPath: (skill: string) => `../images/icon/skills/${skill}.png`,
   weaponIconPath: (weapon: string) => `../images/icon/weapons/${weapon}.png`,
-  keys: (value: { key: string }[]) => {
+  listKeys: (value: { key: string }[]) => {
     return value?.map((item) => item.key).join(",");
   },
 };
