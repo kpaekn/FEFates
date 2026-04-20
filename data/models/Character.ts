@@ -149,17 +149,23 @@ export default class Character {
         }
         variableParent.variableChildren.push(this);
       });
+
+      // Hydrate second class set from fixed parent
+      // Note: if the character is Kana and the parent is Corrin, we skip this step since Kana's second class set is determined by talent options.
+      if (!(this.isKana && parent.isCorrin)) {
+        this.classSet.push(this.getInheritedClass(parent));
+      }
     }
 
     // Hydrate class change options
     this.classChangeOptions = [...database.classes]
       .filter(([_, cls]) => {
-        return cls.matchesGender(this.gender) && (this.hasClassSet(cls) || !cls.unique);
+        return cls.matchesGender(this.gender) && (this.hasInClassSet(cls) || !cls.unique);
       })
       .map(([_, cls]) => cls);
   }
 
-  hasClassSet(cls: Class): boolean {
+  hasInClassSet(cls: Class): boolean {
     return this.classSet.some((cs) => cs.isInClassTree(cls));
   }
 
@@ -176,5 +182,45 @@ export default class Character {
       return null;
     }
     return [...grandparents.values()];
+  }
+
+  getInheritedClass(parent: Character): Class {
+    if (!this.isChild) {
+      throw new Error(`Character (${this.key}) is not a child.`);
+    }
+    if (parent !== this.fixedParent) {
+      if (parent.gender === this.fixedParent?.gender) {
+        throw new Error(`Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`);
+      }
+    }
+
+    const child = this;
+
+    // First pass: look for the first inheritable class in the parent's class set that the child doesn't already have.
+    for (let i = 0; i < parent.classSet.length; i++) {
+      const parentClass = parent.classSet[i];
+      if (!parentClass.inheritable) continue;
+      if (!child.hasInClassSet(parentClass)) {
+        return parentClass.resolveClassForGender(child.gender);
+      }
+    }
+
+    // Second pass: look for the first parallel class of the parent's class set.
+    for (let i = 0; i < parent.classSet.length; i++) {
+      const parentClass = parent.classSet[i];
+      if (parentClass.parallelClass) {
+        return parentClass.parallelClass.resolveClassForGender(child.gender);
+      }
+    }
+
+    throw new Error(`No inheritable class found from parent ${parent.key} to child ${child.key}`);
+  }
+
+  _resolveInheritedClass(candidate: Class, donorFirstClass: Class): Class {
+    // If child already has the candidate, use the parallel of the donor's first class
+    if (this.hasInClassSet(candidate)) {
+      return donorFirstClass.parallelClass?.resolveClassForGender(this.gender) ?? candidate;
+    }
+    return candidate;
   }
 }

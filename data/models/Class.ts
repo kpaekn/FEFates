@@ -8,6 +8,7 @@ interface RawClassData {
   gender?: string;
   opposite_gender?: string;
   unique?: boolean;
+  inheritable?: boolean;
   dlc?: boolean;
   weapons?: string;
   promotion?: string;
@@ -21,6 +22,7 @@ export default class Class {
   name: string;
   gender: string | null;
   unique: boolean;
+  inheritable: boolean;
   dlc: boolean;
   weapons: string[];
   skills!: Skill[];
@@ -40,6 +42,7 @@ export default class Class {
     this.name = raw.name;
     this.gender = raw.gender ?? null;
     this.unique = raw.unique ?? false;
+    this.inheritable = raw.inheritable ?? true;
     this.dlc = raw.dlc ?? false;
     this.weapons = parseCSV(raw.weapons ?? "");
 
@@ -105,8 +108,12 @@ export default class Class {
     }
   }
 
+  equals(other: Class): boolean {
+    return this.key === other.key || this.key === other.oppositeGenderClass?.key;
+  }
+
   isInClassTree(cls: Class): boolean {
-    return this === cls || this.promotion.some((promotionClass) => promotionClass.isInClassTree(cls));
+    return this.equals(cls) || this.promotion.some((promotionClass) => promotionClass.isInClassTree(cls));
   }
 
   matchesGender(gender?: string): boolean {

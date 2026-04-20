@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "node build-character-guide-pages.ts"
+    "build": "node build-character-guide-pages.ts",
+    "test": "node --test tests/**/*.ts"
   },
   "author": "",
   "license": "",

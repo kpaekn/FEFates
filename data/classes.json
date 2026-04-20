@@ -34,6 +34,7 @@
   "songstress": {
     "name": "Songstress",
     "unique": true,
+    "inheritable": false,
     "weapons": "lance",
     "skills": "luck_4, inspiring_song, voice_of_peace, foreign_princess",
     "parallel": "troubadour_f"

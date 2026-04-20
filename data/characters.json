@@ -556,7 +556,7 @@
   },
   "shigure": {
     "name": "Shigure",
-    "class_set": "sky_knight, troubadour_m",
+    "class_set": "sky_knight",
     "gender": "m",
     "route": "all",
     "supports": {
@@ -568,7 +568,7 @@
   },
   "dwyer": {
     "name": "Dwyer",
-    "class_set": "troubadour_m, cavalier",
+    "class_set": "troubadour_m",
     "gender": "m",
     "route": "all",
     "supports": {
@@ -580,7 +580,7 @@
   },
   "sophie": {
     "name": "Sophie",
-    "class_set": "cavalier, mercenary",
+    "class_set": "cavalier",
     "gender": "f",
     "route": "all",
     "supports": {
@@ -592,7 +592,7 @@
   },
   "midori": {
     "name": "Midori",
-    "class_set": "apothecary, ninja",
+    "class_set": "apothecary",
     "gender": "f",
     "route": "all",
     "supports": {
@@ -604,7 +604,7 @@
   },
   "shiro": {
     "name": "Shiro",
-    "class_set": "spear_fighter, samurai",
+    "class_set": "spear_fighter",
     "gender": "m",
     "route": "birthright",
     "supports": {
@@ -616,7 +616,7 @@
   },
   "kiragi": {
     "name": "Kiragi",
-    "class_set": "archer, spear_fighter",
+    "class_set": "archer",
     "gender": "m",
     "route": "birthright",
     "supports": {
@@ -628,7 +628,7 @@
   },
   "asugi": {
     "name": "Asugi",
-    "class_set": "ninja, samurai",
+    "class_set": "ninja",
     "gender": "m",
     "route": "birthright",
     "supports": {
@@ -640,7 +640,7 @@
   },
   "selkie": {
     "name": "Selkie",
-    "class_set": "kitsune, diviner",
+    "class_set": "kitsune",
     "gender": "f",
     "route": "birthright",
     "supports": {
@@ -652,7 +652,7 @@
   },
   "hisame": {
     "name": "Hisame",
-    "class_set": "samurai, oni_savage",
+    "class_set": "samurai",
     "gender": "m",
     "route": "birthright",
     "supports": {
@@ -664,7 +664,7 @@
   },
   "mitama": {
     "name": "Mitama",
-    "class_set": "shrine_maiden, apothecary",
+    "class_set": "shrine_maiden",
     "gender": "f",
     "route": "birthright",
     "supports": {
@@ -676,7 +676,7 @@
   },
   "caeldori": {
     "name": "Caeldori",
-    "class_set": "sky_knight, samurai",
+    "class_set": "sky_knight",
     "gender": "f",
     "route": "birthright",
     "supports": {
@@ -688,7 +688,7 @@
   },
   "rhajat": {
     "name": "Rhajat",
-    "class_set": "diviner, oni_savage",
+    "class_set": "diviner",
     "gender": "f",
     "route": "birthright",
     "supports": {
@@ -700,7 +700,7 @@
   },
   "siegbert": {
     "name": "Siegbert",
-    "class_set": "cavalier, wyvern_rider",
+    "class_set": "cavalier",
     "gender": "m",
     "supports": {
       "friendship": "kana_m, forrest, ignatius, shiro",
@@ -712,7 +712,7 @@
   },
   "forrest": {
     "name": "Forrest",
-    "class_set": "troubadour_m, dark_mage",
+    "class_set": "troubadour_m",
     "gender": "m",
     "supports": {
       "friendship": "shigure, siegbert, ignatius, kiragi",
@@ -724,7 +724,7 @@
   },
   "ignatius": {
     "name": "Ignatius",
-    "class_set": "knight, fighter",
+    "class_set": "knight",
     "gender": "m",
     "supports": {
       "friendship": "siegbert, forrest, percy, asugi",
@@ -736,7 +736,7 @@
   },
   "velouria": {
     "name": "Velouria",
-    "class_set": "wolfskin, fighter",
+    "class_set": "wolfskin",
     "gender": "f",
     "supports": {
       "friendship": "kana_f, sophie, nina, selkie",
@@ -748,7 +748,7 @@
   },
   "percy": {
     "name": "Percy",
-    "class_set": "wyvern_rider, fighter",
+    "class_set": "wyvern_rider",
     "gender": "m",
     "supports": {
       "friendship": "kana_m, dwyer, ignatius, hisame",
@@ -760,7 +760,7 @@
   },
   "ophelia": {
     "name": "Ophelia",
-    "class_set": "dark_mage, samurai",
+    "class_set": "dark_mage",
     "gender": "f",
     "supports": {
       "friendship": "midori, soleil, rhajat",
@@ -772,7 +772,7 @@
   },
   "soleil": {
     "name": "Soleil",
-    "class_set": "mercenary, ninja",
+    "class_set": "mercenary",
     "gender": "f",
     "supports": {
       "friendship": "sophie, ophelia, nina, mitama",
@@ -784,7 +784,7 @@
   },
   "nina": {
     "name": "Nina",
-    "class_set": "outlaw, dark_mage",
+    "class_set": "outlaw",
     "gender": "f",
     "supports": {
       "friendship": "velouria, soleil, caeldori",
