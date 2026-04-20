@@ -78,7 +78,7 @@ export default class Character {
     return {
       key,
       name,
-      variableChildren,
+      variableParents,
       isCorrin,
     };
   }
@@ -138,9 +138,9 @@ export default class Character {
       parent.fixedChild = this;
 
       // Hydrate potential parents (partners of parent)
-      this.variableParents = parent.partners.filter((potentialParent) => {
+      this.variableParents = parent.partners.filter((variableParent) => {
         // parents must be opposite genders
-        return parent.gender !== potentialParent.gender;
+        return parent.gender !== variableParent.gender;
       });
       this.variableParents.forEach((variableParent) => {
         // Link variable parent to child (for ease of traversal in both directions)
@@ -154,9 +154,13 @@ export default class Character {
     // Hydrate class change options
     this.classChangeOptions = [...database.classes]
       .filter(([_, cls]) => {
-        return cls.matchesGender(this.gender) && (this._classSet.includes(cls.key) || !cls.unique);
+        return cls.matchesGender(this.gender) && (this.hasClassSet(cls) || !cls.unique);
       })
       .map(([_, cls]) => cls);
+  }
+
+  hasClassSet(cls: Class): boolean {
+    return this.classSet.some((cs) => cs.isInClassTree(cls));
   }
 
   getVariableGrandparents(): Character[] | null {

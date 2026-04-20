@@ -12,12 +12,13 @@
   --space-xs: 0.2rem;
 
   --color-brown: #370600;
+  --color-dark-brown: color-mix(in srgb, var(--color-brown), black 50%);
   --color-light-brown: color-mix(in srgb, var(--color-brown), white 5%);
   --color-tan: #f0d9a5;
   --color-dark-tan: color-mix(in srgb, var(--color-tan), black 40%);
   --color-light-tan: color-mix(in srgb, var(--color-tan), white 40%);
   --color-blue: #213057;
-  --color-dark-blue: color-mix(in srgb, var(--color-blue), black 70%);
+  --color-dark-blue: color-mix(in srgb, var(--color-blue), black 55%);
   --color-light-blue: color-mix(in srgb, var(--color-blue), white 5%);
   --color-red: #a52121;
   --color-light-red: color-mix(in srgb, var(--color-red), white 5%);

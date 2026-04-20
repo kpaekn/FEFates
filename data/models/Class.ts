@@ -58,7 +58,7 @@ export default class Class {
     return {
       key: this.key,
       name: this.name,
-    }
+    };
   }
 
   linkObjects(database: Database): void {
@@ -103,6 +103,10 @@ export default class Class {
       }
       this.parallelClass = parallelClass;
     }
+  }
+
+  isInClassTree(cls: Class): boolean {
+    return this === cls || this.promotion.some((promotionClass) => promotionClass.isInClassTree(cls));
   }
 
   matchesGender(gender?: string): boolean {
