@@ -25,7 +25,7 @@ table#growths-table.table
         td: strong= cls.name
         td
         each col in statsData.labels.growth
-          td(data-key=col.key)= addStats(col.key, statsData.growth, cls.stats.growth)
+          td(data-key=col.key)= statsData.growth[col.key] + cls.stats.growth[col.key]
 
 - var baseEntries = Object.values(statsData.base || {})
 each labeledBaseStats, idx in baseEntries
@@ -45,7 +45,7 @@ each labeledBaseStats, idx in baseEntries
           td: strong= cls.name
           td -
           each col in statsData.labels.growth
-            td(data-key=col.key)= addStats(col.key, labeledBaseStats.stats, cls.stats.base)
+            td(data-key=col.key)= labeledBaseStats.stats[col.key] + cls.stats.base[col.key]
 
 //- Legacy
 .three-column-grid

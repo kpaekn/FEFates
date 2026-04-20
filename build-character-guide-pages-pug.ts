@@ -624,11 +624,6 @@ const pugHelpers = {
   charaPortraitPath: (name: string) => `../images/portrait/${name}.png`,
   skillIconPath: (skill: string) => `../images/icon/skills/${skill}.png`,
   weaponIconPath: (weapon: string) => `../images/icon/weapons/${weapon}.png`,
-  addStats: (key: string, ...statsObjects: BaseStats[]) => {
-    return statsObjects.reduce((total, currentStats) => {
-      return total + (currentStats.get(key) || 0);
-    }, 0);
-  },
   keys: (value: { key: string }[]) => {
     return value?.map((item) => item.key).join(",");
   },
