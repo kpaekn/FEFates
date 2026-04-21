@@ -1,11 +1,10 @@
+# By default, Jekyll ignores files or directories that start with a dot (.) or underscore (_)
+
 exclude:
-  - .vscode/
   - data/
   - templates/
-  - .gitignore
-  - .prettierrc
-  - build-character-guide-pages.js
-  - build-character-guide-pages-pug.js
-  - package.json
+  - tests/
+  - build-character-guide-pages.ts
   - package-lock.json
+  - package.json
   - tsconfig.json
