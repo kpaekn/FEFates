@@ -5,15 +5,14 @@ import pug from "pug";
 import BaseStats from "./data/models/BaseStats.ts";
 import Stats from "./data/models/Stats.ts";
 import Character from "./data/models/Character.ts";
-import Class from "./data/models/Class.ts";
 import db from "./data/database.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
 const ROOT = path.resolve(__dirname);
-const DIST_DIR = "character-guide-pug";
+const DIST_DIR = "character-guide";
 const DIST = path.join(ROOT, DIST_DIR);
-const TEMPLATES_DIR = path.join(ROOT, "templates-pug");
+const TEMPLATES_DIR = path.join(ROOT, "templates");
 
 // ─── Load data ────────────────────────────────────────────────────────────────
 
