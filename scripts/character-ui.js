@@ -8,6 +8,7 @@
   var talentSelect = document.getElementById("cfg-talent");
   var boonSelect = document.getElementById("cfg-boon");
   var baneSelect = document.getElementById("cfg-bane");
+  var parentSelect = document.getElementById("cfg-parent");
   var friendshipSelect = document.getElementById("cfg-friendship");
   var partnerSelect = document.getElementById("cfg-partner");
 
@@ -24,6 +25,7 @@
       talent: talentSelect?.value,
       selectedBoonKey: boonSelect?.value,
       selectedBaneKey: baneSelect?.value,
+      selectedParentKey: parentSelect?.value,
       friendship: friendshipSelect?.value,
       partner: partnerSelect?.value,
     };
@@ -90,7 +92,7 @@
       const rowClassKey = row.getAttribute("data-class-key");
       row.hidden = rowClassKey !== "base" && rowClassKey !== classKey;
       if (!row.hidden) {
-        row.querySelectorAll("td[data-value]").forEach(updateGrowthValuesWithBoonBane);
+        row.querySelectorAll("td[data-value]").forEach(calcGrowthValues);
       }
     });
   }
@@ -100,12 +102,12 @@
       const rowClassKey = row.getAttribute("data-class-key");
       row.hidden = rowClassKey !== "base" && rowClassKey !== classKey;
       if (!row.hidden) {
-        row.querySelectorAll("td[data-value]").forEach(updateStatsValuesWithBoonBane);
+        row.querySelectorAll("td[data-value]").forEach(calcStatsValues);
       }
     });
   }
 
-  function updateGrowthValuesWithBoonBane(td) {
+  function calcGrowthValues(td) {
     var statKey = td.getAttribute("data-key");
     var statValue = parseInt(td.getAttribute("data-value"));
     if (statKey && !isNaN(statValue)) {
@@ -114,7 +116,7 @@
     }
   }
 
-  function updateStatsValuesWithBoonBane(td) {
+  function calcStatsValues(td) {
     var statKey = td.getAttribute("data-key");
     var statValue = parseInt(td.getAttribute("data-value"));
     if (statKey && !isNaN(statValue)) {

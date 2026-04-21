@@ -458,9 +458,15 @@ function createStatsData(character: Character) {
 }
 
 function createUiConfig(character: Character) {
+  const statsByParent = new Map<string, Character>();
+  character.variableParents?.forEach((parent) => {
+    statsByParent.set(parent.key, parent);
+  });
+
   return {
     characterKey: character.key,
     boonBane: character.stats?.boonBaneStats,
+    statsByParent: statsByParent.size > 0 ? Object.fromEntries(statsByParent) : null,
   };
 }
 
