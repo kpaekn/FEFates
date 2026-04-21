@@ -11,16 +11,16 @@ section.sgc
 table#growths-table.table
   thead
     tr
-      th Growth
+      th Growth Rate
       th
       each col in statsData.labels.growth
         th= col.label
   tbody
     tr.class-growths-row(data-class-key="base")
-      td: strong Base
+      td: strong= "(" + statsData.startingClass.name + ")"
       td
       each col in statsData.labels.growth
-        td(data-key=col.key)= statsData.growth[col.key]
+        td(data-key=col.key)= statsData.growth[col.key] + statsData.startingClass.stats.growth[col.key]
     each cls in classChangeOptions
       tr.class-growths-row(data-class-key=cls.key, hidden=cls.hidden)
         td: strong= cls.name
@@ -32,14 +32,15 @@ each baseStats, idx in statsData.base
   table.table.stats-table(id=`stats-table-${idx}`)
     thead
       tr
-        th Base Stats
+        th= baseStats.name + " Stats"
         each col in statsData.labels.base
           th= col.label
     tbody
       tr.class-stats-row(data-class-key="base")
-        td: strong= baseStats.name
-        each col in statsData.labels.base
-          td(data-key=col.key)= baseStats[col.key]
+        td: strong= "(" + statsData.startingClass.name + ")"
+        td= baseStats.level
+        each col in statsData.labels.growth
+          td(data-key=col.key)= baseStats[col.key] + statsData.startingClass.stats.base[col.key]
       each cls in classChangeOptions
         tr.class-stats-row(data-class-key=cls.key, hidden=cls.hidden)
           td: strong= cls.name
