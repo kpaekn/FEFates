@@ -1,0 +1,9 @@
+include ../mixins/class-panel-2
+include ../mixins/class-panel-block-2
+
+header
+  h2 Classes and Skills
+
+section.three-column-grid
+  each cls, idx in panels.classSet
+    +classPanel2(cls, idx)

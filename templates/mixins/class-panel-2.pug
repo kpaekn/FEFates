@@ -1,0 +1,7 @@
+mixin classPanel2(cls, idx)
+  article.panel.class-panel(data-key=cls.key)
+    h3= idx === 0 ? "Default Class" : "Heart Seal"
+    +classPanelBlock2(cls)
+
+    each promoCls in cls.promotion || []
+      +classPanelBlock2(promoCls)

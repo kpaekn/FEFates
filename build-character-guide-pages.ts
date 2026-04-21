@@ -6,6 +6,7 @@ import BaseStats from "./data/models/BaseStats.ts";
 import Stats from "./data/models/Stats.ts";
 import Character from "./data/models/Character.ts";
 import db from "./data/database.ts";
+import Class from "./data/models/Class.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
@@ -378,34 +379,10 @@ function buildSealSection(char, sealType, supportKeys) {
   return { options, panels };
 }
 
-/**
- * @param {import("./data/models/Character")} character
- * @param {object[]} rawBaseStatsRows
- * @returns
- */
-function createBoonBaneOptions(character, rawBaseStatsRows) {
-  const boonBaneStats = character.stats?.boonBaneStats;
-  if (!boonBaneStats) return null;
-
-  return {
-    template: {
-      selectOptions: Stats.KEYS.map((key, index) => ({ key, name: Stats.LABELS[index] })),
-    },
-    js: {
-      growthBoonMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null,
-      growthBaneMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null,
-      baseStatBoonMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.boon) : null,
-      baseStatBaneMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.bane) : null,
-      baseStatRows: rawBaseStatsRows.map((row) => Stats.KEYS.map((key) => row[key] ?? 0)),
-    },
-  };
-}
-
 function createConfigOptions(character: Character) {
   const variableParents = character.variableParents;
   const variableGrandparents = character.getVariableGrandparents();
   const showBoonBane = character.isCorrin || variableParents?.some((p) => p.isCorrin);
-
   return {
     talents: db.getTalentOptions(character.gender),
     parents: db.sortCharacters(variableParents),
@@ -437,14 +414,12 @@ function createClassChangeOptions(character: Character) {
   db.getDLCClasses().forEach((cls) => {
     cls.flattenClassTree().forEach((c) => options.set(c.key, c));
   });
-
   // default selected/hidden values based on starting class
   options.forEach((opt) => {
     const selected = opt.key === character.startingClass.key;
     opt.selected = selected;
     opt.hidden = !selected;
   });
-
   // no need to check friendship/partner seals since those classes are always covered by talent options
   return db.sortClasses([...options.values()]);
 }
@@ -480,55 +455,18 @@ function createUiConfig(character: Character) {
   };
 }
 
+function buildPanels(character: Character) {
+  return {
+    classSet: character.classSet,
+  };
+}
+
 // ─── Per-character template context ──────────────────────────────────────────
 /**
  * @returns
  */
 function buildCharacterContext(character: Character) {
-  const charKey = character.key;
   const classSetKeys = character.classSet?.map((cls) => cls.key) || [];
-
-  // Character growth rates
-  const charGrowth = character.stats?.growth;
-  const baseGrowthValues = charGrowth ? charGrowth.toArray() : [];
-  const growthRates = baseGrowthValues.map((value, index) => ({
-    stat: Stats.LABELS[index],
-    value,
-  }));
-
-  const classGrowthMap = Object.fromEntries(
-    new Map(
-      character.classChangeOptions?.map((cls) => {
-        return [cls.key, cls.stats?.growth.toArray()];
-      }),
-    ),
-  );
-  const classGrowthOptions = character.classChangeOptions?.map((cls) => {
-    return {
-      key: cls.key,
-      name: cls.name,
-      selected: cls.key === character.startingClass?.key,
-    };
-  });
-
-  // Base stat rows from character_stats.json variants
-  const rawBaseStatsRows = (() => {
-    const raw = character.stats?.base || {};
-    const rows = [];
-    const variants = Object.entries(raw);
-    for (const [variant, baseStats] of variants) {
-      rows.push(
-        baseStats.toRow({
-          rowKey: variant.toLowerCase().replace(/[^a-z0-9]+/g, "_"),
-          label: variant,
-        }),
-      );
-    }
-    return rows;
-  })();
-  const baseStatsRows = rawBaseStatsRows;
-  const baseStatsHeaders = ["Level", ...Stats.LABELS];
-  const boonBaneOptions = createBoonBaneOptions(character, rawBaseStatsRows);
 
   // Talent options (only meaningful for Corrin/Kana pages, but built here)
   const talentOptions = character.isCorrinOrKana ? getTalentOptions(character.gender) : [];
@@ -593,12 +531,9 @@ function buildCharacterContext(character: Character) {
     statsData: createStatsData(character),
     uiConfig: createUiConfig(character),
 
+    panels: buildPanels(character),
+
     characterName: character.name,
-    growthRates,
-    classGrowthOptions,
-    baseStatsHeaders,
-    baseStatsRows,
-    boonBane: boonBaneOptions?.template,
     isCorrin: character.isCorrin,
     isCorrinOrKana: character.isCorrinOrKana,
     isChild,
@@ -618,9 +553,6 @@ function buildCharacterContext(character: Character) {
       isCorrin: character.isCorrin,
       isCorrinOrKana: character.isCorrinOrKana,
       isChild,
-      baseGrowth: baseGrowthValues,
-      classGrowthMap,
-      boonBane: boonBaneOptions?.js,
       hasFriendship,
       hasPartner,
       friendshipCorrinKana: friendshipPanels

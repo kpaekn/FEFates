@@ -15,7 +15,7 @@
   --color-dark-brown: color-mix(in srgb, var(--color-brown), black 75%);
   --color-light-brown: color-mix(in srgb, var(--color-brown), white 5%);
   --color-tan: #f0d9a5;
-  --color-dark-tan: color-mix(in srgb, var(--color-tan), black 40%);
+  --color-dark-tan: color-mix(in srgb, var(--color-tan), black 20%);
   --color-light-tan: color-mix(in srgb, var(--color-tan), white 40%);
   --color-blue: #213057;
   --color-dark-blue: color-mix(in srgb, var(--color-blue), black 65%);
@@ -289,13 +289,13 @@ button.remove:focus-visible {
 /* class block */
 .class-block {
   font-size: var(--font-size-md);
-  margin-bottom: var(--space-sm);
+  margin: var(--space-sm) 0;
   padding: var(--space-xs) var(--space-md);
   min-height: 4rem;
 }
 
 .class-block:not(:last-child) {
-  border-bottom: 1px solid var(--color-brown);
+  border-bottom: 1px solid var(--color-dark-tan);
 }
 
 .class-heading {
