@@ -459,7 +459,8 @@ function createStatsData(character: Character) {
 
 function createUiConfig(character: Character) {
   return {
-    boonBane: character.stats?.boonBaneStats,
+    characterKey: character.key,
+    boonBane: Object.fromEntries(db.boonBaneStats),
   };
 }
 
@@ -469,8 +470,6 @@ function createUiConfig(character: Character) {
  */
 function buildCharacterContext(character: Character) {
   const charKey = character.key;
-  const pageTitle = `Fire Emblem Fates - Character Guides - ${character.name}`;
-
   const classSetKeys = character.classSet?.map((cls) => cls.key) || [];
 
   // Character growth rates
@@ -571,16 +570,15 @@ function buildCharacterContext(character: Character) {
   }
 
   return {
-    pageTitle,
-    characterName: character.name,
+    pageTitle: `Fire Emblem Fates - Character Guides - ${character.name}`,
     indexHref: `./`,
-    characterKey: charKey,
-
+    characterKey: character.key,
     configOptions: createConfigOptions(character),
     classChangeOptions: createClassChangeOptions(character),
     statsData: createStatsData(character),
     uiConfig: createUiConfig(character),
 
+    characterName: character.name,
     growthRates,
     classGrowthOptions,
     baseStatsHeaders,

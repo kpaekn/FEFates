@@ -1,5 +1,7 @@
 (function () {
   var uiCfg = window.UI_CONFIG;
+  var boonBaneStats = uiCfg.boonBane;
+  var personalBoonBaneStats = boonBaneStats[uiCfg.characterKey];
 
   var talentSelect = document.getElementById("cfg-talent");
   var boonSelect = document.getElementById("cfg-boon");
@@ -12,29 +14,8 @@
   var classStatsRows = document.querySelectorAll(".stats-table .class-stats-row");
 
   initDataAttributes();
-
-  /**
-   * Handles boon/bane selection and updates the UI.
-   */
-  if (boonSelect && baneSelect) {
-    boonSelect.addEventListener("change", function () {
-      ensureDistinctSelection(this, baneSelect);
-      updateTables();
-    });
-    baneSelect.addEventListener("change", function () {
-      ensureDistinctSelection(this, boonSelect);
-      updateTables();
-    });
-    ensureDistinctSelection(boonSelect, baneSelect);
-
-    function ensureDistinctSelection(primarySelect, secondarySelect) {
-      if (!primarySelect || !secondarySelect) return;
-      if (primarySelect.value !== secondarySelect.value) return;
-      secondarySelect.value = [...secondarySelect.options].find(function (option) {
-        return option.value !== primarySelect.value;
-      })?.value;
-    }
-  }
+  initBoonBaneSelects();
+  initClassChangeSelect();
 
   function getConfigOptions() {
     return {
@@ -46,37 +27,58 @@
     };
   }
 
+  function initBoonBaneSelects() {
+    if (boonSelect && baneSelect) {
+      boonSelect.addEventListener("change", function () {
+        ensureDistinctSelection(this, baneSelect);
+        updateTables();
+      });
+      baneSelect.addEventListener("change", function () {
+        ensureDistinctSelection(this, boonSelect);
+        updateTables();
+      });
+      ensureDistinctSelection(boonSelect, baneSelect);
+    }
+  }
+
+  function ensureDistinctSelection(primarySelect, secondarySelect) {
+    if (!primarySelect || !secondarySelect) return;
+    if (primarySelect.value !== secondarySelect.value) return;
+    secondarySelect.value = [...secondarySelect.options].find(function (option) {
+      return option.value !== primarySelect.value;
+    })?.value;
+  }
+
   function getBoonBaneStatValue(statKey) {
-    if (!uiCfg.boonBane) return { boonStatValue: 0, baneStatValue: 0 };
+    if (!personalBoonBaneStats) return { boonStatValue: 0, baneStatValue: 0 };
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
     return {
-      boonStatValue: statKey === selectedBoonKey ? uiCfg.boonBane.base.boon[statKey] : 0,
-      baneStatValue: statKey === selectedBaneKey ? uiCfg.boonBane.base.bane[statKey] : 0,
+      boonStatValue: statKey === selectedBoonKey ? personalBoonBaneStats.base.boon[statKey] : 0,
+      baneStatValue: statKey === selectedBaneKey ? personalBoonBaneStats.base.bane[statKey] : 0,
     };
   }
 
   function getBoonBaneGrowthValue(growthKey) {
-    if (!uiCfg.boonBane) return { boonGrowthValue: 0, baneGrowthValue: 0 };
+    if (!personalBoonBaneStats) return { boonGrowthValue: 0, baneGrowthValue: 0 };
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
     return {
-      boonGrowthValue: uiCfg.boonBane.growth.boon[selectedBoonKey]?.[growthKey] ?? 0,
-      baneGrowthValue: uiCfg.boonBane.growth.bane[selectedBaneKey]?.[growthKey] ?? 0,
+      boonGrowthValue: personalBoonBaneStats.growth.boon[selectedBoonKey]?.[growthKey] ?? 0,
+      baneGrowthValue: personalBoonBaneStats.growth.bane[selectedBaneKey]?.[growthKey] ?? 0,
     };
   }
 
-  /**
-   * Handles class change dropdown and updates growths/stats tables.
-   */
-  if (classChangeSelect) {
-    classChangeSelect.addEventListener("change", updateTables);
-    updateTables();
+  function initClassChangeSelect() {
+    if (classChangeSelect) {
+      classChangeSelect.addEventListener("change", updateTables);
+      updateTables();
+    }
   }
 
   function updateTables() {
     if (!classChangeSelect) return;
     var classKey = classChangeSelect.value;
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
-    console.log(classKey, selectedBoonKey, selectedBaneKey, uiCfg.boonBane);
+    console.log("updateTables", classKey, selectedBoonKey, selectedBaneKey, personalBoonBaneStats);
     updateGrowthsTable(classKey);
     updateStatsTable(classKey);
   }
