@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "node build-character-guide-pages.ts",
-    "build:pug": "node build-character-guide-pages-pug.ts",
+    "build": "node build-character-guide-pages-pug.ts",
     "test": "node --test tests/**/*.ts"
   },
   "author": "",
@@ -14,7 +13,6 @@
     "@prettier/plugin-pug": "^3.4.2",
     "@types/node": "^25.6.0",
     "@types/pug": "^2.0.10",
-    "handlebars": "^4.7.8",
     "prettier": "^3.8.3",
     "pug": "^3.0.4"
   }
