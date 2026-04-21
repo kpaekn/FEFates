@@ -15,17 +15,17 @@ section.cfg-opts
         .sg
           label(for="cfg-parent") Parent
           select#cfg-parent(name="cfg-parent")
-            option - None -
+            option(value="") - None -
             each parent in configOptions.parents
-              option(data-grandparents=listKeys(parent.variableParents), value=parent.key)= parent.name
+              option(value=parent.key)= parent.name
 
       if configOptions.grandparents
-        .sg
+        .sg.grandparent-sg(hidden)
           label(for="cfg-grandparent") Grandparent
           select#cfg-grandparent(name="cfg-grandparent")
-            option - None -
+            option(value="") - None -
             each gp in configOptions.grandparents
-              option(data-children=listKeys(gp.variableChildren), value=gp.key)= gp.name
+              option(value=gp.key)= gp.name
 
   if configOptions.friendships || configOptions.partners
     .sgc
@@ -33,7 +33,7 @@ section.cfg-opts
         .sg
           label(for="cfg-friendship") Friendship (A+)
           select#cfg-friendship(name="cfg-friendship")
-            option - None -
+            option(value="") - None -
             each friend in configOptions.friendships
               option(value=friend.key)= friend.name
 
@@ -41,6 +41,6 @@ section.cfg-opts
         .sg
           label(for="cfg-partner") Partner (S)
           select#cfg-partner(name="cfg-partner")
-            option - None -
+            option(value="") - None -
             each partner in configOptions.partners
               option(value=partner.key)= partner.name

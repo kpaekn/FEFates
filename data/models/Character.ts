@@ -71,11 +71,12 @@ export default class Character {
   }
 
   toJSON() {
-    const { key, name, stats } = this;
+    const { key, name, stats, variableParents } = this;
     return {
       key,
       name,
       stats,
+      variableParents,
     };
   }
 
@@ -198,9 +199,7 @@ export default class Character {
     }
     if (parent !== this.fixedParent) {
       if (parent.gender === this.fixedParent?.gender) {
-        throw new Error(
-          `Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`,
-        );
+        throw new Error(`Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`);
       }
     }
 

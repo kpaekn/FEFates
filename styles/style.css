@@ -235,7 +235,7 @@ a {
 .sgc .sg label {
   color: var(--color-tan);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.4;
 }
 
 .sgc .sg select {

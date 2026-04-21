@@ -1,9 +1,6 @@
 (function () {
   console.log(UI_CONFIG);
 
-  var STAT_GROWTH = "growth";
-  var STAT_BASE = "base";
-
   /** UI_CONFIG - the context object passed from the template engine */
   var cfg = window.UI_CONFIG;
 
@@ -11,6 +8,8 @@
   var boonSelect = document.getElementById("boon-options");
   var baneSelect = document.getElementById("bane-options");
   var parentSelect = document.getElementById("cfg-parent");
+  var grandparentSelect = document.getElementById("cfg-grandparent");
+  var grandparentSelectGroup = document.querySelector(".grandparent-sg");
   var friendshipSelect = document.getElementById("cfg-friendship");
   var partnerSelect = document.getElementById("cfg-partner");
 
@@ -35,13 +34,32 @@
     }
 
     if (parentSelect) {
-      parentSelect.addEventListener("change", updateTables);
       parentSelect.addEventListener("change", function () {
+        updateTables();
+
         var show = !!cfg.parents?.[this.value]?.stats?.boonBaneStats;
         boonBaneSelectGroups.forEach(function (sg) {
           sg.hidden = !show;
         });
+
+        var grandparents = cfg.parents?.[this.value]?.variableParents;
+        grandparentSelect.value = "";
+        if (grandparents && grandparents.length > 0) {
+          // show/hide possible grandparents based on parent selection
+          grandparentSelect.querySelectorAll("option").forEach(function (option) {
+            option.hidden = !grandparents.some(function (gp) {
+              return gp.key === option.value;
+            });
+          });
+          grandparentSelectGroup.hidden = false;
+        } else {
+          grandparentSelectGroup.hidden = true;
+        }
       });
+    }
+
+    if (grandparentSelect) {
+      grandparentSelect.addEventListener("change", updateTables);
     }
 
     if (classChangeSelect) {
@@ -74,15 +92,21 @@
     return result;
   }
 
-  function getParentStatValue(key, statType) {
+  function getParentGrowthValue(key) {
     var parentData = cfg.parents?.[parentSelect.value];
     if (!parentData) return NaN;
-    return parentData.stats?.[statType]?.[key] ?? 0;
+    return parentData.stats?.growth?.[key] ?? NaN;
+  }
+
+  function getGrandparentGrowthValue(key) {
+    var grandparentData = cfg.grandparents?.[grandparentSelect.value];
+    if (!grandparentData) return NaN;
+    return grandparentData?.stats?.growth?.[key] ?? NaN;
   }
 
   function updateTables() {
-    if (!classChangeSelect) return;
     var classKey = classChangeSelect.value;
+    console.log(`updateTables: classKey=${classKey}`);
     updateGrowthsTable(classKey);
     updateStatsTable(classKey);
   }
@@ -111,13 +135,22 @@
     var key = td.getAttribute("data-key");
     var baseValue = parseInt(td.getAttribute("data-base"));
     var clsValue = parseInt(td.getAttribute("data-class"));
-    var parentValue = getParentStatValue(key, STAT_GROWTH);
+    var parentValue = getParentGrowthValue(key);
     if (!isNaN(parentValue)) {
+      // parent growth is averaged with grandparent growth
+      var grandparentValue = getGrandparentGrowthValue(key);
+      if (!isNaN(grandparentValue)) {
+        parentValue = (parentValue + grandparentValue) / 2;
+      }
+
+      // add parent boon/bane growths
       var parentBBS = cfg.parents?.[parentSelect?.value]?.stats?.boonBaneStats;
       if (parentBBS) {
         var parentBBValue = getBoonBaneGrowthValue(parentBBS, key);
         parentValue += parentBBValue;
       }
+
+      // average parent growth with base growth
       baseValue = (baseValue + parentValue) / 2;
     }
     var bbValue = getBoonBaneGrowthValue(cfg.boonBaneStats, key);

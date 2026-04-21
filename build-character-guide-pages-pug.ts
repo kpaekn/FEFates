@@ -464,15 +464,20 @@ function createStatsData(character: Character) {
 
 function createUiConfig(character: Character) {
   const parents = new Map<string, Character>();
-  character.variableParents?.forEach((parent) => {
-    parents.set(parent.key, parent);
+  character.variableParents?.forEach((p) => {
+    parents.set(p.key, p);
+  });
+  const grandparents = new Map<string, Character>();
+  character.getVariableGrandparents()?.forEach((gp) => {
+    grandparents.set(gp.key, gp);
   });
 
   return {
     characterKey: character.key,
     parentKey: character.fixedParent?.key,
     boonBaneStats: character.stats?.boonBaneStats,
-    parents: parents.size > 0 ? Object.fromEntries(parents) : null,
+    parents: parents.size > 0 ? Object.fromEntries(parents) : undefined,
+    grandparents: grandparents.size > 0 ? Object.fromEntries(grandparents) : undefined,
   };
 }
 
