@@ -244,12 +244,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     return null;
   }
   const varParentClassKeys = varParent.classSet?.map((cls) => cls.key) || [];
-  const candidate = resolveParentContribution(
-    childFirstKey,
-    varParentClassKeys,
-    varParent.gender,
-    child.gender,
-  );
+  const candidate = resolveParentContribution(childFirstKey, varParentClassKeys, varParent.gender, child.gender);
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = child.parent;
@@ -408,13 +403,18 @@ function createBoonBaneOptions(character, rawBaseStatsRows) {
 }
 
 function createConfigOptions(character: Character) {
+  const variableParents = character.variableParents;
+  const variableGrandparents = character.getVariableGrandparents();
+  const showBoonBane = character.isCorrin || variableParents?.some((p) => p.isCorrin);
+
   return {
     talents: db.getTalentOptions(character.gender),
-    boonBane: Stats.MAP,
-    parents: character.variableParents,
-    grandparents: db.sortCharacters(character.getVariableGrandparents()),
+    parents: db.sortCharacters(variableParents),
+    grandparents: db.sortCharacters(variableGrandparents),
     friendships: character.friendships,
     partners: character.partners,
+    classChange: createClassChangeOptions(character),
+    boonBane: showBoonBane ? Stats.MAP : undefined,
   };
 }
 
@@ -474,7 +474,7 @@ function createUiConfig(character: Character) {
   return {
     characterKey: character.key,
     parentKey: character.fixedParent?.key,
-    boonBane: character.stats?.boonBaneStats,
+    boonBaneStats: character.stats?.boonBaneStats,
     parents: parents.size > 0 ? Object.fromEntries(parents) : null,
   };
 }
@@ -589,7 +589,6 @@ function buildCharacterContext(character: Character) {
     indexHref: `./`,
     characterKey: character.key,
     configOptions: createConfigOptions(character),
-    classChangeOptions: createClassChangeOptions(character),
     statsData: createStatsData(character),
     uiConfig: createUiConfig(character),
 

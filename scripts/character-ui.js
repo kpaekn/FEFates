@@ -6,14 +6,10 @@
 
   /** UI_CONFIG - the context object passed from the template engine */
   var cfg = window.UI_CONFIG;
-  /** boon/bane stats for the current character */
-  var bbs = cfg.boonBane;
-  var allParents = cfg.parents;
-  var fixedParent = cfg.parents[cfg.parentKey];
 
   var talentSelect = document.getElementById("cfg-talent");
-  var boonSelect = document.getElementById("cfg-boon");
-  var baneSelect = document.getElementById("cfg-bane");
+  var boonSelect = document.getElementById("boon-options");
+  var baneSelect = document.getElementById("bane-options");
   var parentSelect = document.getElementById("cfg-parent");
   var friendshipSelect = document.getElementById("cfg-friendship");
   var partnerSelect = document.getElementById("cfg-partner");
@@ -21,23 +17,11 @@
   var classChangeSelect = document.getElementById("class-change-options");
   var classGrowthsRows = document.querySelectorAll("#growths-table .class-growths-row");
   var classStatsRows = document.querySelectorAll(".stats-table .class-stats-row");
+  var boonBaneSelectGroups = document.querySelectorAll(".boon-bane-sg");
 
-  initBoonBaneSelects();
-  initParentSelect();
-  initClassChangeSelect();
+  initSelects();
 
-  function getConfigOptions() {
-    return {
-      talent: talentSelect?.value,
-      selectedBoonKey: boonSelect?.value,
-      selectedBaneKey: baneSelect?.value,
-      selectedParentKey: parentSelect?.value,
-      friendship: friendshipSelect?.value,
-      partner: partnerSelect?.value,
-    };
-  }
-
-  function initBoonBaneSelects() {
+  function initSelects() {
     if (boonSelect && baneSelect) {
       boonSelect.addEventListener("change", function () {
         ensureDistinctSelection(this, baneSelect);
@@ -49,6 +33,21 @@
       });
       ensureDistinctSelection(boonSelect, baneSelect);
     }
+
+    if (parentSelect) {
+      parentSelect.addEventListener("change", updateTables);
+      parentSelect.addEventListener("change", function () {
+        var isCorrin = this.value === "corrin_m" || this.value === "corrin_f";
+        boonBaneSelectGroups.forEach(function (sg) {
+          sg.hidden = !isCorrin;
+        });
+      });
+    }
+
+    if (classChangeSelect) {
+      classChangeSelect.addEventListener("change", updateTables);
+      updateTables();
+    }
   }
 
   function ensureDistinctSelection(primarySelect, secondarySelect) {
@@ -59,49 +58,31 @@
     })?.value;
   }
 
-  function getBoonBaneStatValue(statKey) {
-    if (!bbs) return { boonStatValue: 0, baneStatValue: 0 };
-    var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
-    return {
-      boonStatValue: statKey === selectedBoonKey ? bbs.base.boon[statKey] : 0,
-      baneStatValue: statKey === selectedBaneKey ? bbs.base.bane[statKey] : 0,
-    };
+  function getBoonBaneStatValue(bbs, statKey) {
+    if (!bbs) return 0;
+    var result = 0;
+    if (statKey === boonSelect.value) result += bbs.base.boon[statKey];
+    if (statKey === baneSelect.value) result += bbs.base.bane[statKey];
+    return result;
   }
 
-  function getBoonBaneGrowthValue(growthKey) {
-    if (!bbs) return { boonGrowthValue: 0, baneGrowthValue: 0 };
-    var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
-    return {
-      boonGrowthValue: bbs.growth.boon[selectedBoonKey]?.[growthKey] ?? 0,
-      baneGrowthValue: bbs.growth.bane[selectedBaneKey]?.[growthKey] ?? 0,
-    };
-  }
-
-  function initParentSelect() {
-    if (parentSelect) {
-      parentSelect.addEventListener("change", updateTables);
-    }
+  function getBoonBaneGrowthValue(bbs, growthKey) {
+    if (!bbs) return 0;
+    var result = 0;
+    result += bbs.growth.boon[boonSelect.value]?.[growthKey] ?? 0;
+    result += bbs.growth.bane[baneSelect.value]?.[growthKey] ?? 0;
+    return result;
   }
 
   function getParentStatValue(key, statType) {
-    var { selectedParentKey } = getConfigOptions();
-    var parentData = cfg.parents?.[selectedParentKey];
+    var parentData = cfg.parents?.[parentSelect.value];
     if (!parentData) return NaN;
     return parentData.stats?.[statType]?.[key] ?? 0;
-  }
-
-  function initClassChangeSelect() {
-    if (classChangeSelect) {
-      classChangeSelect.addEventListener("change", updateTables);
-      updateTables();
-    }
   }
 
   function updateTables() {
     if (!classChangeSelect) return;
     var classKey = classChangeSelect.value;
-    var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
-    console.log("updateTables", classKey, selectedBoonKey, selectedBaneKey, bbs);
     updateGrowthsTable(classKey);
     updateStatsTable(classKey);
   }
@@ -132,21 +113,22 @@
     var clsValue = parseInt(td.getAttribute("data-class"));
     var parentValue = getParentStatValue(key, STAT_GROWTH);
     if (!isNaN(parentValue)) {
+      var parentBBS = cfg.parents?.[parentSelect?.value]?.stats?.boonBaneStats;
+      if (parentBBS) {
+        var parentBBValue = getBoonBaneGrowthValue(parentBBS, key);
+        parentValue += parentBBValue;
+      }
       baseValue = (baseValue + parentValue) / 2;
     }
-    var { boonGrowthValue, baneGrowthValue } = getBoonBaneGrowthValue(key);
-    td.textContent = baseValue + clsValue + boonGrowthValue + baneGrowthValue;
+    var bbValue = getBoonBaneGrowthValue(cfg.boonBaneStats, key);
+    td.textContent = baseValue + clsValue + bbValue;
   }
 
   function calcStatsValues(td) {
     var key = td.getAttribute("data-key");
     var baseValue = parseInt(td.getAttribute("data-base"));
     var clsValue = parseInt(td.getAttribute("data-class"));
-    var parentValue = getParentStatValue(key, STAT_GROWTH);
-    if (!isNaN(parentValue)) {
-      // stats = base + min(floor(), (max(0, Father - Base) + max(0, Mother - Base)) / 4)
-    }
-    var { boonStatValue, baneStatValue } = getBoonBaneStatValue(key);
-    td.textContent = baseValue + clsValue + boonStatValue + baneStatValue;
+    var bbValue = getBoonBaneStatValue(cfg.boonBaneStats, key);
+    td.textContent = baseValue + clsValue + bbValue;
   }
 })();

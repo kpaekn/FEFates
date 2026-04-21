@@ -9,19 +9,6 @@ section.cfg-opts
         each talent in configOptions.talents
           option(value=talent.key)= talent.name
 
-  if configOptions.boonBane
-    .sgc
-      .sg
-        label(for="cfg-boon") Boon
-        select#cfg-boon(name="cfg-boon")
-          each bb in configOptions.boonBane
-            option(value=bb.key)= '+ ' + bb.label
-      .sg
-        label(for="cfg-bane") Bane
-        select#cfg-bane(name="cfg-bane")
-          each bb in configOptions.boonBane
-            option(value=bb.key)= '- ' + bb.label
-
   if configOptions.parents
     .sgc
       if configOptions.parents
