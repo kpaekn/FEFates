@@ -1,3 +1,6 @@
+mixin dataCell(key, base, cls)
+  td(data-key=key, data-base=base[key], data-class=cls[key])= base[key] + cls[key]
+
 header
   h2 Growth Rate and Base Stats (Work in Progress)
 
@@ -16,17 +19,17 @@ table#growths-table.table
       each col in statsData.labels.growth
         th= col.label
   tbody
-    tr.class-growths-row(data-class-key="base")
+    tr.class-growths-row(data-is-base, data-class-key=statsData.startingClass.key)
       td: strong= "(" + statsData.startingClass.name + ")"
       td
       each col in statsData.labels.growth
-        td(data-key=col.key)= statsData.growth[col.key] + statsData.startingClass.stats.growth[col.key]
+        +dataCell(col.key, statsData.growth, statsData.startingClass.stats.growth)
     each cls in classChangeOptions
       tr.class-growths-row(data-class-key=cls.key, hidden=cls.hidden)
         td: strong= cls.name
         td
         each col in statsData.labels.growth
-          td(data-key=col.key)= statsData.growth[col.key] + cls.stats.growth[col.key]
+          +dataCell(col.key, statsData.growth, cls.stats.growth)
 
 each baseStats, idx in statsData.base
   table.table.stats-table(id=`stats-table-${idx}`)
@@ -36,14 +39,14 @@ each baseStats, idx in statsData.base
         each col in statsData.labels.base
           th= col.label
     tbody
-      tr.class-stats-row(data-class-key="base")
+      tr.class-stats-row(data-is-base, data-class-key=statsData.startingClass.key)
         td: strong= "(" + statsData.startingClass.name + ")"
         td= baseStats.level
         each col in statsData.labels.growth
-          td(data-key=col.key)= baseStats[col.key] + statsData.startingClass.stats.base[col.key]
+          +dataCell(col.key, baseStats, statsData.startingClass.stats.base)
       each cls in classChangeOptions
         tr.class-stats-row(data-class-key=cls.key, hidden=cls.hidden)
           td: strong= cls.name
           td -
           each col in statsData.labels.growth
-            td(data-key=col.key)= baseStats[col.key] + cls.stats.base[col.key]
+            +dataCell(col.key, baseStats, cls.stats.base)

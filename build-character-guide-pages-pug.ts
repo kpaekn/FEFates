@@ -244,7 +244,12 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     return null;
   }
   const varParentClassKeys = varParent.classSet?.map((cls) => cls.key) || [];
-  const candidate = resolveParentContribution(childFirstKey, varParentClassKeys, varParent.gender, child.gender);
+  const candidate = resolveParentContribution(
+    childFirstKey,
+    varParentClassKeys,
+    varParent.gender,
+    child.gender,
+  );
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = child.parent;
@@ -458,15 +463,19 @@ function createStatsData(character: Character) {
 }
 
 function createUiConfig(character: Character) {
-  const statsByParent = new Map<string, Character>();
+  const parents = new Map<string, Character>();
+  if (character.fixedParent) {
+    parents.set(character.fixedParent.key, character.fixedParent);
+  }
   character.variableParents?.forEach((parent) => {
-    statsByParent.set(parent.key, parent);
+    parents.set(parent.key, parent);
   });
 
   return {
     characterKey: character.key,
+    parentKey: character.fixedParent?.key,
     boonBane: character.stats?.boonBaneStats,
-    statsByParent: statsByParent.size > 0 ? Object.fromEntries(statsByParent) : null,
+    parents: parents.size > 0 ? Object.fromEntries(parents) : null,
   };
 }
 
