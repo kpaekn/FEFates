@@ -71,12 +71,11 @@ export default class Character {
   }
 
   toJSON() {
-    const { key, name, fixedParent, variableParents, fixedChild, variableChildren, isCorrin } = this;
+    const { key, name, stats } = this;
     return {
       key,
       name,
-      variableParents,
-      isCorrin,
+      stats,
     };
   }
 

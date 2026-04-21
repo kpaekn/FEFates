@@ -1,7 +1,9 @@
 (function () {
-  var uiCfg = window.UI_CONFIG;
-  var boonBaneStats = uiCfg.boonBane;
-  var personalBoonBaneStats = boonBaneStats[uiCfg.characterKey];
+  console.log(UI_CONFIG);
+  /** UI_CONFIG - the context object passed from the template engine */
+  var cfg = window.UI_CONFIG;
+  /** boon/bane stats for the current character */
+  var bbs = cfg.boonBane;
 
   var talentSelect = document.getElementById("cfg-talent");
   var boonSelect = document.getElementById("cfg-boon");
@@ -50,20 +52,20 @@
   }
 
   function getBoonBaneStatValue(statKey) {
-    if (!personalBoonBaneStats) return { boonStatValue: 0, baneStatValue: 0 };
+    if (!bbs) return { boonStatValue: 0, baneStatValue: 0 };
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
     return {
-      boonStatValue: statKey === selectedBoonKey ? personalBoonBaneStats.base.boon[statKey] : 0,
-      baneStatValue: statKey === selectedBaneKey ? personalBoonBaneStats.base.bane[statKey] : 0,
+      boonStatValue: statKey === selectedBoonKey ? bbs.base.boon[statKey] : 0,
+      baneStatValue: statKey === selectedBaneKey ? bbs.base.bane[statKey] : 0,
     };
   }
 
   function getBoonBaneGrowthValue(growthKey) {
-    if (!personalBoonBaneStats) return { boonGrowthValue: 0, baneGrowthValue: 0 };
+    if (!bbs) return { boonGrowthValue: 0, baneGrowthValue: 0 };
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
     return {
-      boonGrowthValue: personalBoonBaneStats.growth.boon[selectedBoonKey]?.[growthKey] ?? 0,
-      baneGrowthValue: personalBoonBaneStats.growth.bane[selectedBaneKey]?.[growthKey] ?? 0,
+      boonGrowthValue: bbs.growth.boon[selectedBoonKey]?.[growthKey] ?? 0,
+      baneGrowthValue: bbs.growth.bane[selectedBaneKey]?.[growthKey] ?? 0,
     };
   }
 
@@ -78,7 +80,7 @@
     if (!classChangeSelect) return;
     var classKey = classChangeSelect.value;
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
-    console.log("updateTables", classKey, selectedBoonKey, selectedBaneKey, personalBoonBaneStats);
+    console.log("updateTables", classKey, selectedBoonKey, selectedBaneKey, bbs);
     updateGrowthsTable(classKey);
     updateStatsTable(classKey);
   }

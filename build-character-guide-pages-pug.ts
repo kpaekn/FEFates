@@ -460,7 +460,7 @@ function createStatsData(character: Character) {
 function createUiConfig(character: Character) {
   return {
     characterKey: character.key,
-    boonBane: Object.fromEntries(db.boonBaneStats),
+    boonBane: character.stats?.boonBaneStats,
   };
 }
 
