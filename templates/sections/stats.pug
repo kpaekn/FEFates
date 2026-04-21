@@ -42,8 +42,8 @@ table#growths-table.table
         each col in statsData.labels.growth
           +dataCell(col.key, statsData.growth, cls.stats.growth)
 
-each baseStats, idx in statsData.base
-  table.table.stats-table(id=`stats-table-${idx}`)
+table.table.stats-table(id=`stats-table-${idx}`)
+  each baseStats, idx in statsData.base
     thead
       tr
         th= baseStats.name + " Stats"
