@@ -464,9 +464,6 @@ function createStatsData(character: Character) {
 
 function createUiConfig(character: Character) {
   const parents = new Map<string, Character>();
-  if (character.fixedParent) {
-    parents.set(character.fixedParent.key, character.fixedParent);
-  }
   character.variableParents?.forEach((parent) => {
     parents.set(parent.key, parent);
   });

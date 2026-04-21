@@ -37,9 +37,9 @@
     if (parentSelect) {
       parentSelect.addEventListener("change", updateTables);
       parentSelect.addEventListener("change", function () {
-        var isCorrin = this.value === "corrin_m" || this.value === "corrin_f";
+        var show = !!cfg.parents?.[this.value]?.stats?.boonBaneStats;
         boonBaneSelectGroups.forEach(function (sg) {
-          sg.hidden = !isCorrin;
+          sg.hidden = !show;
         });
       });
     }
