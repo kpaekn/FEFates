@@ -457,7 +457,12 @@ function createUiConfig(character: Character) {
 
 function buildPanels(character: Character) {
   return {
-    classSet: character.classSet,
+    classSet: character.classSet.map((cls, idx) => {
+      return {
+        panelLabel: idx === 0 ? "Default Class" : `Heart Seal`,
+        ...cls,
+      };
+    }),
   };
 }
 
