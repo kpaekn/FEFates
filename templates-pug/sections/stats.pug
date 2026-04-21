@@ -3,6 +3,7 @@ header
 
 section.sgc
   .sg
+    label(for="class-change-options") Class
     select#class-change-options
       each opt in classChangeOptions
         option(value=opt.key, selected=opt.selected)= opt.name
@@ -15,11 +16,11 @@ table#growths-table.table
       each col in statsData.labels.growth
         th= col.label
   tbody
-    tr
+    tr.class-growths-row(data-class-key="base")
       td: strong Base
       td
       each col in statsData.labels.growth
-        td= statsData.growth[col.key]
+        td(data-key=col.key)= statsData.growth[col.key]
     each cls in classChangeOptions
       tr.class-growths-row(data-class-key=cls.key, hidden=cls.hidden)
         td: strong= cls.name
@@ -27,7 +28,7 @@ table#growths-table.table
         each col in statsData.labels.growth
           td(data-key=col.key)= statsData.growth[col.key] + cls.stats.growth[col.key]
 
-- var baseEntries = Object.values(statsData.base || {})
+- var baseEntries = Object.values(statsData.base || {});
 each labeledBaseStats, idx in baseEntries
   table.table.stats-table(id=`stats-table-${idx}`)
     thead
@@ -36,50 +37,13 @@ each labeledBaseStats, idx in baseEntries
         each col in statsData.labels.base
           th= col.label
     tbody
-      tr
+      tr.class-stats-row(data-class-key="base")
         td: strong= labeledBaseStats.label
         each col in statsData.labels.base
-          td= labeledBaseStats.stats[col.key]
+          td(data-key=col.key)= labeledBaseStats.stats[col.key]
       each cls in classChangeOptions
         tr.class-stats-row(data-class-key=cls.key, hidden=cls.hidden)
           td: strong= cls.name
           td -
           each col in statsData.labels.growth
             td(data-key=col.key)= labeledBaseStats.stats[col.key] + cls.stats.base[col.key]
-
-//- Legacy
-.three-column-grid
-  .two-span-column
-    table.table
-      thead
-        tr
-          th Growth Rates
-          each gr in growthRates
-            th= gr.stat
-      tbody
-        tr
-          td.row-label Base
-          each gr, i in growthRates
-            td(data-base-growth-idx=isCorrin ? i : null)= gr.value + '%'
-        tr#class-growth-row
-          td.row-label.select-container
-            select#class-growth-select(name="class-growth-select")
-              each opt in classGrowthOptions
-                option(value=opt.key, selected=opt.selected)= opt.name
-          each gr, i in growthRates
-            td(data-class-growth-idx=i)
-    table.table
-      thead
-        tr
-          th Base Stats
-          each header in baseStatsHeaders
-            th= header
-      tbody
-        if baseStatsRows
-          - var statKeys = ['hp', 'str', 'mag', 'skl', 'spd', 'lck', 'def', 'res']
-          each row, rowIdx in baseStatsRows
-            tr
-              td.row-label= row.label
-              td= row.level
-              each statKey, si in statKeys
-                td(data-base-stat-row=isCorrin ? rowIdx : null, data-base-stat-idx=isCorrin ? si : null)= row[statKey]

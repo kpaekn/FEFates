@@ -244,12 +244,7 @@ function resolveChildInheritedClassKey(child, varParentKey) {
     return null;
   }
   const varParentClassKeys = varParent.classSet?.map((cls) => cls.key) || [];
-  const candidate = resolveParentContribution(
-    childFirstKey,
-    varParentClassKeys,
-    varParent.gender,
-    child.gender,
-  );
+  const candidate = resolveParentContribution(childFirstKey, varParentClassKeys, varParent.gender, child.gender);
 
   // Case C: candidate == fixed parent's contribution → fall back to var parent's second
   const fixedParent = child.parent;
@@ -398,12 +393,8 @@ function createBoonBaneOptions(character, rawBaseStatsRows) {
       selectOptions: Stats.KEYS.map((key, index) => ({ key, name: Stats.LABELS[index] })),
     },
     js: {
-      growthBoonMap: boonBaneStats.growth
-        ? Stats.multiModifierMap(boonBaneStats.growth.boon)
-        : null,
-      growthBaneMap: boonBaneStats.growth
-        ? Stats.multiModifierMap(boonBaneStats.growth.bane)
-        : null,
+      growthBoonMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.boon) : null,
+      growthBaneMap: boonBaneStats.growth ? Stats.multiModifierMap(boonBaneStats.growth.bane) : null,
       baseStatBoonMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.boon) : null,
       baseStatBaneMap: boonBaneStats.base ? Stats.singleModifierMap(boonBaneStats.base.bane) : null,
       baseStatRows: rawBaseStatsRows.map((row) => Stats.KEYS.map((key) => row[key] ?? 0)),
@@ -439,6 +430,9 @@ function createClassChangeOptions(character: Character) {
       .flattenClassTree()
       .forEach((c) => options.set(c.key, c));
   });
+  db.getDLCClasses().forEach((cls) => {
+    cls.flattenClassTree().forEach((c) => options.set(c.key, c));
+  });
 
   // default selected/hidden values based on starting class
   options.forEach((opt) => {
@@ -460,6 +454,12 @@ function createStatsData(character: Character) {
     },
     growth: character.stats?.growth,
     base: character.stats?.base,
+  };
+}
+
+function createUiConfig(character: Character) {
+  return {
+    boonBane: character.stats?.boonBaneStats,
   };
 }
 
@@ -579,6 +579,7 @@ function buildCharacterContext(character: Character) {
     configOptions: createConfigOptions(character),
     classChangeOptions: createClassChangeOptions(character),
     statsData: createStatsData(character),
+    uiConfig: createUiConfig(character),
 
     growthRates,
     classGrowthOptions,
@@ -630,12 +631,8 @@ const pugHelpers = {
 };
 
 // ─── Compile Pug templates ────────────────────────────────────────────────────
-const characterTemplate = pug.compileFile(
-  path.join(TEMPLATES_DIR, "character.pug"),
-);
-const characterIndexTemplate = pug.compileFile(
-  path.join(TEMPLATES_DIR, "character-index.pug"),
-);
+const characterTemplate = pug.compileFile(path.join(TEMPLATES_DIR, "character.pug"));
+const characterIndexTemplate = pug.compileFile(path.join(TEMPLATES_DIR, "character-index.pug"));
 
 // ─── Build ────────────────────────────────────────────────────────────────────
 fs.mkdirSync(DIST, { recursive: true });

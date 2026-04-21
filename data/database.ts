@@ -10,10 +10,7 @@ import CharacterStats from "./models/CharacterStats.ts";
 
 const DATA_DIR = import.meta.dirname;
 
-function loadModel<T>(
-  filename: string,
-  Model: { fromJSON(key: string, data: unknown): T },
-): Map<string, T> {
+function loadModel<T>(filename: string, Model: { fromJSON(key: string, data: unknown): T }): Map<string, T> {
   const raw = JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), "utf8"));
   const result = new Map<string, T>();
   for (const [key, data] of Object.entries(raw)) {
@@ -47,9 +44,14 @@ export class Database {
    * Gets all talent class options available to a character of the given gender.
    */
   getTalentOptions(gender: string): Class[] {
-    return [...this.classes]
-      .filter(([_, cls]) => cls.isTalent() && cls.matchesGender(gender))
-      .map(([_, cls]) => cls);
+    return [...this.classes].filter(([_, cls]) => cls.isTalent() && cls.matchesGender(gender)).map(([_, cls]) => cls);
+  }
+
+  /**
+   * Gets all DLC classes.
+   */
+  getDLCClasses(): Class[] {
+    return [...this.classes].filter(([_, cls]) => cls.dlc).map(([_, cls]) => cls);
   }
 
   sortCharacters(characters: Character[] | null) {
