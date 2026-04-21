@@ -47,7 +47,7 @@
   }
 
   function getBoonBaneStatValue(statKey) {
-    if (!uiCfg.boonBane) return null;
+    if (!uiCfg.boonBane) return { boonStatValue: 0, baneStatValue: 0 };
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
     return {
       boonStatValue: statKey === selectedBoonKey ? uiCfg.boonBane.base.boon[statKey] : 0,
@@ -56,7 +56,7 @@
   }
 
   function getBoonBaneGrowthValue(growthKey) {
-    if (!uiCfg.boonBane) return null;
+    if (!uiCfg.boonBane) return { boonGrowthValue: 0, baneGrowthValue: 0 };
     var { selectedBoonKey, selectedBaneKey } = getConfigOptions();
     return {
       boonGrowthValue: uiCfg.boonBane.growth.boon[selectedBoonKey]?.[growthKey] ?? 0,

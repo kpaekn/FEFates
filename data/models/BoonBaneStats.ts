@@ -24,8 +24,8 @@ export default class BoonBaneStats {
       return new BoonBaneStats(
         key,
         {
-          boon: Stats.fromArray(data.base.boon),
-          bane: Stats.fromArray(data.base.bane),
+          boon: new Stats(data.base.boon),
+          bane: new Stats(data.base.bane),
         },
         {
           boon: StatsModifierMap.fromJSON(data.growth.boon),

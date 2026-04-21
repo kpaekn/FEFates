@@ -503,7 +503,7 @@ function buildCharacterContext(character: Character) {
     const variants = Object.entries(raw);
     for (const [variant, baseStats] of variants) {
       rows.push(
-        baseStats.stats.toRow({
+        baseStats.toRow({
           rowKey: variant.toLowerCase().replace(/[^a-z0-9]+/g, "_"),
           label: variant,
         }),

@@ -23,14 +23,14 @@ export default class StatsModifierMap {
 
   static fromJSON(data: Record<string, any>): StatsModifierMap {
     return new StatsModifierMap(
-      Stats.fromArray(data.hp),
-      Stats.fromArray(data.str),
-      Stats.fromArray(data.mag),
-      Stats.fromArray(data.skl),
-      Stats.fromArray(data.spd),
-      Stats.fromArray(data.lck),
-      Stats.fromArray(data.def),
-      Stats.fromArray(data.res),
+      new Stats(data.hp),
+      new Stats(data.str),
+      new Stats(data.mag),
+      new Stats(data.skl),
+      new Stats(data.spd),
+      new Stats(data.lck),
+      new Stats(data.def),
+      new Stats(data.res),
     );
   }
 }

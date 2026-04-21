@@ -3,7 +3,7 @@ import Stats from "./Stats.ts";
 interface RawClassStatsData {
   base: number[];
   growth: number[];
-  cap?: number[];
+  max: number[];
 }
 
 export default class ClassStats {
@@ -21,7 +21,7 @@ export default class ClassStats {
 
   static fromJSON(key: string, data: RawClassStatsData): ClassStats {
     try {
-      return new ClassStats(key, Stats.fromArray(data.base), Stats.fromArray(data.growth), Stats.fromArray(data.max));
+      return new ClassStats(key, new Stats(data.base), new Stats(data.growth), new Stats(data.max));
     } catch (error) {
       console.error(`Error loading class_stats.json for ${key}:`);
       throw error;

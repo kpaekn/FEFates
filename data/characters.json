@@ -8,8 +8,7 @@
       "friendship": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy, fuga",
       "partner": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, niles, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina, anna"
     },
-    "personal_skill": "supportive",
-    "stats": "corrin"
+    "personal_skill": "supportive"
   },
   "corrin_f": {
     "name": "Corrin (F)",
@@ -20,8 +19,7 @@
       "friendship": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, velouria, ophelia, soleil, nina, anna",
       "partner": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, niles, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, rhajat, siegbert, forrest, ignatius, percy, fuga"
     },
-    "personal_skill": "supportive",
-    "stats": "corrin"
+    "personal_skill": "supportive"
   },
   "azura": {
     "name": "Azura",
@@ -538,8 +536,7 @@
       "friendship": "shiro, siegbert, percy",
       "partner": "sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina"
     },
-    "personal_skill": "draconic_heir",
-    "stats": "kana"
+    "personal_skill": "draconic_heir"
   },
   "kana_f": {
     "name": "Kana (F)",
@@ -551,8 +548,7 @@
       "friendship": "midori, selkie, mitama, velouria",
       "partner": "shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy"
     },
-    "personal_skill": "draconic_heir",
-    "stats": "kana"
+    "personal_skill": "draconic_heir"
   },
   "shigure": {
     "name": "Shigure",

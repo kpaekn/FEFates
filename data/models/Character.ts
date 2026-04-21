@@ -12,7 +12,6 @@ interface RawCharacterData {
   personal_skill: string;
   starting_class?: string;
   parent?: string;
-  stats?: string;
 }
 
 export default class Character {
@@ -43,7 +42,6 @@ export default class Character {
   _partnerKeys: string[];
   _classSet: string[];
   _startingClassKey: string;
-  _statsKey: string;
   _parentKey: string | undefined;
 
   constructor(key: string, raw: RawCharacterData) {
@@ -65,7 +63,6 @@ export default class Character {
     this._partnerKeys = parseCSV(raw.supports.partner);
     this._classSet = parseCSV(raw.class_set);
     this._startingClassKey = raw.starting_class ?? this._classSet[0];
-    this._statsKey = raw.stats ?? key;
     this._parentKey = raw.parent;
   }
 
@@ -74,8 +71,7 @@ export default class Character {
   }
 
   toJSON() {
-    const { key, name, fixedParent, variableParents, fixedChild, variableChildren, isCorrin } =
-      this;
+    const { key, name, fixedParent, variableParents, fixedChild, variableChildren, isCorrin } = this;
     return {
       key,
       name,
@@ -97,18 +93,24 @@ export default class Character {
     // Hydrate starting class
     const startingClass = database.classes.get(this._startingClassKey);
     if (!startingClass) {
-      throw new Error(
-        `Unknown starting class: ${this._startingClassKey} (in character ${this.key})`,
-      );
+      throw new Error(`Unknown starting class: ${this._startingClassKey} (in character ${this.key})`);
     }
     this.startingClass = startingClass;
 
     // Hydrate stats
-    const stats = database.characterStats.get(this._statsKey);
+    const stats = database.characterStats.get(this.key);
     if (!stats) {
-      throw new Error(`Unknown character stats: ${this._statsKey} (in character ${this.key})`);
+      throw new Error(`Unknown character stats: ${this.key} (in character ${this.key})`);
     }
     this.stats = stats;
+
+    if (!this.isChild) {
+      // calculate absolute base stats by subtracting the starting class's base stats from the character's base stats
+      // only applies to non-child characters
+      stats.base.forEach((baseStats) => {
+        baseStats.subtract(startingClass.stats.base);
+      });
+    }
 
     // Hydrate friendships
     this.friendships = this._friendshipKeys.map((key) => {
@@ -193,9 +195,7 @@ export default class Character {
     }
     if (parent !== this.fixedParent) {
       if (parent.gender === this.fixedParent?.gender) {
-        throw new Error(
-          `Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`,
-        );
+        throw new Error(`Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`);
       }
     }
 

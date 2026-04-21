@@ -28,8 +28,7 @@ table#growths-table.table
         each col in statsData.labels.growth
           td(data-key=col.key)= statsData.growth[col.key] + cls.stats.growth[col.key]
 
-- var baseEntries = Object.values(statsData.base || {});
-each labeledBaseStats, idx in baseEntries
+each baseStats, idx in statsData.base
   table.table.stats-table(id=`stats-table-${idx}`)
     thead
       tr
@@ -38,12 +37,12 @@ each labeledBaseStats, idx in baseEntries
           th= col.label
     tbody
       tr.class-stats-row(data-class-key="base")
-        td: strong= labeledBaseStats.label
+        td: strong= baseStats.name
         each col in statsData.labels.base
-          td(data-key=col.key)= labeledBaseStats.stats[col.key]
+          td(data-key=col.key)= baseStats[col.key]
       each cls in classChangeOptions
         tr.class-stats-row(data-class-key=cls.key, hidden=cls.hidden)
           td: strong= cls.name
           td -
           each col in statsData.labels.growth
-            td(data-key=col.key)= labeledBaseStats.stats[col.key] + cls.stats.base[col.key]
+            td(data-key=col.key)= baseStats[col.key] + cls.stats.base[col.key]

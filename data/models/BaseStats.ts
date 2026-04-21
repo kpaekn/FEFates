@@ -1,6 +1,7 @@
 import Stats from "./Stats.ts";
 
 export default class BaseStats extends Stats {
+  name: string;
   level: number;
 
   static MAP: { key: string; label: string }[] = [
@@ -15,16 +16,13 @@ export default class BaseStats extends Stats {
     { key: "res", label: "Res" },
   ];
 
-  constructor(values: number[]) {
+  constructor(name: string, values: number[]) {
     if (values.length !== 9) {
       throw new Error(`Expected 9 values for BaseStats, got ${values.join(", ")}`);
     }
     super(values.slice(1));
+    this.name = name;
     this.level = values[0];
-  }
-
-  static fromArray(values: number[]): BaseStats {
-    return new BaseStats(values);
   }
 
   get(key: string): number {

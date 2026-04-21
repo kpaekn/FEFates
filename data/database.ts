@@ -36,8 +36,8 @@ export class Database {
     this.characters = loadModel("characters.json", Character);
 
     this.classes.forEach((cls) => cls.linkObjects(this));
-    this.characters.forEach((character) => character.linkObjects(this));
     this.characterStats.forEach((stats) => stats.linkObjects(this));
+    this.characters.forEach((character) => character.linkObjects(this));
   }
 
   /**

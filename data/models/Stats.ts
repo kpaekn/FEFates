@@ -35,10 +35,6 @@ export default class Stats {
     this.res = values[7];
   }
 
-  static fromArray(values: number[]): Stats {
-    return new Stats(values);
-  }
-
   get(key: string): number {
     if (key === "hp") return this.hp;
     if (key === "str") return this.str;
@@ -55,19 +51,29 @@ export default class Stats {
     return [this.hp, this.str, this.mag, this.skl, this.spd, this.lck, this.def, this.res];
   }
 
+  /**
+   * Subtracts the values of one Stats object from another in place.
+   */
+  subtract(other: Stats) {
+    this.hp -= other.hp;
+    this.str -= other.str;
+    this.mag -= other.mag;
+    this.skl -= other.skl;
+    this.spd -= other.spd;
+    this.lck -= other.lck;
+    this.def -= other.def;
+    this.res -= other.res;
+  }
+
   static singleModifierMap(rawModifiers: Record<string, number>): Record<string, number[]> {
     const modifierMap: Record<string, number[]> = {};
     for (const key of Stats.KEYS) {
-      modifierMap[key] = Stats.KEYS.map((statKey) =>
-        statKey === key ? (rawModifiers?.[key] ?? 0) : 0,
-      );
+      modifierMap[key] = Stats.KEYS.map((statKey) => (statKey === key ? (rawModifiers?.[key] ?? 0) : 0));
     }
     return modifierMap;
   }
 
-  static multiModifierMap(
-    rawModifiers: Record<string, Record<string, number>>,
-  ): Record<string, number[]> {
+  static multiModifierMap(rawModifiers: Record<string, Record<string, number>>): Record<string, number[]> {
     const modifierMap: Record<string, number[]> = {};
     for (const key of Stats.KEYS) {
       const entry = rawModifiers?.[key] ?? {};
