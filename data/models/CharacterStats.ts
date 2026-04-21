@@ -32,7 +32,7 @@ export default class CharacterStats {
     }
   }
 
-  linkObjects(database: Database): void {
-    this.boonBaneStats = database.boonBaneStats.get(this.key) ?? null;
+  linkObjects(boonBaneStats: Map<string, BoonBaneStats>): void {
+    this.boonBaneStats = boonBaneStats.get(this.key) ?? null;
   }
 }

@@ -79,10 +79,14 @@ export default class Character {
     };
   }
 
-  linkObjects(database: Database): void {
+  linkObjects(
+    characters: Map<string, Character>,
+    characterStats: Map<string, CharacterStats>,
+    classes: Map<string, Class>,
+  ): void {
     // Hydrate class set
     this.classSet = this._classSet.map((classKey) => {
-      const cls = database.classes.get(classKey);
+      const cls = classes.get(classKey);
       if (!cls) {
         throw new Error(`Unknown class: ${classKey} (in character ${this.key})`);
       }
@@ -90,14 +94,14 @@ export default class Character {
     });
 
     // Hydrate starting class
-    const startingClass = database.classes.get(this._startingClassKey);
+    const startingClass = classes.get(this._startingClassKey);
     if (!startingClass) {
       throw new Error(`Unknown starting class: ${this._startingClassKey} (in character ${this.key})`);
     }
     this.startingClass = startingClass;
 
     // Hydrate stats
-    const stats = database.characterStats.get(this.key);
+    const stats = characterStats.get(this.key);
     if (!stats) {
       throw new Error(`Unknown character stats: ${this.key} (in character ${this.key})`);
     }
@@ -113,7 +117,7 @@ export default class Character {
 
     // Hydrate friendships
     this.friendships = this._friendshipKeys.map((key) => {
-      const friend = database.characters.get(key);
+      const friend = characters.get(key);
       if (!friend) {
         throw new Error(`Unknown friendship character: ${key} (in character ${this.key})`);
       }
@@ -123,7 +127,7 @@ export default class Character {
     // Hydrate partners
     // Note: partners are also used to determine potential parents, so we hydrate them before parents
     this.partners = this._partnerKeys.map((key) => {
-      const partner = database.characters.get(key);
+      const partner = characters.get(key);
       if (!partner) {
         throw new Error(`Unknown partner character: ${key} (in character ${this.key})`);
       }
@@ -132,7 +136,7 @@ export default class Character {
 
     // Hydrate parent
     if (this._parentKey) {
-      const parent = database.characters.get(this._parentKey);
+      const parent = characters.get(this._parentKey);
       if (!parent) {
         throw new Error(`Unknown parent character: ${this._parentKey} (in character ${this.key})`);
       }
@@ -162,7 +166,7 @@ export default class Character {
     }
 
     // Hydrate class change options
-    this.classChangeOptions = [...database.classes]
+    this.classChangeOptions = [...classes]
       .filter(([_, cls]) => {
         return cls.matchesGender(this.gender) && (this.hasInClassSet(cls) || !cls.unique);
       })
@@ -194,7 +198,9 @@ export default class Character {
     }
     if (parent !== this.fixedParent) {
       if (parent.gender === this.fixedParent?.gender) {
-        throw new Error(`Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`);
+        throw new Error(
+          `Parents (${parent.key} and ${this.fixedParent?.key}) cannot be the same gender.`,
+        );
       }
     }
 

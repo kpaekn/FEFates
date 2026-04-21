@@ -65,10 +65,14 @@ export default class Class {
     };
   }
 
-  linkObjects(database: Database): void {
+  linkObjects(
+    classes: Map<string, Class>,
+    classStats: Map<string, ClassStats>,
+    skills: Map<string, Skill>,
+  ): void {
     this.skills = this._skillKeys
       .map((skillKey) => {
-        const skill = database.skills.get(skillKey);
+        const skill = skills.get(skillKey);
         if (!skill) {
           throw new Error(`Unknown skill: ${skillKey} (in class ${this.key})`);
         }
@@ -76,14 +80,14 @@ export default class Class {
       })
       .filter(Boolean) as Skill[];
 
-    const stats = database.classStats.get(this._statsKey);
+    const stats = classStats.get(this._statsKey);
     if (!stats) {
       throw new Error(`Unknown class stats: ${this._statsKey} (in class ${this.key})`);
     }
     this.stats = stats;
 
     if (this._oppositeGenderedClassKey) {
-      const oppositeClass = database.classes.get(this._oppositeGenderedClassKey);
+      const oppositeClass = classes.get(this._oppositeGenderedClassKey);
       if (!oppositeClass) {
         throw new Error(
           `Unknown opposite gender class: ${this._oppositeGenderedClassKey} (in class ${this.key})`,
@@ -94,7 +98,7 @@ export default class Class {
 
     this.promotion = this._promotionClassKeys
       .map((classKey) => {
-        const cls = database.classes.get(classKey);
+        const cls = classes.get(classKey);
         if (!cls) {
           throw new Error(`Unknown class: ${classKey} (in class ${this.key})`);
         }
@@ -103,7 +107,7 @@ export default class Class {
       .filter(Boolean) as Class[];
 
     if (this._parallelClassKey) {
-      const parallelClass = database.classes.get(this._parallelClassKey);
+      const parallelClass = classes.get(this._parallelClassKey);
       if (!parallelClass) {
         throw new Error(`Unknown parallel class: ${this._parallelClassKey} (in class ${this.key})`);
       }
