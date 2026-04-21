@@ -244,7 +244,7 @@ a {
   border-radius: var(--border-radius);
   color: var(--color-brown);
   font-size: var(--font-size-md);
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
 }
 
 button:hover,
