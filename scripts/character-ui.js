@@ -263,7 +263,9 @@
       }
     }
     if (group === PANEL_GROUP_FRIENDSHIP) {
-      return _showHidePanels(group, ...getSelectedFriendshipKeys());
+      var selectedFriendshipKeys = getSelectedFriendshipKeys();
+      if (selectedFriendshipKeys.length === 0) selectedFriendshipKeys.push("");
+      return _showHidePanels(group, ...selectedFriendshipKeys);
     }
     _showHidePanels(group, key);
   }
