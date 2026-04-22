@@ -22,8 +22,8 @@ html(lang="en")
         if section.title
           h2.section-title= section.title
         .character-grid
-          each char in section.characters
-            a.character-card(href=`${char.key}.html`)
+          each character in section.characters
+            a.character-card(class=character.route, href=`${character.key}.html`)
               span.character-portrait
-                img(src=charaPortraitPath(char.name))
-              h3= char.name
+                img(src=charaPortraitPath(character.key), alt=character.name)
+              h3= character.name

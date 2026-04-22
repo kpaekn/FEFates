@@ -13,22 +13,20 @@ html(lang="en")
     main.container
       header
         h1
-          span.header-portrait
-            img(src=charaPortraitPath(characterName), alt=characterName)
+          span.header-portrait(class=character.route)
+            img(src=charaPortraitPath(character.name), alt=character.name)
           span= pageTitle
 
         nav.breadcrumb
           ul
             li Fire Emblem Fates
-            li: a(href=indexHref) Character Guides
-            li= characterName
+            li: a(href="./") Character Guides
+            li= character.name
 
       include sections/config
       include sections/stats
       include sections/panels
 
     script.
-      window.DEBUG_OBJECTS = !{JSON.stringify(_context)};
-      window.PAGE_CONFIG = !{JSON.stringify(pageConfig)};
       window.UI_CONFIG = !{JSON.stringify(uiConfig)};
     script(src="../scripts/character-ui.js")

@@ -18,11 +18,17 @@
   --color-dark-tan: color-mix(in srgb, var(--color-tan), black 20%);
   --color-light-tan: color-mix(in srgb, var(--color-tan), white 40%);
   --color-blue: #213057;
-  --color-dark-blue: color-mix(in srgb, var(--color-blue), black 65%);
+  --color-dark-blue: #0d1323;
   --color-light-blue: color-mix(in srgb, var(--color-blue), white 5%);
   --color-red: #a52121;
   --color-dark-red: color-mix(in srgb, var(--color-red), black 75%);
   --color-light-red: color-mix(in srgb, var(--color-red), white 5%);
+  --color-purple: #775d8a;
+  --color-light-purple: color-mix(in srgb, var(--color-purple), white 20%);
+  --color-dark-purple: #27003b;
+  --color-pink: #feb0b0;
+  --color-light-pink: color-mix(in srgb, var(--color-pink), white 20%);
+  --color-dark-pink: #770706;
 
   --color-background: var(--color-dark-blue);
   --color-href: var(--color-blue);
@@ -85,9 +91,17 @@ h1 .header-portrait img {
   transition: transform 0.3s cubic-bezier(.4, 2, .4, 1);
 }
 
-h1:hover .header-portrait img,
-h1:focus-visible .header-portrait img {
+h1 .header-portrait:hover img,
+h1 .header-portrait:focus-visible img {
   transform: scale(1.15);
+}
+
+h1 .header-portrait.birthright {
+  border-color: var(--color-dark-pink);
+}
+
+h1 .header-portrait.conquest {
+  border-color: var(--color-dark-purple);
 }
 
 h2 {
@@ -147,6 +161,7 @@ a {
   border: 2px solid var(--color-brown);
   background-color: var(--color-tan);
   border-radius: var(--border-radius);
+  overflow: hidden;
   text-decoration: none;
   transition: background-color 0.2s ease;
   cursor: pointer !important;
@@ -172,7 +187,7 @@ a {
 
 .character-card:hover,
 .character-card:focus-visible {
-  background-color: var(--color-light-tan);
+  background-color: var(--color-light-tan) !important;
 }
 
 .character-card:hover .character-portrait img,
@@ -183,6 +198,32 @@ a {
 .character-card:hover h3,
 .character-card:focus-visible h3 {
   color: var(--color-light-tan);
+}
+
+.character-card.birthright {
+  border-color: var(--color-dark-pink);
+  background-color: var(--color-pink);
+}
+
+.character-card.birthright .character-portrait {
+  border-color: var(--color-dark-pink);
+}
+
+.character-card.birthright h3 {
+  background-color: var(--color-dark-pink);
+}
+
+.character-card.conquest {
+  border-color: var(--color-dark-purple);
+  background-color: var(--color-purple);
+}
+
+.character-card.conquest .character-portrait {
+  border-color: var(--color-dark-purple);
+}
+
+.character-card.conquest h3 {
+  background-color: var(--color-dark-purple);
 }
 
 /* section-title and select-group need to be in sync */
@@ -405,6 +446,7 @@ button.remove:focus-visible {
   background-color: var(--color-tan);
   border-top: 1px solid var(--color-brown);
   color: var(--color-brown);
+  font-size: var(--font-size-lg);
 }
 
 .table tbody tr:first-child td {
@@ -413,6 +455,7 @@ button.remove:focus-visible {
 
 .table tbody td:first-child {
   border-right: 1px dashed var(--color-brown);
+  font-size: var(--font-size-md);
 }
 
 .table .row-label {
