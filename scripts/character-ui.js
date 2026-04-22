@@ -229,10 +229,9 @@
   function showTalentSelectGroup() {
     if (!talentSelectGroup) return;
     var characterKey = cfg.characterKey;
-    var parentKey = parentSelect?.value;
     var friendKey = friendshipSelect?.value;
     var partnerKey = partnerSelect?.value;
-    var showTalent = [characterKey, parentKey, friendKey, partnerKey].some(function (key) {
+    var showTalent = [characterKey, friendKey, partnerKey].some(function (key) {
       return CORRIN_KANA_KEYS.includes(key);
     });
     talentSelectGroup.hidden = !showTalent;
@@ -250,8 +249,10 @@
         return _showHidePanels(PANEL_GROUP_PARTNER, key);
       }
     }
-    if (CORRIN_KANA_KEYS.includes(key) && talentSelect) {
-      return _showHidePanels(group, talentSelect.value);
+    if (group !== PANEL_GROUP_PARENT) {
+      if (CORRIN_KANA_KEYS.includes(key) && talentSelect) {
+        return _showHidePanels(group, talentSelect.value);
+      }
     }
     _showHidePanels(group, key);
   }

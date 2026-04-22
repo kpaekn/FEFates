@@ -140,14 +140,6 @@ function buildPanels(character: Character): Record<string, Panel[]> {
             group: "parent",
             key: "",
           },
-          ...talentPanels.map((tp) => {
-            return {
-              ...tp,
-              label: "Inherited Class - " + tp.label,
-              group: "parent",
-              hidden: true,
-            };
-          }),
           ...character.variableParents?.map((parent) => {
             return {
               label: "Inherited Class - " + parent.name,
