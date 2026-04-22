@@ -442,7 +442,7 @@ button.remove:focus-visible {
 
 .table th,
 .table td {
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs);
 }
 
 .table th:not(:first-child),
@@ -515,6 +515,10 @@ button.remove:focus-visible {
 }
 
 @media (max-width: 974px) {
+  main.container {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
 
   .three-column-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -526,6 +530,10 @@ button.remove:focus-visible {
 }
 
 @media (max-width: 740px) {
+  main.container {
+    padding-left: var(--space-xs);
+    padding-right: var(--space-xs);
+  }
 
   .three-column-grid {
     grid-template-columns: 1fr;
