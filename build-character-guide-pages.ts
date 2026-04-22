@@ -186,7 +186,7 @@ function buildPanels(character: Character): Record<string, Panel[]> {
       ? [
           {
             label: "Friendship Seal",
-            placeholder: "(Select an A+ rank support partner)",
+            placeholder: `(Select an ${character.isCorrin ? "A" : "A+"} rank support partner)`,
             group: "friendship",
             key: "",
           },
