@@ -11,12 +11,12 @@ section.sgc
       each opt in configOptions.classChange
         option(value=opt.key, selected=opt.selected)= opt.name
   if configOptions.boonBane
-    .sg.boon-bane-sg(hidden=!isCorrin)
+    .sg.boon-bane-sg(hidden=!character.isCorrin)
       label(for="boon-options") Boon
       select#boon-options(name="boon-options")
         each bb in configOptions.boonBane
           option(value=bb.key)= "+ " + bb.label
-    .sg.boon-bane-sg(hidden=!isCorrin)
+    .sg.boon-bane-sg(hidden=!character.isCorrin)
       label(for="bane-options") Bane
       select#bane-options(name="bane-options")
         each bb in configOptions.boonBane
