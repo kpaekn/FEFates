@@ -15,6 +15,7 @@
   var grandparentSelect = document.getElementById("cfg-grandparent");
   var grandparentSelectGroup = document.querySelector(".grandparent-sg");
   var friendshipSelect = document.getElementById("cfg-friendship");
+  var extraFriendshipSelects = document.querySelectorAll(".friendship-sg-extra select");
   var partnerSelect = document.getElementById("cfg-partner");
   var talentSelect = document.getElementById("cfg-talent");
   var talentSelectGroup = document.querySelector(".talent-sg");
@@ -65,7 +66,7 @@
         }
 
         disableCorrinKanaOptions(this, friendshipSelect, partnerSelect);
-        showTalentSelectGroup();
+        showHideTalentSelectGroup();
         showHidePanels(PANEL_GROUP_PARENT, this.value);
       });
     }
@@ -82,15 +83,22 @@
     if (friendshipSelect) {
       friendshipSelect.addEventListener("change", function () {
         disableCorrinKanaOptions(this, parentSelect, partnerSelect);
-        showTalentSelectGroup();
-        showHidePanels(PANEL_GROUP_FRIENDSHIP, this.value);
+        showHideTalentSelectGroup();
+        showHidePanels(PANEL_GROUP_FRIENDSHIP);
+        showHideExtraFriendshipSelects();
+      });
+      extraFriendshipSelects.forEach(function (select) {
+        select.addEventListener("change", function () {
+          showHideExtraFriendshipSelects();
+          showHidePanels(PANEL_GROUP_FRIENDSHIP);
+        });
       });
     }
 
     if (partnerSelect) {
       partnerSelect.addEventListener("change", function () {
         disableCorrinKanaOptions(this, parentSelect, friendshipSelect);
-        showTalentSelectGroup();
+        showHideTalentSelectGroup();
         showHidePanels(PANEL_GROUP_PARTNER, this.value);
       });
     }
@@ -201,7 +209,7 @@
   }
 
   /**
-   * If the provided select is Corrin/Kana, disable all options that are Corrin/Kana.
+   * If the provided select value is Corrin/Kana, disable all options that are Corrin/Kana.
    *
    */
   function disableCorrinKanaOptions(primarySelect, ...otherSelects) {
@@ -226,7 +234,7 @@
   /**
    * Show the talent select group if any of (character, parent, friendship, partner) keys are Corrin/Kana
    */
-  function showTalentSelectGroup() {
+  function showHideTalentSelectGroup() {
     if (!talentSelectGroup) return;
     var characterKey = cfg.characterKey;
     var friendKey = friendshipSelect?.value;
@@ -254,14 +262,59 @@
         return _showHidePanels(group, talentSelect.value);
       }
     }
+    if (group === PANEL_GROUP_FRIENDSHIP) {
+      return _showHidePanels(group, ...getSelectedFriendshipKeys());
+    }
     _showHidePanels(group, key);
   }
 
-  function _showHidePanels(group, key) {
-    console.log(`showHidePanels: group=${group}, key=${key}`);
+  function _showHidePanels(group, ...keys) {
+    console.log(`showHidePanels: group=${group}, keys=${keys}`);
     document.querySelectorAll(`[data-group="${group}"]`).forEach(function (panel) {
       var { key: panelKey } = panel.dataset;
-      panel.hidden = panelKey !== key;
+      panel.hidden = !keys.includes(panelKey);
     });
+  }
+
+  function showHideExtraFriendshipSelects() {
+    var allSelects = [friendshipSelect, ...extraFriendshipSelects];
+    // get list of all values (preserve order)
+    var values = allSelects.map((select) => select.value).filter((value) => value);
+    // set values back to selects in order, filling empties with ""
+    allSelects.forEach(function (select, idx) {
+      select.value = idx < values.length ? values[idx] : "";
+    });
+
+    // hide all selects with no value
+    allSelects.forEach(function (select) {
+      var hasValue = !!select.value;
+      var container = select.closest(".sg");
+      if (container) container.hidden = !hasValue;
+    });
+    // show the first one with no value (if any)
+    allSelects.some(function (select) {
+      var hasValue = !!select.value;
+      if (!hasValue) {
+        var container = select.closest(".sg");
+        if (container) container.hidden = false;
+        return true;
+      }
+      return false;
+    });
+    // disable options that are already selected in other selects
+    var allSelectedValues = getSelectedFriendshipKeys();
+    allSelects.forEach((select) => {
+      var selectedValues = allSelectedValues.filter((value) => {
+        return value !== select.value;
+      });
+      select.querySelectorAll("option").forEach((option) => {
+        option.disabled = selectedValues.includes(option.value);
+      });
+    });
+  }
+
+  function getSelectedFriendshipKeys() {
+    var allSelects = [friendshipSelect, ...extraFriendshipSelects];
+    return allSelects.map((select) => select.value).filter((value) => value);
   }
 })();

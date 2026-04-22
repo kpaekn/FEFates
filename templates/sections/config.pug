@@ -32,11 +32,19 @@ section.cfg-opts
 
       if configOptions.friendships
         .sg
-          label(for="cfg-friendship") Friendship (A+)
+          label(for="cfg-friendship")= `Friendship (${character.isCorrin ? "A" : "A+"})`
           select#cfg-friendship(name="cfg-friendship")
             option(value="") - None -
             each friend in configOptions.friendships
               option(value=friend.key)= friend.name
+        if character.isCorrin
+          each _, idx in configOptions.friendships
+            .sg.friendship-sg-extra(hidden)
+              label(for=`cfg-friendship-extra-${idx}`) Friendship (A+)
+              select(id=`cfg-friendship-extra-${idx}`, name=`cfg-friendship-extra-${idx}`)
+                option(value="") - None -
+                each friend in configOptions.friendships
+                  option(value=friend.key)= friend.name
 
   if configOptions.talents
     .sgc.talent-sg(hidden=configOptions.talentsHidden)

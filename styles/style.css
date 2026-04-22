@@ -298,8 +298,9 @@ a {
 }
 
 .sgc {
-  display: flex;
+  display: grid;
   gap: var(--space-md);
+  grid-template-columns: repeat(auto-fill, minmax(clamp(8rem, 25%, 12rem), 1fr));
 }
 
 .sgc .sg {
@@ -522,8 +523,4 @@ button.remove:focus-visible {
     display: none;
   }
 
-  .sgc {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
