@@ -455,14 +455,63 @@ function createUiConfig(character: Character) {
   };
 }
 
-function buildPanels(character: Character) {
-  return {
-    classSet: character.classSet.map((cls, idx) => {
-      return {
-        panelLabel: idx === 0 ? "Default Class" : `Heart Seal`,
-        ...cls,
+function buildPanels(character: Character): Record<
+  string,
+  | {
+      key?: string;
+      placeholder?: {
+        label: string;
+        body: string;
       };
-    }),
+      panels: {
+        hidden?: boolean;
+        key?: string;
+        label: string;
+        cls: Class;
+      }[];
+    }
+  | undefined
+> {
+  return {
+    classSet: {
+      panels: character.classSet.map((cls, idx) => {
+        return {
+          label: idx === 0 ? "Default Class" : `Heart Seal`,
+          cls: cls,
+        };
+      }),
+    },
+    inheritedClassSet:
+      character.variableParents?.length > 0
+        ? {
+            key: "parent",
+            placeholder: {
+              label: "Heart Seal - Variable Parent",
+              body: "(Select a parent)",
+            },
+            panels: character.variableParents?.map((parent) => {
+              return {
+                hidden: true,
+                key: parent.key,
+                label: "Inherited Class - " + parent.name,
+                cls: character.getInheritedClass(parent),
+              };
+            }),
+          }
+        : undefined,
+    talentClassSet: character.isCorrinOrKana
+      ? {
+          key: "talent",
+          panels: db.getTalentOptions(character.gender).map((cls, idx) => {
+            return {
+              hidden: idx > 0,
+              key: cls.key,
+              label: "Talent Class - " + cls.name,
+              cls: cls,
+            };
+          }),
+        }
+      : undefined,
   };
 }
 

@@ -60,6 +60,7 @@
     "name": "Villager",
     "unique": true,
     "weapons": "lance",
+    "promotion": "master_of_arms,merchant",
     "skills": "aptitude, underdog",
     "parallel": "apothecary"
   },

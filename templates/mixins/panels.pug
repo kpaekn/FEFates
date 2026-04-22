@@ -1,0 +1,33 @@
+mixin panelGroup(panelGroup)
+  if panelGroup
+    +phPanel(panelGroup.placeholder, panelGroup.key)
+    each panel in panelGroup.panels
+      +clsPanel(panel, panelGroup.key)
+
+mixin phPanel(placeholder, groupKey)
+  if placeholder
+    article.panel(data-group=groupKey)
+      h3= placeholder.label
+      section.class-block
+        div= placeholder.body
+
+mixin clsPanel(panel, groupKey)
+  article.panel.class-panel(data-group=groupKey, data-key=panel.key, hidden=panel.hidden)
+    h3= panel.label
+    +clsPanelBlock(panel.cls)
+    each promoCls in panel.cls.promotion || []
+      +clsPanelBlock(promoCls)
+
+mixin clsPanelBlock(cls)
+  section.class-block
+    .class-heading
+      h3= cls.name
+      each weapon in cls.weapons || []
+        img.weapon-icon(src=weaponIconPath(weapon), alt=weapon)
+    .skill-list
+      each skill in cls.skills || []
+        .skill-row
+          img.skill-icon(src=skillIconPath(skill.key), alt=skill.name)
+          .skill-copy
+            strong= skill.name
+            span= skill.description

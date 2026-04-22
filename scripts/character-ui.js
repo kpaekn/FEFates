@@ -4,7 +4,6 @@
   /** UI_CONFIG - the context object passed from the template engine */
   var cfg = window.UI_CONFIG;
 
-  var talentSelect = document.getElementById("cfg-talent");
   var boonSelect = document.getElementById("boon-options");
   var baneSelect = document.getElementById("bane-options");
   var parentSelect = document.getElementById("cfg-parent");
@@ -12,6 +11,7 @@
   var grandparentSelectGroup = document.querySelector(".grandparent-sg");
   var friendshipSelect = document.getElementById("cfg-friendship");
   var partnerSelect = document.getElementById("cfg-partner");
+  var talentSelect = document.getElementById("cfg-talent");
 
   var classChangeSelect = document.getElementById("class-change-options");
   var classGrowthsRows = document.querySelectorAll("#growths-table .class-growths-row");
@@ -42,19 +42,23 @@
           sg.hidden = !show;
         });
 
-        var grandparents = cfg.parents?.[this.value]?.variableParents;
-        grandparentSelect.value = "";
-        if (grandparents && grandparents.length > 0) {
-          // show/hide possible grandparents based on parent selection
-          grandparentSelect.querySelectorAll("option").forEach(function (option) {
-            option.hidden = !grandparents.some(function (gp) {
-              return gp.key === option.value;
+        if (grandparentSelect) {
+          var grandparents = cfg.parents?.[this.value]?.variableParents;
+          grandparentSelect.value = "";
+          if (grandparents && grandparents.length > 0) {
+            // show/hide possible grandparents based on parent selection
+            grandparentSelect.querySelectorAll("option").forEach(function (option) {
+              option.hidden = !grandparents.some(function (gp) {
+                return gp.key === option.value;
+              });
             });
-          });
-          grandparentSelectGroup.hidden = false;
-        } else {
-          grandparentSelectGroup.hidden = true;
+            grandparentSelectGroup.hidden = false;
+          } else {
+            grandparentSelectGroup.hidden = true;
+          }
         }
+
+        showHidePanels("parent", this.value);
       });
     }
 
@@ -65,6 +69,12 @@
     if (classChangeSelect) {
       classChangeSelect.addEventListener("change", updateTables);
       updateTables();
+    }
+
+    if (talentSelect) {
+      talentSelect.addEventListener("change", function () {
+        showHidePanels("talent", this.value);
+      });
     }
   }
 
@@ -95,7 +105,7 @@
   function getParentGrowthValue(key) {
     var parentData = cfg.parents?.[parentSelect.value];
     if (!parentData) return NaN;
-    return parentData.stats?.growth?.[key] ?? NaN;
+    return parseInt(parentData.stats?.growth?.[key] ?? NaN);
   }
 
   function getGrandparentGrowthValue(key) {
@@ -113,7 +123,7 @@
 
   function updateGrowthsTable(classKey) {
     classGrowthsRows.forEach((row) => {
-      const rowClassKey = row.getAttribute("data-class-key");
+      var { classKey: rowClassKey } = row.dataset;
       row.hidden = !row.hasAttribute("data-is-base") && rowClassKey !== classKey;
       if (!row.hidden) {
         row.querySelectorAll("td[data-key]").forEach(calcGrowthValues);
@@ -123,7 +133,7 @@
 
   function updateStatsTable(classKey) {
     classStatsRows.forEach((row) => {
-      const rowClassKey = row.getAttribute("data-class-key");
+      var { classKey: rowClassKey } = row.dataset;
       row.hidden = !row.hasAttribute("data-is-base") && rowClassKey !== classKey;
       if (!row.hidden) {
         row.querySelectorAll("td[data-key]").forEach(calcStatsValues);
@@ -132,9 +142,9 @@
   }
 
   function calcGrowthValues(td) {
-    var key = td.getAttribute("data-key");
-    var baseValue = parseInt(td.getAttribute("data-base"));
-    var clsValue = parseInt(td.getAttribute("data-class"));
+    var { key } = td.dataset;
+    var baseValue = parseInt(td.dataset.base);
+    var clsValue = parseInt(td.dataset.class);
     var parentValue = getParentGrowthValue(key);
     if (!isNaN(parentValue)) {
       // parent growth is averaged with grandparent growth
@@ -158,10 +168,17 @@
   }
 
   function calcStatsValues(td) {
-    var key = td.getAttribute("data-key");
-    var baseValue = parseInt(td.getAttribute("data-base"));
-    var clsValue = parseInt(td.getAttribute("data-class"));
+    var { key } = td.dataset;
+    var baseValue = parseInt(td.dataset.base);
+    var clsValue = parseInt(td.dataset.class);
     var bbValue = getBoonBaneStatValue(cfg.boonBaneStats, key);
     td.textContent = baseValue + clsValue + bbValue;
+  }
+
+  function showHidePanels(group, key) {
+    document.querySelectorAll(`[data-group="${group}"]`).forEach(function (panel) {
+      var { key: panelKey } = panel.dataset;
+      panel.hidden = panelKey !== key;
+    });
   }
 })();

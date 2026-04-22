@@ -1,7 +1,0 @@
-mixin classPanel2(cls, idx)
-  article.panel.class-panel(data-key=cls.key)
-    h3= cls.panelLabel
-    +classPanelBlock2(cls)
-
-    each promoCls in cls.promotion || []
-      +classPanelBlock2(promoCls)

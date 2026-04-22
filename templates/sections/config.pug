@@ -2,13 +2,6 @@ header
   h2 Config
 
 section.cfg-opts
-  if configOptions.talents
-    .sgc: .sg
-      label(for="cfg-talent") Talent
-      select#cfg-talent(name="cfg-talent")
-        each talent in configOptions.talents
-          option(value=talent.key)= talent.name
-
   if configOptions.parents
     .sgc
       if configOptions.parents
@@ -26,6 +19,13 @@ section.cfg-opts
             option(value="") - None -
             each gp in configOptions.grandparents
               option(value=gp.key)= gp.name
+
+  if configOptions.talents
+    .sgc: .sg
+      label(for="cfg-talent") Talent
+      select#cfg-talent(name="cfg-talent")
+        each talent in configOptions.talents
+          option(value=talent.key)= talent.name
 
   if configOptions.friendships || configOptions.partners
     .sgc
