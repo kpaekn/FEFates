@@ -1,9 +1,16 @@
 include ../mixins/panels
 
 header
-  h2 Classes and Skills
+  h2 Default Classes and Skills
 
 section.three-column-grid
   +panelGroup(panels.classSet)
   +panelGroup(panels.inheritedClassSet)
   +panelGroup(panels.talentClassSet)
+
+header
+  h2 Partner/Friendship Seal Classes and Skills
+
+section.three-column-grid
+  +panelGroup(panels.partnerClassSet)
+  +panelGroup(panels.friendshipClassSet)

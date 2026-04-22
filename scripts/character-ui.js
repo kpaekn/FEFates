@@ -3,6 +3,11 @@
 
   /** UI_CONFIG - the context object passed from the template engine */
   var cfg = window.UI_CONFIG;
+  var CORRIN_KANA_KEYS = ["corrin_m", "corrin_f", "kana_m", "kana_f"];
+  var PANEL_GROUP_PARENT = "parent";
+  var PANEL_GROUP_FRIENDSHIP = "friendship";
+  var PANEL_GROUP_PARTNER = "partner";
+  var PANEL_GROUP_TALENT = "talent";
 
   var boonSelect = document.getElementById("boon-options");
   var baneSelect = document.getElementById("bane-options");
@@ -12,6 +17,7 @@
   var friendshipSelect = document.getElementById("cfg-friendship");
   var partnerSelect = document.getElementById("cfg-partner");
   var talentSelect = document.getElementById("cfg-talent");
+  var talentSelectGroup = document.querySelector(".talent-sg");
 
   var classChangeSelect = document.getElementById("class-change-options");
   var classGrowthsRows = document.querySelectorAll("#growths-table .class-growths-row");
@@ -58,7 +64,9 @@
           }
         }
 
-        showHidePanels("parent", this.value);
+        disableCorrinKanaOptions(this, friendshipSelect, partnerSelect);
+        showTalentSelectGroup();
+        showHidePanels(PANEL_GROUP_PARENT, this.value);
       });
     }
 
@@ -71,9 +79,26 @@
       updateTables();
     }
 
+    if (friendshipSelect) {
+      friendshipSelect.addEventListener("change", function () {
+        disableCorrinKanaOptions(this, parentSelect, partnerSelect);
+        showTalentSelectGroup();
+        showHidePanels(PANEL_GROUP_FRIENDSHIP, this.value);
+      });
+    }
+
+    if (partnerSelect) {
+      partnerSelect.addEventListener("change", function () {
+        disableCorrinKanaOptions(this, parentSelect, friendshipSelect);
+        showTalentSelectGroup();
+        showHidePanels(PANEL_GROUP_PARTNER, this.value);
+      });
+    }
+
     if (talentSelect) {
       talentSelect.addEventListener("change", function () {
-        showHidePanels("talent", this.value);
+        console.log("talentSelect change", this.value);
+        showHidePanels(PANEL_GROUP_TALENT, this.value);
       });
     }
   }
@@ -175,7 +200,64 @@
     td.textContent = baseValue + clsValue + bbValue;
   }
 
+  /**
+   * If the provided select is Corrin/Kana, disable all options that are Corrin/Kana.
+   *
+   */
+  function disableCorrinKanaOptions(primarySelect, ...otherSelects) {
+    if (CORRIN_KANA_KEYS.includes(primarySelect.value)) {
+      otherSelects.forEach(function (select) {
+        if (!select) return;
+        if (CORRIN_KANA_KEYS.includes(select.value)) select.value = "";
+        select.querySelectorAll("option").forEach(function (option) {
+          option.disabled = CORRIN_KANA_KEYS.includes(option.value);
+        });
+      });
+    } else {
+      otherSelects.forEach(function (select) {
+        if (!select) return;
+        select.querySelectorAll("option").forEach(function (option) {
+          option.disabled = false;
+        });
+      });
+    }
+  }
+
+  /**
+   * Show the talent select group if any of (character, parent, friendship, partner) keys are Corrin/Kana
+   */
+  function showTalentSelectGroup() {
+    if (!talentSelectGroup) return;
+    var characterKey = cfg.characterKey;
+    var parentKey = parentSelect?.value;
+    var friendKey = friendshipSelect?.value;
+    var partnerKey = partnerSelect?.value;
+    var showTalent = [characterKey, parentKey, friendKey, partnerKey].some(function (key) {
+      return CORRIN_KANA_KEYS.includes(key);
+    });
+    talentSelectGroup.hidden = !showTalent;
+  }
+
   function showHidePanels(group, key) {
+    if (group === PANEL_GROUP_TALENT) {
+      if (parentSelect && CORRIN_KANA_KEYS.includes(parentSelect.value)) {
+        return _showHidePanels(PANEL_GROUP_PARENT, key);
+      }
+      if (friendshipSelect && CORRIN_KANA_KEYS.includes(friendshipSelect.value)) {
+        return _showHidePanels(PANEL_GROUP_FRIENDSHIP, key);
+      }
+      if (partnerSelect && CORRIN_KANA_KEYS.includes(partnerSelect.value)) {
+        return _showHidePanels(PANEL_GROUP_PARTNER, key);
+      }
+    }
+    if (CORRIN_KANA_KEYS.includes(key) && talentSelect) {
+      return _showHidePanels(group, talentSelect.value);
+    }
+    _showHidePanels(group, key);
+  }
+
+  function _showHidePanels(group, key) {
+    console.log(`showHidePanels: group=${group}, key=${key}`);
     document.querySelectorAll(`[data-group="${group}"]`).forEach(function (panel) {
       var { key: panelKey } = panel.dataset;
       panel.hidden = panelKey !== key;

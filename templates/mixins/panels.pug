@@ -1,22 +1,16 @@
-mixin panelGroup(panelGroup)
-  if panelGroup
-    +phPanel(panelGroup.placeholder, panelGroup.key)
-    each panel in panelGroup.panels
-      +clsPanel(panel, panelGroup.key)
+mixin panelGroup(panels)
+  each panel in panels
+    article.panel(data-group=panel.group, data-key=panel.key, hidden=panel.hidden)
+      h3= panel.label
+      if panel.placeholder
+        section.class-block
+          div= panel.placeholder
 
-mixin phPanel(placeholder, groupKey)
-  if placeholder
-    article.panel(data-group=groupKey)
-      h3= placeholder.label
-      section.class-block
-        div= placeholder.body
-
-mixin clsPanel(panel, groupKey)
-  article.panel.class-panel(data-group=groupKey, data-key=panel.key, hidden=panel.hidden)
-    h3= panel.label
-    +clsPanelBlock(panel.cls)
-    each promoCls in panel.cls.promotion || []
-      +clsPanelBlock(promoCls)
+      if panel.cls
+        +clsPanelBlock(panel.cls)
+        if panel.cls.promotion
+          each promoCls in panel.cls.promotion
+            +clsPanelBlock(promoCls)
 
 mixin clsPanelBlock(cls)
   section.class-block

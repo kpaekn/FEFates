@@ -1,7 +1,3 @@
-include mixins/class-block
-include mixins/class-panel
-include mixins/placeholder-panel
-
 doctype html
 html(lang="en")
   head
@@ -27,99 +23,8 @@ html(lang="en")
       include sections/stats
       include sections/panels
 
-      section
-        .three-column-grid
-          each panel, idx in defaultPanels
-            div
-              if idx === 0
-                h2.section-title Default Classes and Skills
-              else
-                h2.section-title
-              +classPanel(panel)
-
-          if isCorrinOrKana
-            div
-              section.select-group(aria-label="Corrin Talent selector")
-                label(for="class-talent") Talent
-                select#class-talent(name="class-talent")
-                  each opt in talentOptions
-                    option(value=opt.key, selected=opt.selected)= opt.name
-              each panel in heartSealTalentPanels
-                +classPanel(panel)
-
-          if isChild
-            div
-              section.select-group(aria-label="Parent selector")
-                label(for="parent-select") Parent
-                select#parent-select(name="parent-select")
-                  option(value="-none-", selected) - None -
-                  each opt in parentOptions
-                    option(value=opt.key)= opt.displayName
-              +placeholderPanel({ label: "Heart Seal - Variable Parent", bodyText: "(Select a parent)", group: "parent-panel", key: "-none-" })
-              each panel in parentPanels
-                +classPanel(panel)
-
-      if hasSealSection
-        section
-          h2.section-title Friendship/Partner Seal Classes and Skills
-          .three-column-grid
-            if hasFriendship
-              .friendship-seal-container
-                .select-group(aria-label="Friendship Seal Selector")
-                  label(for="friendship-support") Friendship (A+)
-                  select#friendship-support(name="friendship-support")
-                    option(value="-none-", selected) - None -
-                    each opt in friendshipOptions
-                      option(value=opt.key)= opt.displayName
-                  if isCorrin
-                    button.add.add-friendship-support + Add
-                +placeholderPanel({ label: "Friendship Seal", bodyText: "(Select an A+ rank support partner)", group: "friendship-panel", key: "-none-" })
-                each panel in friendshipPanels
-                  if panel.isCorrinOrKana
-                    div(data-group="friendship-panel", data-key=panel.panelKey, hidden)
-                      .select-group(aria-label="Corrin Talent Selector")
-                        label(for=`friendship-talent-${panel.panelKey}`) Talent
-                        select(id=`friendship-talent-${panel.panelKey}`, name=`friendship-talent-${panel.panelKey}`)
-                          each opt in panel.talentOptions
-                            option(value=opt.key, selected=opt.selected)= opt.name
-                      each tp in panel.talentPanels
-                        +classPanel(tp)
-                  else
-                    +classPanel(panel)
-
-            if hasPartner
-              div
-                .select-group-container
-                  .select-group(aria-label="Partner Seal Selector")
-                    label(for="partner-support") Partner (S)
-                    select#partner-support(name="partner-support")
-                      option(value="-none-", selected) - None -
-                      each opt in partnerOptions
-                        option(value=opt.key)= opt.displayName
-                  each panel in partnerPanels
-                    if panel.isCorrinOrKana
-                      .select-group(
-                        aria-label="Corrin Talent Selector",
-                        data-group="partner-talent-control",
-                        data-key=panel.panelKey,
-                        hidden
-                      )
-                        label(for=`partner-talent-${panel.panelKey}`) Talent
-                        select(id=`partner-talent-${panel.panelKey}`, name=`partner-talent-${panel.panelKey}`)
-                          each opt in panel.talentOptions
-                            option(value=opt.key, selected=opt.selected)= opt.name
-                +placeholderPanel({ label: "Partner Seal", bodyText: "(Select an S rank support partner)", group: "partner-panel", key: "-none-" })
-                each panel in partnerPanels
-                  if panel.isCorrinOrKana
-                    div(data-group="partner-panel", data-key=panel.panelKey, hidden)
-                      each tp in panel.talentPanels
-                        +classPanel(tp)
-                  else
-                    +classPanel(panel)
-
     script.
       window.DEBUG_OBJECTS = !{JSON.stringify(_context)};
       window.PAGE_CONFIG = !{JSON.stringify(pageConfig)};
       window.UI_CONFIG = !{JSON.stringify(uiConfig)};
-    script(src="../scripts/seal-ui.js")
     script(src="../scripts/character-ui.js")

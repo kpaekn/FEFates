@@ -20,15 +20,16 @@ section.cfg-opts
             each gp in configOptions.grandparents
               option(value=gp.key)= gp.name
 
-  if configOptions.talents
-    .sgc: .sg
-      label(for="cfg-talent") Talent
-      select#cfg-talent(name="cfg-talent")
-        each talent in configOptions.talents
-          option(value=talent.key)= talent.name
-
   if configOptions.friendships || configOptions.partners
     .sgc
+      if configOptions.partners
+        .sg
+          label(for="cfg-partner") Partner (S)
+          select#cfg-partner(name="cfg-partner")
+            option(value="") - None -
+            each partner in configOptions.partners
+              option(value=partner.key)= partner.name
+
       if configOptions.friendships
         .sg
           label(for="cfg-friendship") Friendship (A+)
@@ -37,10 +38,10 @@ section.cfg-opts
             each friend in configOptions.friendships
               option(value=friend.key)= friend.name
 
-      if configOptions.partners
-        .sg
-          label(for="cfg-partner") Partner (S)
-          select#cfg-partner(name="cfg-partner")
-            option(value="") - None -
-            each partner in configOptions.partners
-              option(value=partner.key)= partner.name
+  if configOptions.talents
+    .sgc.talent-sg(hidden=configOptions.talentsHidden)
+      .sg
+        label(for="cfg-talent") Talent
+        select#cfg-talent(name="cfg-talent")
+          each talent in configOptions.talents
+            option(value=talent.key)= talent.name

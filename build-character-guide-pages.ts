@@ -385,6 +385,7 @@ function createConfigOptions(character: Character) {
   const showBoonBane = character.isCorrin || variableParents?.some((p) => p.isCorrin);
   return {
     talents: db.getTalentOptions(character.gender),
+    talentsHidden: character.isCorrinOrKana ? false : true,
     parents: db.sortCharacters(variableParents),
     grandparents: db.sortCharacters(variableGrandparents),
     friendships: character.friendships,
@@ -455,63 +456,126 @@ function createUiConfig(character: Character) {
   };
 }
 
-function buildPanels(character: Character): Record<
-  string,
-  | {
-      key?: string;
-      placeholder?: {
-        label: string;
-        body: string;
-      };
-      panels: {
-        hidden?: boolean;
-        key?: string;
-        label: string;
-        cls: Class;
-      }[];
-    }
-  | undefined
-> {
-  return {
-    classSet: {
-      panels: character.classSet.map((cls, idx) => {
-        return {
-          label: idx === 0 ? "Default Class" : `Heart Seal`,
-          cls: cls,
-        };
-      }),
-    },
-    inheritedClassSet:
-      character.variableParents?.length > 0
-        ? {
-            key: "parent",
-            placeholder: {
-              label: "Heart Seal - Variable Parent",
-              body: "(Select a parent)",
-            },
-            panels: character.variableParents?.map((parent) => {
-              return {
-                hidden: true,
-                key: parent.key,
-                label: "Inherited Class - " + parent.name,
-                cls: character.getInheritedClass(parent),
-              };
-            }),
-          }
-        : undefined,
-    talentClassSet: character.isCorrinOrKana
-      ? {
-          key: "talent",
-          panels: db.getTalentOptions(character.gender).map((cls, idx) => {
+type Panel = {
+  label: string;
+  placeholder?: string;
+  cls?: Class;
+  group?: string;
+  key?: string;
+  hidden?: boolean;
+};
+
+function buildPanels(character: Character): Record<string, Panel[]> {
+  const classSetPanels: Panel[] = character.classSet.map((cls, idx) => {
+    return {
+      label: idx === 0 ? "Default Class" : `Heart Seal`,
+      cls: cls,
+    };
+  });
+  const talentPanels: Panel[] = db.getTalentOptions(character.gender).map((cls, idx) => {
+    return {
+      label: "Talent - " + cls.name,
+      cls: cls,
+      group: "talent",
+      key: cls.key,
+      hidden: idx > 0,
+    };
+  });
+  const inheritedClassPanels: Panel[] =
+    character.variableParents?.length > 0
+      ? [
+          {
+            label: "Inherited Class",
+            placeholder: "(Select a parent)",
+            group: "parent",
+            key: "",
+          },
+          ...talentPanels.map((tp) => {
             return {
-              hidden: idx > 0,
-              key: cls.key,
-              label: "Talent Class - " + cls.name,
-              cls: cls,
+              ...tp,
+              label: "Inherited Class - " + tp.label,
+              group: "parent",
+              hidden: true,
             };
           }),
-        }
-      : undefined,
+          ...character.variableParents?.map((parent) => {
+            return {
+              label: "Inherited Class - " + parent.name,
+              cls: character.getInheritedClass(parent),
+              group: "parent",
+              key: parent.key,
+              hidden: true,
+            };
+          }),
+        ]
+      : [];
+  const partnerClassSetPanels: Panel[] =
+    character.partners.length > 0
+      ? [
+          {
+            label: "Partner Seal",
+            placeholder: "(Select an S rank support partner)",
+            group: "partner",
+            key: "",
+          },
+          ...talentPanels.map((tp) => {
+            return {
+              ...tp,
+              label: "Partner Seal - " + tp.label,
+              group: "partner",
+              hidden: true,
+            };
+          }),
+          ...character.partners
+            .filter((partner) => !partner.isCorrinOrKana)
+            .map((partner) => {
+              return {
+                label: "Partner Seal - " + partner.name,
+                cls: character.getBorrowedClass(partner),
+                group: "partner",
+                key: partner.key,
+                hidden: true,
+              };
+            }),
+        ]
+      : [];
+  const friendshipClassSetPanels: Panel[] =
+    character.friendships.length > 0
+      ? [
+          {
+            label: "Friendship Seal",
+            placeholder: "(Select an A+ rank support partner)",
+            group: "friendship",
+            key: "",
+          },
+          ...talentPanels.map((tp) => {
+            return {
+              ...tp,
+              label: "Friendship Seal - " + tp.label,
+              group: "friendship",
+              hidden: true,
+            };
+          }),
+          ...character.friendships
+            .filter((friend) => !friend.isCorrinOrKana)
+            .map((friend) => {
+              return {
+                label: "Friendship Seal - " + friend.name,
+                cls: character.getBorrowedClass(friend),
+                group: "friendship",
+                key: friend.key,
+                hidden: true,
+              };
+            }),
+        ]
+      : [];
+
+  return {
+    classSet: classSetPanels,
+    talentClassSet: character.isCorrinOrKana ? talentPanels : [],
+    inheritedClassSet: inheritedClassPanels,
+    partnerClassSet: partnerClassSetPanels,
+    friendshipClassSet: friendshipClassSetPanels,
   };
 }
 
