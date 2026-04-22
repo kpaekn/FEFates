@@ -271,9 +271,20 @@
   }
 
   function _showHidePanels(group, ...keys) {
-    console.log(`showHidePanels: group=${group}, keys=${keys}`);
-    document.querySelectorAll(`[data-group="${group}"]`).forEach(function (panel) {
-      var { key: panelKey } = panel.dataset;
+    console.log(`showHidePanels: group=${group}, keys(${keys.length})=${keys}`);
+    var panels = [...document.querySelectorAll(`[data-group="${group}"]`)];
+    if (keys.length > 1) {
+      // re-order panels to match key order
+      keys.forEach((key) => {
+        var panel = panels.find((panel) => {
+          var panelKey = panel.dataset.key;
+          return panelKey === key;
+        });
+        panel.parentElement.appendChild(panel);
+      });
+    }
+    panels.forEach((panel) => {
+      var panelKey = panel.dataset.key;
       panel.hidden = !keys.includes(panelKey);
     });
   }
