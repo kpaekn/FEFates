@@ -236,7 +236,7 @@ function buildCharacterContext(character: Character) {
 
 // ─── Pug helper functions (passed as template locals) ─────────────────────────
 const pugHelpers = {
-  charaPortraitPath: (name: string) => `../images/portrait/${name}.png`,
+  charaPortraitPath: (name: string) => `../images/portraits/${name}.png`,
   skillIconPath: (skill: string) => `../images/icon/skills/${skill}.png`,
   weaponIconPath: (weapon: string) => `../images/icon/weapons/${weapon}.png`,
 };
