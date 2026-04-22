@@ -24,5 +24,6 @@ html(lang="en")
         .character-grid
           each char in section.characters
             a.character-card(href=`${char.key}.html`)
-              img(src=charaPortraitPath(char.name))
+              span.character-portrait
+                img(src=charaPortraitPath(char.name))
               h3= char.name

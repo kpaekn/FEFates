@@ -68,6 +68,28 @@ h1 {
   font-size: var(--font-size-xl);
 }
 
+h1 .header-portrait {
+  background-color: var(--color-tan);
+  border: 2px solid var(--color-tan);
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: var(--space-md);
+}
+
+h1 .header-portrait img {
+  width: 48px;
+  height: auto;
+  transform: scale(1.1);
+  transition: transform 0.3s cubic-bezier(.4, 2, .4, 1);
+}
+
+h1:hover .header-portrait img,
+h1:focus-visible .header-portrait img {
+  transform: scale(1.15);
+}
+
 h2 {
   font-size: var(--font-size-lg);
 }
@@ -127,11 +149,18 @@ a {
   border-radius: var(--border-radius);
   text-decoration: none;
   transition: background-color 0.2s ease;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
-.character-card img {
+.character-card .character-portrait {
   border-bottom: 2px solid var(--color-brown);
+  display: block;
+  overflow: hidden;
+}
+
+.character-card .character-portrait img {
+  transform: scale(1.1);
+  transition: transform 0.3s cubic-bezier(.4, 2, .4, 1);
 }
 
 .character-card h3 {
@@ -144,6 +173,11 @@ a {
 .character-card:hover,
 .character-card:focus-visible {
   background-color: var(--color-light-tan);
+}
+
+.character-card:hover .character-portrait img,
+.character-card:focus-visible .character-portrait img {
+  transform: scale(1.15);
 }
 
 .character-card:hover h3,

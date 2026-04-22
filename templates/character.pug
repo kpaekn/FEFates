@@ -12,7 +12,11 @@ html(lang="en")
   body
     main.container
       header
-        h1= pageTitle
+        h1
+          span.header-portrait
+            img(src=charaPortraitPath(characterName), alt=characterName)
+          span= pageTitle
+
         nav.breadcrumb
           ul
             li Fire Emblem Fates
