@@ -74,34 +74,47 @@ h1 {
   font-size: var(--font-size-xl);
 }
 
-h1 .header-portrait {
+.character-header {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: var(--space-md);
+  margin: var(--space-sm) 0;
+  align-items: center;
+}
+
+.character-header h1 {
+  line-height: 20px;
+}
+
+.character-header .header-portrait {
   background-color: var(--color-tan);
   border: 2px solid var(--color-tan);
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
   vertical-align: middle;
-  margin-right: var(--space-md);
 }
 
-h1 .header-portrait img {
+.character-header .header-portrait img {
   width: 48px;
   height: auto;
   transform: scale(1.1);
   transition: transform 0.3s cubic-bezier(.4, 2, .4, 1);
 }
 
-h1 .header-portrait:hover img,
-h1 .header-portrait:focus-visible img {
+.character-header .header-portrait:hover img,
+.character-header .header-portrait:focus-visible img {
   transform: scale(1.15);
 }
 
-h1 .header-portrait.birthright {
-  border-color: var(--color-dark-pink);
+.character-header .header-portrait.birthright {
+  background-color: var(--color-pink);
+  border-color: var(--color-pink);
 }
 
-h1 .header-portrait.conquest {
-  border-color: var(--color-dark-purple);
+.character-header .header-portrait.conquest {
+  background-color: var(--color-purple);
+  border-color: var(--color-purple);
 }
 
 h2 {

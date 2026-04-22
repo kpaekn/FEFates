@@ -12,10 +12,10 @@ html(lang="en")
   body
     main.container
       header
-        h1
+        .character-header
           span.header-portrait(class=character.route)
             img(src=charaPortraitPath(character.key), alt=character.name)
-          span= pageTitle
+          h1= pageTitle
 
         nav.breadcrumb
           ul
