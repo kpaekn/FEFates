@@ -240,12 +240,26 @@ export default class Character {
   }
 
   getBorrowedClass(friendOrPartner: Character): Class {
+    // First pass: look for the first non-unique class in the friend's class set that is not the same as the character's first class.
     for (let i = 0; i < friendOrPartner.classSet.length; i++) {
       const borrowedClass = friendOrPartner.classSet[i];
       if (borrowedClass.unique) continue;
-      return borrowedClass.resolveClassForGender(this.gender);
+      if (this.classSet[0] !== borrowedClass) {
+        return borrowedClass.resolveClassForGender(this.gender);
+      }
     }
 
-    throw new Error(`No borrowable class found from ${friendOrPartner.key} → ${this.key}`);
+    // Second pass: look for the first parallel class of the partner class set.
+    for (let i = 0; i < friendOrPartner.classSet.length; i++) {
+      const partnerClass = friendOrPartner.classSet[i];
+      if (partnerClass.parallelClass) {
+        return partnerClass.parallelClass.resolveClassForGender(this.gender);
+      }
+    }
+
+    if (friendOrPartner.isCorrinOrKana) {
+      return undefined as unknown as Class;
+    }
+    throw new Error(`No borrowable class found from friend/partner ${friendOrPartner.key} → ${this.key}`);
   }
 }
