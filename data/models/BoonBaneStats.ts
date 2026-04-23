@@ -19,6 +19,10 @@ export default class BoonBaneStats {
     this.cap = cap;
   }
 
+  toJSON() {
+    return { ...this, key: undefined };
+  }
+
   static fromJSON(key: string, data: Record<string, any>): BoonBaneStats {
     try {
       return new BoonBaneStats(

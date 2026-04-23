@@ -7,6 +7,7 @@ interface RawCharacterStatsData {
   base: Record<string, number[]>;
   growth: number[];
   cap?: number[];
+  boon_bane?: string;
 }
 
 export default class CharacterStats {
@@ -14,13 +15,21 @@ export default class CharacterStats {
   base: BaseStats[];
   growth: Stats;
   cap: Stats | null;
-  boonBaneStats: BoonBaneStats | null = null;
+  boonBaneStats: BoonBaneStats | undefined = undefined;
+
+  _boonBaneKey: string;
 
   constructor(key: string, raw: RawCharacterStatsData) {
     this.key = key;
     this.base = Object.entries(raw.base).map(([name, values]) => new BaseStats(name, values));
     this.growth = new Stats(raw.growth);
     this.cap = raw.cap ? new Stats(raw.cap) : null;
+
+    this._boonBaneKey = raw.boon_bane ?? key;
+  }
+
+  toJSON() {
+    return { ...this, _boonBaneKey: undefined };
   }
 
   static fromJSON(key: string, raw: RawCharacterStatsData): CharacterStats {
@@ -33,6 +42,6 @@ export default class CharacterStats {
   }
 
   linkObjects(boonBaneStats: Map<string, BoonBaneStats>): void {
-    this.boonBaneStats = boonBaneStats.get(this.key) ?? null;
+    this.boonBaneStats = boonBaneStats.get(this._boonBaneKey) ?? undefined;
   }
 }
