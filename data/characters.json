@@ -5,8 +5,8 @@
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy, fuga",
-      "partner": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, niles, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina, anna"
+      "friendship": "jakob,kaze,silas,shura,izana,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,yukimura,gunter,arthur,odin,laslow,benny,leo,keaton,xander,shigure,dwyer,shiro,kiragi,asugi,hisame,siegbert,forrest,ignatius,percy,fuga",
+      "partner": "azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,reina,scarlet,elise,effie,niles,nyx,camilla,selena,beruka,peri,charlotte,flora,sophie,midori,selkie,mitama,caeldori,rhajat,velouria,ophelia,soleil,nina,anna"
     },
     "personal_skill": "supportive"
   },
@@ -16,71 +16,71 @@
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, reina, scarlet, elise, effie, nyx, camilla, selena, beruka, peri, charlotte, flora, sophie, midori, selkie, mitama, caeldori, velouria, ophelia, soleil, nina, anna",
-      "partner": "jakob, kaze, silas, shura, izana, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, yukimura, gunter, arthur, odin, niles, laslow, benny, leo, keaton, xander, shigure, dwyer, shiro, kiragi, asugi, hisame, rhajat, siegbert, forrest, ignatius, percy, fuga"
+      "friendship": "azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,reina,scarlet,elise,effie,nyx,camilla,selena,beruka,peri,charlotte,flora,sophie,midori,selkie,mitama,caeldori,velouria,ophelia,soleil,nina,anna",
+      "partner": "jakob,kaze,silas,shura,izana,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,yukimura,gunter,arthur,odin,niles,laslow,benny,leo,keaton,xander,shigure,dwyer,shiro,kiragi,asugi,hisame,rhajat,siegbert,forrest,ignatius,percy,fuga"
     },
     "personal_skill": "supportive"
   },
   "azura": {
     "name": "Azura",
-    "class_set": "songstress, sky_knight",
+    "class_set": "songstress,sky_knight",
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "sakura, hinoka, elise",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "sakura,hinoka,elise",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "personal_skill": "healing_descant"
   },
   "felicia": {
     "name": "Felicia",
-    "class_set": "troubadour_f, mercenary",
+    "class_set": "troubadour_f,mercenary",
     "starting_class": "maid",
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "hana, peri, flora",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "hana,peri,flora",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "personal_skill": "devoted_partner"
   },
   "jakob": {
     "name": "Jakob",
-    "class_set": "troubadour_m, cavalier",
+    "class_set": "troubadour_m,cavalier",
     "starting_class": "butler",
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "silas, takumi, gunter",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "silas,takumi,gunter",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "personal_skill": "evasive_partner"
   },
   "kaze": {
     "name": "Kaze",
-    "class_set": "ninja, samurai",
+    "class_set": "ninja,samurai",
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "silas, saizo, xander",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "silas,saizo,xander",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "personal_skill": "miraculous_save"
   },
   "silas": {
     "name": "Silas",
-    "class_set": "cavalier, mercenary",
+    "class_set": "cavalier,mercenary",
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "jakob, kaze, ryoma",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "jakob,kaze,ryoma",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "personal_skill": "vow_of_friendship"
   },
   "shura": {
     "name": "Shura",
-    "class_set": "outlaw, ninja, fighter",
+    "class_set": "outlaw,ninja,fighter",
     "starting_class": "adventurer",
     "gender": "m",
     "route": "all",
@@ -92,7 +92,7 @@
   },
   "izana": {
     "name": "Izana",
-    "class_set": "monk, samurai, apothecary",
+    "class_set": "monk,samurai,apothecary",
     "starting_class": "onmyoji",
     "gender": "m",
     "route": "all",
@@ -104,172 +104,172 @@
   },
   "mozu": {
     "name": "Mozu",
-    "class_set": "villager, archer",
+    "class_set": "villager,archer",
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "oboro, effie, nyx",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "oboro,effie,nyx",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "personal_skill": "forager"
   },
   "rinkah": {
     "name": "Rinkah",
-    "class_set": "oni_savage, ninja",
+    "class_set": "oni_savage,ninja",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "orochi, oboro, kagero, charlotte",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, benny, keaton"
+      "friendship": "orochi,oboro,kagero,charlotte",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,benny,keaton"
     },
     "personal_skill": "fiery_blood"
   },
   "sakura": {
     "name": "Sakura",
-    "class_set": "shrine_maiden, sky_knight",
+    "class_set": "shrine_maiden,sky_knight",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "azura, hana, hinoka, elise",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, kaden, leo, xander"
+      "friendship": "azura,hana,hinoka,elise",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,kaden,leo,xander"
     },
     "personal_skill": "quiet_strength"
   },
   "hana": {
     "name": "Hana",
-    "class_set": "samurai, shrine_maiden",
+    "class_set": "samurai,shrine_maiden",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "felicia, sakura, setsuna, effie",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, laslow, keaton"
+      "friendship": "felicia,sakura,setsuna,effie",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,laslow,keaton"
     },
     "personal_skill": "fearsome_blow"
   },
   "subaki": {
     "name": "Subaki",
-    "class_set": "sky_knight, samurai",
+    "class_set": "sky_knight,samurai",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "saizo, azama, hinata, niles",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, nyx, selena"
+      "friendship": "saizo,azama,hinata,niles",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,nyx,selena"
     },
     "personal_skill": "perfectionist"
   },
   "saizo": {
     "name": "Saizo",
-    "class_set": "ninja, samurai",
+    "class_set": "ninja,samurai",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "kaze, subaki, ryoma, laslow",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, beruka, charlotte"
+      "friendship": "kaze,subaki,ryoma,laslow",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,beruka,charlotte"
     },
     "personal_skill": "pyrotechnics"
   },
   "orochi": {
     "name": "Orochi",
-    "class_set": "diviner, apothecary",
+    "class_set": "diviner,apothecary",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "rinkah, oboro, kagero, nyx",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, odin, laslow"
+      "friendship": "rinkah,oboro,kagero,nyx",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,odin,laslow"
     },
     "personal_skill": "capture"
   },
   "hinoka": {
     "name": "Hinoka",
-    "class_set": "sky_knight, spear_fighter",
+    "class_set": "sky_knight,spear_fighter",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "azura, sakura, setsuna, camilla",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, kaden, leo, xander"
+      "friendship": "azura,sakura,setsuna,camilla",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,kaden,leo,xander"
     },
     "personal_skill": "rallying_cry"
   },
   "azama": {
     "name": "Azama",
-    "class_set": "monk, apothecary",
+    "class_set": "monk,apothecary",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "subaki, hayato, kaden, arthur",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, effie, beruka"
+      "friendship": "subaki,hayato,kaden,arthur",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,effie,beruka"
     },
     "personal_skill": "divine_retribution"
   },
   "setsuna": {
     "name": "Setsuna",
-    "class_set": "archer, ninja",
+    "class_set": "archer,ninja",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "hana, hinoka, kagero, selena",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, niles"
+      "friendship": "hana,hinoka,kagero,selena",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,arthur,niles"
     },
     "personal_skill": "optimist"
   },
   "hayato": {
     "name": "Hayato",
-    "class_set": "diviner, oni_savage",
+    "class_set": "diviner,oni_savage",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "azama, kaden, fuga, benny",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, effie, nyx"
+      "friendship": "azama,kaden,fuga,benny",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,effie,nyx"
     },
     "personal_skill": "pride"
   },
   "oboro": {
     "name": "Oboro",
-    "class_set": "spear_fighter, apothecary",
+    "class_set": "spear_fighter,apothecary",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "mozu, rinkah, orochi, beruka",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, niles, benny"
+      "friendship": "mozu,rinkah,orochi,beruka",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,niles,benny"
     },
     "personal_skill": "nohr_enmity"
   },
   "hinata": {
     "name": "Hinata",
-    "class_set": "samurai, oni_savage",
+    "class_set": "samurai,oni_savage",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "subaki, takumi, kaden, odin",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, selena, peri"
+      "friendship": "subaki,takumi,kaden,odin",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,selena,peri"
     },
     "personal_skill": "triple_threat"
   },
   "takumi": {
     "name": "Takumi",
-    "class_set": "archer, spear_fighter",
+    "class_set": "archer,spear_fighter",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "jakob, hinata, ryoma, leo",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, hana, orochi, setsuna, oboro, kagero, elise, camilla"
+      "friendship": "jakob,hinata,ryoma,leo",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,hana,orochi,setsuna,oboro,kagero,elise,camilla"
     },
     "personal_skill": "competitive"
   },
   "kagero": {
     "name": "Kagero",
-    "class_set": "ninja, diviner",
+    "class_set": "ninja,diviner",
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "rinkah, orochi, setsuna, peri",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, saizo, azama, hayato, hinata, takumi, kaden, ryoma, arthur, odin"
+      "friendship": "rinkah,orochi,setsuna,peri",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,saizo,azama,hayato,hinata,takumi,kaden,ryoma,arthur,odin"
     },
     "personal_skill": "shuriken_mastery"
   },
   "reina": {
     "name": "Reina",
-    "class_set": "sky_knight, diviner, ninja",
+    "class_set": "sky_knight,diviner,ninja",
     "starting_class": "kinshi_knight",
     "gender": "f",
     "supports": {
@@ -280,30 +280,30 @@
   },
   "kaden": {
     "name": "Kaden",
-    "class_set": "kitsune, diviner",
+    "class_set": "kitsune,diviner",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "azama, hayato, hinata, keaton",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, sakura, hana, orochi, hinoka, setsuna, oboro, kagero, peri, charlotte"
+      "friendship": "azama,hayato,hinata,keaton",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,sakura,hana,orochi,hinoka,setsuna,oboro,kagero,peri,charlotte"
     },
     "personal_skill": "reciprocity"
   },
   "ryoma": {
     "name": "Ryoma",
-    "class_set": "samurai, sky_knight",
+    "class_set": "samurai,sky_knight",
     "starting_class": "swordmaster",
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "silas, saizo, takumi, xander",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, hana, orochi, setsuna, oboro, kagero, elise, camilla"
+      "friendship": "silas,saizo,takumi,xander",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,hana,orochi,setsuna,oboro,kagero,elise,camilla"
     },
     "personal_skill": "bushido"
   },
   "scarlet": {
     "name": "Scarlet",
-    "class_set": "wyvern_rider, outlaw, knight",
+    "class_set": "wyvern_rider,outlaw,knight",
     "starting_class": "wyvern_lord",
     "gender": "f",
     "supports": {
@@ -314,7 +314,7 @@
   },
   "yukimura": {
     "name": "Yukimura",
-    "class_set": "apothecary, samurai, monk",
+    "class_set": "apothecary,samurai,monk",
     "starting_class": "mechanist",
     "gender": "m",
     "supports": {
@@ -325,7 +325,7 @@
   },
   "gunter": {
     "name": "Gunter",
-    "class_set": "cavalier, mercenary, wyvern_rider",
+    "class_set": "cavalier,mercenary,wyvern_rider",
     "starting_class": "great_knight",
     "gender": "m",
     "supports": {
@@ -337,186 +337,186 @@
   },
   "elise": {
     "name": "Elise",
-    "class_set": "troubadour_f, wyvern_rider",
+    "class_set": "troubadour_f,wyvern_rider",
     "gender": "f",
     "supports": {
-      "friendship": "azura, effie, camilla, sakura",
-      "partner": "corrin_m, jakob, kaze, silas, takumi, ryoma, arthur, odin, niles, laslow, benny, keaton"
+      "friendship": "azura,effie,camilla,sakura",
+      "partner": "corrin_m,jakob,kaze,silas,takumi,ryoma,arthur,odin,niles,laslow,benny,keaton"
     },
     "route": "conquest",
     "personal_skill": "lily_s_poise"
   },
   "arthur": {
     "name": "Arthur",
-    "class_set": "fighter, cavalier",
+    "class_set": "fighter,cavalier",
     "gender": "m",
     "supports": {
-      "friendship": "niles, benny, keaton, azama",
-      "partner": "corrin_f, azura, felicia, mozu, setsuna, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "niles,benny,keaton,azama",
+      "partner": "corrin_f,azura,felicia,mozu,setsuna,kagero,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "misfortunate"
   },
   "effie": {
     "name": "Effie",
-    "class_set": "knight, troubadour_f",
+    "class_set": "knight,troubadour_f",
     "gender": "f",
     "supports": {
-      "friendship": "mozu, elise, nyx, hana",
-      "partner": "corrin_m, jakob, kaze, silas, azama, hayato, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "mozu,elise,nyx,hana",
+      "partner": "corrin_m,jakob,kaze,silas,azama,hayato,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "route": "conquest",
     "personal_skill": "puissance"
   },
   "odin": {
     "name": "Odin",
-    "class_set": "dark_mage, samurai",
+    "class_set": "dark_mage,samurai",
     "gender": "m",
     "supports": {
-      "friendship": "niles, laslow, leo, hinata",
-      "partner": "corrin_f, azura, felicia, mozu, orochi, kagero, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "niles,laslow,leo,hinata",
+      "partner": "corrin_f,azura,felicia,mozu,orochi,kagero,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "aching_blood"
   },
   "niles": {
     "name": "Niles",
-    "class_set": "outlaw, dark_mage",
+    "class_set": "outlaw,dark_mage",
     "gender": "m",
     "supports": {
-      "friendship": "arthur, odin, leo, subaki",
-      "partner": "corrin_m, corrin_f, azura, felicia, mozu, setsuna, oboro, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "arthur,odin,leo,subaki",
+      "partner": "corrin_m,corrin_f,azura,felicia,mozu,setsuna,oboro,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "kidnap"
   },
   "nyx": {
     "name": "Nyx",
-    "class_set": "dark_mage, outlaw",
+    "class_set": "dark_mage,outlaw",
     "gender": "f",
     "supports": {
-      "friendship": "mozu, effie, charlotte, orochi",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, hayato, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "mozu,effie,charlotte,orochi",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,hayato,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "route": "conquest",
     "personal_skill": "countercurse"
   },
   "camilla": {
     "name": "Camilla",
-    "class_set": "wyvern_rider, dark_mage",
+    "class_set": "wyvern_rider,dark_mage",
     "starting_class": "malig_knight",
     "gender": "f",
     "supports": {
-      "friendship": "hinoka, elise, selena, beruka",
-      "partner": "corrin_m, jakob, kaze, silas, takumi, ryoma, arthur, odin, niles, laslow, benny, keaton"
+      "friendship": "hinoka,elise,selena,beruka",
+      "partner": "corrin_m,jakob,kaze,silas,takumi,ryoma,arthur,odin,niles,laslow,benny,keaton"
     },
     "route": "conquest",
     "personal_skill": "rose_s_thorn"
   },
   "selena": {
     "name": "Selena",
-    "class_set": "mercenary, sky_knight",
+    "class_set": "mercenary,sky_knight",
     "gender": "f",
     "supports": {
-      "friendship": "camilla, beruka, peri, setsuna",
-      "partner": "corrin_m, jakob, kaze, silas, subaki, hinata, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "camilla,beruka,peri,setsuna",
+      "partner": "corrin_m,jakob,kaze,silas,subaki,hinata,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "route": "conquest",
     "personal_skill": "fierce_rival"
   },
   "beruka": {
     "name": "Beruka",
-    "class_set": "wyvern_rider, fighter",
+    "class_set": "wyvern_rider,fighter",
     "gender": "f",
     "supports": {
-      "friendship": "camilla, selena, charlotte, oboro",
-      "partner": "corrin_m, jakob, kaze, silas, saizo, azama, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "camilla,selena,charlotte,oboro",
+      "partner": "corrin_m,jakob,kaze,silas,saizo,azama,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "route": "conquest",
     "personal_skill": "opportunist"
   },
   "laslow": {
     "name": "Laslow",
-    "class_set": "mercenary, ninja",
+    "class_set": "mercenary,ninja",
     "gender": "m",
     "supports": {
-      "friendship": "odin, keaton, xander, saizo",
-      "partner": "corrin_f, azura, felicia, mozu, hana, orochi, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "odin,keaton,xander,saizo",
+      "partner": "corrin_f,azura,felicia,mozu,hana,orochi,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "fancy_footwork"
   },
   "peri": {
     "name": "Peri",
-    "class_set": "cavalier, dark_mage",
+    "class_set": "cavalier,dark_mage",
     "gender": "f",
     "supports": {
-      "friendship": "felicia, selena, charlotte, kagero",
-      "partner": "corrin_m, jakob, kaze, silas, hinata, kaden, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "felicia,selena,charlotte,kagero",
+      "partner": "corrin_m,jakob,kaze,silas,hinata,kaden,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "route": "conquest",
     "personal_skill": "bloodthirst"
   },
   "benny": {
     "name": "Benny",
-    "class_set": "knight, fighter",
+    "class_set": "knight,fighter",
     "gender": "m",
     "supports": {
-      "friendship": "arthur, keaton, hayato",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, oboro, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "arthur,keaton,hayato",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,oboro,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "fierce_mien"
   },
   "charlotte": {
     "name": "Charlotte",
-    "class_set": "fighter, troubadour_f",
+    "class_set": "fighter,troubadour_f",
     "gender": "f",
     "supports": {
-      "friendship": "nyx, beruka, peri, rinkah",
-      "partner": "corrin_m, jakob, kaze, silas, saizo, kaden, arthur, odin, niles, laslow, benny, leo, keaton, xander"
+      "friendship": "nyx,beruka,peri,rinkah",
+      "partner": "corrin_m,jakob,kaze,silas,saizo,kaden,arthur,odin,niles,laslow,benny,leo,keaton,xander"
     },
     "route": "conquest",
     "personal_skill": "unmask"
   },
   "leo": {
     "name": "Leo",
-    "class_set": "dark_mage, troubadour_m",
+    "class_set": "dark_mage,troubadour_m",
     "starting_class": "dark_knight",
     "gender": "m",
     "supports": {
-      "friendship": "odin, niles, xander, takumi",
-      "partner": "corrin_f, azura, felicia, mozu, sakura, hinoka, effie, nyx, selena, beruka, peri, charlotte"
+      "friendship": "odin,niles,xander,takumi",
+      "partner": "corrin_f,azura,felicia,mozu,sakura,hinoka,effie,nyx,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "pragmatic"
   },
   "keaton": {
     "name": "Keaton",
-    "class_set": "wolfskin, fighter",
+    "class_set": "wolfskin,fighter",
     "gender": "m",
     "supports": {
-      "friendship": "arthur, laslow, benny, kaden",
-      "partner": "corrin_f, azura, felicia, mozu, rinkah, hana, elise, effie, nyx, camilla, selena, beruka, peri, charlotte"
+      "friendship": "arthur,laslow,benny,kaden",
+      "partner": "corrin_f,azura,felicia,mozu,rinkah,hana,elise,effie,nyx,camilla,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "collector"
   },
   "xander": {
     "name": "Xander",
-    "class_set": "cavalier, wyvern_rider",
+    "class_set": "cavalier,wyvern_rider",
     "starting_class": "paladin",
     "gender": "m",
     "supports": {
-      "friendship": "kaze, laslow, leo, ryoma",
-      "partner": "corrin_f, azura, felicia, mozu, sakura, hinoka, effie, nyx, selena, beruka, peri, charlotte"
+      "friendship": "kaze,laslow,leo,ryoma",
+      "partner": "corrin_f,azura,felicia,mozu,sakura,hinoka,effie,nyx,selena,beruka,peri,charlotte"
     },
     "route": "conquest",
     "personal_skill": "chivalry"
   },
   "flora": {
     "name": "Flora",
-    "class_set": "troubadour_f, dark_mage, mercenary",
+    "class_set": "troubadour_f,dark_mage,mercenary",
     "starting_class": "maid",
     "gender": "f",
     "supports": {
@@ -533,8 +533,8 @@
     "route": "all",
     "parent": "corrin_f",
     "supports": {
-      "friendship": "shiro, siegbert, percy",
-      "partner": "sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina"
+      "friendship": "shiro,siegbert,percy",
+      "partner": "sophie,midori,selkie,mitama,caeldori,rhajat,velouria,ophelia,soleil,nina"
     },
     "personal_skill": "draconic_heir"
   },
@@ -545,8 +545,8 @@
     "route": "all",
     "parent": "corrin_m",
     "supports": {
-      "friendship": "midori, selkie, mitama, velouria",
-      "partner": "shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy"
+      "friendship": "midori,selkie,mitama,velouria",
+      "partner": "shigure,dwyer,shiro,kiragi,asugi,hisame,siegbert,forrest,ignatius,percy"
     },
     "personal_skill": "draconic_heir"
   },
@@ -556,8 +556,8 @@
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "hisame, forrest",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina"
+      "friendship": "hisame,forrest",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,mitama,caeldori,rhajat,velouria,ophelia,soleil,nina"
     },
     "parent": "azura",
     "personal_skill": "perfect_pitch"
@@ -568,8 +568,8 @@
     "gender": "m",
     "route": "all",
     "supports": {
-      "friendship": "kiragi, asugi, percy",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia, soleil, nina"
+      "friendship": "kiragi,asugi,percy",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,mitama,caeldori,rhajat,velouria,ophelia,soleil,nina"
     },
     "parent": "jakob",
     "personal_skill": "born_steward"
@@ -580,8 +580,8 @@
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "caeldori, velouria, soleil",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy"
+      "friendship": "caeldori,velouria,soleil",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,kiragi,asugi,hisame,siegbert,forrest,ignatius,percy"
     },
     "parent": "silas",
     "personal_skill": "mischievous"
@@ -592,8 +592,8 @@
     "gender": "f",
     "route": "all",
     "supports": {
-      "friendship": "kana_f, selkie, ophelia",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, forrest, ignatius, percy"
+      "friendship": "kana_f,selkie,ophelia",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,kiragi,asugi,hisame,siegbert,forrest,ignatius,percy"
     },
     "parent": "kaze",
     "personal_skill": "lucky_charm"
@@ -604,8 +604,8 @@
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "kana_m, kiragi, asugi, siegbert",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, mitama, caeldori, rhajat, ophelia, nina"
+      "friendship": "kana_m,kiragi,asugi,siegbert",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,mitama,caeldori,rhajat,ophelia,nina"
     },
     "parent": "ryoma",
     "personal_skill": "noble_cause"
@@ -616,8 +616,8 @@
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "dwyer, shiro, hisame, forrest",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, soleil"
+      "friendship": "dwyer,shiro,hisame,forrest",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,mitama,caeldori,rhajat,velouria,soleil"
     },
     "parent": "takumi",
     "personal_skill": "optimistic"
@@ -628,8 +628,8 @@
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "dwyer, shiro, hisame, ignatius",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, mitama, caeldori, rhajat, soleil, nina"
+      "friendship": "dwyer,shiro,hisame,ignatius",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,mitama,caeldori,rhajat,soleil,nina"
     },
     "parent": "saizo",
     "personal_skill": "sweet_tooth"
@@ -640,8 +640,8 @@
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "kana_f, midori, rhajat, velouria",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, kiragi, asugi, hisame, forrest, ignatius"
+      "friendship": "kana_f,midori,rhajat,velouria",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,kiragi,asugi,hisame,forrest,ignatius"
     },
     "parent": "kaden",
     "personal_skill": "playthings"
@@ -652,8 +652,8 @@
     "gender": "m",
     "route": "birthright",
     "supports": {
-      "friendship": "shigure, kiragi, asugi, percy",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, mitama, caeldori, rhajat, velouria, ophelia"
+      "friendship": "shigure,kiragi,asugi,percy",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,mitama,caeldori,rhajat,velouria,ophelia"
     },
     "parent": "hinata",
     "personal_skill": "calm"
@@ -664,8 +664,8 @@
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "kana_f, caeldori, rhajat, soleil",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, percy"
+      "friendship": "kana_f,caeldori,rhajat,soleil",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,kiragi,asugi,hisame,siegbert,percy"
     },
     "parent": "azama",
     "personal_skill": "haiku"
@@ -676,8 +676,8 @@
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "sophie, mitama, rhajat, nina",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, kiragi, asugi, hisame, siegbert, ignatius"
+      "friendship": "sophie,mitama,rhajat,nina",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,kiragi,asugi,hisame,siegbert,ignatius"
     },
     "parent": "subaki",
     "personal_skill": "prodigy"
@@ -688,8 +688,8 @@
     "gender": "f",
     "route": "birthright",
     "supports": {
-      "friendship": "selkie, mitama, caeldori, ophelia",
-      "partner": "corrin_m, corrin_f, kana_m, shigure, dwyer, shiro, kiragi, asugi, hisame, forrest, percy"
+      "friendship": "selkie,mitama,caeldori,ophelia",
+      "partner": "corrin_m,corrin_f,kana_m,shigure,dwyer,shiro,kiragi,asugi,hisame,forrest,percy"
     },
     "parent": "hayato",
     "personal_skill": "vendetta"
@@ -699,8 +699,8 @@
     "class_set": "cavalier",
     "gender": "m",
     "supports": {
-      "friendship": "kana_m, forrest, ignatius, shiro",
-      "partner": "corrin_f, kana_f, sophie, midori, mitama, caeldori, velouria, ophelia, soleil, nina"
+      "friendship": "kana_m,forrest,ignatius,shiro",
+      "partner": "corrin_f,kana_f,sophie,midori,mitama,caeldori,velouria,ophelia,soleil,nina"
     },
     "route": "conquest",
     "parent": "xander",
@@ -711,8 +711,8 @@
     "class_set": "troubadour_m",
     "gender": "m",
     "supports": {
-      "friendship": "shigure, siegbert, ignatius, kiragi",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, rhajat, velouria, ophelia, soleil, nina"
+      "friendship": "shigure,siegbert,ignatius,kiragi",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,rhajat,velouria,ophelia,soleil,nina"
     },
     "route": "conquest",
     "parent": "leo",
@@ -723,8 +723,8 @@
     "class_set": "knight",
     "gender": "m",
     "supports": {
-      "friendship": "siegbert, forrest, percy, asugi",
-      "partner": "corrin_f, kana_f, sophie, midori, selkie, caeldori, velouria, ophelia, soleil, nina"
+      "friendship": "siegbert,forrest,percy,asugi",
+      "partner": "corrin_f,kana_f,sophie,midori,selkie,caeldori,velouria,ophelia,soleil,nina"
     },
     "route": "conquest",
     "parent": "benny",
@@ -735,8 +735,8 @@
     "class_set": "wolfskin",
     "gender": "f",
     "supports": {
-      "friendship": "kana_f, sophie, nina, selkie",
-      "partner": "corrin_m, kana_m, shigure, dwyer, kiragi, hisame, siegbert, forrest, ignatius, percy"
+      "friendship": "kana_f,sophie,nina,selkie",
+      "partner": "corrin_m,kana_m,shigure,dwyer,kiragi,hisame,siegbert,forrest,ignatius,percy"
     },
     "route": "conquest",
     "parent": "keaton",
@@ -747,8 +747,8 @@
     "class_set": "wyvern_rider",
     "gender": "m",
     "supports": {
-      "friendship": "kana_m, dwyer, ignatius, hisame",
-      "partner": "corrin_f, kana_f, sophie, midori, mitama, rhajat, velouria, ophelia, soleil, nina"
+      "friendship": "kana_m,dwyer,ignatius,hisame",
+      "partner": "corrin_f,kana_f,sophie,midori,mitama,rhajat,velouria,ophelia,soleil,nina"
     },
     "route": "conquest",
     "parent": "arthur",
@@ -759,8 +759,8 @@
     "class_set": "dark_mage",
     "gender": "f",
     "supports": {
-      "friendship": "midori, soleil, rhajat",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, hisame, siegbert, forrest, ignatius, percy"
+      "friendship": "midori,soleil,rhajat",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,hisame,siegbert,forrest,ignatius,percy"
     },
     "route": "conquest",
     "parent": "odin",
@@ -771,8 +771,8 @@
     "class_set": "mercenary",
     "gender": "f",
     "supports": {
-      "friendship": "sophie, ophelia, nina, mitama",
-      "partner": "corrin_m, kana_m, shigure, dwyer, kiragi, asugi, siegbert, forrest, ignatius, percy"
+      "friendship": "sophie,ophelia,nina,mitama",
+      "partner": "corrin_m,kana_m,shigure,dwyer,kiragi,asugi,siegbert,forrest,ignatius,percy"
     },
     "route": "conquest",
     "parent": "laslow",
@@ -783,8 +783,8 @@
     "class_set": "outlaw",
     "gender": "f",
     "supports": {
-      "friendship": "velouria, soleil, caeldori",
-      "partner": "corrin_m, kana_m, shigure, dwyer, shiro, asugi, siegbert, forrest, ignatius, percy"
+      "friendship": "velouria,soleil,caeldori",
+      "partner": "corrin_m,kana_m,shigure,dwyer,shiro,asugi,siegbert,forrest,ignatius,percy"
     },
     "route": "conquest",
     "parent": "niles",
@@ -792,7 +792,7 @@
   },
   "fuga": {
     "name": "Fuga",
-    "class_set": "samurai, oni_savage, monk",
+    "class_set": "samurai,oni_savage,monk",
     "gender": "m",
     "route": "revelation",
     "supports": {
@@ -803,7 +803,7 @@
   },
   "anna": {
     "name": "Anna",
-    "class_set": "outlaw, troubadour_f, apothecary",
+    "class_set": "outlaw,troubadour_f,apothecary",
     "gender": "f",
     "route": "all",
     "supports": {
