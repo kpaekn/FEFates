@@ -434,6 +434,7 @@ button.remove:focus-visible {
   border: 2px solid var(--color-brown);
   border-radius: var(--border-radius);
   overflow: hidden;
+  table-layout: fixed;
   text-align: center;
   font-size: var(--font-size-md);
   margin-bottom: var(--space-sm);
@@ -445,9 +446,9 @@ button.remove:focus-visible {
   padding: var(--space-xs);
 }
 
-.table th:not(:first-child),
-.table td:not(:first-child) {
-  width: 8%;
+.table th:first-child,
+.table td:first-child {
+  width: 25%;
 }
 
 .table thead th {
@@ -544,4 +545,7 @@ button.remove:focus-visible {
     display: none;
   }
 
+  .table tbody td {
+    font-size: var(--font-size-md);
+  }
 }
