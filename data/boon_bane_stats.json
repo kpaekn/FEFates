@@ -47,6 +47,81 @@
         "def": [0, 0, 0, 0, 0, -1, -3, -1],
         "res": [0, 0, -1, 0, -1, 0, 0, -3]
       }
+    },
+    "pair_up": {
+      "comment": "bane first, boon second",
+      "hp": {
+        "str": ["str", "str", "spd", "str,skl"],
+        "mag": ["str", "mag", "spd", "mag,spd"],
+        "skl": ["str", "skl", "spd", "skl,def"],
+        "spd": ["str", "spd", "spd", "spd,lck"],
+        "lck": ["str", "lck", "spd", "str,lck"],
+        "def": ["str", "def", "spd", "def,res"],
+        "res": ["str", "res", "spd", "mag,res"]
+      },
+      "str": {
+        "hp": ["def", "lck", "spd", "def,res"],
+        "mag": ["mag", "res", "spd", "mag,res"],
+        "skl": ["skl", "str", "spd", "skl,res"],
+        "spd": ["spd", "skl", "spd", "spd,res"],
+        "lck": ["lck", "mag", "spd", "lck,res"],
+        "def": ["def", "lck", "spd", "def,res"],
+        "res": ["res", "spd", "spd", "res,res"]
+      },
+      "mag": {
+        "hp": ["str", "def", "res", "lck,def"],
+        "str": ["str", "def", "skl", "str,def"],
+        "skl": ["str", "def", "def", "str,skl"],
+        "spd": ["str", "def", "lck", "skl,spd"],
+        "lck": ["str", "def", "str", "mag,lck"],
+        "def": ["str", "def", "res", "lck,def"],
+        "res": ["str", "def", "mag", "spd,res"]
+      },
+      "skl": {
+        "hp": ["lck", "res", "spd", "def,res"],
+        "str": ["def", "skl", "spd", "str,res"],
+        "mag": ["res", "spd", "spd", "mag,res"],
+        "spd": ["skl", "lck", "spd", "spd,res"],
+        "lck": ["mag", "str", "spd", "lck,res"],
+        "def": ["lck", "res", "spd", "def,res"],
+        "res": ["spd", "mag", "spd", "res,res"]
+      },
+      "spd": {
+        "hp": ["str", "def", "def", "def,res"],
+        "str": ["str", "def", "str", "str,res"],
+        "mag": ["str", "def", "mag", "mag,res"],
+        "skl": ["str", "def", "skl", "skl,res"],
+        "lck": ["str", "def", "lck", "lck,res"],
+        "def": ["str", "def", "def", "def,res"],
+        "res": ["str", "def", "res", "res,res"]
+      },
+      "lck": {
+        "hp": ["res", "def", "spd", "def,res"],
+        "str": ["skl", "def", "spd", "str,res"],
+        "mag": ["spd", "def", "spd", "mag,res"],
+        "skl": ["def", "def", "spd", "skl,res"],
+        "spd": ["lck", "def", "spd", "spd,res"],
+        "def": ["res", "def", "spd", "def,res"],
+        "res": ["mag", "def", "spd", "res,res"]
+      },
+      "def": {
+        "hp": ["str", "def", "spd", "def,res"],
+        "str": ["str", "str", "spd", "str,skl"],
+        "mag": ["str", "mag", "spd", "mag,spd"],
+        "skl": ["str", "skl", "spd", "skl,def"],
+        "spd": ["str", "spd", "spd", "spd,lck"],
+        "lck": ["str", "lck", "spd", "str,lck"],
+        "res": ["str", "res", "spd", "mag,res"]
+      },
+      "res": {
+        "hp": ["str", "def", "lck", "def,def"],
+        "str": ["str", "def", "def", "str,str"],
+        "mag": ["str", "def", "res", "mag,mag"],
+        "skl": ["str", "def", "str", "skl,skl"],
+        "spd": ["str", "def", "skl", "spd,spd"],
+        "lck": ["str", "def", "mag", "lck,lck"],
+        "def": ["str", "def", "lck", "def,def"]
+      }
     }
   }
 }

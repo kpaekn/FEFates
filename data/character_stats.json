@@ -21,7 +21,7 @@
     },
     "growth": [25, 50, 25, 60, 60, 40, 15, 35],
     "cap": [0, 0, 0, 1, 3, 0, -3, 0],
-    "pairup": ["spd", "skl", "spd", "spd,lck"]
+    "pair_up": ["spd", "skl", "spd", "spd,lck"]
   },
   "kaze": {
     "base": {
@@ -30,7 +30,7 @@
     },
     "growth": [55, 40, 0, 45, 65, 20, 20, 35],
     "cap": [0, -2, 0, 2, 3, -2, -1, 0],
-    "pairup": ["spd", "skl", "res", "skl,spd"]
+    "pair_up": ["spd", "skl", "res", "skl,spd"]
   },
   "gunter": {
     "base": {
@@ -39,7 +39,7 @@
     },
     "growth": [15, 5, 0, 5, 0, 15, 5, 5],
     "cap": [0, 2, 0, 1, -2, 0, 2, -2],
-    "pairup": ["def", "str", "skl", "str,def"]
+    "pair_up": ["def", "str", "skl", "str,def"]
   },
   "felicia": {
     "base": {
@@ -48,7 +48,7 @@
     },
     "growth": [40, 10, 35, 30, 40, 55, 15, 35],
     "cap": [0, -2, 2, 0, 1, 0, -1, 1],
-    "pairup": ["spd", "res", "mag", "spd,res"]
+    "pair_up": ["spd", "res", "mag", "spd,res"]
   },
   "jakob": {
     "base": {
@@ -57,7 +57,7 @@
     },
     "growth": [50, 35, 15, 40, 35, 45, 25, 25],
     "cap": [0, 2, -2, 2, 0, -1, 0, -1],
-    "pairup": ["str", "spd", "skl", "str,skl"]
+    "pair_up": ["str", "spd", "skl", "str,skl"]
   },
   "silas": {
     "base": {
@@ -65,7 +65,7 @@
     },
     "growth": [40, 45, 5, 50, 40, 40, 40, 25],
     "cap": [0, 1, 0, 2, 0, -1, 0, -1],
-    "pairup": ["str", "skl", "spd", "str,def"]
+    "pair_up": ["str", "skl", "spd", "str,def"]
   },
   "mozu": {
     "base": {
@@ -73,7 +73,7 @@
     },
     "growth": [30, 40, 5, 50, 55, 45, 35, 30],
     "cap": [0, 0, 0, 1, 1, 1, 0, -2],
-    "pairup": ["skl", "lck", "spd", "skl,lck"]
+    "pair_up": ["skl", "lck", "spd", "skl,lck"]
   },
   "rinkah": {
     "base": {
@@ -81,7 +81,7 @@
     },
     "growth": [20, 25, 15, 50, 45, 35, 45, 20],
     "cap": [0, -1, 0, -2, 1, 0, 2, 0],
-    "pairup": ["def", "spd", "str", "spd,def"]
+    "pair_up": ["def", "spd", "str", "spd,def"]
   },
   "sakura": {
     "base": {
@@ -90,7 +90,7 @@
     },
     "growth": [45, 30, 50, 40, 40, 55, 30, 20],
     "cap": [0, 0, 2, -1, 1, 0, -1, 0],
-    "pairup": ["mag", "spd", "lck", "spd,res"]
+    "pair_up": ["mag", "spd", "lck", "spd,res"]
   },
   "hana": {
     "base": {
@@ -99,7 +99,7 @@
     },
     "growth": [25, 55, 10, 45, 55, 25, 20, 30],
     "cap": [0, 1, 0, 1, 2, -1, -3, 1],
-    "pairup": ["spd", "str", "skl", "str,spd"]
+    "pair_up": ["spd", "str", "skl", "str,spd"]
   },
   "subaki": {
     "base": {
@@ -107,7 +107,7 @@
     },
     "growth": [55, 30, 20, 50, 20, 25, 45, 5],
     "cap": [0, -1, 0, 2, -2, -1, 3, -1],
-    "pairup": ["def", "skl", "def", "skl,res"]
+    "pair_up": ["def", "skl", "def", "skl,res"]
   },
   "saizo": {
     "base": {
@@ -116,7 +116,7 @@
     },
     "growth": [40, 50, 45, 60, 30, 55, 45, 10],
     "cap": [0, 1, 0, 3, -2, 0, 1, -2],
-    "pairup": ["lck", "spd", "skl", "str,lck"]
+    "pair_up": ["lck", "spd", "skl", "str,lck"]
   },
   "orochi": {
     "base": {
@@ -125,7 +125,7 @@
     },
     "growth": [35, 5, 65, 50, 15, 35, 25, 45],
     "cap": [0, 0, 3, 2, -2, -1, -2, 1],
-    "pairup": ["mag", "skl", "res", "mag,res"]
+    "pair_up": ["mag", "skl", "res", "mag,res"]
   },
   "hinoka": {
     "base": {
@@ -134,7 +134,7 @@
     },
     "growth": [45, 45, 15, 40, 45, 40, 35, 40],
     "cap": [0, 1, -1, -1, 1, 0, -1, 2],
-    "pairup": ["res", "lck", "str", "spd,res"]
+    "pair_up": ["res", "lck", "str", "spd,res"]
   },
   "azama": {
     "base": {
@@ -143,7 +143,7 @@
     },
     "growth": [55, 50, 20, 40, 45, 40, 40, 20],
     "cap": [0, 2, -3, 0, 1, 0, 1, 0],
-    "pairup": ["str", "spd", "def", "str,lck"]
+    "pair_up": ["str", "spd", "def", "str,lck"]
   },
   "setsuna": {
     "base": {
@@ -152,7 +152,7 @@
     },
     "growth": [30, 20, 0, 30, 60, 30, 15, 40],
     "cap": [0, 0, 0, 1, 3, -1, -1, -1],
-    "pairup": ["spd", "spd", "res", "skl,spd"]
+    "pair_up": ["spd", "spd", "res", "skl,spd"]
   },
   "hayato": {
     "base": {
@@ -161,7 +161,7 @@
     },
     "growth": [50, 30, 40, 30, 45, 60, 40, 20],
     "cap": [0, 0, 1, -1, 2, 1, -1, -1],
-    "pairup": ["spd", "lck", "mag", "spd,lck"]
+    "pair_up": ["spd", "lck", "mag", "spd,lck"]
   },
   "oboro": {
     "base": {
@@ -169,7 +169,7 @@
     },
     "growth": [30, 40, 20, 40, 40, 40, 40, 30],
     "cap": [0, 1, -1, 1, 1, -1, 1, -1],
-    "pairup": ["str", "def", "spd", "skl,lck"]
+    "pair_up": ["str", "def", "spd", "skl,lck"]
   },
   "hinata": {
     "base": {
@@ -177,7 +177,7 @@
     },
     "growth": [55, 35, 0, 25, 15, 45, 45, 15],
     "cap": [0, 1, 0, -1, -2, 0, 2, 0],
-    "pairup": ["def", "str", "def", "str,lck"]
+    "pair_up": ["def", "str", "def", "str,lck"]
   },
   "takumi": {
     "base": {
@@ -185,7 +185,7 @@
     },
     "growth": [50, 35, 0, 60, 40, 45, 35, 20],
     "cap": [0, 1, 0, 3, -2, 1, 0, -2],
-    "pairup": ["skl", "spd", "str", "skl,def"]
+    "pair_up": ["skl", "spd", "str", "skl,def"]
   },
   "kagero": {
     "base": {
@@ -193,7 +193,7 @@
     },
     "growth": [30, 65, 0, 20, 50, 30, 25, 40],
     "cap": [0, 3, 0, -1, -1, 0, -1, 1],
-    "pairup": ["str", "res", "str", "spd,res"]
+    "pair_up": ["str", "res", "str", "spd,res"]
   },
   "kaden": {
     "base": {
@@ -201,7 +201,7 @@
     },
     "growth": [45, 40, 10, 25, 45, 50, 35, 40],
     "cap": [0, 1, 0, -3, 2, 1, -2, 2],
-    "pairup": ["spd", "res", "lck", "spd,res"]
+    "pair_up": ["spd", "res", "lck", "spd,res"]
   },
   "ryoma": {
     "base": {
@@ -209,7 +209,7 @@
     },
     "growth": [50, 45, 0, 50, 45, 40, 35, 25],
     "cap": [0, 1, 0, 2, 1, 1, -2, -2],
-    "pairup": ["spd", "str", "skl", "spd,spd"]
+    "pair_up": ["spd", "str", "skl", "spd,spd"]
   },
   "elise": {
     "base": {
@@ -218,7 +218,7 @@
     },
     "growth": [30, 5, 65, 25, 55, 70, 15, 40],
     "cap": [0, -1, 3, -2, 1, 1, -3, 1],
-    "pairup": ["mag", "mag", "lck", "mag,spd"]
+    "pair_up": ["mag", "mag", "lck", "mag,spd"]
   },
   "effie": {
     "base": {
@@ -227,7 +227,7 @@
     },
     "growth": [35, 60, 0, 35, 50, 50, 35, 30],
     "cap": [0, 3, 0, -1, 1, 0, -1, -1],
-    "pairup": ["str", "lck", "spd", "str,str"]
+    "pair_up": ["str", "lck", "spd", "str,str"]
   },
   "arthur": {
     "base": {
@@ -236,7 +236,7 @@
     },
     "growth": [50, 45, 0, 55, 35, 5, 45, 20],
     "cap": [0, 1, 0, 3, 0, -3, 1, -1],
-    "pairup": ["skl", "str", "str", "skl,skl"]
+    "pair_up": ["skl", "str", "str", "skl,skl"]
   },
   "odin": {
     "base": {
@@ -245,7 +245,7 @@
     },
     "growth": [55, 35, 30, 55, 35, 60, 40, 20],
     "cap": [0, 0, 1, 1, -1, 1, 0, -1],
-    "pairup": ["mag", "str", "lck", "mag,skl"]
+    "pair_up": ["mag", "str", "lck", "mag,skl"]
   },
   "niles": {
     "base": {
@@ -254,7 +254,7 @@
     },
     "growth": [40, 35, 20, 40, 50, 30, 30, 40],
     "cap": [0, -2, 0, -1, 3, 0, 0, 1],
-    "pairup": ["spd", "spd", "res", "mag,res"]
+    "pair_up": ["spd", "spd", "res", "mag,res"]
   },
   "nyx": {
     "base": {
@@ -262,7 +262,7 @@
     },
     "growth": [30, 5, 50, 35, 50, 20, 15, 30],
     "cap": [0, 0, 3, -2, 2, -1, -2, 1],
-    "pairup": ["mag", "spd", "mag", "mag,spd"]
+    "pair_up": ["mag", "spd", "mag", "mag,spd"]
   },
   "camilla": {
     "base": {
@@ -270,7 +270,7 @@
     },
     "growth": [40, 50, 25, 50, 55, 25, 35, 45],
     "cap": [0, 1, -1, 1, 1, -2, 1, 0],
-    "pairup": ["spd", "res", "str", "str,def"]
+    "pair_up": ["spd", "res", "str", "str,def"]
   },
   "selena": {
     "base": {
@@ -278,7 +278,7 @@
     },
     "growth": [40, 30, 5, 25, 45, 30, 45, 30],
     "cap": [0, -1, 0, -1, 2, 0, 1, 0],
-    "pairup": ["spd", "def", "skl", "str,spd"]
+    "pair_up": ["spd", "def", "skl", "str,spd"]
   },
   "beruka": {
     "base": {
@@ -286,7 +286,7 @@
     },
     "growth": [45, 30, 10, 55, 30, 45, 40, 25],
     "cap": [0, -1, 0, 2, -2, 0, 2, -1],
-    "pairup": ["skl", "def", "skl", "lck,def"]
+    "pair_up": ["skl", "def", "skl", "lck,def"]
   },
   "laslow": {
     "base": {
@@ -295,7 +295,7 @@
     },
     "growth": [50, 45, 0, 45, 30, 55, 35, 25],
     "cap": [0, 1, 0, 2, -1, 1, -1, -1],
-    "pairup": ["skl", "str", "lck", "str,lck"]
+    "pair_up": ["skl", "str", "lck", "str,lck"]
   },
   "peri": {
     "base": {
@@ -304,7 +304,7 @@
     },
     "growth": [30, 50, 5, 30, 50, 35, 25, 45],
     "cap": [0, 1, 0, -1, 1, 0, -2, 2],
-    "pairup": ["str", "spd", "res", "str,spd"]
+    "pair_up": ["str", "spd", "res", "str,spd"]
   },
   "charlotte": {
     "base": {
@@ -312,7 +312,7 @@
     },
     "growth": [65, 55, 0, 35, 50, 45, 20, 5],
     "cap": [0, 3, 0, 0, 2, 0, -2, -2],
-    "pairup": ["str", "str", "spd", "str,spd"]
+    "pair_up": ["str", "str", "spd", "str,spd"]
   },
   "benny": {
     "base": {
@@ -320,7 +320,7 @@
     },
     "growth": [50, 40, 0, 50, 10, 35, 55, 45],
     "cap": [0, 0, 0, 0, -3, 0, 3, 1],
-    "pairup": ["def", "skl", "str", "str,def"]
+    "pair_up": ["def", "skl", "str", "str,def"]
   },
   "leo": {
     "base": {
@@ -328,7 +328,7 @@
     },
     "growth": [45, 25, 55, 35, 45, 45, 30, 45],
     "cap": [0, -2, 2, 0, -2, 0, 0, 2],
-    "pairup": ["mag", "res", "spd", "mag,lck"]
+    "pair_up": ["mag", "res", "spd", "mag,lck"]
   },
   "keaton": {
     "base": {
@@ -336,7 +336,7 @@
     },
     "growth": [60, 60, 0, 20, 35, 30, 50, 25],
     "cap": [0, 3, 0, -2, -1, 0, 2, -1],
-    "pairup": ["str", "str", "def", "str,def"]
+    "pair_up": ["str", "str", "def", "str,def"]
   },
   "xander": {
     "base": {
@@ -344,7 +344,7 @@
     },
     "growth": [45, 50, 5, 40, 35, 60, 40, 15],
     "cap": [0, 2, -1, -1, -1, 2, 1, -2],
-    "pairup": ["str", "lck", "def", "str,lck"]
+    "pair_up": ["str", "lck", "def", "str,lck"]
   },
   "reina": {
     "base": {
@@ -353,7 +353,7 @@
     },
     "growth": [40, 45, 5, 20, 45, 10, 20, 10],
     "cap": [0, 2, 0, 0, 2, -1, -2, -1],
-    "pairup": ["spd", "str", "spd", "str,spd"]
+    "pair_up": ["spd", "str", "spd", "str,spd"]
   },
   "scarlet": {
     "base": {
@@ -362,7 +362,7 @@
     },
     "growth": [30, 45, 20, 40, 50, 40, 25, 20],
     "cap": [0, 2, 0, 0, 1, -1, 0, -2],
-    "pairup": ["str", "spd", "def", "str,skl"]
+    "pair_up": ["str", "spd", "def", "str,skl"]
   },
   "flora": {
     "base": {
@@ -370,7 +370,7 @@
     },
     "growth": [35, 40, 20, 45, 30, 35, 30, 30],
     "cap": [0, 1, -1, 2, 0, -1, 1, -1],
-    "pairup": ["skl", "def", "res", "str,lck"]
+    "pair_up": ["skl", "def", "res", "str,lck"]
   },
   "shura": {
     "base": {
@@ -379,7 +379,7 @@
     },
     "growth": [30, 25, 10, 20, 35, 30, 15, 35],
     "cap": [0, -1, 0, -1, 3, -1, -2, 2],
-    "pairup": ["spd", "res", "res", "spd,res"]
+    "pair_up": ["spd", "res", "res", "spd,res"]
   },
   "izana": {
     "base": {
@@ -387,7 +387,7 @@
     },
     "growth": [45, 15, 35, 55, 30, 45, 35, 35],
     "cap": [0, 0, 1, 1, -2, 0, 0, 1],
-    "pairup": ["skl", "mag", "def", "skl,res"]
+    "pair_up": ["skl", "mag", "def", "skl,res"]
   },
   "yukimura": {
     "base": {
@@ -395,7 +395,7 @@
     },
     "growth": [25, 25, 5, 40, 15, 30, 25, 30],
     "cap": [0, -1, 0, 3, -1, 0, -1, 0],
-    "pairup": ["skl", "skl", "str", "skl,spd"]
+    "pair_up": ["skl", "skl", "str", "skl,spd"]
   },
   "fuga": {
     "base": {
@@ -403,7 +403,7 @@
     },
     "growth": [20, 20, 0, 15, 5, 20, 10, 10],
     "cap": [0, 2, -1, 1, 0, -1, 2, -2],
-    "pairup": ["def", "str", "skl", "str,def"]
+    "pair_up": ["def", "str", "skl", "str,def"]
   },
   "anna": {
     "base": {
@@ -411,7 +411,7 @@
     },
     "growth": [35, 30, 55, 30, 40, 70, 20, 45],
     "cap": [0, -1, 1, 0, -1, 2, -2, 2],
-    "pairup": ["lck", "mag", "lck", "lck,res"]
+    "pair_up": ["lck", "mag", "lck", "lck,res"]
   },
   "kana_m": {
     "base": {

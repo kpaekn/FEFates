@@ -75,6 +75,7 @@ function createClassChangeOptions(character: Character) {
   // no need to check friendship/partner seals since those classes are always covered by talent options
   return db.sortClasses([...options.values()]);
 }
+
 function createStatsData(character: Character) {
   return {
     startingClass: character.startingClass,
@@ -84,6 +85,7 @@ function createStatsData(character: Character) {
     },
     growth: character.stats?.growth,
     base: character.stats?.base,
+    pairUp: character.getPairUpStats(),
   };
 }
 

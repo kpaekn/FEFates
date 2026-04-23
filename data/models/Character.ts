@@ -1,7 +1,7 @@
 import { parseCSV } from "./utils.ts";
 import type Class from "./Class.ts";
 import type CharacterStats from "./CharacterStats.ts";
-import type { Database } from "../database.ts";
+import PairUpStats from "./PairUpStats.ts";
 
 interface RawCharacterData {
   name: string;
@@ -172,6 +172,20 @@ export default class Character {
         return cls.matchesGender(this.gender) && (this.hasInClassSet(cls) || !cls.unique);
       })
       .map(([_, cls]) => cls);
+  }
+
+  getPairUpStats(parent?: Character): PairUpStats {
+    if (!this.isChild) {
+      return this.stats.pairUp;
+    }
+    const father = this.fixedParent?.gender === "m" ? this.fixedParent : parent;
+    const mother = this.fixedParent?.gender === "f" ? this.fixedParent : parent;
+    return new PairUpStats([
+      father?.stats?.pairUp.c ?? "",
+      mother?.stats?.pairUp.b ?? "",
+      father?.stats?.pairUp.a ?? "",
+      mother?.stats?.pairUp.s ?? "",
+    ]);
   }
 
   hasInClassSet(cls: Class): boolean {
