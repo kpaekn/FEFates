@@ -64,21 +64,4 @@ export default class Stats {
     this.def -= other.def;
     this.res -= other.res;
   }
-
-  static singleModifierMap(rawModifiers: Record<string, number>): Record<string, number[]> {
-    const modifierMap: Record<string, number[]> = {};
-    for (const key of Stats.KEYS) {
-      modifierMap[key] = Stats.KEYS.map((statKey) => (statKey === key ? (rawModifiers?.[key] ?? 0) : 0));
-    }
-    return modifierMap;
-  }
-
-  static multiModifierMap(rawModifiers: Record<string, Record<string, number>>): Record<string, number[]> {
-    const modifierMap: Record<string, number[]> = {};
-    for (const key of Stats.KEYS) {
-      const entry = rawModifiers?.[key] ?? {};
-      modifierMap[key] = Stats.KEYS.map((statKey) => entry[statKey] ?? 0);
-    }
-    return modifierMap;
-  }
 }
