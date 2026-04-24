@@ -793,6 +793,7 @@
   "fuga": {
     "name": "Fuga",
     "class_set": "samurai,oni_savage,monk",
+    "starting_class": "master_of_arms",
     "gender": "m",
     "route": "revelation",
     "supports": {
