@@ -28,7 +28,9 @@ table#growths-table.table
       th
         .toggle
           a.bi(href="#", data-toggle-target="growths-table-body")
-          span Growth Rate
+          span Growth
+            |
+            span.hidden-sm &nbsp;Rate
       th
       each col in statsData.labels.growth
         th= col.label
@@ -52,7 +54,9 @@ table.table.stats-table(id=`stats-table-${idx}`)
         th
           .toggle
             a.bi(href="#", data-toggle-target=`stats-table-body-${idx}`)
-            span= baseStats.name + " Stats"
+            span= baseStats.name
+              |
+              span.hidden-sm &nbsp;Stats
         each col in statsData.labels.base
           th= col.label
     tbody(id=`stats-table-body-${idx}`, hidden=idx > 0)

@@ -450,7 +450,7 @@ button.remove:focus-visible {
 
 .table th:first-child,
 .table td:first-child {
-  width: 25%;
+  width: 27%;
 }
 
 .table thead th {
@@ -471,8 +471,8 @@ button.remove:focus-visible {
   cursor: pointer;
 }
 
-.table thead th .toggle span {
-  display: block;
+.table thead th .toggle> span {
+  display: inline-block;
   flex-grow: 1;
 }
 
@@ -559,12 +559,11 @@ button.remove:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  /* space not needed on stacked view */
-  .section-title::after {
-    display: none;
-  }
-
   .table tbody td {
     font-size: var(--font-size-md);
+  }
+
+  .hidden-sm {
+    display: none;
   }
 }
