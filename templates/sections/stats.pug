@@ -25,11 +25,14 @@ section.sgc
 table#growths-table.table
   thead
     tr
-      th Growth Rate
+      th
+        .toggle
+          a.bi(href="#", data-toggle-target="growths-table-body")
+          span Growth Rate
       th
       each col in statsData.labels.growth
         th= col.label
-  tbody
+  tbody#growths-table-body
     tr.class-growths-row(data-is-base, data-class-key=statsData.startingClass.key)
       td: strong= "(" + statsData.startingClass.name + ")"
       td
@@ -46,10 +49,13 @@ table.table.stats-table(id=`stats-table-${idx}`)
   each baseStats, idx in statsData.base
     thead
       tr
-        th= baseStats.name + " Stats"
+        th
+          .toggle
+            a.bi(href="#", data-toggle-target=`stats-table-body-${idx}`)
+            span= baseStats.name + " Stats"
         each col in statsData.labels.base
           th= col.label
-    tbody
+    tbody(id=`stats-table-body-${idx}`, hidden=idx > 0)
       tr.class-stats-row(data-is-base, data-class-key=statsData.startingClass.key)
         td: strong= "(" + statsData.startingClass.name + ")"
         td= baseStats.level

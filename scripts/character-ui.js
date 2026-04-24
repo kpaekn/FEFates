@@ -25,7 +25,31 @@
   var classStatsRows = document.querySelectorAll(".stats-table .class-stats-row");
   var boonBaneSelectGroups = document.querySelectorAll(".boon-bane-sg");
 
+  var tableToggleLinks = document.querySelectorAll(".table .toggle a");
+
   initSelects();
+  initTableToggles();
+
+  function initTableToggles() {
+    tableToggleLinks.forEach(function (link) {
+      var tbody = link.closest("table")?.querySelector(`#${link.dataset.toggleTarget}`);
+      if (!tbody) return;
+      showHideBody(link, tbody, false);
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        showHideBody(link, tbody, true);
+      });
+      link.addEventListener("dragstart", (e) => e.preventDefault(), { passive: false });
+    });
+
+    function showHideBody(link, tbody, toggle) {
+      var hidden = tbody.hidden;
+      if (toggle) hidden = !hidden;
+      tbody.hidden = hidden;
+      link.classList.toggle("bi-chevron-down", !hidden);
+      link.classList.toggle("bi-chevron-right", hidden);
+    }
+  }
 
   function initSelects() {
     if (boonSelect && baneSelect) {
