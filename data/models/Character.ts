@@ -174,17 +174,17 @@ export default class Character {
       .map(([_, cls]) => cls);
   }
 
-  getPairUpStats(parent?: Character): PairUpStats {
+  getPairUpStats(parent?: Character): PairUpStats[] {
     if (!this.isChild) {
       return this.stats.pairUp;
     }
     const father = this.fixedParent?.gender === "m" ? this.fixedParent : parent;
     const mother = this.fixedParent?.gender === "f" ? this.fixedParent : parent;
-    return new PairUpStats([
-      father?.stats?.pairUp.c ?? "",
-      mother?.stats?.pairUp.b ?? "",
-      father?.stats?.pairUp.a ?? "",
-      mother?.stats?.pairUp.s ?? "",
+    return PairUpStats.fromJSON([
+      father?.stats?._rawPairUp[0] ?? "",
+      mother?.stats?._rawPairUp[1] ?? "",
+      father?.stats?._rawPairUp[2] ?? "",
+      mother?.stats?._rawPairUp[3] ?? "",
     ]);
   }
 

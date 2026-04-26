@@ -7,6 +7,7 @@ import Stats from "./data/models/Stats.ts";
 import Character from "./data/models/Character.ts";
 import db from "./data/database.ts";
 import Class from "./data/models/Class.ts";
+import PairUpStats from "./data/models/PairUpStats.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
@@ -77,15 +78,34 @@ function createClassChangeOptions(character: Character) {
 }
 
 function createStatsData(character: Character) {
+  // TODO: get the pair up stats for boon/bane
   return {
     startingClass: character.startingClass,
     labels: {
       growth: Stats.MAP,
       base: BaseStats.MAP,
+      pairUp: PairUpStats.MAP,
     },
     growth: character.stats?.growth,
     base: character.stats?.base,
     pairUp: character.getPairUpStats(),
+    pairUpStatsPerParent:
+      character.isChild && character.variableParents
+        ? (() => {
+            const pairUpStatsPerParent = new Map<string, PairUpStats[]>();
+            character.variableParents.forEach((parent) => {
+              pairUpStatsPerParent.set(parent.key, character.getPairUpStats(parent));
+            });
+            return Array.from(pairUpStatsPerParent.entries()).map(([key, value]) => ({ parent: key, stats: value }));
+          })()
+        : undefined,
+    classPairUpStats: createClassChangeOptions(character).map((cls) => {
+      return {
+        key: cls.key,
+        name: cls.name,
+        stats: cls.stats.pairUp,
+      };
+    }),
   };
 }
 
@@ -241,6 +261,7 @@ const pugHelpers = {
   charaPortraitPath: (name: string) => `../images/portraits/${name}.png`,
   skillIconPath: (skill: string) => `../images/icon/skills/${skill}.png`,
   weaponIconPath: (weapon: string) => `../images/icon/weapons/${weapon}.png`,
+  dashZero: (value: number) => (value === 0 ? "-" : value.toString()),
 };
 
 // ─── Compile Pug templates ────────────────────────────────────────────────────

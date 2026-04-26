@@ -62,8 +62,7 @@ export class Database {
     });
   }
 
-  sortClasses(classes: Class[] | null) {
-    if (!classes) return null;
+  sortClasses(classes: Class[]) {
     const bank = [...this.classes.keys()];
     return classes.sort((a, b) => {
       return bank.indexOf(a.key) - bank.indexOf(b.key);

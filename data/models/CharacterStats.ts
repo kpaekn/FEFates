@@ -1,7 +1,7 @@
 import BaseStats from "./BaseStats.ts";
 import Stats from "./Stats.ts";
-import PairUpStats from "./PairUpStats.ts";
 import type BoonBaneStats from "./BoonBaneStats.ts";
+import PairUpStats from "./PairUpStats.ts";
 
 interface RawCharacterStatsData {
   base: Record<string, number[]>;
@@ -16,23 +16,31 @@ export default class CharacterStats {
   base: BaseStats[];
   growth: Stats;
   cap: Stats | null;
-  pairUp: PairUpStats;
+  pairUp: PairUpStats[];
   boonBaneStats: BoonBaneStats | undefined = undefined;
 
   _boonBaneKey: string;
+  _rawPairUp: string[];
 
   constructor(key: string, raw: RawCharacterStatsData) {
     this.key = key;
     this.base = Object.entries(raw.base).map(([name, values]) => new BaseStats(name, values));
     this.growth = new Stats(raw.growth);
     this.cap = raw.cap ? new Stats(raw.cap) : null;
-    this.pairUp = new PairUpStats((raw.pair_up ?? ["", " ", " ", " "]).map(parsePairUpStat));
+    this.pairUp = PairUpStats.fromJSON(raw.pair_up ?? ["", "", "", ""]);
 
     this._boonBaneKey = raw.boon_bane ?? key;
+    this._rawPairUp = raw.pair_up ?? ["", "", "", ""];
   }
 
   toJSON() {
-    return { ...this, pairUp: undefined, _boonBaneKey: undefined };
+    return {
+      base: this.base,
+      growth: this.growth,
+      cap: this.cap,
+      pair_up: this.pairUp,
+      boonBaneStats: this.boonBaneStats,
+    };
   }
 
   static fromJSON(key: string, raw: RawCharacterStatsData): CharacterStats {
@@ -47,23 +55,4 @@ export default class CharacterStats {
   linkObjects(boonBaneStats: Map<string, BoonBaneStats>): void {
     this.boonBaneStats = boonBaneStats.get(this._boonBaneKey) ?? undefined;
   }
-}
-
-function parsePairUpStat(value: string): string {
-  const acc = new Map<string, number>();
-  value
-    .split(",")
-    .map((stat) => stat.trim())
-    .map((stat) => {
-      return stat.charAt(0).toUpperCase() + stat.slice(1);
-    })
-    .forEach((stat) => {
-      const existing = acc.get(stat);
-      if (existing) {
-        acc.set(stat, existing + 1);
-      } else {
-        acc.set(stat, 1);
-      }
-    });
-  return [...acc.entries()].map(([stat, count]) => (stat ? `${stat} +${count}` : "")).join(", ");
 }

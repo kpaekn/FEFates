@@ -29,19 +29,4 @@ export default class BaseStats extends Stats {
     if (key === "level") return this.level;
     return super.get(key);
   }
-
-  toRow(extras: Record<string, unknown> = {}): Record<string, unknown> {
-    return {
-      ...extras,
-      level: this.level ?? 0,
-      hp: this.hp,
-      str: this.str,
-      mag: this.mag,
-      skl: this.skl,
-      spd: this.spd,
-      lck: this.lck,
-      def: this.def,
-      res: this.res,
-    };
-  }
 }

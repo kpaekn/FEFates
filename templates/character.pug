@@ -29,6 +29,7 @@ html(lang="en")
       include sections/panels
 
     script.
+      window.STATS = !{JSON.stringify(statsData)};
       window.UI_CONFIG = !{JSON.stringify(uiConfig)};
     script(src="../scripts/character-ui.js")
     script(data-goatcounter="https://kpaekn.goatcounter.com/count", async, src="//gc.zgo.at/count.js")

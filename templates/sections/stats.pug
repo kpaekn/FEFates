@@ -1,5 +1,10 @@
 mixin dataCell(key, base, cls)
-  td(data-key=key, data-base=base[key], data-class=cls[key])= base[key] + cls[key]
+  td(data-key=key, data-base=base[key], data-class=cls[key])= dashZero(base[key] + cls[key])
+
+mixin pairUpTableRows(stats)
+  td
+  each col in statsData.labels.pairUp
+    td= stats ? dashZero(stats[col.key]) : ""
 
 header
   h2 Growth Rate and Base Stats
@@ -25,12 +30,10 @@ section.sgc
 table#growths-table.table
   thead
     tr
-      th
-        .toggle
-          a.bi(href="#", data-toggle-target="growths-table-body")
-          span Growth
-            |
-            span.hidden-sm &nbsp;Rate
+      th: .toggle
+        a.bi(href="#", data-toggle-target="growths-table-body")
+        span Growth
+          span.hidden-sm &nbsp;Rate
       th
       each col in statsData.labels.growth
         th= col.label
@@ -47,16 +50,14 @@ table#growths-table.table
         each col in statsData.labels.growth
           +dataCell(col.key, statsData.growth, cls.stats.growth)
 
-table.table.stats-table(id=`stats-table-${idx}`)
+table#stats-table.table.stats-table
   each baseStats, idx in statsData.base
     thead
       tr
-        th
-          .toggle
-            a.bi(href="#", data-toggle-target=`stats-table-body-${idx}`)
-            span= baseStats.name
-              |
-              span.hidden-sm &nbsp;Stats
+        th: .toggle
+          a.bi(href="#", data-toggle-target=`stats-table-body-${idx}`)
+          span= baseStats.name
+            span.hidden-sm &nbsp;Stats
         each col in statsData.labels.base
           th= col.label
     tbody(id=`stats-table-body-${idx}`, hidden=idx > 0)
@@ -71,3 +72,39 @@ table.table.stats-table(id=`stats-table-${idx}`)
           td -
           each col in statsData.labels.growth
             +dataCell(col.key, baseStats, cls.stats.base)
+
+table#pair-up-table.table
+  thead
+    tr
+      th: .toggle
+        a.bi(href="#", data-toggle-target="pair-up-table-body")
+        span Pair Up
+          span.hidden-sm &nbsp;Stats
+      th
+      each col in statsData.labels.pairUp
+        th= col.label
+
+  tbody#pair-up-table-body
+    if statsData.pairUpStatsPerParent
+      each pairUp in statsData.pairUpStatsPerParent
+        each rank in pairUp.stats
+          tr(data-parent=pairUp.parent, hidden=!!pairUp.parent)
+            td: strong= rank.name
+              span.hidden-sm &nbsp;Support
+            +pairUpTableRows(rank)
+      tr(data-parent)
+        td (Select a parent)
+        +pairUpTableRows
+
+    else if statsData.pairUp
+      each rank in statsData.pairUp
+        tr
+          td: strong= rank.name
+            span.hidden-sm &nbsp;Support
+          +pairUpTableRows(rank)
+
+    if statsData.classPairUpStats
+      each cls in statsData.classPairUpStats
+        tr.class-pair-up-row(data-class-key=cls.key, hidden)
+          td: strong= cls.name
+          +pairUpTableRows(cls.stats)
