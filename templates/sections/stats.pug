@@ -87,7 +87,7 @@ table#pair-up-table.table
   tbody#pair-up-table-body
     if statsData.pairUp.basic
       each rank in statsData.pairUp.basic
-        tr(hidden)
+        tr
           td: strong= rank.name
             span.hidden-sm &nbsp;Support
           +pairUpTableRows(rank)
