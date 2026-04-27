@@ -1,5 +1,10 @@
 mixin dataCell(key, base, cls)
-  td(data-key=key, data-base=base[key], data-class=cls[key])= base[key] + cls[key]
+  td(data-key=key, data-base=base[key], data-class=cls[key])= dashZero(base[key] + cls[key])
+
+mixin pairUpTableRows(stats)
+  td
+  each col in statsData.labels.pairUp
+    td(data-key=col.key)= stats ? dashZero(stats[col.key]) : ""
 
 header
   h2 Growth Rate and Base Stats
@@ -11,12 +16,12 @@ section.sgc
       each opt in configOptions.classChange
         option(value=opt.key, selected=opt.selected)= opt.name
   if configOptions.boonBane
-    .sg.boon-bane-sg(hidden=!character.isCorrin)
+    .sg.boon-bane-sg(hidden=!character.isCorrinOrKana)
       label(for="boon-options") Boon
       select#boon-options(name="boon-options")
         each bb in configOptions.boonBane
           option(value=bb.key)= "+ " + bb.label
-    .sg.boon-bane-sg(hidden=!character.isCorrin)
+    .sg.boon-bane-sg(hidden=!character.isCorrinOrKana)
       label(for="bane-options") Bane
       select#bane-options(name="bane-options")
         each bb in configOptions.boonBane
@@ -25,12 +30,10 @@ section.sgc
 table#growths-table.table
   thead
     tr
-      th
-        .toggle
-          a.bi(href="#", data-toggle-target="growths-table-body")
-          span Growth
-            |
-            span.hidden-sm &nbsp;Rate
+      th: .toggle
+        a.bi(href="#", data-toggle-target="growths-table-body")
+        span Growth
+          span.hidden-sm &nbsp;Rate
       th
       each col in statsData.labels.growth
         th= col.label
@@ -47,16 +50,14 @@ table#growths-table.table
         each col in statsData.labels.growth
           +dataCell(col.key, statsData.growth, cls.stats.growth)
 
-table.table.stats-table(id=`stats-table-${idx}`)
+table#stats-table.table.stats-table
   each baseStats, idx in statsData.base
     thead
       tr
-        th
-          .toggle
-            a.bi(href="#", data-toggle-target=`stats-table-body-${idx}`)
-            span= baseStats.name
-              |
-              span.hidden-sm &nbsp;Stats
+        th: .toggle
+          a.bi(href="#", data-toggle-target=`stats-table-body-${idx}`)
+          span= baseStats.name
+            span.hidden-sm &nbsp;Stats
         each col in statsData.labels.base
           th= col.label
     tbody(id=`stats-table-body-${idx}`, hidden=idx > 0)
@@ -68,6 +69,48 @@ table.table.stats-table(id=`stats-table-${idx}`)
       each cls in configOptions.classChange
         tr.class-stats-row(data-class-key=cls.key, hidden=cls.hidden)
           td: strong= cls.name
-          td -
+          td
           each col in statsData.labels.growth
             +dataCell(col.key, baseStats, cls.stats.base)
+
+table#pair-up-table.table
+  thead
+    tr
+      th: .toggle
+        a.bi(href="#", data-toggle-target="pair-up-table-body")
+        span Pair Up
+          span.hidden-sm &nbsp;Stats
+      th
+      each col in statsData.labels.pairUp
+        th= col.label
+
+  tbody#pair-up-table-body
+    if statsData.pairUp.basic
+      each rank in statsData.pairUp.basic
+        tr(hidden)
+          td: strong= rank.name
+            span.hidden-sm &nbsp;Support
+          +pairUpTableRows(rank)
+    if statsData.pairUp.boonBane
+      each bb in statsData.pairUp.boonBane
+        each rank in bb.stats
+          tr(data-boon=bb.boon, data-bane=bb.bane, hidden)
+            td: strong= rank.name
+              span.hidden-sm &nbsp;Support
+            +pairUpTableRows(rank)
+    if statsData.pairUp.child
+      tr(data-parent="")
+        td (Select a parent)
+        +pairUpTableRows
+
+      each row in statsData.pairUp.child
+        tr(data-parent=row.parent, data-boon=row.boon, data-bane=row.bane, hidden)
+          td: strong= row.name
+            span.hidden-sm &nbsp;Support
+          +pairUpTableRows(row)
+    //- pair up stats per class
+    if statsData.pairUp.class
+      each cls in statsData.pairUp.class
+        tr.class-pair-up-row(data-class-key=cls.key, hidden)
+          td: strong= cls.name
+          +pairUpTableRows(cls.stats)

@@ -19,11 +19,14 @@
   var partnerSelect = document.getElementById("cfg-partner");
   var talentSelect = document.getElementById("cfg-talent");
   var talentSelectGroup = document.querySelector(".talent-sg");
-
   var classChangeSelect = document.getElementById("class-change-options");
+  var boonBaneSelectGroups = document.querySelectorAll(".boon-bane-sg");
+
   var classGrowthsRows = document.querySelectorAll("#growths-table .class-growths-row");
   var classStatsRows = document.querySelectorAll(".stats-table .class-stats-row");
-  var boonBaneSelectGroups = document.querySelectorAll(".boon-bane-sg");
+  var classPairUpStatsRows = document.querySelectorAll("#pair-up-table-body .class-pair-up-row");
+  var boonBanePairUpStatsRows = document.querySelectorAll("#pair-up-table-body tr[data-boon][data-bane]");
+  var parentPairUpStatsRows = document.querySelectorAll("#pair-up-table-body tr[data-parent]");
 
   var tableToggleLinks = document.querySelectorAll(".table .toggle a");
 
@@ -68,9 +71,9 @@
       parentSelect.addEventListener("change", function () {
         updateTables();
 
-        var show = !!cfg.parents?.[this.value]?.stats?.boonBaneStats;
+        var showBBSG = CORRIN_KANA_KEYS.includes(cfg.characterKey) || !!cfg.parents?.[this.value]?.stats?.boonBaneStats;
         boonBaneSelectGroups.forEach(function (sg) {
-          sg.hidden = !show;
+          sg.hidden = !showBBSG;
         });
 
         if (grandparentSelect) {
@@ -173,15 +176,16 @@
 
   function updateTables() {
     var classKey = classChangeSelect.value;
+    var parentKey = parentSelect?.value;
     console.log(`updateTables: classKey=${classKey}`);
     updateGrowthsTable(classKey);
     updateStatsTable(classKey);
+    updatePairUpTable(parentKey, classKey);
   }
 
   function updateGrowthsTable(classKey) {
     classGrowthsRows.forEach((row) => {
-      var { classKey: rowClassKey } = row.dataset;
-      row.hidden = !row.hasAttribute("data-is-base") && rowClassKey !== classKey;
+      row.hidden = !row.hasAttribute("data-is-base") && row.dataset.classKey !== classKey;
       if (!row.hidden) {
         row.querySelectorAll("td[data-key]").forEach(calcGrowthValues);
       }
@@ -190,11 +194,38 @@
 
   function updateStatsTable(classKey) {
     classStatsRows.forEach((row) => {
-      var { classKey: rowClassKey } = row.dataset;
-      row.hidden = !row.hasAttribute("data-is-base") && rowClassKey !== classKey;
+      row.hidden = !row.hasAttribute("data-is-base") && row.dataset.classKey !== classKey;
       if (!row.hidden) {
         row.querySelectorAll("td[data-key]").forEach(calcStatsValues);
       }
+    });
+  }
+
+  function updatePairUpTable(parentKey, classKey) {
+    if (parentKey !== undefined && cfg.parentKey) {
+      parentPairUpStatsRows.forEach((row) => {
+        var dataParent = row.dataset.parent;
+        if (parentKey === "") {
+          row.hidden = !(dataParent === parentKey);
+        } else {
+          row.hidden = !(dataParent === parentKey || dataParent === cfg.parentKey);
+        }
+      });
+    }
+
+    if (parentKey !== "" && boonSelect?.value && baneSelect?.value) {
+      boonBanePairUpStatsRows.forEach((row) => {
+        var dataParent = row.dataset.parent;
+        if (dataParent !== parentKey) return;
+        var rowBoon = row.dataset.boon;
+        var rowBane = row.dataset.bane;
+        row.hidden = !(rowBoon === boonSelect.value && rowBane === baneSelect.value);
+      });
+    }
+
+    // show/hide class pair-up stats rows based on class change selection
+    classPairUpStatsRows.forEach((row) => {
+      row.hidden = row.dataset.classKey !== classKey;
     });
   }
 
@@ -221,7 +252,7 @@
       baseValue = (baseValue + parentValue) / 2;
     }
     var bbValue = getBoonBaneGrowthValue(cfg.boonBaneStats, key);
-    td.textContent = baseValue + clsValue + bbValue;
+    td.textContent = dashZero(baseValue + clsValue + bbValue);
   }
 
   function calcStatsValues(td) {
@@ -229,7 +260,11 @@
     var baseValue = parseInt(td.dataset.base);
     var clsValue = parseInt(td.dataset.class);
     var bbValue = getBoonBaneStatValue(cfg.boonBaneStats, key);
-    td.textContent = baseValue + clsValue + bbValue;
+    td.textContent = dashZero(baseValue + clsValue + bbValue);
+  }
+
+  function dashZero(value) {
+    return value === 0 ? " " : value.toString();
   }
 
   /**

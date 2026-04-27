@@ -7,6 +7,7 @@ import Stats from "./data/models/Stats.ts";
 import Character from "./data/models/Character.ts";
 import db from "./data/database.ts";
 import Class from "./data/models/Class.ts";
+import PairUpStats from "./data/models/PairUpStats.ts";
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
 const __dirname = import.meta.dirname;
@@ -33,7 +34,7 @@ function buildCharacterIndexSections() {
 
 function createConfigOptions(character: Character) {
   const variableParents = character.variableParents;
-  const showBoonBane = character.isCorrin || variableParents?.some((p) => p.isCorrin);
+  const showBoonBane = character.isCorrinOrKana || variableParents?.some((p) => p.isCorrin);
   return {
     talents: db.getTalentOptions(character.gender),
     talentsHidden: character.isCorrinOrKana ? false : true,
@@ -82,11 +83,67 @@ function createStatsData(character: Character) {
     labels: {
       growth: Stats.MAP,
       base: BaseStats.MAP,
+      pairUp: PairUpStats.MAP,
     },
     growth: character.stats?.growth,
     base: character.stats?.base,
-    pairUp: character.getPairUpStats(),
+    pairUp: {
+      basic: character.stats?.pairUp,
+      boonBane: character.stats?.boonBaneStats?.pairUp,
+      child: character.isChild
+        ? (() => {
+            const rows: Array<{ [key: string]: any }> = [];
+            rows.push(...buildParentPairUpRows(character.fixedParent));
+            character.variableParents.forEach((parent) => {
+              rows.push(...buildParentPairUpRows(parent));
+            });
+            rows.sort((a, b) => {
+              if (a.name === b.name) return 0;
+              if (a.name === "S") return 1;
+              if (b.name === "S") return -1;
+              return -a.name.localeCompare(b.name);
+            });
+            return rows;
+          })()
+        : undefined,
+      class: createClassChangeOptions(character).map((cls) => {
+        return {
+          key: cls.key,
+          name: cls.name,
+          stats: cls.stats.pairUp,
+        };
+      }),
+    },
   };
+}
+
+function buildParentPairUpRows(parent: Character | undefined): Array<{ [key: string]: any }> {
+  if (!parent) return [];
+
+  const rows: Array<{ [key: string]: any }> = [];
+  if (parent.isCorrin) {
+    parent.stats?.boonBaneStats?.pairUp.forEach((pairUp) => {
+      const { boon, bane } = pairUp;
+      if (parent.gender === "m") {
+        rows.push({ parent: parent.key, boon, bane, ...pairUp.stats[0] });
+        rows.push({ parent: parent.key, boon, bane, ...pairUp.stats[2] });
+      } else {
+        rows.push({ parent: parent.key, boon, bane, ...pairUp.stats[1] });
+        rows.push({ parent: parent.key, boon, bane, ...pairUp.stats[3] });
+      }
+    });
+  } else {
+    if (parent.stats?.pairUp) {
+      if (parent.gender === "m") {
+        rows.push({ parent: parent.key, ...parent.stats.pairUp[0] });
+        rows.push({ parent: parent.key, ...parent.stats.pairUp[2] });
+      } else {
+        rows.push({ parent: parent.key, ...parent.stats.pairUp[1] });
+        rows.push({ parent: parent.key, ...parent.stats.pairUp[3] });
+      }
+    }
+  }
+  return rows;
 }
 
 function createUiConfig(character: Character) {
@@ -94,6 +151,9 @@ function createUiConfig(character: Character) {
   character.variableParents?.forEach((p) => {
     parents.set(p.key, p);
   });
+  if (character.fixedParent) {
+    parents.set(character.fixedParent.key, character.fixedParent);
+  }
   const grandparents = new Map<string, Character>();
   character.getVariableGrandparents()?.forEach((gp) => {
     grandparents.set(gp.key, gp);
@@ -241,6 +301,7 @@ const pugHelpers = {
   charaPortraitPath: (name: string) => `../images/portraits/${name}.png`,
   skillIconPath: (skill: string) => `../images/icon/skills/${skill}.png`,
   weaponIconPath: (weapon: string) => `../images/icon/weapons/${weapon}.png`,
+  dashZero: (value: number) => (!value ? " " : value.toString()),
 };
 
 // ─── Compile Pug templates ────────────────────────────────────────────────────
