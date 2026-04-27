@@ -16,7 +16,7 @@ export default class CharacterStats {
   base: BaseStats[];
   growth: Stats;
   cap: Stats | null;
-  pairUp: PairUpStats[];
+  pairUp: PairUpStats[] | undefined;
   boonBaneStats: BoonBaneStats | undefined = undefined;
 
   _boonBaneKey: string;
@@ -27,7 +27,7 @@ export default class CharacterStats {
     this.base = Object.entries(raw.base).map(([name, values]) => new BaseStats(name, values));
     this.growth = new Stats(raw.growth);
     this.cap = raw.cap ? new Stats(raw.cap) : null;
-    this.pairUp = PairUpStats.fromJSON(raw.pair_up ?? ["", "", "", ""]);
+    this.pairUp = raw.pair_up ? PairUpStats.fromJSON(raw.pair_up) : undefined;
 
     this._boonBaneKey = raw.boon_bane ?? key;
     this._rawPairUp = raw.pair_up ?? ["", "", "", ""];
@@ -35,10 +35,7 @@ export default class CharacterStats {
 
   toJSON() {
     return {
-      base: this.base,
       growth: this.growth,
-      cap: this.cap,
-      pair_up: this.pairUp,
       boonBaneStats: this.boonBaneStats,
     };
   }

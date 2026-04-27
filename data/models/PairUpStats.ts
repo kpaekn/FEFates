@@ -25,8 +25,11 @@ export default class PairUpStats extends Stats {
   }
 
   static fromJSON(values: string[]): PairUpStats[] {
-    const statsValues = Array(8).fill(0);
+    if (values.length !== 4) {
+      throw new Error(`Expected 4 values for PairUpStats.fromJSON, got ${values.join(", ")}`);
+    }
     const pairUpStatsValues = values.map((value) => {
+      const statsValues = Array(8).fill(0);
       value.split(",").forEach((stat) => {
         const idx = Stats.KEYS.indexOf(stat);
         statsValues[idx]++;

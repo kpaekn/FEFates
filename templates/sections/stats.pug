@@ -4,7 +4,7 @@ mixin dataCell(key, base, cls)
 mixin pairUpTableRows(stats)
   td
   each col in statsData.labels.pairUp
-    td= stats ? dashZero(stats[col.key]) : ""
+    td(data-key=col.key)= stats ? dashZero(stats[col.key]) : ""
 
 header
   h2 Growth Rate and Base Stats
@@ -16,12 +16,12 @@ section.sgc
       each opt in configOptions.classChange
         option(value=opt.key, selected=opt.selected)= opt.name
   if configOptions.boonBane
-    .sg.boon-bane-sg(hidden=!character.isCorrin)
+    .sg.boon-bane-sg(hidden=!character.isCorrinOrKana)
       label(for="boon-options") Boon
       select#boon-options(name="boon-options")
         each bb in configOptions.boonBane
           option(value=bb.key)= "+ " + bb.label
-    .sg.boon-bane-sg(hidden=!character.isCorrin)
+    .sg.boon-bane-sg(hidden=!character.isCorrinOrKana)
       label(for="bane-options") Bane
       select#bane-options(name="bane-options")
         each bb in configOptions.boonBane
@@ -69,7 +69,7 @@ table#stats-table.table.stats-table
       each cls in configOptions.classChange
         tr.class-stats-row(data-class-key=cls.key, hidden=cls.hidden)
           td: strong= cls.name
-          td -
+          td
           each col in statsData.labels.growth
             +dataCell(col.key, baseStats, cls.stats.base)
 
@@ -85,26 +85,32 @@ table#pair-up-table.table
         th= col.label
 
   tbody#pair-up-table-body
-    if statsData.pairUpStatsPerParent
-      each pairUp in statsData.pairUpStatsPerParent
-        each rank in pairUp.stats
-          tr(data-parent=pairUp.parent, hidden=!!pairUp.parent)
-            td: strong= rank.name
-              span.hidden-sm &nbsp;Support
-            +pairUpTableRows(rank)
-      tr(data-parent)
-        td (Select a parent)
-        +pairUpTableRows
-
-    else if statsData.pairUp
-      each rank in statsData.pairUp
-        tr
+    if statsData.pairUp.basic
+      each rank in statsData.pairUp.basic
+        tr(hidden)
           td: strong= rank.name
             span.hidden-sm &nbsp;Support
           +pairUpTableRows(rank)
+    if statsData.pairUp.boonBane
+      each bb in statsData.pairUp.boonBane
+        each rank in bb.stats
+          tr(data-boon=bb.boon, data-bane=bb.bane, hidden)
+            td: strong= rank.name
+              span.hidden-sm &nbsp;Support
+            +pairUpTableRows(rank)
+    if statsData.pairUp.child
+      tr(data-parent="")
+        td (Select a parent)
+        +pairUpTableRows
 
-    if statsData.classPairUpStats
-      each cls in statsData.classPairUpStats
+      each row in statsData.pairUp.child
+        tr(data-parent=row.parent, data-boon=row.boon, data-bane=row.bane, hidden)
+          td: strong= row.name
+            span.hidden-sm &nbsp;Support
+          +pairUpTableRows(row)
+    //- pair up stats per class
+    if statsData.pairUp.class
+      each cls in statsData.pairUp.class
         tr.class-pair-up-row(data-class-key=cls.key, hidden)
           td: strong= cls.name
           +pairUpTableRows(cls.stats)

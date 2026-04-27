@@ -19,12 +19,14 @@
   var partnerSelect = document.getElementById("cfg-partner");
   var talentSelect = document.getElementById("cfg-talent");
   var talentSelectGroup = document.querySelector(".talent-sg");
-
   var classChangeSelect = document.getElementById("class-change-options");
+  var boonBaneSelectGroups = document.querySelectorAll(".boon-bane-sg");
+
   var classGrowthsRows = document.querySelectorAll("#growths-table .class-growths-row");
   var classStatsRows = document.querySelectorAll(".stats-table .class-stats-row");
-  var pairUpStatsRows = document.querySelectorAll("#pair-up-table .class-pair-up-row");
-  var boonBaneSelectGroups = document.querySelectorAll(".boon-bane-sg");
+  var classPairUpStatsRows = document.querySelectorAll("#pair-up-table-body .class-pair-up-row");
+  var boonBanePairUpStatsRows = document.querySelectorAll("#pair-up-table-body tr[data-boon][data-bane]");
+  var parentPairUpStatsRows = document.querySelectorAll("#pair-up-table-body tr[data-parent]");
 
   var tableToggleLinks = document.querySelectorAll(".table .toggle a");
 
@@ -69,7 +71,7 @@
       parentSelect.addEventListener("change", function () {
         updateTables();
 
-        var showBBSG = !!cfg.parents?.[this.value]?.stats?.boonBaneStats;
+        var showBBSG = CORRIN_KANA_KEYS.includes(cfg.characterKey) || !!cfg.parents?.[this.value]?.stats?.boonBaneStats;
         boonBaneSelectGroups.forEach(function (sg) {
           sg.hidden = !showBBSG;
         });
@@ -93,10 +95,6 @@
         disableCorrinKanaOptions(this, friendshipSelect, partnerSelect);
         showHideTalentSelectGroup();
         showHidePanels(PANEL_GROUP_PARENT, this.value);
-
-        document.querySelectorAll(`#pair-up-table-body [data-parent]`).forEach(function (tbody) {
-          tbody.hidden = tbody.dataset.parent !== parentSelect.value;
-        });
       });
     }
 
@@ -178,10 +176,11 @@
 
   function updateTables() {
     var classKey = classChangeSelect.value;
+    var parentKey = parentSelect?.value;
     console.log(`updateTables: classKey=${classKey}`);
     updateGrowthsTable(classKey);
     updateStatsTable(classKey);
-    updatePairUpTable(classKey);
+    updatePairUpTable(parentKey, classKey);
   }
 
   function updateGrowthsTable(classKey) {
@@ -202,8 +201,30 @@
     });
   }
 
-  function updatePairUpTable(classKey) {
-    pairUpStatsRows.forEach((row) => {
+  function updatePairUpTable(parentKey, classKey) {
+    if (parentKey !== undefined && cfg.parentKey) {
+      parentPairUpStatsRows.forEach((row) => {
+        var dataParent = row.dataset.parent;
+        if (parentKey === "") {
+          row.hidden = !(dataParent === parentKey);
+        } else {
+          row.hidden = !(dataParent === parentKey || dataParent === cfg.parentKey);
+        }
+      });
+    }
+
+    if (parentKey !== "" && boonSelect?.value && baneSelect?.value) {
+      boonBanePairUpStatsRows.forEach((row) => {
+        var dataParent = row.dataset.parent;
+        if (dataParent !== parentKey) return;
+        var rowBoon = row.dataset.boon;
+        var rowBane = row.dataset.bane;
+        row.hidden = !(rowBoon === boonSelect.value && rowBane === baneSelect.value);
+      });
+    }
+
+    // show/hide class pair-up stats rows based on class change selection
+    classPairUpStatsRows.forEach((row) => {
       row.hidden = row.dataset.classKey !== classKey;
     });
   }
@@ -243,7 +264,7 @@
   }
 
   function dashZero(value) {
-    return value === 0 ? "-" : value.toString();
+    return value === 0 ? " " : value.toString();
   }
 
   /**

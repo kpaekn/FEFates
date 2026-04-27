@@ -71,10 +71,10 @@ export default class Character {
   }
 
   toJSON() {
-    const { key, name, stats, variableParents } = this;
+    const { key, gender, stats, variableParents } = this;
     return {
       key,
-      name,
+      gender,
       stats,
       variableParents,
     };
@@ -172,20 +172,6 @@ export default class Character {
         return cls.matchesGender(this.gender) && (this.hasInClassSet(cls) || !cls.unique);
       })
       .map(([_, cls]) => cls);
-  }
-
-  getPairUpStats(parent?: Character): PairUpStats[] {
-    if (!this.isChild) {
-      return this.stats.pairUp;
-    }
-    const father = this.fixedParent?.gender === "m" ? this.fixedParent : parent;
-    const mother = this.fixedParent?.gender === "f" ? this.fixedParent : parent;
-    return PairUpStats.fromJSON([
-      father?.stats?._rawPairUp[0] ?? "",
-      mother?.stats?._rawPairUp[1] ?? "",
-      father?.stats?._rawPairUp[2] ?? "",
-      mother?.stats?._rawPairUp[3] ?? "",
-    ]);
   }
 
   hasInClassSet(cls: Class): boolean {
